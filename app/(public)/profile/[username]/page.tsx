@@ -4,9 +4,17 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { ProfileGallery } from "@/components/profile/gallery/profile-gallery";
+import { cn } from "@/lib/utils";
+import { FollowButton } from "@/components/profile/follow-button";
+import { auth } from "@/lib/auth";
+import { trackProfileView } from "@/lib/analytics/track-profile-view";
+import { ContactButton } from "@/components/profile/contact-button";
+import { ContactCard } from "@/components/profile/contact-card";
+import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
+import { ProfileDescription } from "@/components/profile/profile-description";
 
 type PageProps = {
   params: Promise<{
@@ -23,6 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function PublicProfilePage({ params }: PageProps) {
+  const session = await auth();
   const { username } = await params;
 
   const user = await prisma.user.findUnique({
@@ -31,6 +40,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
     },
 
     select: {
+      id: true,
       username: true,
       image: true,
       createdAt: true,
@@ -42,6 +52,19 @@ export default async function PublicProfilePage({ params }: PageProps) {
           isPublic: true,
           coverUrl: true,
           verified: true,
+
+          phoneEnabled: true,
+          whatsappEnabled: true,
+
+          telegramEnabled: true,
+          signalEnabled: true,
+
+          websiteEnabled: true,
+          instagramEnabled: true,
+          emailEnabled: true,
+
+          preferredContact: true,
+          contactNote: true,
 
           city: {
             select: {
@@ -113,6 +136,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
             },
           },
           followers: true,
+          following: true,
           postLikes: true,
         },
       },
@@ -122,6 +146,27 @@ export default async function PublicProfilePage({ params }: PageProps) {
   if (!user || !user.profile?.isPublic) {
     notFound();
   }
+
+  await trackProfileView(user.id);
+
+  const isOwnProfile = session?.user?.id === user.id;
+
+  const existingFollow =
+    session?.user?.id && !isOwnProfile
+      ? await prisma.follow.findUnique({
+          where: {
+            followerId_followingId: {
+              followerId: session.user.id,
+              followingId: user.id,
+            },
+          },
+          select: {
+            followerId: true,
+          },
+        })
+      : null;
+
+  const initialFollowing = existingFollow !== null;
 
   const displayName = user.profile.displayName ?? user.username;
   const location = [user.profile.city?.name, user.profile.canton?.name]
@@ -146,6 +191,31 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <StickyProfileHeader
+        triggerId="profile-header-end"
+        username={user.username}
+        displayName={displayName}
+        image={user.image}
+        location={location}
+        categories={user.profile.categories.map(({ category }) => ({
+          name: category.name,
+          slug: category.slug,
+        }))}
+        authenticated={Boolean(session?.user?.id)}
+        initialFollowing={initialFollowing}
+        initialFollowerCount={user._count.followers}
+        isOwnProfile={isOwnProfile}
+        contactProfile={{
+          phoneEnabled: user.profile.phoneEnabled,
+          whatsappEnabled: user.profile.whatsappEnabled,
+          telegramEnabled: user.profile.telegramEnabled,
+          signalEnabled: user.profile.signalEnabled,
+          websiteEnabled: user.profile.websiteEnabled,
+          instagramEnabled: user.profile.instagramEnabled,
+          emailEnabled: user.profile.emailEnabled,
+          preferredContact: user.profile.preferredContact,
+        }}
+      />
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/80 shadow-2xl shadow-black/20">
         <div className="relative h-56 overflow-hidden bg-linear-to-br from-rose-600 via-pink-600 to-fuchsia-700 sm:h-72">
           {user.profile.coverUrl ? (
@@ -194,45 +264,78 @@ export default async function PublicProfilePage({ params }: PageProps) {
             </div>
 
             <div className="grid grid-cols-3 gap-3 sm:min-w-80">
-              <div className="rounded-2xl border border-white/10 bg-white/3 px-4 py-3 text-center">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center">
                 <div className="text-2xl font-black text-white">{user._count.posts}</div>
 
                 <div className="mt-1 text-xs text-zinc-500">Beiträge</div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/3 px-4 py-3 text-center">
-                <div className="text-2xl font-black text-white">—</div>
+              <Link
+                href={`/profile/${user.username}/followers`}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
+              >
+                <div className="text-2xl font-black text-white">{user._count.followers}</div>
 
                 <div className="mt-1 text-xs text-zinc-500">Follower</div>
-              </div>
+              </Link>
 
-              <div className="rounded-2xl border border-white/10  bg-white/3 px-4 py-3 text-center">
-                <div className="text-2xl font-black text-white">—</div>
+              <Link
+                href={`/profile/${user.username}/following`}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
+              >
+                <div className="text-2xl font-black text-white">{user._count.following}</div>
 
-                <div className="mt-1 text-xs text-zinc-500">Likes</div>
-              </div>
+                <div className="mt-1 text-xs text-zinc-500">Folgt</div>
+              </Link>
             </div>
           </div>
 
-          <div className="mt-6 max-w-2xl">
-            {location && <p className="mt-5 text-zinc-400">{location}</p>}
-
-            {user.profile.bio && <p className="mt-4 whitespace-pre-wrap leading-7 text-zinc-300">{user.profile.bio}</p>}
-          </div>
+          <div className="mt-6 max-w-2xl">{location && <p className="mt-5 text-zinc-400">{location}</p>}</div>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button className="bg-rose-600 text-white hover:bg-rose-500">Folgen</Button>
+            {isOwnProfile ? (
+              <Link href="/profile/edit" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
+                Profil bearbeiten
+              </Link>
+            ) : (
+              <FollowButton
+                username={user.username}
+                authenticated={Boolean(session?.user?.id)}
+                initialFollowing={initialFollowing}
+                initialFollowerCount={user._count.followers}
+              />
+            )}
 
-            <Button variant="outline" className="border-white/10 bg-white/5 text-white hover:bg-white/10">
-              Nachricht
-            </Button>
+            <ContactCard
+              username={user.username}
+              disabled={isOwnProfile}
+              profile={{
+                phoneEnabled: user.profile.phoneEnabled,
+                whatsappEnabled: user.profile.whatsappEnabled,
+                telegramEnabled: user.profile.telegramEnabled,
+                signalEnabled: user.profile.signalEnabled,
+                websiteEnabled: user.profile.websiteEnabled,
+                instagramEnabled: user.profile.instagramEnabled,
+                emailEnabled: user.profile.emailEnabled,
+                preferredContact: user.profile.preferredContact,
+              }}
+            />
 
             <Badge variant="secondary" className="border border-white/10 bg-white/5 text-zinc-300">
               Öffentliches Profil
             </Badge>
           </div>
+
+          {!isOwnProfile && user.profile.contactNote ? (
+            <div className="mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+              <p className="text-sm leading-6 text-zinc-400">{user.profile.contactNote}</p>
+            </div>
+          ) : null}
         </div>
       </div>
+      <div id="profile-header-end" aria-hidden="true" className="h-px" />
+
+      {user.profile.bio ? <ProfileDescription html={user.profile.bio} displayName={displayName} /> : null}
 
       <ProfileGallery displayName={displayName} media={galleryMedia} />
     </div>

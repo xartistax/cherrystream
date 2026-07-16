@@ -2,10 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActionState } from "@/types/action-state";
+import { PROFILE_DESCRIPTION_MAX_LENGTH, sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
+const contactChannels = ["PHONE", "WHATSAPP", "TELEGRAM", "SIGNAL", "WEBSITE", "INSTAGRAM", "EMAIL"] as const;
+
+type ContactChannel = (typeof contactChannels)[number];
 
 const optionalText = (maxLength: number) =>
   z
@@ -13,6 +16,11 @@ const optionalText = (maxLength: number) =>
     .trim()
     .max(maxLength)
     .transform((value) => value || null);
+
+const optionalId = z
+  .string()
+  .trim()
+  .transform((value) => value || null);
 
 const optionalUrl = z
   .string()
@@ -33,16 +41,34 @@ const optionalUrl = z
   }, "Bitte gib eine gültige URL ein.")
   .transform((value) => value || null);
 
-const optionalId = z
+const optionalPhoneNumber = z
   .string()
   .trim()
+  .max(30, "Die Telefonnummer ist zu lang.")
+  .refine((value) => !value || /^\+?[0-9\s()./-]{7,30}$/.test(value), "Bitte gib eine gültige Telefonnummer ein.")
+  .transform((value) => value || null);
+
+const optionalUsername = (maxLength: number, message: string) =>
+  z
+    .string()
+    .trim()
+    .max(maxLength)
+    .transform((value) => value.replace(/^@+/, ""))
+    .refine((value) => !value || /^[a-zA-Z0-9._]+$/.test(value), message)
+    .transform((value) => value || null);
+
+const optionalEmail = z
+  .string()
+  .trim()
+  .max(255, "Die E-Mail-Adresse ist zu lang.")
+  .refine((value) => !value || z.string().email().safeParse(value).success, "Bitte gib eine gültige E-Mail-Adresse ein.")
   .transform((value) => value || null);
 
 const profileSchema = z
   .object({
     displayName: z.string().trim().min(2, "Der Anzeigename muss mindestens 2 Zeichen haben.").max(50, "Der Anzeigename darf maximal 50 Zeichen haben."),
 
-    bio: optionalText(500),
+    bio: z.string().nullable(),
 
     birthDate: z
       .string()
@@ -51,22 +77,35 @@ const profileSchema = z
 
     gender: z.enum(["WOMAN", "MAN", "NON_BINARY", "OTHER"]).nullable(),
 
-    website: optionalUrl,
-
-    instagram: z
-      .string()
-      .trim()
-      .max(30, "Der Instagram-Name darf maximal 30 Zeichen haben.")
-      .transform((value) => value.replace(/^@+/, ""))
-      .refine((value) => !value || /^[a-zA-Z0-9._]+$/.test(value), "Der Instagram-Name enthält ungültige Zeichen.")
-      .transform((value) => value || null),
-
     isPublic: z.boolean(),
 
     categoryIds: z.array(z.string().min(1)).max(5, "Du kannst maximal 5 Kategorien auswählen."),
 
     cantonId: optionalId,
     cityId: optionalId,
+
+    phoneNumber: optionalPhoneNumber,
+    phoneEnabled: z.boolean(),
+    whatsappEnabled: z.boolean(),
+
+    telegramUsername: optionalUsername(32, "Der Telegram-Benutzername enthält ungültige Zeichen."),
+    telegramEnabled: z.boolean(),
+
+    signalNumber: optionalPhoneNumber,
+    signalEnabled: z.boolean(),
+
+    website: optionalUrl,
+    websiteEnabled: z.boolean(),
+
+    instagram: optionalUsername(30, "Der Instagram-Benutzername enthält ungültige Zeichen."),
+    instagramEnabled: z.boolean(),
+
+    emailPublic: optionalEmail,
+    emailEnabled: z.boolean(),
+
+    preferredContact: z.enum(contactChannels).nullable(),
+
+    contactNote: optionalText(300),
   })
   .superRefine((data, context) => {
     if (data.birthDate) {
@@ -95,6 +134,74 @@ const profileSchema = z
         message: "Wähle zuerst einen Kanton aus.",
       });
     }
+
+    if ((data.phoneEnabled || data.whatsappEnabled) && !data.phoneNumber) {
+      context.addIssue({
+        code: "custom",
+        path: ["phoneNumber"],
+        message: "Hinterlege eine Telefonnummer für Telefon oder WhatsApp.",
+      });
+    }
+
+    if (data.telegramEnabled && !data.telegramUsername) {
+      context.addIssue({
+        code: "custom",
+        path: ["telegramUsername"],
+        message: "Hinterlege einen Telegram-Benutzernamen.",
+      });
+    }
+
+    if (data.signalEnabled && !data.signalNumber) {
+      context.addIssue({
+        code: "custom",
+        path: ["signalNumber"],
+        message: "Hinterlege eine Signal-Nummer.",
+      });
+    }
+
+    if (data.websiteEnabled && !data.website) {
+      context.addIssue({
+        code: "custom",
+        path: ["website"],
+        message: "Hinterlege eine Website.",
+      });
+    }
+
+    if (data.instagramEnabled && !data.instagram) {
+      context.addIssue({
+        code: "custom",
+        path: ["instagram"],
+        message: "Hinterlege einen Instagram-Benutzernamen.",
+      });
+    }
+
+    if (data.emailEnabled && !data.emailPublic) {
+      context.addIssue({
+        code: "custom",
+        path: ["emailPublic"],
+        message: "Hinterlege eine öffentliche E-Mail-Adresse.",
+      });
+    }
+
+    if (data.preferredContact) {
+      const enabledChannels: Record<ContactChannel, boolean> = {
+        PHONE: data.phoneEnabled,
+        WHATSAPP: data.whatsappEnabled,
+        TELEGRAM: data.telegramEnabled,
+        SIGNAL: data.signalEnabled,
+        WEBSITE: data.websiteEnabled,
+        INSTAGRAM: data.instagramEnabled,
+        EMAIL: data.emailEnabled,
+      };
+
+      if (!enabledChannels[data.preferredContact]) {
+        context.addIssue({
+          code: "custom",
+          path: ["preferredContact"],
+          message: "Der bevorzugte Kontaktkanal muss aktiviert sein.",
+        });
+      }
+    }
   });
 
 export async function updateProfileAction(_previousState: ActionState, formData: FormData): Promise<ActionState> {
@@ -108,6 +215,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
   }
 
   const rawGender = formData.get("gender");
+  const rawPreferredContact = formData.get("preferredContact");
 
   const categoryIds = Array.from(
     new Set(formData.getAll("categoryIds").filter((value): value is string => typeof value === "string" && value.trim().length > 0)),
@@ -118,12 +226,35 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     bio: formData.get("bio"),
     birthDate: formData.get("birthDate"),
     gender: typeof rawGender === "string" && rawGender.length > 0 ? rawGender : null,
-    website: formData.get("website"),
-    instagram: formData.get("instagram"),
+
     isPublic: formData.get("isPublic") === "on",
+
     categoryIds,
     cantonId: formData.get("cantonId"),
     cityId: formData.get("cityId"),
+
+    phoneNumber: formData.get("phoneNumber"),
+    phoneEnabled: formData.get("phoneEnabled") === "on",
+    whatsappEnabled: formData.get("whatsappEnabled") === "on",
+
+    telegramUsername: formData.get("telegramUsername"),
+    telegramEnabled: formData.get("telegramEnabled") === "on",
+
+    signalNumber: formData.get("signalNumber"),
+    signalEnabled: formData.get("signalEnabled") === "on",
+
+    website: formData.get("website"),
+    websiteEnabled: formData.get("websiteEnabled") === "on",
+
+    instagram: formData.get("instagram"),
+    instagramEnabled: formData.get("instagramEnabled") === "on",
+
+    emailPublic: formData.get("emailPublic"),
+    emailEnabled: formData.get("emailEnabled") === "on",
+
+    preferredContact: typeof rawPreferredContact === "string" && rawPreferredContact.length > 0 ? rawPreferredContact : null,
+
+    contactNote: formData.get("contactNote"),
   });
 
   if (!parsedData.success) {
@@ -134,7 +265,60 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     };
   }
 
-  const { displayName, bio, birthDate, gender, website, instagram, isPublic, categoryIds: selectedCategoryIds, cantonId, cityId } = parsedData.data;
+  let sanitizedBio: string | null;
+
+  try {
+    sanitizedBio = sanitizeProfileDescription(parsedData.data.bio).html;
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message === "PROFILE_DESCRIPTION_TOO_LONG") {
+      return {
+        success: false,
+        message: "Bitte überprüfe deine Profilbeschreibung.",
+        errors: {
+          bio: [`Die Profilbeschreibung darf maximal ${PROFILE_DESCRIPTION_MAX_LENGTH.toLocaleString("de-CH")} Zeichen enthalten.`],
+        },
+      };
+    }
+
+    console.error("Profile description sanitization failed:", error);
+
+    return {
+      success: false,
+      message: "Die Profilbeschreibung konnte nicht verarbeitet werden.",
+    };
+  }
+
+  const {
+    displayName,
+    birthDate,
+    gender,
+    isPublic,
+    categoryIds: selectedCategoryIds,
+    cantonId,
+    cityId,
+
+    phoneNumber,
+    phoneEnabled,
+    whatsappEnabled,
+
+    telegramUsername,
+    telegramEnabled,
+
+    signalNumber,
+    signalEnabled,
+
+    website,
+    websiteEnabled,
+
+    instagram,
+    instagramEnabled,
+
+    emailPublic,
+    emailEnabled,
+
+    preferredContact,
+    contactNote,
+  } = parsedData.data;
 
   try {
     const user = await prisma.user.findUnique({
@@ -227,6 +411,38 @@ export async function updateProfileAction(_previousState: ActionState, formData:
       };
     }
 
+    const profileData = {
+      displayName,
+      bio: sanitizedBio,
+      birthDate: birthDate ? new Date(`${birthDate}T00:00:00.000Z`) : null,
+      gender,
+      isPublic,
+      cantonId,
+      cityId,
+
+      phoneNumber,
+      phoneEnabled,
+      whatsappEnabled,
+
+      telegramUsername,
+      telegramEnabled,
+
+      signalNumber,
+      signalEnabled,
+
+      website,
+      websiteEnabled,
+
+      instagram,
+      instagramEnabled,
+
+      emailPublic,
+      emailEnabled,
+
+      preferredContact,
+      contactNote,
+    };
+
     await prisma.user.update({
       where: {
         id: session.user.id,
@@ -237,15 +453,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
         profile: {
           upsert: {
             create: {
-              displayName,
-              bio,
-              birthDate: birthDate ? new Date(`${birthDate}T00:00:00.000Z`) : null,
-              gender,
-              website,
-              instagram,
-              isPublic,
-              cantonId,
-              cityId,
+              ...profileData,
 
               categories: {
                 create: selectedCategoryIds.map((categoryId) => ({
@@ -259,15 +467,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
             },
 
             update: {
-              displayName,
-              bio,
-              birthDate: birthDate ? new Date(`${birthDate}T00:00:00.000Z`) : null,
-              gender,
-              website,
-              instagram,
-              isPublic,
-              cantonId,
-              cityId,
+              ...profileData,
 
               categories: {
                 deleteMany: {},

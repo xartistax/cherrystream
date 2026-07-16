@@ -397,7 +397,10 @@ export const ModelName = {
   Category: 'Category',
   ProfileCategory: 'ProfileCategory',
   Canton: 'Canton',
-  City: 'City'
+  City: 'City',
+  ProfileView: 'ProfileView',
+  ContactClick: 'ContactClick',
+  ContactMethod: 'ContactMethod'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "profile" | "account" | "session" | "verificationToken" | "post" | "postMedia" | "follow" | "postLike" | "postUnlock" | "category" | "profileCategory" | "canton" | "city"
+    modelProps: "user" | "profile" | "account" | "session" | "verificationToken" | "post" | "postMedia" | "follow" | "postLike" | "postUnlock" | "category" | "profileCategory" | "canton" | "city" | "profileView" | "contactClick" | "contactMethod"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1453,6 +1456,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProfileView: {
+      payload: Prisma.$ProfileViewPayload<ExtArgs>
+      fields: Prisma.ProfileViewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProfileViewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProfileViewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        findFirst: {
+          args: Prisma.ProfileViewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProfileViewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        findMany: {
+          args: Prisma.ProfileViewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>[]
+        }
+        create: {
+          args: Prisma.ProfileViewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        createMany: {
+          args: Prisma.ProfileViewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProfileViewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>[]
+        }
+        delete: {
+          args: Prisma.ProfileViewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        update: {
+          args: Prisma.ProfileViewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProfileViewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProfileViewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProfileViewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProfileViewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileViewPayload>
+        }
+        aggregate: {
+          args: Prisma.ProfileViewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProfileView>
+        }
+        groupBy: {
+          args: Prisma.ProfileViewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfileViewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProfileViewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfileViewCountAggregateOutputType> | number
+        }
+      }
+    }
+    ContactClick: {
+      payload: Prisma.$ContactClickPayload<ExtArgs>
+      fields: Prisma.ContactClickFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactClickFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactClickFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        findFirst: {
+          args: Prisma.ContactClickFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactClickFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        findMany: {
+          args: Prisma.ContactClickFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>[]
+        }
+        create: {
+          args: Prisma.ContactClickCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        createMany: {
+          args: Prisma.ContactClickCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactClickCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>[]
+        }
+        delete: {
+          args: Prisma.ContactClickDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        update: {
+          args: Prisma.ContactClickUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactClickDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactClickUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactClickUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactClickUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactClickPayload>
+        }
+        aggregate: {
+          args: Prisma.ContactClickAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContactClick>
+        }
+        groupBy: {
+          args: Prisma.ContactClickGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactClickGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactClickCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactClickCountAggregateOutputType> | number
+        }
+      }
+    }
+    ContactMethod: {
+      payload: Prisma.$ContactMethodPayload<ExtArgs>
+      fields: Prisma.ContactMethodFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactMethodFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactMethodFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        findFirst: {
+          args: Prisma.ContactMethodFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactMethodFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        findMany: {
+          args: Prisma.ContactMethodFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>[]
+        }
+        create: {
+          args: Prisma.ContactMethodCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        createMany: {
+          args: Prisma.ContactMethodCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactMethodCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>[]
+        }
+        delete: {
+          args: Prisma.ContactMethodDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        update: {
+          args: Prisma.ContactMethodUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactMethodDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactMethodUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactMethodUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactMethodUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMethodPayload>
+        }
+        aggregate: {
+          args: Prisma.ContactMethodAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContactMethod>
+        }
+        groupBy: {
+          args: Prisma.ContactMethodGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactMethodGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactMethodCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactMethodCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1520,8 +1745,21 @@ export const ProfileScalarFieldEnum = {
   isPublic: 'isPublic',
   coverUrl: 'coverUrl',
   coverPathname: 'coverPathname',
+  phoneNumber: 'phoneNumber',
+  phoneEnabled: 'phoneEnabled',
+  whatsappEnabled: 'whatsappEnabled',
+  telegramUsername: 'telegramUsername',
+  telegramEnabled: 'telegramEnabled',
+  signalNumber: 'signalNumber',
+  signalEnabled: 'signalEnabled',
   website: 'website',
+  websiteEnabled: 'websiteEnabled',
   instagram: 'instagram',
+  instagramEnabled: 'instagramEnabled',
+  emailPublic: 'emailPublic',
+  emailEnabled: 'emailEnabled',
+  preferredContact: 'preferredContact',
+  contactNote: 'contactNote',
   verified: 'verified',
   cantonId: 'cantonId',
   cityId: 'cityId',
@@ -1690,6 +1928,42 @@ export const CityScalarFieldEnum = {
 export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof CityScalarFieldEnum]
 
 
+export const ProfileViewScalarFieldEnum = {
+  id: 'id',
+  profileUserId: 'profileUserId',
+  viewerId: 'viewerId',
+  visitorHash: 'visitorHash',
+  viewedAt: 'viewedAt'
+} as const
+
+export type ProfileViewScalarFieldEnum = (typeof ProfileViewScalarFieldEnum)[keyof typeof ProfileViewScalarFieldEnum]
+
+
+export const ContactClickScalarFieldEnum = {
+  id: 'id',
+  profileUserId: 'profileUserId',
+  visitorId: 'visitorId',
+  channel: 'channel',
+  visitorHash: 'visitorHash',
+  clickedAt: 'clickedAt'
+} as const
+
+export type ContactClickScalarFieldEnum = (typeof ContactClickScalarFieldEnum)[keyof typeof ContactClickScalarFieldEnum]
+
+
+export const ContactMethodScalarFieldEnum = {
+  id: 'id',
+  profileId: 'profileId',
+  channel: 'channel',
+  value: 'value',
+  enabled: 'enabled',
+  preferred: 'preferred',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ContactMethodScalarFieldEnum = (typeof ContactMethodScalarFieldEnum)[keyof typeof ContactMethodScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1808,6 +2082,20 @@ export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'ContactChannel'
+ */
+export type EnumContactChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactChannel'>
+    
+
+
+/**
+ * Reference to a field of type 'ContactChannel[]'
+ */
+export type ListEnumContactChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactChannel[]'>
     
 
 
@@ -2004,6 +2292,9 @@ export type GlobalOmitConfig = {
   profileCategory?: Prisma.ProfileCategoryOmit
   canton?: Prisma.CantonOmit
   city?: Prisma.CityOmit
+  profileView?: Prisma.ProfileViewOmit
+  contactClick?: Prisma.ContactClickOmit
+  contactMethod?: Prisma.ContactMethodOmit
 }
 
 /* Types for Logging */

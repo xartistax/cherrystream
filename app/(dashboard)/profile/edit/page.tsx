@@ -39,12 +39,35 @@ export default async function EditProfilePage() {
             birthDate: true,
             gender: true,
             isPublic: true,
-            coverUrl: true,
-            website: true,
-            instagram: true,
             verified: true,
+
+            coverUrl: true,
+
+            phoneNumber: true,
+            phoneEnabled: true,
+            whatsappEnabled: true,
+
+            telegramUsername: true,
+            telegramEnabled: true,
+
+            signalNumber: true,
+            signalEnabled: true,
+
+            website: true,
+            websiteEnabled: true,
+
+            instagram: true,
+            instagramEnabled: true,
+
+            emailPublic: true,
+            emailEnabled: true,
+
+            preferredContact: true,
+            contactNote: true,
+
             cantonId: true,
             cityId: true,
+
             categories: {
               select: {
                 categoryId: true,
@@ -120,8 +143,8 @@ export default async function EditProfilePage() {
   const displayName = user.profile?.displayName ?? user.name ?? user.username;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mx-auto max-w-5xl space-y-8">
+      <header className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-4">
           <Link
             href="/studio"
@@ -137,19 +160,19 @@ export default async function EditProfilePage() {
             <ArrowLeft className="size-4" />
           </Link>
 
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="text-2xl font-black tracking-tight text-white sm:text-3xl">Profil bearbeiten</h1>
 
               {user.profile?.verified ? (
-                <Badge className="gap-1 bg-sky-500/15 text-sky-300 hover:bg-sky-500/15">
+                <Badge className="gap-1 border border-sky-500/20 bg-sky-500/10 text-sky-300 hover:bg-sky-500/10">
                   <BadgeCheck className="size-3.5" />
                   Verifiziert
                 </Badge>
               ) : null}
             </div>
 
-            <p className="mt-1 text-sm text-zinc-500">Passe dein öffentliches CherryStream-Profil an.</p>
+            <p className="mt-1 text-sm leading-6 text-zinc-500">Verwalte deine öffentlichen Angaben, deinen Standort und deine Kontaktmöglichkeiten.</p>
           </div>
         </div>
 
@@ -159,21 +182,25 @@ export default async function EditProfilePage() {
             buttonVariants({
               variant: "outline",
             }),
-            "border-white/10 bg-white/5 text-white hover:bg-white/10",
+            "shrink-0 border-white/10 bg-white/5 text-white hover:bg-white/10",
           )}
         >
           <UserRound className="size-4" />
           Öffentliches Profil
         </Link>
-      </div>
+      </header>
 
       <Card className="overflow-hidden border-white/10 bg-zinc-900/70 text-white shadow-2xl shadow-black/20 backdrop-blur-xl">
-        <CardHeader className="border-b border-white/10">
-          <CardTitle>{displayName}</CardTitle>
+        <CardHeader className="border-b border-white/10 bg-white/[0.02]">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <CardTitle className="text-xl">{displayName}</CardTitle>
 
-          <CardDescription className="text-zinc-500">
-            @{user.username} · {user.email}
-          </CardDescription>
+              <CardDescription className="mt-1 text-zinc-500">@{user.username}</CardDescription>
+            </div>
+
+            <p className="text-xs text-zinc-600">{user.email}</p>
+          </div>
         </CardHeader>
 
         <CardContent className="p-0">
@@ -183,17 +210,42 @@ export default async function EditProfilePage() {
               username: user.username,
               email: user.email,
               image: user.image,
+
               displayName,
               bio: user.profile?.bio ?? "",
               birthDate: user.profile?.birthDate ? user.profile.birthDate.toISOString().slice(0, 10) : "",
               gender: user.profile?.gender ?? null,
               isPublic: user.profile?.isPublic ?? true,
+
               coverUrl: user.profile?.coverUrl ?? null,
-              website: user.profile?.website ?? "",
-              instagram: user.profile?.instagram ?? "",
+
               categoryIds: user.profile?.categories.map((item) => item.categoryId) ?? [],
+
               cantonId: user.profile?.cantonId ?? null,
               cityId: user.profile?.cityId ?? null,
+
+              phoneNumber: user.profile?.phoneNumber ?? "",
+              phoneEnabled: user.profile?.phoneEnabled ?? false,
+              whatsappEnabled: user.profile?.whatsappEnabled ?? false,
+
+              telegramUsername: user.profile?.telegramUsername ?? "",
+              telegramEnabled: user.profile?.telegramEnabled ?? false,
+
+              signalNumber: user.profile?.signalNumber ?? "",
+              signalEnabled: user.profile?.signalEnabled ?? false,
+
+              website: user.profile?.website ?? "",
+              websiteEnabled: user.profile?.websiteEnabled ?? false,
+
+              instagram: user.profile?.instagram ?? "",
+              instagramEnabled: user.profile?.instagramEnabled ?? false,
+
+              emailPublic: user.profile?.emailPublic ?? "",
+              emailEnabled: user.profile?.emailEnabled ?? false,
+
+              preferredContact: user.profile?.preferredContact ?? null,
+
+              contactNote: user.profile?.contactNote ?? "",
             }}
             categories={categories}
             cantonOptions={cantonOptions}

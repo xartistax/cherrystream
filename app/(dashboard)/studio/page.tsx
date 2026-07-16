@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Image from "next/image";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -8,10 +8,11 @@ import { ComposerUser } from "@/components/studio/create-post/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight, Badge, ChevronRight, Coins, ExternalLink, FileImage, ImagePlus, Images, Pencil, Play, Plus, UserRound, Video } from "lucide-react";
+import { ArrowRight, ChevronRight, Coins, ExternalLink, Eye, FileImage, Images, Pencil, Plus, UserRound, UsersRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostGrid } from "@/components/studio/posts/post-grid";
-import image from "next/image";
+import { getProfileStats } from "@/lib/analytics/get-profile-stats";
+import { BusinessMetrics } from "@/components/studio/dashboard/business-metrics";
 
 export default async function FeedPage() {
   const session = await auth();
@@ -20,7 +21,7 @@ export default async function FeedPage() {
     redirect("/login");
   }
 
-  const [currentUser, posts] = await Promise.all([
+  const [currentUser, posts, profileStats] = await Promise.all([
     prisma.user.findUnique({
       where: {
         id: session.user.id,
@@ -76,13 +77,23 @@ export default async function FeedPage() {
       },
       take: 20,
     }),
+
+    getProfileStats(session.user.id),
   ]);
 
   if (!currentUser) {
     redirect("/login");
   }
 
+  if (!currentUser) {
+    redirect("/login");
+  }
+
   const displayName = currentUser.profile?.displayName ?? currentUser.name ?? currentUser.username;
+
+  const mediaCount = posts.reduce((total, post) => total + post.media.length, 0);
+
+  const recentPosts = posts.slice(0, 6);
 
   const composerUser: ComposerUser = {
     id: currentUser.id,
@@ -91,12 +102,6 @@ export default async function FeedPage() {
 
     image: currentUser.image,
   };
-
-  const mediaCount = posts.reduce((total, post) => total + post.media.length, 0);
-
-  const videoCount = posts.reduce((total, post) => total + post.media.filter((media) => media.type === "VIDEO").length, 0);
-
-  const recentPosts = posts.slice(0, 6);
 
   return (
     <div className="space-y-8">
@@ -123,63 +128,7 @@ export default async function FeedPage() {
         </Link>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Card className="border-white/10 bg-zinc-900/60 text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-500">Veröffentlichungen</span>
-
-              <FileImage className="size-4 text-rose-400" />
-            </div>
-
-            <p className="mt-3 text-3xl font-black">{posts.length}</p>
-
-            <p className="mt-1 text-xs text-zinc-600">veröffentlichte Beiträge</p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-white/10 bg-zinc-900/60 text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-500">Medien</span>
-
-              <Images className="size-4 text-violet-400" />
-            </div>
-
-            <p className="mt-3 text-3xl font-black">{mediaCount}</p>
-
-            <p className="mt-1 text-xs text-zinc-600">Bilder und Videos</p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-white/10 bg-zinc-900/60 text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-500">Videos</span>
-
-              <Video className="size-4 text-sky-400" />
-            </div>
-
-            <p className="mt-3 text-3xl font-black">{videoCount}</p>
-
-            <p className="mt-1 text-xs text-zinc-600">veröffentlichte Videos</p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-amber-500/15 bg-linear-to-br from-amber-500/10 to-zinc-900/60 text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-zinc-500">Guthaben</span>
-
-              <Coins className="size-4 text-amber-400" />
-            </div>
-
-            <p className="mt-3 text-3xl font-black">{currentUser.credits}</p>
-
-            <p className="mt-1 text-xs text-zinc-600">verfügbare Credits</p>
-          </CardContent>
-        </Card>
-      </section>
+      <BusinessMetrics stats={profileStats} />
 
       <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0 space-y-8">

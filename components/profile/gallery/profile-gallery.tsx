@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { GalleryGrid } from "@/components/profile/gallery/gallery-grid";
 import { MediaLightbox } from "@/components/profile/gallery/media-lightbox";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export type ProfileGalleryMedia = {
@@ -26,7 +27,6 @@ type ProfileGalleryProps = {
 
 export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
   const [lightboxMedia, setLightboxMedia] = useState<ProfileGalleryMedia[]>([]);
-
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const photos = media.filter((item) => item.type === "IMAGE" && item.visibility !== "PREMIUM");
@@ -35,73 +35,110 @@ export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
 
   const premium = media.filter((item) => item.visibility === "PREMIUM");
 
-  function openLightbox(items: ProfileGalleryMedia[], index: number) {
+  function openLightbox(items: ProfileGalleryMedia[], index: number): void {
     setLightboxMedia(items);
     setLightboxIndex(index);
   }
 
-  function closeLightbox() {
+  function closeLightbox(): void {
     setLightboxIndex(null);
   }
 
-  return (
-    <>
+  if (media.length === 0) {
+    return (
       <section className="mt-10">
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-white">Galerie</h2>
+        <div className="flex min-h-72 flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-zinc-900/40 px-6 text-center">
+          <div className="flex size-14 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-400">
+            <Images className="size-6" />
+          </div>
 
-          <p className="mt-1 text-sm text-zinc-500">Fotos und Videos von {displayName}</p>
+          <h2 className="mt-5 text-xl font-bold text-white">Noch keine Inhalte</h2>
+
+          <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald {displayName} Fotos oder Videos veröffentlicht, erscheinen sie hier.</p>
         </div>
+      </section>
+    );
+  }
 
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList className="mb-6 inline-flex h-11 w-auto items-center justify-start gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1">
-            <TabsTrigger value="all" className="gap-2 px-4">
+  return (
+    <section className="mt-10">
+      <Tabs defaultValue="all">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-white">Galerie</h2>
+
+            <p className="mt-1 text-sm text-zinc-500">Fotos und Videos von {displayName}</p>
+          </div>
+
+          <TabsList variant="line" className="h-auto flex-wrap justify-start">
+            <TabsTrigger value="all" className="gap-2 px-3 py-2">
               <Images className="size-4" />
               Alle
+              <Badge className="ml-1 bg-white/10 text-zinc-300 hover:bg-white/10">{media.length}</Badge>
             </TabsTrigger>
 
-            <TabsTrigger value="photos" className="gap-2 px-4">
+            <TabsTrigger value="photos" className="gap-2 px-3 py-2">
               <Camera className="size-4" />
               Fotos
+              <Badge className="ml-1 bg-white/10 text-zinc-300 hover:bg-white/10">{photos.length}</Badge>
             </TabsTrigger>
 
-            <TabsTrigger value="videos" className="gap-2 px-4">
+            <TabsTrigger value="videos" className="gap-2 px-3 py-2">
               <Video className="size-4" />
               Videos
+              <Badge className="ml-1 bg-white/10 text-zinc-300 hover:bg-white/10">{videos.length}</Badge>
             </TabsTrigger>
 
-            <TabsTrigger value="premium" className="gap-2 px-4">
+            <TabsTrigger value="premium" className="gap-2 px-3 py-2">
               <LockKeyhole className="size-4" />
               Premium
+              <Badge className="ml-1 border border-amber-500/20 bg-amber-500/10 text-amber-300 hover:bg-amber-500/10">{premium.length}</Badge>
             </TabsTrigger>
           </TabsList>
+        </div>
 
-          <TabsContent value="all" className="mt-0">
-            <GalleryGrid media={media} emptyMessage="Noch keine Medien veröffentlicht." onSelect={(index) => openLightbox(media, index)} />
-          </TabsContent>
+        <TabsContent value="all">
+          <GalleryGrid
+            displayName={displayName}
+            media={media}
+            onSelect={(index) => {
+              openLightbox(media, index);
+            }}
+          />
+        </TabsContent>
 
-          <TabsContent value="photos" className="mt-0">
-            <GalleryGrid media={photos} emptyMessage="Noch keine Fotos veröffentlicht." onSelect={(index) => openLightbox(photos, index)} />
-          </TabsContent>
+        <TabsContent value="photos">
+          <GalleryGrid
+            displayName={displayName}
+            media={photos}
+            onSelect={(index) => {
+              openLightbox(photos, index);
+            }}
+          />
+        </TabsContent>
 
-          <TabsContent value="videos" className="mt-0">
-            <GalleryGrid media={videos} emptyMessage="Noch keine Videos veröffentlicht." onSelect={(index) => openLightbox(videos, index)} />
-          </TabsContent>
+        <TabsContent value="videos">
+          <GalleryGrid
+            displayName={displayName}
+            media={videos}
+            onSelect={(index) => {
+              openLightbox(videos, index);
+            }}
+          />
+        </TabsContent>
 
-          <TabsContent value="premium" className="mt-0">
-            <GalleryGrid media={premium} emptyMessage="Noch keine Premium-Inhalte veröffentlicht." onSelect={(index) => openLightbox(premium, index)} />
-          </TabsContent>
-        </Tabs>
-      </section>
+        <TabsContent value="premium">
+          <GalleryGrid
+            displayName={displayName}
+            media={premium}
+            onSelect={(index) => {
+              openLightbox(premium, index);
+            }}
+          />
+        </TabsContent>
+      </Tabs>
 
-      {lightboxIndex !== null && lightboxMedia.length > 0 ? (
-        <MediaLightbox
-          key={`${lightboxMedia[lightboxIndex]?.id}-${lightboxIndex}`}
-          media={lightboxMedia}
-          initialIndex={lightboxIndex}
-          onClose={closeLightbox}
-        />
-      ) : null}
-    </>
+      {lightboxIndex !== null ? <MediaLightbox media={lightboxMedia} initialIndex={lightboxIndex} onClose={closeLightbox} /> : null}
+    </section>
   );
 }

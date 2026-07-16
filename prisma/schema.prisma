@@ -55,6 +55,16 @@ enum PostVisibility {
   PREMIUM
 }
 
+enum ContactChannel {
+  PHONE
+  WHATSAPP
+  TELEGRAM
+  SIGNAL
+  WEBSITE
+  INSTAGRAM
+  EMAIL
+}
+
 model User {
   id            String     @id @default(cuid())
   email         String     @unique
@@ -79,37 +89,64 @@ model User {
   postLikes     PostLike[]
   unlockedPosts PostUnlock[]
 
+  receivedProfileViews ProfileView[] @relation("ViewedProfile")
+  createdProfileViews  ProfileView[] @relation("ProfileViewer")
+
+  receivedContactClicks ContactClick[] @relation("ContactProfile")
+  createdContactClicks  ContactClick[] @relation("ContactVisitor")
+
   @@index([createdAt])
   @@index([status])
 }
 
 model Profile {
-  id          String   @id @default(cuid())
-  userId      String   @unique
+  id          String    @id @default(cuid())
+  userId      String    @unique
   displayName String
   bio         String?
   birthDate   DateTime?
   gender      Gender?
-  isPublic    Boolean  @default(true)
+  isPublic    Boolean   @default(true)
 
   coverUrl      String?
   coverPathname String?
 
-  website   String?
-  instagram String?
-  verified  Boolean @default(false)
+  phoneNumber     String?
+  phoneEnabled    Boolean @default(false)
+  whatsappEnabled Boolean @default(false)
+
+  telegramUsername String?
+  telegramEnabled  Boolean @default(false)
+
+  signalNumber  String?
+  signalEnabled Boolean @default(false)
+
+  website        String?
+  websiteEnabled Boolean @default(false)
+
+  instagram        String?
+  instagramEnabled Boolean @default(false)
+
+  emailPublic  String?
+  emailEnabled Boolean @default(false)
+
+  preferredContact ContactChannel?
+  contactNote      String?
+
+  verified Boolean @default(false)
 
   cantonId String?
   canton   Canton? @relation(fields: [cantonId], references: [id])
 
   cityId String?
-  city   City? @relation(fields: [cityId], references: [id])
+  city   City?   @relation(fields: [cityId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  categories ProfileCategory[]
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categories     ProfileCategory[]
+  contactMethods ContactMethod[]
 
   @@index([cantonId])
   @@index([cityId])
@@ -309,4 +346,57 @@ model City {
 
   @@unique([cantonId, slug])
   @@index([cantonId])
+}
+
+model ProfileView {
+  id String @id @default(cuid())
+
+  profileUserId String
+  viewerId      String?
+
+  visitorHash String
+  viewedAt    DateTime @default(now())
+
+  profileUser User  @relation("ViewedProfile", fields: [profileUserId], references: [id], onDelete: Cascade)
+  viewer      User? @relation("ProfileViewer", fields: [viewerId], references: [id], onDelete: SetNull)
+
+  @@index([profileUserId, viewedAt])
+  @@index([profileUserId, visitorHash, viewedAt])
+  @@index([viewerId, viewedAt])
+}
+
+model ContactClick {
+  id String @id @default(cuid())
+
+  profileUserId String
+  visitorId     String?
+
+  channel     ContactChannel
+  visitorHash String
+  clickedAt   DateTime       @default(now())
+
+  profileUser User  @relation("ContactProfile", fields: [profileUserId], references: [id], onDelete: Cascade)
+  visitor     User? @relation("ContactVisitor", fields: [visitorId], references: [id], onDelete: SetNull)
+
+  @@index([profileUserId, clickedAt])
+  @@index([profileUserId, channel, clickedAt])
+  @@index([visitorId, clickedAt])
+}
+
+model ContactMethod {
+  id String @id @default(cuid())
+
+  profileId String
+
+  channel ContactChannel
+
+  value String
+
+  enabled Boolean @default(true)
+
+  preferred Boolean @default(false)
+
+  sortOrder Int @default(0)
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }

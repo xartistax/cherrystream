@@ -280,6 +280,10 @@ export type UserWhereInput = {
   followers?: Prisma.FollowListRelationFilter
   postLikes?: Prisma.PostLikeListRelationFilter
   unlockedPosts?: Prisma.PostUnlockListRelationFilter
+  receivedProfileViews?: Prisma.ProfileViewListRelationFilter
+  createdProfileViews?: Prisma.ProfileViewListRelationFilter
+  receivedContactClicks?: Prisma.ContactClickListRelationFilter
+  createdContactClicks?: Prisma.ContactClickListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -303,6 +307,10 @@ export type UserOrderByWithRelationInput = {
   followers?: Prisma.FollowOrderByRelationAggregateInput
   postLikes?: Prisma.PostLikeOrderByRelationAggregateInput
   unlockedPosts?: Prisma.PostUnlockOrderByRelationAggregateInput
+  receivedProfileViews?: Prisma.ProfileViewOrderByRelationAggregateInput
+  createdProfileViews?: Prisma.ProfileViewOrderByRelationAggregateInput
+  receivedContactClicks?: Prisma.ContactClickOrderByRelationAggregateInput
+  createdContactClicks?: Prisma.ContactClickOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -329,6 +337,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   followers?: Prisma.FollowListRelationFilter
   postLikes?: Prisma.PostLikeListRelationFilter
   unlockedPosts?: Prisma.PostUnlockListRelationFilter
+  receivedProfileViews?: Prisma.ProfileViewListRelationFilter
+  createdProfileViews?: Prisma.ProfileViewListRelationFilter
+  receivedContactClicks?: Prisma.ContactClickListRelationFilter
+  createdContactClicks?: Prisma.ContactClickListRelationFilter
 }, "id" | "email" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -390,6 +402,10 @@ export type UserCreateInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -413,6 +429,10 @@ export type UserUncheckedCreateInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUpdateInput = {
@@ -436,6 +456,10 @@ export type UserUpdateInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -459,6 +483,10 @@ export type UserUncheckedUpdateInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -562,6 +590,11 @@ export type UserSumOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -708,6 +741,66 @@ export type UserUpdateOneRequiredWithoutUnlockedPostsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUnlockedPostsInput, Prisma.UserUpdateWithoutUnlockedPostsInput>, Prisma.UserUncheckedUpdateWithoutUnlockedPostsInput>
 }
 
+export type UserCreateNestedOneWithoutReceivedProfileViewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedCreateWithoutReceivedProfileViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedProfileViewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutCreatedProfileViewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedCreateWithoutCreatedProfileViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProfileViewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReceivedProfileViewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedCreateWithoutReceivedProfileViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedProfileViewsInput
+  upsert?: Prisma.UserUpsertWithoutReceivedProfileViewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedProfileViewsInput, Prisma.UserUpdateWithoutReceivedProfileViewsInput>, Prisma.UserUncheckedUpdateWithoutReceivedProfileViewsInput>
+}
+
+export type UserUpdateOneWithoutCreatedProfileViewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedCreateWithoutCreatedProfileViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProfileViewsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedProfileViewsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedProfileViewsInput, Prisma.UserUpdateWithoutCreatedProfileViewsInput>, Prisma.UserUncheckedUpdateWithoutCreatedProfileViewsInput>
+}
+
+export type UserCreateNestedOneWithoutReceivedContactClicksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedContactClicksInput, Prisma.UserUncheckedCreateWithoutReceivedContactClicksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedContactClicksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutCreatedContactClicksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedContactClicksInput, Prisma.UserUncheckedCreateWithoutCreatedContactClicksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedContactClicksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReceivedContactClicksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedContactClicksInput, Prisma.UserUncheckedCreateWithoutReceivedContactClicksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedContactClicksInput
+  upsert?: Prisma.UserUpsertWithoutReceivedContactClicksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedContactClicksInput, Prisma.UserUpdateWithoutReceivedContactClicksInput>, Prisma.UserUncheckedUpdateWithoutReceivedContactClicksInput>
+}
+
+export type UserUpdateOneWithoutCreatedContactClicksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedContactClicksInput, Prisma.UserUncheckedCreateWithoutCreatedContactClicksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedContactClicksInput
+  upsert?: Prisma.UserUpsertWithoutCreatedContactClicksInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedContactClicksInput, Prisma.UserUpdateWithoutCreatedContactClicksInput>, Prisma.UserUncheckedUpdateWithoutCreatedContactClicksInput>
+}
+
 export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
@@ -728,6 +821,10 @@ export type UserCreateWithoutProfileInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -750,6 +847,10 @@ export type UserUncheckedCreateWithoutProfileInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -788,6 +889,10 @@ export type UserUpdateWithoutProfileInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -810,6 +915,10 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -832,6 +941,10 @@ export type UserCreateWithoutAccountsInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -854,6 +967,10 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -892,6 +1009,10 @@ export type UserUpdateWithoutAccountsInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -914,6 +1035,10 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -936,6 +1061,10 @@ export type UserCreateWithoutSessionsInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -958,6 +1087,10 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -996,6 +1129,10 @@ export type UserUpdateWithoutSessionsInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1018,6 +1155,10 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutPostsInput = {
@@ -1040,6 +1181,10 @@ export type UserCreateWithoutPostsInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
@@ -1062,6 +1207,10 @@ export type UserUncheckedCreateWithoutPostsInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -1100,6 +1249,10 @@ export type UserUpdateWithoutPostsInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
@@ -1122,6 +1275,10 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutFollowingInput = {
@@ -1144,6 +1301,10 @@ export type UserCreateWithoutFollowingInput = {
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutFollowingInput = {
@@ -1166,6 +1327,10 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutFollowingInput = {
@@ -1193,6 +1358,10 @@ export type UserCreateWithoutFollowersInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutFollowersInput = {
@@ -1215,6 +1384,10 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutFollowersInput = {
@@ -1253,6 +1426,10 @@ export type UserUpdateWithoutFollowingInput = {
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -1275,6 +1452,10 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUpsertWithoutFollowersInput = {
@@ -1308,6 +1489,10 @@ export type UserUpdateWithoutFollowersInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -1330,6 +1515,10 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutPostLikesInput = {
@@ -1352,6 +1541,10 @@ export type UserCreateWithoutPostLikesInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutPostLikesInput = {
@@ -1374,6 +1567,10 @@ export type UserUncheckedCreateWithoutPostLikesInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutPostLikesInput = {
@@ -1412,6 +1609,10 @@ export type UserUpdateWithoutPostLikesInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostLikesInput = {
@@ -1434,6 +1635,10 @@ export type UserUncheckedUpdateWithoutPostLikesInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserCreateWithoutUnlockedPostsInput = {
@@ -1456,6 +1661,10 @@ export type UserCreateWithoutUnlockedPostsInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
 }
 
 export type UserUncheckedCreateWithoutUnlockedPostsInput = {
@@ -1478,6 +1687,10 @@ export type UserUncheckedCreateWithoutUnlockedPostsInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
 }
 
 export type UserCreateOrConnectWithoutUnlockedPostsInput = {
@@ -1516,6 +1729,10 @@ export type UserUpdateWithoutUnlockedPostsInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUnlockedPostsInput = {
@@ -1538,6 +1755,490 @@ export type UserUncheckedUpdateWithoutUnlockedPostsInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserCreateWithoutReceivedProfileViewsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
+}
+
+export type UserUncheckedCreateWithoutReceivedProfileViewsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
+}
+
+export type UserCreateOrConnectWithoutReceivedProfileViewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedCreateWithoutReceivedProfileViewsInput>
+}
+
+export type UserCreateWithoutCreatedProfileViewsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
+}
+
+export type UserUncheckedCreateWithoutCreatedProfileViewsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
+}
+
+export type UserCreateOrConnectWithoutCreatedProfileViewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedCreateWithoutCreatedProfileViewsInput>
+}
+
+export type UserUpsertWithoutReceivedProfileViewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedUpdateWithoutReceivedProfileViewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedCreateWithoutReceivedProfileViewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReceivedProfileViewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReceivedProfileViewsInput, Prisma.UserUncheckedUpdateWithoutReceivedProfileViewsInput>
+}
+
+export type UserUpdateWithoutReceivedProfileViewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReceivedProfileViewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUpsertWithoutCreatedProfileViewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedUpdateWithoutCreatedProfileViewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedCreateWithoutCreatedProfileViewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedProfileViewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProfileViewsInput, Prisma.UserUncheckedUpdateWithoutCreatedProfileViewsInput>
+}
+
+export type UserUpdateWithoutCreatedProfileViewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedProfileViewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserCreateWithoutReceivedContactClicksInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
+}
+
+export type UserUncheckedCreateWithoutReceivedContactClicksInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
+}
+
+export type UserCreateOrConnectWithoutReceivedContactClicksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedContactClicksInput, Prisma.UserUncheckedCreateWithoutReceivedContactClicksInput>
+}
+
+export type UserCreateWithoutCreatedContactClicksInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedContactClicksInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedContactClicksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedContactClicksInput, Prisma.UserUncheckedCreateWithoutCreatedContactClicksInput>
+}
+
+export type UserUpsertWithoutReceivedContactClicksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReceivedContactClicksInput, Prisma.UserUncheckedUpdateWithoutReceivedContactClicksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedContactClicksInput, Prisma.UserUncheckedCreateWithoutReceivedContactClicksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReceivedContactClicksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReceivedContactClicksInput, Prisma.UserUncheckedUpdateWithoutReceivedContactClicksInput>
+}
+
+export type UserUpdateWithoutReceivedContactClicksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReceivedContactClicksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUpsertWithoutCreatedContactClicksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedContactClicksInput, Prisma.UserUncheckedUpdateWithoutCreatedContactClicksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedContactClicksInput, Prisma.UserUncheckedCreateWithoutCreatedContactClicksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedContactClicksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedContactClicksInput, Prisma.UserUncheckedUpdateWithoutCreatedContactClicksInput>
+}
+
+export type UserUpdateWithoutCreatedContactClicksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedContactClicksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
 }
 
 
@@ -1553,6 +2254,10 @@ export type UserCountOutputType = {
   followers: number
   postLikes: number
   unlockedPosts: number
+  receivedProfileViews: number
+  createdProfileViews: number
+  receivedContactClicks: number
+  createdContactClicks: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1563,6 +2268,10 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   followers?: boolean | UserCountOutputTypeCountFollowersArgs
   postLikes?: boolean | UserCountOutputTypeCountPostLikesArgs
   unlockedPosts?: boolean | UserCountOutputTypeCountUnlockedPostsArgs
+  receivedProfileViews?: boolean | UserCountOutputTypeCountReceivedProfileViewsArgs
+  createdProfileViews?: boolean | UserCountOutputTypeCountCreatedProfileViewsArgs
+  receivedContactClicks?: boolean | UserCountOutputTypeCountReceivedContactClicksArgs
+  createdContactClicks?: boolean | UserCountOutputTypeCountCreatedContactClicksArgs
 }
 
 /**
@@ -1624,6 +2333,34 @@ export type UserCountOutputTypeCountUnlockedPostsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.PostUnlockWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReceivedProfileViewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfileViewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedProfileViewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfileViewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReceivedContactClicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContactClickWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedContactClicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContactClickWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1646,6 +2383,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   followers?: boolean | Prisma.User$followersArgs<ExtArgs>
   postLikes?: boolean | Prisma.User$postLikesArgs<ExtArgs>
   unlockedPosts?: boolean | Prisma.User$unlockedPostsArgs<ExtArgs>
+  receivedProfileViews?: boolean | Prisma.User$receivedProfileViewsArgs<ExtArgs>
+  createdProfileViews?: boolean | Prisma.User$createdProfileViewsArgs<ExtArgs>
+  receivedContactClicks?: boolean | Prisma.User$receivedContactClicksArgs<ExtArgs>
+  createdContactClicks?: boolean | Prisma.User$createdContactClicksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1704,6 +2445,10 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   followers?: boolean | Prisma.User$followersArgs<ExtArgs>
   postLikes?: boolean | Prisma.User$postLikesArgs<ExtArgs>
   unlockedPosts?: boolean | Prisma.User$unlockedPostsArgs<ExtArgs>
+  receivedProfileViews?: boolean | Prisma.User$receivedProfileViewsArgs<ExtArgs>
+  createdProfileViews?: boolean | Prisma.User$createdProfileViewsArgs<ExtArgs>
+  receivedContactClicks?: boolean | Prisma.User$receivedContactClicksArgs<ExtArgs>
+  createdContactClicks?: boolean | Prisma.User$createdContactClicksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1720,6 +2465,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     followers: Prisma.$FollowPayload<ExtArgs>[]
     postLikes: Prisma.$PostLikePayload<ExtArgs>[]
     unlockedPosts: Prisma.$PostUnlockPayload<ExtArgs>[]
+    receivedProfileViews: Prisma.$ProfileViewPayload<ExtArgs>[]
+    createdProfileViews: Prisma.$ProfileViewPayload<ExtArgs>[]
+    receivedContactClicks: Prisma.$ContactClickPayload<ExtArgs>[]
+    createdContactClicks: Prisma.$ContactClickPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2136,6 +2885,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   followers<T extends Prisma.User$followersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   postLikes<T extends Prisma.User$postLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   unlockedPosts<T extends Prisma.User$unlockedPostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$unlockedPostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostUnlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receivedProfileViews<T extends Prisma.User$receivedProfileViewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedProfileViewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdProfileViews<T extends Prisma.User$createdProfileViewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdProfileViewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receivedContactClicks<T extends Prisma.User$receivedContactClicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedContactClicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactClickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdContactClicks<T extends Prisma.User$createdContactClicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdContactClicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactClickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2754,6 +3507,102 @@ export type User$unlockedPostsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PostUnlockScalarFieldEnum | Prisma.PostUnlockScalarFieldEnum[]
+}
+
+/**
+ * User.receivedProfileViews
+ */
+export type User$receivedProfileViewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfileView
+   */
+  select?: Prisma.ProfileViewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfileView
+   */
+  omit?: Prisma.ProfileViewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileViewInclude<ExtArgs> | null
+  where?: Prisma.ProfileViewWhereInput
+  orderBy?: Prisma.ProfileViewOrderByWithRelationInput | Prisma.ProfileViewOrderByWithRelationInput[]
+  cursor?: Prisma.ProfileViewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfileViewScalarFieldEnum | Prisma.ProfileViewScalarFieldEnum[]
+}
+
+/**
+ * User.createdProfileViews
+ */
+export type User$createdProfileViewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfileView
+   */
+  select?: Prisma.ProfileViewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfileView
+   */
+  omit?: Prisma.ProfileViewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileViewInclude<ExtArgs> | null
+  where?: Prisma.ProfileViewWhereInput
+  orderBy?: Prisma.ProfileViewOrderByWithRelationInput | Prisma.ProfileViewOrderByWithRelationInput[]
+  cursor?: Prisma.ProfileViewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfileViewScalarFieldEnum | Prisma.ProfileViewScalarFieldEnum[]
+}
+
+/**
+ * User.receivedContactClicks
+ */
+export type User$receivedContactClicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContactClick
+   */
+  select?: Prisma.ContactClickSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContactClick
+   */
+  omit?: Prisma.ContactClickOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactClickInclude<ExtArgs> | null
+  where?: Prisma.ContactClickWhereInput
+  orderBy?: Prisma.ContactClickOrderByWithRelationInput | Prisma.ContactClickOrderByWithRelationInput[]
+  cursor?: Prisma.ContactClickWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContactClickScalarFieldEnum | Prisma.ContactClickScalarFieldEnum[]
+}
+
+/**
+ * User.createdContactClicks
+ */
+export type User$createdContactClicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContactClick
+   */
+  select?: Prisma.ContactClickSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContactClick
+   */
+  omit?: Prisma.ContactClickOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactClickInclude<ExtArgs> | null
+  where?: Prisma.ContactClickWhereInput
+  orderBy?: Prisma.ContactClickOrderByWithRelationInput | Prisma.ContactClickOrderByWithRelationInput[]
+  cursor?: Prisma.ContactClickWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContactClickScalarFieldEnum | Prisma.ContactClickScalarFieldEnum[]
 }
 
 /**

@@ -208,6 +208,13 @@ export type BoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type EnumContactChannelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel> | $Enums.ContactChannel | null
+}
+
 export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel> | null
   in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel> | null
@@ -224,6 +231,16 @@ export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type EnumContactChannelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumContactChannelNullableWithAggregatesFilter<$PrismaModel> | $Enums.ContactChannel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel>
 }
 
 export type IntNullableFilter<$PrismaModel = never> = {
@@ -346,6 +363,23 @@ export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type EnumContactChannelFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactChannelFilter<$PrismaModel> | $Enums.ContactChannel
+}
+
+export type EnumContactChannelWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactChannelWithAggregatesFilter<$PrismaModel> | $Enums.ContactChannel
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactChannelFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactChannelFilter<$PrismaModel>
 }
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -555,6 +589,13 @@ export type NestedBoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type NestedEnumContactChannelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel> | $Enums.ContactChannel | null
+}
+
 export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel> | null
   in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel> | null
@@ -571,6 +612,16 @@ export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumContactChannelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumContactChannelNullableWithAggregatesFilter<$PrismaModel> | $Enums.ContactChannel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactChannelNullableFilter<$PrismaModel>
 }
 
 export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -682,6 +733,23 @@ export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumContactChannelFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactChannelFilter<$PrismaModel> | $Enums.ContactChannel
+}
+
+export type NestedEnumContactChannelWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactChannel | Prisma.EnumContactChannelFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactChannel[] | Prisma.ListEnumContactChannelFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactChannelWithAggregatesFilter<$PrismaModel> | $Enums.ContactChannel
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactChannelFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactChannelFilter<$PrismaModel>
 }
 
 

@@ -15,6 +15,8 @@ import { AvatarUpload } from "./avatar-upload";
 import { CoverUpload } from "./cover-upload";
 import { CategorySelector } from "./category-selector";
 import { LocationSelector } from "./location-selector";
+import { ContactSettings } from "./contact-settings";
+import { ProfileDescriptionEditor } from "./profile-description-editor";
 
 type Gender = "WOMAN" | "MAN" | "NON_BINARY" | "OTHER";
 
@@ -37,17 +39,43 @@ type ProfileFormProps = {
     username: string;
     email: string;
     image: string | null;
+
     displayName: string;
     bio: string;
     birthDate: string;
     gender: Gender | null;
+
     isPublic: boolean;
+
     coverUrl: string | null;
-    website: string;
-    instagram: string;
+
     categoryIds: string[];
+
     cantonId: string | null;
     cityId: string | null;
+
+    phoneNumber: string;
+    phoneEnabled: boolean;
+    whatsappEnabled: boolean;
+
+    telegramUsername: string;
+    telegramEnabled: boolean;
+
+    signalNumber: string;
+    signalEnabled: boolean;
+
+    website: string;
+    websiteEnabled: boolean;
+
+    instagram: string;
+    instagramEnabled: boolean;
+
+    emailPublic: string;
+    emailEnabled: boolean;
+
+    preferredContact: "PHONE" | "WHATSAPP" | "TELEGRAM" | "SIGNAL" | "WEBSITE" | "INSTAGRAM" | "EMAIL" | null;
+
+    contactNote: string;
   };
 
   categories: Array<{
@@ -194,7 +222,17 @@ export function ProfileForm({ user, categories, cantonOptions, cityOptions }: Pr
               <span className="text-xs text-zinc-600">Maximal 500 Zeichen</span>
             </div>
 
-            <Textarea id="bio" name="bio" defaultValue={user.bio} maxLength={500} placeholder="Erzähle etwas über dich ..." className="min-h-32 resize-y" />
+            <div className="space-y-3">
+              <div>
+                <Label>Profilbeschreibung</Label>
+
+                <p className="mt-1 text-sm leading-6 text-zinc-500">
+                  Stelle dich ausführlich vor und beschreibe dein Angebot, deine Wünsche und wichtige Hinweise für Besucher.
+                </p>
+              </div>
+
+              <ProfileDescriptionEditor initialValue={user.bio} error={state.errors?.bio} />
+            </div>
 
             <FieldError errors={state.errors?.bio} />
           </div>
@@ -227,39 +265,33 @@ export function ProfileForm({ user, categories, cantonOptions, cityOptions }: Pr
 
         <div className="h-px bg-white/10" />
 
-        <section className="space-y-5">
-          <div>
-            <h2 className="text-lg font-bold text-white">Links</h2>
+        <ContactSettings
+          initialValues={{
+            phoneNumber: user.phoneNumber,
+            phoneEnabled: user.phoneEnabled,
+            whatsappEnabled: user.whatsappEnabled,
 
-            <p className="mt-1 text-sm text-zinc-500">Verknüpfe deine Website und deine Social-Media-Profile.</p>
-          </div>
+            telegramUsername: user.telegramUsername,
+            telegramEnabled: user.telegramEnabled,
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
+            signalNumber: user.signalNumber,
+            signalEnabled: user.signalEnabled,
 
-              <div className="relative">
-                <Globe2 className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-600" />
+            website: user.website,
+            websiteEnabled: user.websiteEnabled,
 
-                <Input id="website" name="website" type="url" defaultValue={user.website} placeholder="https://example.com" className="pl-9" />
-              </div>
+            instagram: user.instagram,
+            instagramEnabled: user.instagramEnabled,
 
-              <FieldError errors={state.errors?.website} />
-            </div>
+            emailPublic: user.emailPublic,
+            emailEnabled: user.emailEnabled,
 
-            <div className="space-y-2">
-              <Label htmlFor="instagram">Instagram</Label>
+            preferredContact: user.preferredContact,
 
-              <div className="relative">
-                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-zinc-600">@</span>
-
-                <Input id="instagram" name="instagram" defaultValue={user.instagram} maxLength={30} placeholder="username" className="pl-8" />
-              </div>
-
-              <FieldError errors={state.errors?.instagram} />
-            </div>
-          </div>
-        </section>
+            contactNote: user.contactNote,
+          }}
+          errors={state.errors}
+        />
 
         <div className="h-px bg-white/10" />
 

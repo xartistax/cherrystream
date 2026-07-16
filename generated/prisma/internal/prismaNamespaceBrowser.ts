@@ -64,7 +64,10 @@ export const ModelName = {
   Category: 'Category',
   ProfileCategory: 'ProfileCategory',
   Canton: 'Canton',
-  City: 'City'
+  City: 'City',
+  ProfileView: 'ProfileView',
+  ContactClick: 'ContactClick',
+  ContactMethod: 'ContactMethod'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -111,8 +114,21 @@ export const ProfileScalarFieldEnum = {
   isPublic: 'isPublic',
   coverUrl: 'coverUrl',
   coverPathname: 'coverPathname',
+  phoneNumber: 'phoneNumber',
+  phoneEnabled: 'phoneEnabled',
+  whatsappEnabled: 'whatsappEnabled',
+  telegramUsername: 'telegramUsername',
+  telegramEnabled: 'telegramEnabled',
+  signalNumber: 'signalNumber',
+  signalEnabled: 'signalEnabled',
   website: 'website',
+  websiteEnabled: 'websiteEnabled',
   instagram: 'instagram',
+  instagramEnabled: 'instagramEnabled',
+  emailPublic: 'emailPublic',
+  emailEnabled: 'emailEnabled',
+  preferredContact: 'preferredContact',
+  contactNote: 'contactNote',
   verified: 'verified',
   cantonId: 'cantonId',
   cityId: 'cityId',
@@ -279,6 +295,42 @@ export const CityScalarFieldEnum = {
 } as const
 
 export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof CityScalarFieldEnum]
+
+
+export const ProfileViewScalarFieldEnum = {
+  id: 'id',
+  profileUserId: 'profileUserId',
+  viewerId: 'viewerId',
+  visitorHash: 'visitorHash',
+  viewedAt: 'viewedAt'
+} as const
+
+export type ProfileViewScalarFieldEnum = (typeof ProfileViewScalarFieldEnum)[keyof typeof ProfileViewScalarFieldEnum]
+
+
+export const ContactClickScalarFieldEnum = {
+  id: 'id',
+  profileUserId: 'profileUserId',
+  visitorId: 'visitorId',
+  channel: 'channel',
+  visitorHash: 'visitorHash',
+  clickedAt: 'clickedAt'
+} as const
+
+export type ContactClickScalarFieldEnum = (typeof ContactClickScalarFieldEnum)[keyof typeof ContactClickScalarFieldEnum]
+
+
+export const ContactMethodScalarFieldEnum = {
+  id: 'id',
+  profileId: 'profileId',
+  channel: 'channel',
+  value: 'value',
+  enabled: 'enabled',
+  preferred: 'preferred',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ContactMethodScalarFieldEnum = (typeof ContactMethodScalarFieldEnum)[keyof typeof ContactMethodScalarFieldEnum]
 
 
 export const SortOrder = {

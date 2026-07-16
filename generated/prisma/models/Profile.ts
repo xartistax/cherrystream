@@ -34,8 +34,21 @@ export type ProfileMinAggregateOutputType = {
   isPublic: boolean | null
   coverUrl: string | null
   coverPathname: string | null
+  phoneNumber: string | null
+  phoneEnabled: boolean | null
+  whatsappEnabled: boolean | null
+  telegramUsername: string | null
+  telegramEnabled: boolean | null
+  signalNumber: string | null
+  signalEnabled: boolean | null
   website: string | null
+  websiteEnabled: boolean | null
   instagram: string | null
+  instagramEnabled: boolean | null
+  emailPublic: string | null
+  emailEnabled: boolean | null
+  preferredContact: $Enums.ContactChannel | null
+  contactNote: string | null
   verified: boolean | null
   cantonId: string | null
   cityId: string | null
@@ -53,8 +66,21 @@ export type ProfileMaxAggregateOutputType = {
   isPublic: boolean | null
   coverUrl: string | null
   coverPathname: string | null
+  phoneNumber: string | null
+  phoneEnabled: boolean | null
+  whatsappEnabled: boolean | null
+  telegramUsername: string | null
+  telegramEnabled: boolean | null
+  signalNumber: string | null
+  signalEnabled: boolean | null
   website: string | null
+  websiteEnabled: boolean | null
   instagram: string | null
+  instagramEnabled: boolean | null
+  emailPublic: string | null
+  emailEnabled: boolean | null
+  preferredContact: $Enums.ContactChannel | null
+  contactNote: string | null
   verified: boolean | null
   cantonId: string | null
   cityId: string | null
@@ -72,8 +98,21 @@ export type ProfileCountAggregateOutputType = {
   isPublic: number
   coverUrl: number
   coverPathname: number
+  phoneNumber: number
+  phoneEnabled: number
+  whatsappEnabled: number
+  telegramUsername: number
+  telegramEnabled: number
+  signalNumber: number
+  signalEnabled: number
   website: number
+  websiteEnabled: number
   instagram: number
+  instagramEnabled: number
+  emailPublic: number
+  emailEnabled: number
+  preferredContact: number
+  contactNote: number
   verified: number
   cantonId: number
   cityId: number
@@ -93,8 +132,21 @@ export type ProfileMinAggregateInputType = {
   isPublic?: true
   coverUrl?: true
   coverPathname?: true
+  phoneNumber?: true
+  phoneEnabled?: true
+  whatsappEnabled?: true
+  telegramUsername?: true
+  telegramEnabled?: true
+  signalNumber?: true
+  signalEnabled?: true
   website?: true
+  websiteEnabled?: true
   instagram?: true
+  instagramEnabled?: true
+  emailPublic?: true
+  emailEnabled?: true
+  preferredContact?: true
+  contactNote?: true
   verified?: true
   cantonId?: true
   cityId?: true
@@ -112,8 +164,21 @@ export type ProfileMaxAggregateInputType = {
   isPublic?: true
   coverUrl?: true
   coverPathname?: true
+  phoneNumber?: true
+  phoneEnabled?: true
+  whatsappEnabled?: true
+  telegramUsername?: true
+  telegramEnabled?: true
+  signalNumber?: true
+  signalEnabled?: true
   website?: true
+  websiteEnabled?: true
   instagram?: true
+  instagramEnabled?: true
+  emailPublic?: true
+  emailEnabled?: true
+  preferredContact?: true
+  contactNote?: true
   verified?: true
   cantonId?: true
   cityId?: true
@@ -131,8 +196,21 @@ export type ProfileCountAggregateInputType = {
   isPublic?: true
   coverUrl?: true
   coverPathname?: true
+  phoneNumber?: true
+  phoneEnabled?: true
+  whatsappEnabled?: true
+  telegramUsername?: true
+  telegramEnabled?: true
+  signalNumber?: true
+  signalEnabled?: true
   website?: true
+  websiteEnabled?: true
   instagram?: true
+  instagramEnabled?: true
+  emailPublic?: true
+  emailEnabled?: true
+  preferredContact?: true
+  contactNote?: true
   verified?: true
   cantonId?: true
   cityId?: true
@@ -223,8 +301,21 @@ export type ProfileGroupByOutputType = {
   isPublic: boolean
   coverUrl: string | null
   coverPathname: string | null
+  phoneNumber: string | null
+  phoneEnabled: boolean
+  whatsappEnabled: boolean
+  telegramUsername: string | null
+  telegramEnabled: boolean
+  signalNumber: string | null
+  signalEnabled: boolean
   website: string | null
+  websiteEnabled: boolean
   instagram: string | null
+  instagramEnabled: boolean
+  emailPublic: string | null
+  emailEnabled: boolean
+  preferredContact: $Enums.ContactChannel | null
+  contactNote: string | null
   verified: boolean
   cantonId: string | null
   cityId: string | null
@@ -263,8 +354,21 @@ export type ProfileWhereInput = {
   isPublic?: Prisma.BoolFilter<"Profile"> | boolean
   coverUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
   coverPathname?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  whatsappEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  telegramUsername?: Prisma.StringNullableFilter<"Profile"> | string | null
+  telegramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  signalNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  signalEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   website?: Prisma.StringNullableFilter<"Profile"> | string | null
+  websiteEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   instagram?: Prisma.StringNullableFilter<"Profile"> | string | null
+  instagramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  emailPublic?: Prisma.StringNullableFilter<"Profile"> | string | null
+  emailEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  preferredContact?: Prisma.EnumContactChannelNullableFilter<"Profile"> | $Enums.ContactChannel | null
+  contactNote?: Prisma.StringNullableFilter<"Profile"> | string | null
   verified?: Prisma.BoolFilter<"Profile"> | boolean
   cantonId?: Prisma.StringNullableFilter<"Profile"> | string | null
   cityId?: Prisma.StringNullableFilter<"Profile"> | string | null
@@ -274,6 +378,7 @@ export type ProfileWhereInput = {
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   categories?: Prisma.ProfileCategoryListRelationFilter
+  contactMethods?: Prisma.ContactMethodListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
@@ -286,8 +391,21 @@ export type ProfileOrderByWithRelationInput = {
   isPublic?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   coverPathname?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneEnabled?: Prisma.SortOrder
+  whatsappEnabled?: Prisma.SortOrder
+  telegramUsername?: Prisma.SortOrderInput | Prisma.SortOrder
+  telegramEnabled?: Prisma.SortOrder
+  signalNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  signalEnabled?: Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
+  websiteEnabled?: Prisma.SortOrder
   instagram?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramEnabled?: Prisma.SortOrder
+  emailPublic?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailEnabled?: Prisma.SortOrder
+  preferredContact?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactNote?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
   cantonId?: Prisma.SortOrderInput | Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -297,6 +415,7 @@ export type ProfileOrderByWithRelationInput = {
   city?: Prisma.CityOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
   categories?: Prisma.ProfileCategoryOrderByRelationAggregateInput
+  contactMethods?: Prisma.ContactMethodOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -312,8 +431,21 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   isPublic?: Prisma.BoolFilter<"Profile"> | boolean
   coverUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
   coverPathname?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  whatsappEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  telegramUsername?: Prisma.StringNullableFilter<"Profile"> | string | null
+  telegramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  signalNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  signalEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   website?: Prisma.StringNullableFilter<"Profile"> | string | null
+  websiteEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   instagram?: Prisma.StringNullableFilter<"Profile"> | string | null
+  instagramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  emailPublic?: Prisma.StringNullableFilter<"Profile"> | string | null
+  emailEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  preferredContact?: Prisma.EnumContactChannelNullableFilter<"Profile"> | $Enums.ContactChannel | null
+  contactNote?: Prisma.StringNullableFilter<"Profile"> | string | null
   verified?: Prisma.BoolFilter<"Profile"> | boolean
   cantonId?: Prisma.StringNullableFilter<"Profile"> | string | null
   cityId?: Prisma.StringNullableFilter<"Profile"> | string | null
@@ -323,6 +455,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   categories?: Prisma.ProfileCategoryListRelationFilter
+  contactMethods?: Prisma.ContactMethodListRelationFilter
 }, "id" | "userId">
 
 export type ProfileOrderByWithAggregationInput = {
@@ -335,8 +468,21 @@ export type ProfileOrderByWithAggregationInput = {
   isPublic?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   coverPathname?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneEnabled?: Prisma.SortOrder
+  whatsappEnabled?: Prisma.SortOrder
+  telegramUsername?: Prisma.SortOrderInput | Prisma.SortOrder
+  telegramEnabled?: Prisma.SortOrder
+  signalNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  signalEnabled?: Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
+  websiteEnabled?: Prisma.SortOrder
   instagram?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramEnabled?: Prisma.SortOrder
+  emailPublic?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailEnabled?: Prisma.SortOrder
+  preferredContact?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactNote?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
   cantonId?: Prisma.SortOrderInput | Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -360,8 +506,21 @@ export type ProfileScalarWhereWithAggregatesInput = {
   isPublic?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
   coverUrl?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   coverPathname?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  phoneEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  whatsappEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  telegramUsername?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  telegramEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  signalNumber?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  signalEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
   website?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  websiteEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
   instagram?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  instagramEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  emailPublic?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  emailEnabled?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  preferredContact?: Prisma.EnumContactChannelNullableWithAggregatesFilter<"Profile"> | $Enums.ContactChannel | null
+  contactNote?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   verified?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
   cantonId?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   cityId?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
@@ -378,8 +537,21 @@ export type ProfileCreateInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -387,6 +559,7 @@ export type ProfileCreateInput = {
   city?: Prisma.CityCreateNestedOneWithoutProfilesInput
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   categories?: Prisma.ProfileCategoryCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateInput = {
@@ -399,14 +572,28 @@ export type ProfileUncheckedCreateInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   cityId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.ProfileCategoryUncheckedCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUpdateInput = {
@@ -418,8 +605,21 @@ export type ProfileUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -427,6 +627,7 @@ export type ProfileUpdateInput = {
   city?: Prisma.CityUpdateOneWithoutProfilesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   categories?: Prisma.ProfileCategoryUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
@@ -439,14 +640,28 @@ export type ProfileUncheckedUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.ProfileCategoryUncheckedUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateManyInput = {
@@ -459,8 +674,21 @@ export type ProfileCreateManyInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   cityId?: string | null
@@ -477,8 +705,21 @@ export type ProfileUpdateManyMutationInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -494,8 +735,21 @@ export type ProfileUncheckedUpdateManyInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -518,8 +772,21 @@ export type ProfileCountOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverPathname?: Prisma.SortOrder
+  phoneNumber?: Prisma.SortOrder
+  phoneEnabled?: Prisma.SortOrder
+  whatsappEnabled?: Prisma.SortOrder
+  telegramUsername?: Prisma.SortOrder
+  telegramEnabled?: Prisma.SortOrder
+  signalNumber?: Prisma.SortOrder
+  signalEnabled?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  websiteEnabled?: Prisma.SortOrder
   instagram?: Prisma.SortOrder
+  instagramEnabled?: Prisma.SortOrder
+  emailPublic?: Prisma.SortOrder
+  emailEnabled?: Prisma.SortOrder
+  preferredContact?: Prisma.SortOrder
+  contactNote?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   cantonId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -537,8 +804,21 @@ export type ProfileMaxOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverPathname?: Prisma.SortOrder
+  phoneNumber?: Prisma.SortOrder
+  phoneEnabled?: Prisma.SortOrder
+  whatsappEnabled?: Prisma.SortOrder
+  telegramUsername?: Prisma.SortOrder
+  telegramEnabled?: Prisma.SortOrder
+  signalNumber?: Prisma.SortOrder
+  signalEnabled?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  websiteEnabled?: Prisma.SortOrder
   instagram?: Prisma.SortOrder
+  instagramEnabled?: Prisma.SortOrder
+  emailPublic?: Prisma.SortOrder
+  emailEnabled?: Prisma.SortOrder
+  preferredContact?: Prisma.SortOrder
+  contactNote?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   cantonId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -556,8 +836,21 @@ export type ProfileMinOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverPathname?: Prisma.SortOrder
+  phoneNumber?: Prisma.SortOrder
+  phoneEnabled?: Prisma.SortOrder
+  whatsappEnabled?: Prisma.SortOrder
+  telegramUsername?: Prisma.SortOrder
+  telegramEnabled?: Prisma.SortOrder
+  signalNumber?: Prisma.SortOrder
+  signalEnabled?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  websiteEnabled?: Prisma.SortOrder
   instagram?: Prisma.SortOrder
+  instagramEnabled?: Prisma.SortOrder
+  emailPublic?: Prisma.SortOrder
+  emailEnabled?: Prisma.SortOrder
+  preferredContact?: Prisma.SortOrder
+  contactNote?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   cantonId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -618,6 +911,10 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type NullableEnumContactChannelFieldUpdateOperationsInput = {
+  set?: $Enums.ContactChannel | null
 }
 
 export type ProfileCreateNestedOneWithoutCategoriesInput = {
@@ -718,6 +1015,20 @@ export type ProfileUncheckedUpdateManyWithoutCityNestedInput = {
   deleteMany?: Prisma.ProfileScalarWhereInput | Prisma.ProfileScalarWhereInput[]
 }
 
+export type ProfileCreateNestedOneWithoutContactMethodsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutContactMethodsInput, Prisma.ProfileUncheckedCreateWithoutContactMethodsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutContactMethodsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutContactMethodsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutContactMethodsInput, Prisma.ProfileUncheckedCreateWithoutContactMethodsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutContactMethodsInput
+  upsert?: Prisma.ProfileUpsertWithoutContactMethodsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutContactMethodsInput, Prisma.ProfileUpdateWithoutContactMethodsInput>, Prisma.ProfileUncheckedUpdateWithoutContactMethodsInput>
+}
+
 export type ProfileCreateWithoutUserInput = {
   id?: string
   displayName: string
@@ -727,14 +1038,28 @@ export type ProfileCreateWithoutUserInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   canton?: Prisma.CantonCreateNestedOneWithoutProfilesInput
   city?: Prisma.CityCreateNestedOneWithoutProfilesInput
   categories?: Prisma.ProfileCategoryCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutUserInput = {
@@ -746,14 +1071,28 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   cityId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.ProfileCategoryUncheckedCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -781,14 +1120,28 @@ export type ProfileUpdateWithoutUserInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   canton?: Prisma.CantonUpdateOneWithoutProfilesNestedInput
   city?: Prisma.CityUpdateOneWithoutProfilesNestedInput
   categories?: Prisma.ProfileCategoryUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutUserInput = {
@@ -800,14 +1153,28 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.ProfileCategoryUncheckedUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutCategoriesInput = {
@@ -819,14 +1186,28 @@ export type ProfileCreateWithoutCategoriesInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   canton?: Prisma.CantonCreateNestedOneWithoutProfilesInput
   city?: Prisma.CityCreateNestedOneWithoutProfilesInput
   user: Prisma.UserCreateNestedOneWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutCategoriesInput = {
@@ -839,13 +1220,27 @@ export type ProfileUncheckedCreateWithoutCategoriesInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   cityId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  contactMethods?: Prisma.ContactMethodUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutCategoriesInput = {
@@ -873,14 +1268,28 @@ export type ProfileUpdateWithoutCategoriesInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   canton?: Prisma.CantonUpdateOneWithoutProfilesNestedInput
   city?: Prisma.CityUpdateOneWithoutProfilesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutCategoriesInput = {
@@ -893,13 +1302,27 @@ export type ProfileUncheckedUpdateWithoutCategoriesInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contactMethods?: Prisma.ContactMethodUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutCantonInput = {
@@ -911,14 +1334,28 @@ export type ProfileCreateWithoutCantonInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   city?: Prisma.CityCreateNestedOneWithoutProfilesInput
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   categories?: Prisma.ProfileCategoryCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutCantonInput = {
@@ -931,13 +1368,27 @@ export type ProfileUncheckedCreateWithoutCantonInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cityId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.ProfileCategoryUncheckedCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutCantonInput = {
@@ -979,8 +1430,21 @@ export type ProfileScalarWhereInput = {
   isPublic?: Prisma.BoolFilter<"Profile"> | boolean
   coverUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
   coverPathname?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  phoneEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  whatsappEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  telegramUsername?: Prisma.StringNullableFilter<"Profile"> | string | null
+  telegramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  signalNumber?: Prisma.StringNullableFilter<"Profile"> | string | null
+  signalEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   website?: Prisma.StringNullableFilter<"Profile"> | string | null
+  websiteEnabled?: Prisma.BoolFilter<"Profile"> | boolean
   instagram?: Prisma.StringNullableFilter<"Profile"> | string | null
+  instagramEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  emailPublic?: Prisma.StringNullableFilter<"Profile"> | string | null
+  emailEnabled?: Prisma.BoolFilter<"Profile"> | boolean
+  preferredContact?: Prisma.EnumContactChannelNullableFilter<"Profile"> | $Enums.ContactChannel | null
+  contactNote?: Prisma.StringNullableFilter<"Profile"> | string | null
   verified?: Prisma.BoolFilter<"Profile"> | boolean
   cantonId?: Prisma.StringNullableFilter<"Profile"> | string | null
   cityId?: Prisma.StringNullableFilter<"Profile"> | string | null
@@ -997,14 +1461,28 @@ export type ProfileCreateWithoutCityInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   canton?: Prisma.CantonCreateNestedOneWithoutProfilesInput
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   categories?: Prisma.ProfileCategoryCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutCityInput = {
@@ -1017,13 +1495,27 @@ export type ProfileUncheckedCreateWithoutCityInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categories?: Prisma.ProfileCategoryUncheckedCreateNestedManyWithoutProfileInput
+  contactMethods?: Prisma.ContactMethodUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutCityInput = {
@@ -1052,6 +1544,154 @@ export type ProfileUpdateManyWithWhereWithoutCityInput = {
   data: Prisma.XOR<Prisma.ProfileUpdateManyMutationInput, Prisma.ProfileUncheckedUpdateManyWithoutCityInput>
 }
 
+export type ProfileCreateWithoutContactMethodsInput = {
+  id?: string
+  displayName: string
+  bio?: string | null
+  birthDate?: Date | string | null
+  gender?: $Enums.Gender | null
+  isPublic?: boolean
+  coverUrl?: string | null
+  coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
+  website?: string | null
+  websiteEnabled?: boolean
+  instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
+  verified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  canton?: Prisma.CantonCreateNestedOneWithoutProfilesInput
+  city?: Prisma.CityCreateNestedOneWithoutProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  categories?: Prisma.ProfileCategoryCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutContactMethodsInput = {
+  id?: string
+  userId: string
+  displayName: string
+  bio?: string | null
+  birthDate?: Date | string | null
+  gender?: $Enums.Gender | null
+  isPublic?: boolean
+  coverUrl?: string | null
+  coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
+  website?: string | null
+  websiteEnabled?: boolean
+  instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
+  verified?: boolean
+  cantonId?: string | null
+  cityId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  categories?: Prisma.ProfileCategoryUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutContactMethodsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutContactMethodsInput, Prisma.ProfileUncheckedCreateWithoutContactMethodsInput>
+}
+
+export type ProfileUpsertWithoutContactMethodsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutContactMethodsInput, Prisma.ProfileUncheckedUpdateWithoutContactMethodsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutContactMethodsInput, Prisma.ProfileUncheckedCreateWithoutContactMethodsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutContactMethodsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutContactMethodsInput, Prisma.ProfileUncheckedUpdateWithoutContactMethodsInput>
+}
+
+export type ProfileUpdateWithoutContactMethodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  canton?: Prisma.CantonUpdateOneWithoutProfilesNestedInput
+  city?: Prisma.CityUpdateOneWithoutProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  categories?: Prisma.ProfileCategoryUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutContactMethodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categories?: Prisma.ProfileCategoryUncheckedUpdateManyWithoutProfileNestedInput
+}
+
 export type ProfileCreateManyCantonInput = {
   id?: string
   userId: string
@@ -1062,8 +1702,21 @@ export type ProfileCreateManyCantonInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cityId?: string | null
   createdAt?: Date | string
@@ -1079,14 +1732,28 @@ export type ProfileUpdateWithoutCantonInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   city?: Prisma.CityUpdateOneWithoutProfilesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   categories?: Prisma.ProfileCategoryUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutCantonInput = {
@@ -1099,13 +1766,27 @@ export type ProfileUncheckedUpdateWithoutCantonInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.ProfileCategoryUncheckedUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateManyWithoutCantonInput = {
@@ -1118,8 +1799,21 @@ export type ProfileUncheckedUpdateManyWithoutCantonInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1136,8 +1830,21 @@ export type ProfileCreateManyCityInput = {
   isPublic?: boolean
   coverUrl?: string | null
   coverPathname?: string | null
+  phoneNumber?: string | null
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: string | null
+  telegramEnabled?: boolean
+  signalNumber?: string | null
+  signalEnabled?: boolean
   website?: string | null
+  websiteEnabled?: boolean
   instagram?: string | null
+  instagramEnabled?: boolean
+  emailPublic?: string | null
+  emailEnabled?: boolean
+  preferredContact?: $Enums.ContactChannel | null
+  contactNote?: string | null
   verified?: boolean
   cantonId?: string | null
   createdAt?: Date | string
@@ -1153,14 +1860,28 @@ export type ProfileUpdateWithoutCityInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   canton?: Prisma.CantonUpdateOneWithoutProfilesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   categories?: Prisma.ProfileCategoryUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutCityInput = {
@@ -1173,13 +1894,27 @@ export type ProfileUncheckedUpdateWithoutCityInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.ProfileCategoryUncheckedUpdateManyWithoutProfileNestedInput
+  contactMethods?: Prisma.ContactMethodUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateManyWithoutCityInput = {
@@ -1192,8 +1927,21 @@ export type ProfileUncheckedUpdateManyWithoutCityInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPathname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  whatsappEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  telegramUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telegramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  signalNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signalEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailPublic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  preferredContact?: Prisma.NullableEnumContactChannelFieldUpdateOperationsInput | $Enums.ContactChannel | null
+  contactNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cantonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1207,10 +1955,12 @@ export type ProfileUncheckedUpdateManyWithoutCityInput = {
 
 export type ProfileCountOutputType = {
   categories: number
+  contactMethods: number
 }
 
 export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   categories?: boolean | ProfileCountOutputTypeCountCategoriesArgs
+  contactMethods?: boolean | ProfileCountOutputTypeCountContactMethodsArgs
 }
 
 /**
@@ -1230,6 +1980,13 @@ export type ProfileCountOutputTypeCountCategoriesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.ProfileCategoryWhereInput
 }
 
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountContactMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContactMethodWhereInput
+}
+
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1241,8 +1998,21 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   isPublic?: boolean
   coverUrl?: boolean
   coverPathname?: boolean
+  phoneNumber?: boolean
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: boolean
+  telegramEnabled?: boolean
+  signalNumber?: boolean
+  signalEnabled?: boolean
   website?: boolean
+  websiteEnabled?: boolean
   instagram?: boolean
+  instagramEnabled?: boolean
+  emailPublic?: boolean
+  emailEnabled?: boolean
+  preferredContact?: boolean
+  contactNote?: boolean
   verified?: boolean
   cantonId?: boolean
   cityId?: boolean
@@ -1252,6 +2022,7 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   city?: boolean | Prisma.Profile$cityArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   categories?: boolean | Prisma.Profile$categoriesArgs<ExtArgs>
+  contactMethods?: boolean | Prisma.Profile$contactMethodsArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1265,8 +2036,21 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   isPublic?: boolean
   coverUrl?: boolean
   coverPathname?: boolean
+  phoneNumber?: boolean
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: boolean
+  telegramEnabled?: boolean
+  signalNumber?: boolean
+  signalEnabled?: boolean
   website?: boolean
+  websiteEnabled?: boolean
   instagram?: boolean
+  instagramEnabled?: boolean
+  emailPublic?: boolean
+  emailEnabled?: boolean
+  preferredContact?: boolean
+  contactNote?: boolean
   verified?: boolean
   cantonId?: boolean
   cityId?: boolean
@@ -1287,8 +2071,21 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   isPublic?: boolean
   coverUrl?: boolean
   coverPathname?: boolean
+  phoneNumber?: boolean
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: boolean
+  telegramEnabled?: boolean
+  signalNumber?: boolean
+  signalEnabled?: boolean
   website?: boolean
+  websiteEnabled?: boolean
   instagram?: boolean
+  instagramEnabled?: boolean
+  emailPublic?: boolean
+  emailEnabled?: boolean
+  preferredContact?: boolean
+  contactNote?: boolean
   verified?: boolean
   cantonId?: boolean
   cityId?: boolean
@@ -1309,8 +2106,21 @@ export type ProfileSelectScalar = {
   isPublic?: boolean
   coverUrl?: boolean
   coverPathname?: boolean
+  phoneNumber?: boolean
+  phoneEnabled?: boolean
+  whatsappEnabled?: boolean
+  telegramUsername?: boolean
+  telegramEnabled?: boolean
+  signalNumber?: boolean
+  signalEnabled?: boolean
   website?: boolean
+  websiteEnabled?: boolean
   instagram?: boolean
+  instagramEnabled?: boolean
+  emailPublic?: boolean
+  emailEnabled?: boolean
+  preferredContact?: boolean
+  contactNote?: boolean
   verified?: boolean
   cantonId?: boolean
   cityId?: boolean
@@ -1318,12 +2128,13 @@ export type ProfileSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "displayName" | "bio" | "birthDate" | "gender" | "isPublic" | "coverUrl" | "coverPathname" | "website" | "instagram" | "verified" | "cantonId" | "cityId" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "displayName" | "bio" | "birthDate" | "gender" | "isPublic" | "coverUrl" | "coverPathname" | "phoneNumber" | "phoneEnabled" | "whatsappEnabled" | "telegramUsername" | "telegramEnabled" | "signalNumber" | "signalEnabled" | "website" | "websiteEnabled" | "instagram" | "instagramEnabled" | "emailPublic" | "emailEnabled" | "preferredContact" | "contactNote" | "verified" | "cantonId" | "cityId" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   canton?: boolean | Prisma.Profile$cantonArgs<ExtArgs>
   city?: boolean | Prisma.Profile$cityArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   categories?: boolean | Prisma.Profile$categoriesArgs<ExtArgs>
+  contactMethods?: boolean | Prisma.Profile$contactMethodsArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1344,6 +2155,7 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     city: Prisma.$CityPayload<ExtArgs> | null
     user: Prisma.$UserPayload<ExtArgs>
     categories: Prisma.$ProfileCategoryPayload<ExtArgs>[]
+    contactMethods: Prisma.$ContactMethodPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1355,8 +2167,21 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     isPublic: boolean
     coverUrl: string | null
     coverPathname: string | null
+    phoneNumber: string | null
+    phoneEnabled: boolean
+    whatsappEnabled: boolean
+    telegramUsername: string | null
+    telegramEnabled: boolean
+    signalNumber: string | null
+    signalEnabled: boolean
     website: string | null
+    websiteEnabled: boolean
     instagram: string | null
+    instagramEnabled: boolean
+    emailPublic: string | null
+    emailEnabled: boolean
+    preferredContact: $Enums.ContactChannel | null
+    contactNote: string | null
     verified: boolean
     cantonId: string | null
     cityId: string | null
@@ -1760,6 +2585,7 @@ export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.
   city<T extends Prisma.Profile$cityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$cityArgs<ExtArgs>>): Prisma.Prisma__CityClient<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   categories<T extends Prisma.Profile$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contactMethods<T extends Prisma.Profile$contactMethodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$contactMethodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactMethodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1798,8 +2624,21 @@ export interface ProfileFieldRefs {
   readonly isPublic: Prisma.FieldRef<"Profile", 'Boolean'>
   readonly coverUrl: Prisma.FieldRef<"Profile", 'String'>
   readonly coverPathname: Prisma.FieldRef<"Profile", 'String'>
+  readonly phoneNumber: Prisma.FieldRef<"Profile", 'String'>
+  readonly phoneEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly whatsappEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly telegramUsername: Prisma.FieldRef<"Profile", 'String'>
+  readonly telegramEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly signalNumber: Prisma.FieldRef<"Profile", 'String'>
+  readonly signalEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
   readonly website: Prisma.FieldRef<"Profile", 'String'>
+  readonly websiteEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
   readonly instagram: Prisma.FieldRef<"Profile", 'String'>
+  readonly instagramEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly emailPublic: Prisma.FieldRef<"Profile", 'String'>
+  readonly emailEnabled: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly preferredContact: Prisma.FieldRef<"Profile", 'ContactChannel'>
+  readonly contactNote: Prisma.FieldRef<"Profile", 'String'>
   readonly verified: Prisma.FieldRef<"Profile", 'Boolean'>
   readonly cantonId: Prisma.FieldRef<"Profile", 'String'>
   readonly cityId: Prisma.FieldRef<"Profile", 'String'>
@@ -2265,6 +3104,30 @@ export type Profile$categoriesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ProfileCategoryScalarFieldEnum | Prisma.ProfileCategoryScalarFieldEnum[]
+}
+
+/**
+ * Profile.contactMethods
+ */
+export type Profile$contactMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContactMethod
+   */
+  select?: Prisma.ContactMethodSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContactMethod
+   */
+  omit?: Prisma.ContactMethodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactMethodInclude<ExtArgs> | null
+  where?: Prisma.ContactMethodWhereInput
+  orderBy?: Prisma.ContactMethodOrderByWithRelationInput | Prisma.ContactMethodOrderByWithRelationInput[]
+  cursor?: Prisma.ContactMethodWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContactMethodScalarFieldEnum | Prisma.ContactMethodScalarFieldEnum[]
 }
 
 /**

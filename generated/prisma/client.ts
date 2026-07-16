@@ -111,3 +111,18 @@ export type Canton = Prisma.CantonModel
  * 
  */
 export type City = Prisma.CityModel
+/**
+ * Model ProfileView
+ * 
+ */
+export type ProfileView = Prisma.ProfileViewModel
+/**
+ * Model ContactClick
+ * 
+ */
+export type ContactClick = Prisma.ContactClickModel
+/**
+ * Model ContactMethod
+ * 
+ */
+export type ContactMethod = Prisma.ContactMethodModel

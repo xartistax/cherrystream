@@ -79,3 +79,16 @@ export const PostVisibility = {
 } as const
 
 export type PostVisibility = (typeof PostVisibility)[keyof typeof PostVisibility]
+
+
+export const ContactChannel = {
+  PHONE: 'PHONE',
+  WHATSAPP: 'WHATSAPP',
+  TELEGRAM: 'TELEGRAM',
+  SIGNAL: 'SIGNAL',
+  WEBSITE: 'WEBSITE',
+  INSTAGRAM: 'INSTAGRAM',
+  EMAIL: 'EMAIL'
+} as const
+
+export type ContactChannel = (typeof ContactChannel)[keyof typeof ContactChannel]
