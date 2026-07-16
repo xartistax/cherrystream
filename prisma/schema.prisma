@@ -1,0 +1,312 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ModerationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum Gender {
+  WOMAN
+  MAN
+  NON_BINARY
+  OTHER
+}
+
+enum PostStatus {
+  PUBLISHED
+  HIDDEN
+  DELETED
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum MediaStatus {
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum PostVisibility {
+  PUBLIC
+  FOLLOWERS
+  PREMIUM
+}
+
+model User {
+  id            String     @id @default(cuid())
+  email         String     @unique
+  username      String     @unique
+  passwordHash  String?
+  name          String?
+  emailVerified DateTime?
+  image         String?
+  credits       Int        @default(0)
+  role          UserRole   @default(USER)
+  status        UserStatus @default(ACTIVE)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  profile  Profile?
+  accounts Account[]
+  sessions Session[]
+  posts    Post[]
+
+  following     Follow[]     @relation("Following")
+  followers     Follow[]     @relation("Followers")
+  postLikes     PostLike[]
+  unlockedPosts PostUnlock[]
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  displayName String
+  bio         String?
+  birthDate   DateTime?
+  gender      Gender?
+  isPublic    Boolean  @default(true)
+
+  coverUrl      String?
+  coverPathname String?
+
+  website   String?
+  instagram String?
+  verified  Boolean @default(false)
+
+  cantonId String?
+  canton   Canton? @relation(fields: [cantonId], references: [id])
+
+  cityId String?
+  city   City? @relation(fields: [cityId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categories ProfileCategory[]
+
+  @@index([cantonId])
+  @@index([cityId])
+  @@index([isPublic])
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refreshToken      String?
+  accessToken       String?
+  expiresAt         Int?
+  tokenType         String?
+  scope             String?
+  idToken           String?
+  sessionState      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Post {
+  id          String         @id @default(cuid())
+  authorId    String
+  content     String?
+  status      PostStatus     @default(PUBLISHED)
+  visibility  PostVisibility @default(PUBLIC)
+  unlockPrice Int?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  author  User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  media   PostMedia[]
+  likes   PostLike[]
+  unlocks PostUnlock[]
+
+  @@index([authorId, createdAt])
+  @@index([status, createdAt])
+  @@index([visibility, createdAt])
+}
+
+model PostMedia {
+  id     String      @id @default(cuid())
+  postId String
+  type   MediaType
+  status MediaStatus @default(PROCESSING)
+
+  url            String
+  pathname       String
+  mimeType       String
+  size           Int
+  sortOrder      Int     @default(0)
+  posterUrl      String?
+  posterPathname String?
+  duration       Float?
+
+  originalUrl      String?
+  originalPathname String?
+
+  profileUrl      String?
+  profilePathname String?
+
+  feedUrl      String?
+  feedPathname String?
+
+  fullUrl      String?
+  fullPathname String?
+
+  blurHash String?
+  checksum String?
+
+  width  Int?
+  height Int?
+
+  createdAt DateTime @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([pathname])
+  @@index([postId, sortOrder])
+  @@index([status])
+  @@index([checksum])
+}
+
+model Follow {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+
+  follower  User @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followingId])
+  @@index([followingId, createdAt])
+  @@index([followerId, createdAt])
+}
+
+model PostLike {
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+  @@index([postId, createdAt])
+}
+
+model PostUnlock {
+  userId      String
+  postId      String
+  creditsPaid Int
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+  @@index([postId, createdAt])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  profiles ProfileCategory[]
+
+  @@index([isActive, sortOrder])
+}
+
+model ProfileCategory {
+  profileId  String
+  categoryId String
+  createdAt  DateTime @default(now())
+
+  profile  Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, categoryId])
+  @@index([categoryId, profileId])
+}
+
+model Canton {
+  id        String @id @default(cuid())
+  slug      String @unique
+  name      String
+  sortOrder Int    @default(0)
+
+  cities   City[]
+  profiles Profile[]
+
+  createdAt DateTime @default(now())
+}
+
+model City {
+  id        String    @id @default(cuid())
+  slug      String
+  name      String
+  sortOrder Int       @default(0)
+  cantonId  String
+  createdAt DateTime  @default(now())
+  canton    Canton    @relation(fields: [cantonId], references: [id], onDelete: Cascade)
+  profiles  Profile[]
+
+  @@unique([cantonId, slug])
+  @@index([cantonId])
+}

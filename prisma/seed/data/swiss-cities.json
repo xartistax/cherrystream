@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Zürich",
+    "slug": "zuerich",
+    "canton": "zh"
+  },
+  {
+    "name": "Winterthur",
+    "slug": "winterthur",
+    "canton": "zh"
+  },
+  {
+    "name": "Uster",
+    "slug": "uster",
+    "canton": "zh"
+  }
+]
