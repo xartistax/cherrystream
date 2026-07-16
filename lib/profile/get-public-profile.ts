@@ -28,12 +28,24 @@ export async function getPublicProfile(username: string) {
         select: {
           displayName: true,
           bio: true,
-          city: true,
-          country: true,
           coverUrl: true,
           website: true,
           instagram: true,
           verified: true,
+
+          city: {
+            select: {
+              name: true,
+              slug: true,
+            },
+          },
+
+          canton: {
+            select: {
+              name: true,
+              slug: true,
+            },
+          },
         },
       },
 

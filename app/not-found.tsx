@@ -25,8 +25,18 @@ async function getTrendingCreators() {
       profile: {
         select: {
           displayName: true,
-          city: true,
-          country: true,
+
+          city: {
+            select: {
+              name: true,
+            },
+          },
+
+          canton: {
+            select: {
+              name: true,
+            },
+          },
         },
       },
       posts: {
@@ -174,7 +184,7 @@ export default async function NotFound() {
 
                 const imageUrl = media?.feedUrl ?? media?.url ?? creator.image;
 
-                const location = [creator.profile?.city, creator.profile?.country].filter(Boolean).join(", ");
+                const location = [creator.profile?.city, creator.profile?.canton].filter(Boolean).join(", ");
 
                 return (
                   <Link
