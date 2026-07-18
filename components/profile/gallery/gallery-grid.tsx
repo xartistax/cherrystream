@@ -6,14 +6,18 @@ import Image from "next/image";
 import type { ProfileGalleryMedia } from "@/components/profile/gallery/profile-gallery";
 import { cn } from "@/lib/utils";
 import { UnlockPostButton } from "@/components/posts/unlock-post-button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 type GalleryGridProps = {
   displayName: string;
   media: ProfileGalleryMedia[];
   onSelect: (index: number) => void;
+  authenticated: boolean;
+  loginUrl: string;
 };
 
-export function GalleryGrid({ displayName, media, onSelect }: GalleryGridProps) {
+export function GalleryGrid({ displayName, media, onSelect, authenticated, loginUrl }: GalleryGridProps) {
   if (media.length === 0) {
     return (
       <div className="flex min-h-64 items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/2 px-6 text-center">
@@ -64,7 +68,13 @@ export function GalleryGrid({ displayName, media, onSelect }: GalleryGridProps) 
 
                 {item.unlockPrice ? (
                   <div className="mt-3 w-full max-w-56">
-                    <UnlockPostButton postId={item.postId} priceCredits={item.unlockPrice} />
+                    {authenticated ? (
+                      <UnlockPostButton postId={item.postId} priceCredits={item.unlockPrice} />
+                    ) : (
+                      <Link href={loginUrl} className={cn(buttonVariants(), "w-full bg-rose-600 text-white hover:bg-rose-500")}>
+                        Anmelden zum Freischalten
+                      </Link>
+                    )}
                   </div>
                 ) : null}
               </div>

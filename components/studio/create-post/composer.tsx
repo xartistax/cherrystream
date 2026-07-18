@@ -13,10 +13,16 @@ import { MediaPreview } from "./media-preview";
 import { UploadProgress } from "./upload-progress";
 import { Toolbar } from "./toolbar";
 import { useUpload } from "./use-upload";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { Input } from "@base-ui/react";
+import { Globe2, Users, LockKeyhole } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type ComposerProps = {
   user: ComposerUser;
 };
+type PostVisibility = "PUBLIC" | "FOLLOWERS" | "PREMIUM";
 
 function getInitials(value: string): string {
   return value
@@ -34,6 +40,8 @@ export function CreatePostComposer({ user }: ComposerProps) {
 
   const [content, setContent] = useState("");
   const [isPending, startTransition] = useTransition();
+  const [visibility, setVisibility] = useState<PostVisibility>("PUBLIC");
+  const [unlockPrice, setUnlockPrice] = useState("");
 
   const { files, progress, error, setError, addFiles, removeFile, uploadFiles, reset } = useUpload({
     userId: user.id,
@@ -42,7 +50,11 @@ export function CreatePostComposer({ user }: ComposerProps) {
   const isUploading = progress !== null && progress < 100;
   const isBusy = isPending || isUploading;
 
-  const canSubmit = !isBusy && files.length > 0;
+  const premiumPrice = Number(unlockPrice);
+
+  const hasValidPremiumPrice = visibility !== "PREMIUM" || (Number.isSafeInteger(premiumPrice) && premiumPrice > 0);
+
+  const canSubmit = !isBusy && files.length > 0 && hasValidPremiumPrice;
 
   async function handleFileSelection(event: ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files ?? []);
@@ -58,6 +70,18 @@ export function CreatePostComposer({ user }: ComposerProps) {
 
   async function handleSubmit() {
     const normalizedContent = content.trim();
+    let normalizedUnlockPrice: number | null = null;
+
+    if (visibility === "PREMIUM") {
+      const price = Number(unlockPrice);
+
+      if (!Number.isSafeInteger(price) || price <= 0) {
+        setError("Gib einen gültigen Premium-Preis ein.");
+        return;
+      }
+
+      normalizedUnlockPrice = price;
+    }
 
     if (files.length === 0) {
       setError("Füge mindestens ein Bild oder Video hinzu.");
@@ -72,6 +96,8 @@ export function CreatePostComposer({ user }: ComposerProps) {
       startTransition(async () => {
         const result = await createPostAction({
           content: normalizedContent,
+          visibility,
+          unlockPrice: normalizedUnlockPrice,
           media: uploadedMedia,
         });
 
@@ -82,6 +108,8 @@ export function CreatePostComposer({ user }: ComposerProps) {
 
         reset();
         setContent("");
+        setVisibility("PUBLIC");
+        setUnlockPrice("");
         router.refresh();
       });
     } catch (uploadError) {
@@ -111,6 +139,85 @@ export function CreatePostComposer({ user }: ComposerProps) {
             placeholder="Beschreibung hinzufügen ..."
             className="min-h-24 resize-none border-0 bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
+        </div>
+
+        <div className="mt-5 space-y-3">
+          <Label className="text-sm text-zinc-300">Sichtbarkeit</Label>
+
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <Button
+              type="button"
+              variant="outline"
+              disabled={isBusy}
+              onClick={() => {
+                setVisibility("PUBLIC");
+                setUnlockPrice("");
+              }}
+              className={cn(
+                "justify-start border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/[0.07] hover:text-white",
+                visibility === "PUBLIC" && "border-rose-500/40 bg-rose-500/10 text-rose-300",
+              )}
+            >
+              <Globe2 className="size-4" />
+              Öffentlich
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              disabled={isBusy}
+              onClick={() => {
+                setVisibility("FOLLOWERS");
+                setUnlockPrice("");
+              }}
+              className={cn(
+                "justify-start border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/[0.07] hover:text-white",
+                visibility === "FOLLOWERS" && "border-rose-500/40 bg-rose-500/10 text-rose-300",
+              )}
+            >
+              <Users className="size-4" />
+              Follower
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              disabled={isBusy}
+              onClick={() => {
+                setVisibility("PREMIUM");
+              }}
+              className={cn(
+                "justify-start border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/[0.07] hover:text-white",
+                visibility === "PREMIUM" && "border-amber-500/40 bg-amber-500/10 text-amber-300",
+              )}
+            >
+              <LockKeyhole className="size-4" />
+              Premium
+            </Button>
+          </div>
+
+          {visibility === "PREMIUM" ? (
+            <div className="max-w-xs space-y-2">
+              <Label htmlFor="unlock-price" className="text-sm text-zinc-300">
+                Freischaltpreis in Credits
+              </Label>
+
+              <Input
+                id="unlock-price"
+                type="number"
+                min={1}
+                step={1}
+                inputMode="numeric"
+                value={unlockPrice}
+                disabled={isBusy}
+                onChange={(event) => {
+                  setUnlockPrice(event.target.value);
+                }}
+                placeholder="Zum Beispiel 25"
+                className="border-white/10 bg-white/[0.03] text-white"
+              />
+            </div>
+          ) : null}
         </div>
 
         <MediaPreview files={files} disabled={isBusy} onRemove={removeFile} />

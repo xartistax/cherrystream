@@ -128,17 +128,15 @@ export default async function PublicProfilePage({ params }: PageProps) {
             },
           },
 
-          unlocks: session?.user?.id
-            ? {
-                where: {
-                  userId: session.user.id,
-                },
-                select: {
-                  id: true,
-                },
-                take: 1,
-              }
-            : false,
+          unlocks: {
+            where: {
+              userId: session?.user?.id ?? "",
+            },
+            select: {
+              id: true,
+            },
+            take: 1,
+          },
         },
       },
 
@@ -381,7 +379,12 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
       {user.profile.bio ? <ProfileDescription html={user.profile.bio} displayName={displayName} /> : null}
 
-      <ProfileGallery displayName={displayName} media={galleryMedia} />
+      <ProfileGallery
+        displayName={displayName}
+        media={galleryMedia}
+        authenticated={Boolean(session?.user?.id)}
+        loginUrl={`/login?callbackUrl=${encodeURIComponent(`/profile/${user.username}`)}`}
+      />
     </div>
   );
 }

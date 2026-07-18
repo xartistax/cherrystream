@@ -9,18 +9,27 @@ export const postMediaSchema = z.object({
   mimeType: z.string().min(1),
   size: z.number().int().positive(),
 });
-
 export const createPostSchema = z
   .object({
     content: z.string().trim().max(2000),
+    visibility: z.enum(["PUBLIC", "FOLLOWERS", "PREMIUM"]),
+    unlockPrice: z.number().int().positive().nullable(),
     media: z.array(postMediaSchema).min(1).max(MAX_POST_FILES),
   })
   .superRefine((data, context) => {
-    if (data.media.length === 0) {
+    if (data.visibility === "PREMIUM" && data.unlockPrice === null) {
       context.addIssue({
         code: "custom",
-        path: ["media"],
-        message: "Füge mindestens ein Bild oder Video hinzu.",
+        path: ["unlockPrice"],
+        message: "Lege einen Preis für den Premium-Beitrag fest.",
+      });
+    }
+
+    if (data.visibility !== "PREMIUM" && data.unlockPrice !== null) {
+      context.addIssue({
+        code: "custom",
+        path: ["unlockPrice"],
+        message: "Ein Freischaltpreis ist nur für Premium-Beiträge erlaubt.",
       });
     }
   });

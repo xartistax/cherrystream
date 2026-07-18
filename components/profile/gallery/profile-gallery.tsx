@@ -24,9 +24,11 @@ export type ProfileGalleryMedia = {
 type ProfileGalleryProps = {
   displayName: string;
   media: ProfileGalleryMedia[];
+  authenticated: boolean;
+  loginUrl: string;
 };
 
-export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
+export function ProfileGallery({ displayName, media, authenticated, loginUrl }: ProfileGalleryProps) {
   const [lightboxMedia, setLightboxMedia] = useState<ProfileGalleryMedia[]>([]);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -111,19 +113,43 @@ export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
         </div>
 
         <TabsContent value="all">
-          <GalleryGrid displayName={displayName} media={media} onSelect={(index) => openLightbox(media, index)} />
+          <GalleryGrid
+            displayName={displayName}
+            media={media}
+            onSelect={(index) => openLightbox(media, index)}
+            authenticated={authenticated}
+            loginUrl={loginUrl}
+          />
         </TabsContent>
 
         <TabsContent value="photos">
-          <GalleryGrid displayName={displayName} media={photos} onSelect={(index) => openLightbox(photos, index)} />
+          <GalleryGrid
+            displayName={displayName}
+            media={photos}
+            onSelect={(index) => openLightbox(photos, index)}
+            authenticated={authenticated}
+            loginUrl={loginUrl}
+          />
         </TabsContent>
 
         <TabsContent value="videos">
-          <GalleryGrid displayName={displayName} media={videos} onSelect={(index) => openLightbox(videos, index)} />
+          <GalleryGrid
+            displayName={displayName}
+            media={videos}
+            onSelect={(index) => openLightbox(videos, index)}
+            authenticated={authenticated}
+            loginUrl={loginUrl}
+          />
         </TabsContent>
 
         <TabsContent value="premium">
-          <GalleryGrid displayName={displayName} media={premium} onSelect={(index) => openLightbox(premium, index)} />
+          <GalleryGrid
+            displayName={displayName}
+            media={premium}
+            onSelect={(index) => openLightbox(premium, index)}
+            authenticated={authenticated}
+            loginUrl={loginUrl}
+          />
         </TabsContent>
       </Tabs>
 

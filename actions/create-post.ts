@@ -43,6 +43,8 @@ export async function createPostAction(input: CreatePostInput): Promise<CreatePo
         data: {
           authorId: userId,
           content: parsedInput.data.content || null,
+          visibility: parsedInput.data.visibility,
+          unlockPrice: parsedInput.data.unlockPrice,
 
           media: {
             create: prepared.media.map((media, index) => ({

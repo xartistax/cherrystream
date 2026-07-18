@@ -64,6 +64,9 @@ export async function registerAction(_previousState: ActionState, formData: Form
         username,
         name: displayName,
         passwordHash,
+        wallet: {
+          create: {},
+        },
         profile: {
           create: {
             displayName,
