@@ -240,10 +240,10 @@ export type PostWhereInput = {
   unlockPrice?: Prisma.IntNullableFilter<"Post"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
+  unlocks?: Prisma.PostUnlockListRelationFilter
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   media?: Prisma.PostMediaListRelationFilter
   likes?: Prisma.PostLikeListRelationFilter
-  unlocks?: Prisma.PostUnlockListRelationFilter
 }
 
 export type PostOrderByWithRelationInput = {
@@ -255,10 +255,10 @@ export type PostOrderByWithRelationInput = {
   unlockPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  unlocks?: Prisma.PostUnlockOrderByRelationAggregateInput
   author?: Prisma.UserOrderByWithRelationInput
   media?: Prisma.PostMediaOrderByRelationAggregateInput
   likes?: Prisma.PostLikeOrderByRelationAggregateInput
-  unlocks?: Prisma.PostUnlockOrderByRelationAggregateInput
 }
 
 export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -273,10 +273,10 @@ export type PostWhereUniqueInput = Prisma.AtLeast<{
   unlockPrice?: Prisma.IntNullableFilter<"Post"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
+  unlocks?: Prisma.PostUnlockListRelationFilter
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   media?: Prisma.PostMediaListRelationFilter
   likes?: Prisma.PostLikeListRelationFilter
-  unlocks?: Prisma.PostUnlockListRelationFilter
 }, "id">
 
 export type PostOrderByWithAggregationInput = {
@@ -317,10 +317,10 @@ export type PostCreateInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
   author: Prisma.UserCreateNestedOneWithoutPostsInput
   media?: Prisma.PostMediaCreateNestedManyWithoutPostInput
   likes?: Prisma.PostLikeCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
 }
 
 export type PostUncheckedCreateInput = {
@@ -332,9 +332,9 @@ export type PostUncheckedCreateInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
   media?: Prisma.PostMediaUncheckedCreateNestedManyWithoutPostInput
   likes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
 }
 
 export type PostUpdateInput = {
@@ -345,10 +345,10 @@ export type PostUpdateInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
   media?: Prisma.PostMediaUpdateManyWithoutPostNestedInput
   likes?: Prisma.PostLikeUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
 }
 
 export type PostUncheckedUpdateInput = {
@@ -360,9 +360,9 @@ export type PostUncheckedUpdateInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
   media?: Prisma.PostMediaUncheckedUpdateManyWithoutPostNestedInput
   likes?: Prisma.PostLikeUncheckedUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
 }
 
 export type PostCreateManyInput = {
@@ -553,9 +553,9 @@ export type PostCreateWithoutAuthorInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
   media?: Prisma.PostMediaCreateNestedManyWithoutPostInput
   likes?: Prisma.PostLikeCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
 }
 
 export type PostUncheckedCreateWithoutAuthorInput = {
@@ -566,9 +566,9 @@ export type PostUncheckedCreateWithoutAuthorInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
   media?: Prisma.PostMediaUncheckedCreateNestedManyWithoutPostInput
   likes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
 }
 
 export type PostCreateOrConnectWithoutAuthorInput = {
@@ -619,9 +619,9 @@ export type PostCreateWithoutMediaInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
   author: Prisma.UserCreateNestedOneWithoutPostsInput
   likes?: Prisma.PostLikeCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
 }
 
 export type PostUncheckedCreateWithoutMediaInput = {
@@ -633,8 +633,8 @@ export type PostUncheckedCreateWithoutMediaInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  likes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutPostInput
   unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
+  likes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutPostInput
 }
 
 export type PostCreateOrConnectWithoutMediaInput = {
@@ -661,9 +661,9 @@ export type PostUpdateWithoutMediaInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
   likes?: Prisma.PostLikeUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
 }
 
 export type PostUncheckedUpdateWithoutMediaInput = {
@@ -675,8 +675,8 @@ export type PostUncheckedUpdateWithoutMediaInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  likes?: Prisma.PostLikeUncheckedUpdateManyWithoutPostNestedInput
   unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
+  likes?: Prisma.PostLikeUncheckedUpdateManyWithoutPostNestedInput
 }
 
 export type PostCreateWithoutLikesInput = {
@@ -687,9 +687,9 @@ export type PostCreateWithoutLikesInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
   author: Prisma.UserCreateNestedOneWithoutPostsInput
   media?: Prisma.PostMediaCreateNestedManyWithoutPostInput
-  unlocks?: Prisma.PostUnlockCreateNestedManyWithoutPostInput
 }
 
 export type PostUncheckedCreateWithoutLikesInput = {
@@ -701,8 +701,8 @@ export type PostUncheckedCreateWithoutLikesInput = {
   unlockPrice?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  media?: Prisma.PostMediaUncheckedCreateNestedManyWithoutPostInput
   unlocks?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutPostInput
+  media?: Prisma.PostMediaUncheckedCreateNestedManyWithoutPostInput
 }
 
 export type PostCreateOrConnectWithoutLikesInput = {
@@ -729,9 +729,9 @@ export type PostUpdateWithoutLikesInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
   media?: Prisma.PostMediaUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
 }
 
 export type PostUncheckedUpdateWithoutLikesInput = {
@@ -743,8 +743,8 @@ export type PostUncheckedUpdateWithoutLikesInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  media?: Prisma.PostMediaUncheckedUpdateManyWithoutPostNestedInput
   unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
+  media?: Prisma.PostMediaUncheckedUpdateManyWithoutPostNestedInput
 }
 
 export type PostCreateWithoutUnlocksInput = {
@@ -833,9 +833,9 @@ export type PostUpdateWithoutAuthorInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
   media?: Prisma.PostMediaUpdateManyWithoutPostNestedInput
   likes?: Prisma.PostLikeUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUpdateManyWithoutPostNestedInput
 }
 
 export type PostUncheckedUpdateWithoutAuthorInput = {
@@ -846,9 +846,9 @@ export type PostUncheckedUpdateWithoutAuthorInput = {
   unlockPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
   media?: Prisma.PostMediaUncheckedUpdateManyWithoutPostNestedInput
   likes?: Prisma.PostLikeUncheckedUpdateManyWithoutPostNestedInput
-  unlocks?: Prisma.PostUnlockUncheckedUpdateManyWithoutPostNestedInput
 }
 
 export type PostUncheckedUpdateManyWithoutAuthorInput = {
@@ -867,15 +867,15 @@ export type PostUncheckedUpdateManyWithoutAuthorInput = {
  */
 
 export type PostCountOutputType = {
+  unlocks: number
   media: number
   likes: number
-  unlocks: number
 }
 
 export type PostCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  unlocks?: boolean | PostCountOutputTypeCountUnlocksArgs
   media?: boolean | PostCountOutputTypeCountMediaArgs
   likes?: boolean | PostCountOutputTypeCountLikesArgs
-  unlocks?: boolean | PostCountOutputTypeCountUnlocksArgs
 }
 
 /**
@@ -886,6 +886,13 @@ export type PostCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the PostCountOutputType
    */
   select?: Prisma.PostCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PostCountOutputType without action
+ */
+export type PostCountOutputTypeCountUnlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostUnlockWhereInput
 }
 
 /**
@@ -902,13 +909,6 @@ export type PostCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.PostLikeWhereInput
 }
 
-/**
- * PostCountOutputType without action
- */
-export type PostCountOutputTypeCountUnlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PostUnlockWhereInput
-}
-
 
 export type PostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -919,10 +919,10 @@ export type PostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   unlockPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  unlocks?: boolean | Prisma.Post$unlocksArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   media?: boolean | Prisma.Post$mediaArgs<ExtArgs>
   likes?: boolean | Prisma.Post$likesArgs<ExtArgs>
-  unlocks?: boolean | Prisma.Post$unlocksArgs<ExtArgs>
   _count?: boolean | Prisma.PostCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["post"]>
 
@@ -963,10 +963,10 @@ export type PostSelectScalar = {
 
 export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "content" | "status" | "visibility" | "unlockPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
 export type PostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  unlocks?: boolean | Prisma.Post$unlocksArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   media?: boolean | Prisma.Post$mediaArgs<ExtArgs>
   likes?: boolean | Prisma.Post$likesArgs<ExtArgs>
-  unlocks?: boolean | Prisma.Post$unlocksArgs<ExtArgs>
   _count?: boolean | Prisma.PostCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PostIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -979,10 +979,10 @@ export type PostIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PostPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Post"
   objects: {
+    unlocks: Prisma.$PostUnlockPayload<ExtArgs>[]
     author: Prisma.$UserPayload<ExtArgs>
     media: Prisma.$PostMediaPayload<ExtArgs>[]
     likes: Prisma.$PostLikePayload<ExtArgs>[]
-    unlocks: Prisma.$PostUnlockPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1387,10 +1387,10 @@ readonly fields: PostFieldRefs;
  */
 export interface Prisma__PostClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  unlocks<T extends Prisma.Post$unlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Post$unlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostUnlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   media<T extends Prisma.Post$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Post$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   likes<T extends Prisma.Post$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  unlocks<T extends Prisma.Post$unlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Post$unlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostUnlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1829,6 +1829,30 @@ export type PostDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Post.unlocks
+ */
+export type Post$unlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostUnlock
+   */
+  select?: Prisma.PostUnlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostUnlock
+   */
+  omit?: Prisma.PostUnlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostUnlockInclude<ExtArgs> | null
+  where?: Prisma.PostUnlockWhereInput
+  orderBy?: Prisma.PostUnlockOrderByWithRelationInput | Prisma.PostUnlockOrderByWithRelationInput[]
+  cursor?: Prisma.PostUnlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostUnlockScalarFieldEnum | Prisma.PostUnlockScalarFieldEnum[]
+}
+
+/**
  * Post.media
  */
 export type Post$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1874,30 +1898,6 @@ export type Post$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.PostLikeScalarFieldEnum | Prisma.PostLikeScalarFieldEnum[]
-}
-
-/**
- * Post.unlocks
- */
-export type Post$unlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PostUnlock
-   */
-  select?: Prisma.PostUnlockSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PostUnlock
-   */
-  omit?: Prisma.PostUnlockOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PostUnlockInclude<ExtArgs> | null
-  where?: Prisma.PostUnlockWhereInput
-  orderBy?: Prisma.PostUnlockOrderByWithRelationInput | Prisma.PostUnlockOrderByWithRelationInput[]
-  cursor?: Prisma.PostUnlockWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PostUnlockScalarFieldEnum | Prisma.PostUnlockScalarFieldEnum[]
 }
 
 /**

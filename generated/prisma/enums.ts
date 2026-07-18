@@ -9,6 +9,29 @@
 * 🟢 You can import this file directly.
 */
 
+export const WalletTransactionType = {
+  CREDIT_PURCHASE: 'CREDIT_PURCHASE',
+  PREMIUM_UNLOCK: 'PREMIUM_UNLOCK',
+  TIP_SENT: 'TIP_SENT',
+  TIP_RECEIVED: 'TIP_RECEIVED',
+  BOOST_PURCHASE: 'BOOST_PURCHASE',
+  EARNINGS_CONVERSION: 'EARNINGS_CONVERSION',
+  PAYOUT: 'PAYOUT',
+  ADJUSTMENT: 'ADJUSTMENT'
+} as const
+
+export type WalletTransactionType = (typeof WalletTransactionType)[keyof typeof WalletTransactionType]
+
+
+export const WalletBalanceType = {
+  USER_CREDITS: 'USER_CREDITS',
+  CREATOR_CREDITS: 'CREATOR_CREDITS',
+  EARNINGS: 'EARNINGS'
+} as const
+
+export type WalletBalanceType = (typeof WalletBalanceType)[keyof typeof WalletBalanceType]
+
+
 export const ModerationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',

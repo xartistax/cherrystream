@@ -8,7 +8,7 @@ import { ComposerUser } from "@/components/studio/create-post/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Coins, ExternalLink, Eye, FileImage, Images, Pencil, Plus, UserRound, UsersRound } from "lucide-react";
+import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Images, Pencil, Plus, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostGrid } from "@/components/studio/posts/post-grid";
 import { getProfileStats } from "@/lib/analytics/get-profile-stats";
@@ -69,6 +69,7 @@ export default async function FeedPage() {
         _count: {
           select: {
             likes: true,
+            unlocks: true,
           },
         },
       },
@@ -85,13 +86,7 @@ export default async function FeedPage() {
     redirect("/login");
   }
 
-  if (!currentUser) {
-    redirect("/login");
-  }
-
   const displayName = currentUser.profile?.displayName ?? currentUser.name ?? currentUser.username;
-
-  const mediaCount = posts.reduce((total, post) => total + post.media.length, 0);
 
   const recentPosts = posts.slice(0, 6);
 

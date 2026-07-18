@@ -28,30 +28,54 @@ export type AggregatePostUnlock = {
 
 export type PostUnlockAvgAggregateOutputType = {
   creditsPaid: number | null
+  grossRappen: number | null
+  creatorEarningsRappen: number | null
+  platformFeeRappen: number | null
 }
 
 export type PostUnlockSumAggregateOutputType = {
   creditsPaid: number | null
+  grossRappen: number | null
+  creatorEarningsRappen: number | null
+  platformFeeRappen: number | null
 }
 
 export type PostUnlockMinAggregateOutputType = {
+  id: string | null
   userId: string | null
   postId: string | null
   creditsPaid: number | null
+  grossRappen: number | null
+  creatorEarningsRappen: number | null
+  platformFeeRappen: number | null
+  buyerTransactionId: string | null
+  creatorTransactionId: string | null
   createdAt: Date | null
 }
 
 export type PostUnlockMaxAggregateOutputType = {
+  id: string | null
   userId: string | null
   postId: string | null
   creditsPaid: number | null
+  grossRappen: number | null
+  creatorEarningsRappen: number | null
+  platformFeeRappen: number | null
+  buyerTransactionId: string | null
+  creatorTransactionId: string | null
   createdAt: Date | null
 }
 
 export type PostUnlockCountAggregateOutputType = {
+  id: number
   userId: number
   postId: number
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: number
+  creatorTransactionId: number
   createdAt: number
   _all: number
 }
@@ -59,30 +83,54 @@ export type PostUnlockCountAggregateOutputType = {
 
 export type PostUnlockAvgAggregateInputType = {
   creditsPaid?: true
+  grossRappen?: true
+  creatorEarningsRappen?: true
+  platformFeeRappen?: true
 }
 
 export type PostUnlockSumAggregateInputType = {
   creditsPaid?: true
+  grossRappen?: true
+  creatorEarningsRappen?: true
+  platformFeeRappen?: true
 }
 
 export type PostUnlockMinAggregateInputType = {
+  id?: true
   userId?: true
   postId?: true
   creditsPaid?: true
+  grossRappen?: true
+  creatorEarningsRappen?: true
+  platformFeeRappen?: true
+  buyerTransactionId?: true
+  creatorTransactionId?: true
   createdAt?: true
 }
 
 export type PostUnlockMaxAggregateInputType = {
+  id?: true
   userId?: true
   postId?: true
   creditsPaid?: true
+  grossRappen?: true
+  creatorEarningsRappen?: true
+  platformFeeRappen?: true
+  buyerTransactionId?: true
+  creatorTransactionId?: true
   createdAt?: true
 }
 
 export type PostUnlockCountAggregateInputType = {
+  id?: true
   userId?: true
   postId?: true
   creditsPaid?: true
+  grossRappen?: true
+  creatorEarningsRappen?: true
+  platformFeeRappen?: true
+  buyerTransactionId?: true
+  creatorTransactionId?: true
   createdAt?: true
   _all?: true
 }
@@ -174,9 +222,15 @@ export type PostUnlockGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type PostUnlockGroupByOutputType = {
+  id: string
   userId: string
   postId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt: Date
   _count: PostUnlockCountAggregateOutputType | null
   _avg: PostUnlockAvgAggregateOutputType | null
@@ -204,24 +258,43 @@ export type PostUnlockWhereInput = {
   AND?: Prisma.PostUnlockWhereInput | Prisma.PostUnlockWhereInput[]
   OR?: Prisma.PostUnlockWhereInput[]
   NOT?: Prisma.PostUnlockWhereInput | Prisma.PostUnlockWhereInput[]
+  id?: Prisma.StringFilter<"PostUnlock"> | string
   userId?: Prisma.StringFilter<"PostUnlock"> | string
   postId?: Prisma.StringFilter<"PostUnlock"> | string
   creditsPaid?: Prisma.IntFilter<"PostUnlock"> | number
+  grossRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  creatorEarningsRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  platformFeeRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  buyerTransactionId?: Prisma.StringFilter<"PostUnlock"> | string
+  creatorTransactionId?: Prisma.StringFilter<"PostUnlock"> | string
   createdAt?: Prisma.DateTimeFilter<"PostUnlock"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
+  buyerTransaction?: Prisma.XOR<Prisma.WalletTransactionScalarRelationFilter, Prisma.WalletTransactionWhereInput>
+  creatorTransaction?: Prisma.XOR<Prisma.WalletTransactionScalarRelationFilter, Prisma.WalletTransactionWhereInput>
 }
 
 export type PostUnlockOrderByWithRelationInput = {
+  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+  buyerTransactionId?: Prisma.SortOrder
+  creatorTransactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   post?: Prisma.PostOrderByWithRelationInput
+  buyerTransaction?: Prisma.WalletTransactionOrderByWithRelationInput
+  creatorTransaction?: Prisma.WalletTransactionOrderByWithRelationInput
 }
 
 export type PostUnlockWhereUniqueInput = Prisma.AtLeast<{
+  id?: string
+  buyerTransactionId?: string
+  creatorTransactionId?: string
   userId_postId?: Prisma.PostUnlockUserIdPostIdCompoundUniqueInput
   AND?: Prisma.PostUnlockWhereInput | Prisma.PostUnlockWhereInput[]
   OR?: Prisma.PostUnlockWhereInput[]
@@ -229,15 +302,26 @@ export type PostUnlockWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"PostUnlock"> | string
   postId?: Prisma.StringFilter<"PostUnlock"> | string
   creditsPaid?: Prisma.IntFilter<"PostUnlock"> | number
+  grossRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  creatorEarningsRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  platformFeeRappen?: Prisma.IntFilter<"PostUnlock"> | number
   createdAt?: Prisma.DateTimeFilter<"PostUnlock"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
-}, "userId_postId">
+  buyerTransaction?: Prisma.XOR<Prisma.WalletTransactionScalarRelationFilter, Prisma.WalletTransactionWhereInput>
+  creatorTransaction?: Prisma.XOR<Prisma.WalletTransactionScalarRelationFilter, Prisma.WalletTransactionWhereInput>
+}, "id" | "buyerTransactionId" | "creatorTransactionId" | "userId_postId">
 
 export type PostUnlockOrderByWithAggregationInput = {
+  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+  buyerTransactionId?: Prisma.SortOrder
+  creatorTransactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.PostUnlockCountOrderByAggregateInput
   _avg?: Prisma.PostUnlockAvgOrderByAggregateInput
@@ -250,56 +334,102 @@ export type PostUnlockScalarWhereWithAggregatesInput = {
   AND?: Prisma.PostUnlockScalarWhereWithAggregatesInput | Prisma.PostUnlockScalarWhereWithAggregatesInput[]
   OR?: Prisma.PostUnlockScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PostUnlockScalarWhereWithAggregatesInput | Prisma.PostUnlockScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"PostUnlock"> | string
   userId?: Prisma.StringWithAggregatesFilter<"PostUnlock"> | string
   postId?: Prisma.StringWithAggregatesFilter<"PostUnlock"> | string
   creditsPaid?: Prisma.IntWithAggregatesFilter<"PostUnlock"> | number
+  grossRappen?: Prisma.IntWithAggregatesFilter<"PostUnlock"> | number
+  creatorEarningsRappen?: Prisma.IntWithAggregatesFilter<"PostUnlock"> | number
+  platformFeeRappen?: Prisma.IntWithAggregatesFilter<"PostUnlock"> | number
+  buyerTransactionId?: Prisma.StringWithAggregatesFilter<"PostUnlock"> | string
+  creatorTransactionId?: Prisma.StringWithAggregatesFilter<"PostUnlock"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PostUnlock"> | Date | string
 }
 
 export type PostUnlockCreateInput = {
+  id?: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutUnlockedPostsInput
   post: Prisma.PostCreateNestedOneWithoutUnlocksInput
+  buyerTransaction: Prisma.WalletTransactionCreateNestedOneWithoutBuyerUnlockInput
+  creatorTransaction: Prisma.WalletTransactionCreateNestedOneWithoutCreatorUnlockInput
 }
 
 export type PostUnlockUncheckedCreateInput = {
+  id?: string
   userId: string
   postId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
 export type PostUnlockUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutUnlockedPostsNestedInput
   post?: Prisma.PostUpdateOneRequiredWithoutUnlocksNestedInput
+  buyerTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutBuyerUnlockNestedInput
+  creatorTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutCreatorUnlockNestedInput
 }
 
 export type PostUnlockUncheckedUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostUnlockCreateManyInput = {
+  id?: string
   userId: string
   postId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
 export type PostUnlockUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostUnlockUncheckedUpdateManyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,32 +449,61 @@ export type PostUnlockUserIdPostIdCompoundUniqueInput = {
 }
 
 export type PostUnlockCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+  buyerTransactionId?: Prisma.SortOrder
+  creatorTransactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type PostUnlockAvgOrderByAggregateInput = {
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
 }
 
 export type PostUnlockMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+  buyerTransactionId?: Prisma.SortOrder
+  creatorTransactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type PostUnlockMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+  buyerTransactionId?: Prisma.SortOrder
+  creatorTransactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type PostUnlockSumOrderByAggregateInput = {
   creditsPaid?: Prisma.SortOrder
+  grossRappen?: Prisma.SortOrder
+  creatorEarningsRappen?: Prisma.SortOrder
+  platformFeeRappen?: Prisma.SortOrder
+}
+
+export type PostUnlockNullableScalarRelationFilter = {
+  is?: Prisma.PostUnlockWhereInput | null
+  isNot?: Prisma.PostUnlockWhereInput | null
 }
 
 export type PostUnlockCreateNestedManyWithoutUserInput = {
@@ -431,15 +590,91 @@ export type PostUnlockUncheckedUpdateManyWithoutPostNestedInput = {
   deleteMany?: Prisma.PostUnlockScalarWhereInput | Prisma.PostUnlockScalarWhereInput[]
 }
 
+export type PostUnlockCreateNestedOneWithoutBuyerTransactionInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutBuyerTransactionInput
+  connect?: Prisma.PostUnlockWhereUniqueInput
+}
+
+export type PostUnlockCreateNestedOneWithoutCreatorTransactionInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutCreatorTransactionInput
+  connect?: Prisma.PostUnlockWhereUniqueInput
+}
+
+export type PostUnlockUncheckedCreateNestedOneWithoutBuyerTransactionInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutBuyerTransactionInput
+  connect?: Prisma.PostUnlockWhereUniqueInput
+}
+
+export type PostUnlockUncheckedCreateNestedOneWithoutCreatorTransactionInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutCreatorTransactionInput
+  connect?: Prisma.PostUnlockWhereUniqueInput
+}
+
+export type PostUnlockUpdateOneWithoutBuyerTransactionNestedInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutBuyerTransactionInput
+  upsert?: Prisma.PostUnlockUpsertWithoutBuyerTransactionInput
+  disconnect?: Prisma.PostUnlockWhereInput | boolean
+  delete?: Prisma.PostUnlockWhereInput | boolean
+  connect?: Prisma.PostUnlockWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PostUnlockUpdateToOneWithWhereWithoutBuyerTransactionInput, Prisma.PostUnlockUpdateWithoutBuyerTransactionInput>, Prisma.PostUnlockUncheckedUpdateWithoutBuyerTransactionInput>
+}
+
+export type PostUnlockUpdateOneWithoutCreatorTransactionNestedInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutCreatorTransactionInput
+  upsert?: Prisma.PostUnlockUpsertWithoutCreatorTransactionInput
+  disconnect?: Prisma.PostUnlockWhereInput | boolean
+  delete?: Prisma.PostUnlockWhereInput | boolean
+  connect?: Prisma.PostUnlockWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PostUnlockUpdateToOneWithWhereWithoutCreatorTransactionInput, Prisma.PostUnlockUpdateWithoutCreatorTransactionInput>, Prisma.PostUnlockUncheckedUpdateWithoutCreatorTransactionInput>
+}
+
+export type PostUnlockUncheckedUpdateOneWithoutBuyerTransactionNestedInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutBuyerTransactionInput
+  upsert?: Prisma.PostUnlockUpsertWithoutBuyerTransactionInput
+  disconnect?: Prisma.PostUnlockWhereInput | boolean
+  delete?: Prisma.PostUnlockWhereInput | boolean
+  connect?: Prisma.PostUnlockWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PostUnlockUpdateToOneWithWhereWithoutBuyerTransactionInput, Prisma.PostUnlockUpdateWithoutBuyerTransactionInput>, Prisma.PostUnlockUncheckedUpdateWithoutBuyerTransactionInput>
+}
+
+export type PostUnlockUncheckedUpdateOneWithoutCreatorTransactionNestedInput = {
+  create?: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+  connectOrCreate?: Prisma.PostUnlockCreateOrConnectWithoutCreatorTransactionInput
+  upsert?: Prisma.PostUnlockUpsertWithoutCreatorTransactionInput
+  disconnect?: Prisma.PostUnlockWhereInput | boolean
+  delete?: Prisma.PostUnlockWhereInput | boolean
+  connect?: Prisma.PostUnlockWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PostUnlockUpdateToOneWithWhereWithoutCreatorTransactionInput, Prisma.PostUnlockUpdateWithoutCreatorTransactionInput>, Prisma.PostUnlockUncheckedUpdateWithoutCreatorTransactionInput>
+}
+
 export type PostUnlockCreateWithoutUserInput = {
+  id?: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
   createdAt?: Date | string
   post: Prisma.PostCreateNestedOneWithoutUnlocksInput
+  buyerTransaction: Prisma.WalletTransactionCreateNestedOneWithoutBuyerUnlockInput
+  creatorTransaction: Prisma.WalletTransactionCreateNestedOneWithoutCreatorUnlockInput
 }
 
 export type PostUnlockUncheckedCreateWithoutUserInput = {
+  id?: string
   postId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
@@ -473,21 +708,39 @@ export type PostUnlockScalarWhereInput = {
   AND?: Prisma.PostUnlockScalarWhereInput | Prisma.PostUnlockScalarWhereInput[]
   OR?: Prisma.PostUnlockScalarWhereInput[]
   NOT?: Prisma.PostUnlockScalarWhereInput | Prisma.PostUnlockScalarWhereInput[]
+  id?: Prisma.StringFilter<"PostUnlock"> | string
   userId?: Prisma.StringFilter<"PostUnlock"> | string
   postId?: Prisma.StringFilter<"PostUnlock"> | string
   creditsPaid?: Prisma.IntFilter<"PostUnlock"> | number
+  grossRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  creatorEarningsRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  platformFeeRappen?: Prisma.IntFilter<"PostUnlock"> | number
+  buyerTransactionId?: Prisma.StringFilter<"PostUnlock"> | string
+  creatorTransactionId?: Prisma.StringFilter<"PostUnlock"> | string
   createdAt?: Prisma.DateTimeFilter<"PostUnlock"> | Date | string
 }
 
 export type PostUnlockCreateWithoutPostInput = {
+  id?: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutUnlockedPostsInput
+  buyerTransaction: Prisma.WalletTransactionCreateNestedOneWithoutBuyerUnlockInput
+  creatorTransaction: Prisma.WalletTransactionCreateNestedOneWithoutCreatorUnlockInput
 }
 
 export type PostUnlockUncheckedCreateWithoutPostInput = {
+  id?: string
   userId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
@@ -517,102 +770,314 @@ export type PostUnlockUpdateManyWithWhereWithoutPostInput = {
   data: Prisma.XOR<Prisma.PostUnlockUpdateManyMutationInput, Prisma.PostUnlockUncheckedUpdateManyWithoutPostInput>
 }
 
-export type PostUnlockCreateManyUserInput = {
+export type PostUnlockCreateWithoutBuyerTransactionInput = {
+  id?: string
+  creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutUnlockedPostsInput
+  post: Prisma.PostCreateNestedOneWithoutUnlocksInput
+  creatorTransaction: Prisma.WalletTransactionCreateNestedOneWithoutCreatorUnlockInput
+}
+
+export type PostUnlockUncheckedCreateWithoutBuyerTransactionInput = {
+  id?: string
+  userId: string
   postId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  creatorTransactionId: string
+  createdAt?: Date | string
+}
+
+export type PostUnlockCreateOrConnectWithoutBuyerTransactionInput = {
+  where: Prisma.PostUnlockWhereUniqueInput
+  create: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+}
+
+export type PostUnlockCreateWithoutCreatorTransactionInput = {
+  id?: string
+  creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutUnlockedPostsInput
+  post: Prisma.PostCreateNestedOneWithoutUnlocksInput
+  buyerTransaction: Prisma.WalletTransactionCreateNestedOneWithoutBuyerUnlockInput
+}
+
+export type PostUnlockUncheckedCreateWithoutCreatorTransactionInput = {
+  id?: string
+  userId: string
+  postId: string
+  creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  createdAt?: Date | string
+}
+
+export type PostUnlockCreateOrConnectWithoutCreatorTransactionInput = {
+  where: Prisma.PostUnlockWhereUniqueInput
+  create: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+}
+
+export type PostUnlockUpsertWithoutBuyerTransactionInput = {
+  update: Prisma.XOR<Prisma.PostUnlockUpdateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedUpdateWithoutBuyerTransactionInput>
+  create: Prisma.XOR<Prisma.PostUnlockCreateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutBuyerTransactionInput>
+  where?: Prisma.PostUnlockWhereInput
+}
+
+export type PostUnlockUpdateToOneWithWhereWithoutBuyerTransactionInput = {
+  where?: Prisma.PostUnlockWhereInput
+  data: Prisma.XOR<Prisma.PostUnlockUpdateWithoutBuyerTransactionInput, Prisma.PostUnlockUncheckedUpdateWithoutBuyerTransactionInput>
+}
+
+export type PostUnlockUpdateWithoutBuyerTransactionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutUnlockedPostsNestedInput
+  post?: Prisma.PostUpdateOneRequiredWithoutUnlocksNestedInput
+  creatorTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutCreatorUnlockNestedInput
+}
+
+export type PostUnlockUncheckedUpdateWithoutBuyerTransactionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PostUnlockUpsertWithoutCreatorTransactionInput = {
+  update: Prisma.XOR<Prisma.PostUnlockUpdateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedUpdateWithoutCreatorTransactionInput>
+  create: Prisma.XOR<Prisma.PostUnlockCreateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedCreateWithoutCreatorTransactionInput>
+  where?: Prisma.PostUnlockWhereInput
+}
+
+export type PostUnlockUpdateToOneWithWhereWithoutCreatorTransactionInput = {
+  where?: Prisma.PostUnlockWhereInput
+  data: Prisma.XOR<Prisma.PostUnlockUpdateWithoutCreatorTransactionInput, Prisma.PostUnlockUncheckedUpdateWithoutCreatorTransactionInput>
+}
+
+export type PostUnlockUpdateWithoutCreatorTransactionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutUnlockedPostsNestedInput
+  post?: Prisma.PostUpdateOneRequiredWithoutUnlocksNestedInput
+  buyerTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutBuyerUnlockNestedInput
+}
+
+export type PostUnlockUncheckedUpdateWithoutCreatorTransactionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PostUnlockCreateManyUserInput = {
+  id?: string
+  postId: string
+  creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
 export type PostUnlockUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   post?: Prisma.PostUpdateOneRequiredWithoutUnlocksNestedInput
+  buyerTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutBuyerUnlockNestedInput
+  creatorTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutCreatorUnlockNestedInput
 }
 
 export type PostUnlockUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostUnlockUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostUnlockCreateManyPostInput = {
+  id?: string
   userId: string
   creditsPaid: number
+  grossRappen: number
+  creatorEarningsRappen: number
+  platformFeeRappen: number
+  buyerTransactionId: string
+  creatorTransactionId: string
   createdAt?: Date | string
 }
 
 export type PostUnlockUpdateWithoutPostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutUnlockedPostsNestedInput
+  buyerTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutBuyerUnlockNestedInput
+  creatorTransaction?: Prisma.WalletTransactionUpdateOneRequiredWithoutCreatorUnlockNestedInput
 }
 
 export type PostUnlockUncheckedUpdateWithoutPostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostUnlockUncheckedUpdateManyWithoutPostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   creditsPaid?: Prisma.IntFieldUpdateOperationsInput | number
+  grossRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  creatorEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  platformFeeRappen?: Prisma.IntFieldUpdateOperationsInput | number
+  buyerTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorTransactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type PostUnlockSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
   userId?: boolean
   postId?: boolean
   creditsPaid?: boolean
+  grossRappen?: boolean
+  creatorEarningsRappen?: boolean
+  platformFeeRappen?: boolean
+  buyerTransactionId?: boolean
+  creatorTransactionId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postUnlock"]>
 
 export type PostUnlockSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
   userId?: boolean
   postId?: boolean
   creditsPaid?: boolean
+  grossRappen?: boolean
+  creatorEarningsRappen?: boolean
+  platformFeeRappen?: boolean
+  buyerTransactionId?: boolean
+  creatorTransactionId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postUnlock"]>
 
 export type PostUnlockSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
   userId?: boolean
   postId?: boolean
   creditsPaid?: boolean
+  grossRappen?: boolean
+  creatorEarningsRappen?: boolean
+  platformFeeRappen?: boolean
+  buyerTransactionId?: boolean
+  creatorTransactionId?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postUnlock"]>
 
 export type PostUnlockSelectScalar = {
+  id?: boolean
   userId?: boolean
   postId?: boolean
   creditsPaid?: boolean
+  grossRappen?: boolean
+  creatorEarningsRappen?: boolean
+  platformFeeRappen?: boolean
+  buyerTransactionId?: boolean
+  creatorTransactionId?: boolean
   createdAt?: boolean
 }
 
-export type PostUnlockOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "postId" | "creditsPaid" | "createdAt", ExtArgs["result"]["postUnlock"]>
+export type PostUnlockOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "postId" | "creditsPaid" | "grossRappen" | "creatorEarningsRappen" | "platformFeeRappen" | "buyerTransactionId" | "creatorTransactionId" | "createdAt", ExtArgs["result"]["postUnlock"]>
 export type PostUnlockInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }
 export type PostUnlockIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }
 export type PostUnlockIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  buyerTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
+  creatorTransaction?: boolean | Prisma.WalletTransactionDefaultArgs<ExtArgs>
 }
 
 export type $PostUnlockPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -620,11 +1085,19 @@ export type $PostUnlockPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     post: Prisma.$PostPayload<ExtArgs>
+    buyerTransaction: Prisma.$WalletTransactionPayload<ExtArgs>
+    creatorTransaction: Prisma.$WalletTransactionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    id: string
     userId: string
     postId: string
     creditsPaid: number
+    grossRappen: number
+    creatorEarningsRappen: number
+    platformFeeRappen: number
+    buyerTransactionId: string
+    creatorTransactionId: string
     createdAt: Date
   }, ExtArgs["result"]["postUnlock"]>
   composites: {}
@@ -709,8 +1182,8 @@ export interface PostUnlockDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 PostUnlocks
    * const postUnlocks = await prisma.postUnlock.findMany({ take: 10 })
    * 
-   * // Only select the `userId`
-   * const postUnlockWithUserIdOnly = await prisma.postUnlock.findMany({ select: { userId: true } })
+   * // Only select the `id`
+   * const postUnlockWithIdOnly = await prisma.postUnlock.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends PostUnlockFindManyArgs>(args?: Prisma.SelectSubset<T, PostUnlockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostUnlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -754,9 +1227,9 @@ export interface PostUnlockDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many PostUnlocks and only return the `userId`
-   * const postUnlockWithUserIdOnly = await prisma.postUnlock.createManyAndReturn({
-   *   select: { userId: true },
+   * // Create many PostUnlocks and only return the `id`
+   * const postUnlockWithIdOnly = await prisma.postUnlock.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -845,9 +1318,9 @@ export interface PostUnlockDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more PostUnlocks and only return the `userId`
-   * const postUnlockWithUserIdOnly = await prisma.postUnlock.updateManyAndReturn({
-   *   select: { userId: true },
+   * // Update zero or more PostUnlocks and only return the `id`
+   * const postUnlockWithIdOnly = await prisma.postUnlock.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1022,6 +1495,8 @@ export interface Prisma__PostUnlockClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   post<T extends Prisma.PostDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostDefaultArgs<ExtArgs>>): Prisma.Prisma__PostClient<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  buyerTransaction<T extends Prisma.WalletTransactionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WalletTransactionDefaultArgs<ExtArgs>>): Prisma.Prisma__WalletTransactionClient<runtime.Types.Result.GetResult<Prisma.$WalletTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  creatorTransaction<T extends Prisma.WalletTransactionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WalletTransactionDefaultArgs<ExtArgs>>): Prisma.Prisma__WalletTransactionClient<runtime.Types.Result.GetResult<Prisma.$WalletTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1051,9 +1526,15 @@ export interface Prisma__PostUnlockClient<T, Null = never, ExtArgs extends runti
  * Fields of the PostUnlock model
  */
 export interface PostUnlockFieldRefs {
+  readonly id: Prisma.FieldRef<"PostUnlock", 'String'>
   readonly userId: Prisma.FieldRef<"PostUnlock", 'String'>
   readonly postId: Prisma.FieldRef<"PostUnlock", 'String'>
   readonly creditsPaid: Prisma.FieldRef<"PostUnlock", 'Int'>
+  readonly grossRappen: Prisma.FieldRef<"PostUnlock", 'Int'>
+  readonly creatorEarningsRappen: Prisma.FieldRef<"PostUnlock", 'Int'>
+  readonly platformFeeRappen: Prisma.FieldRef<"PostUnlock", 'Int'>
+  readonly buyerTransactionId: Prisma.FieldRef<"PostUnlock", 'String'>
+  readonly creatorTransactionId: Prisma.FieldRef<"PostUnlock", 'String'>
   readonly createdAt: Prisma.FieldRef<"PostUnlock", 'DateTime'>
 }
     

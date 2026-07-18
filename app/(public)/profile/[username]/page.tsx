@@ -109,6 +109,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           id: true,
           visibility: true,
           unlockPrice: true,
+
           media: {
             where: {
               status: "READY",
@@ -119,12 +120,25 @@ export default async function PublicProfilePage({ params }: PageProps) {
             select: {
               id: true,
               type: true,
+              profileUrl: true,
               url: true,
               feedUrl: true,
               fullUrl: true,
               posterUrl: true,
             },
           },
+
+          unlocks: session?.user?.id
+            ? {
+                where: {
+                  userId: session.user.id,
+                },
+                select: {
+                  id: true,
+                },
+                take: 1,
+              }
+            : false,
         },
       },
 
@@ -175,19 +189,49 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
     .join(", ");
 
-  const galleryMedia = user.posts.flatMap((post) =>
-    post.media.map((media) => ({
-      id: media.id,
-      postId: post.id,
-      type: media.type,
-      url: media.url,
-      feedUrl: media.feedUrl,
-      fullUrl: media.fullUrl,
-      posterUrl: media.posterUrl,
-      visibility: post.visibility,
-      unlockPrice: post.unlockPrice,
-    })),
-  );
+  const galleryMedia = user.posts.flatMap((post) => {
+    const unlocked = isOwnProfile || post.visibility !== "PREMIUM" || post.unlocks.length > 0;
+
+    return post.media.flatMap((media) => {
+      const lockedPreviewUrl = media.type === "VIDEO" ? media.posterUrl : media.profileUrl;
+
+      if (!unlocked) {
+        if (!lockedPreviewUrl) {
+          return [];
+        }
+
+        return [
+          {
+            id: media.id,
+            postId: post.id,
+            type: media.type,
+            url: lockedPreviewUrl,
+            feedUrl: null,
+            fullUrl: null,
+            posterUrl: media.posterUrl,
+            visibility: post.visibility,
+            unlockPrice: post.unlockPrice,
+            unlocked: false,
+          },
+        ];
+      }
+
+      return [
+        {
+          id: media.id,
+          postId: post.id,
+          type: media.type,
+          url: media.url,
+          feedUrl: media.feedUrl,
+          fullUrl: media.fullUrl,
+          posterUrl: media.posterUrl,
+          visibility: post.visibility,
+          unlockPrice: post.unlockPrice,
+          unlocked: true,
+        },
+      ];
+    });
+  });
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

@@ -46,7 +46,7 @@ export function MediaLightbox({ media, initialIndex, onClose }: MediaLightboxPro
     return null;
   }
 
-  const isPremium = currentItem.visibility === "PREMIUM";
+  const isLocked = currentItem.visibility === "PREMIUM" && !currentItem.unlocked;
 
   const source = currentItem.fullUrl ?? currentItem.feedUrl ?? currentItem.url;
 
@@ -108,7 +108,7 @@ export function MediaLightbox({ media, initialIndex, onClose }: MediaLightboxPro
       ) : null}
 
       <div className="relative flex h-full w-full max-w-6xl items-center justify-center">
-        {isPremium ? (
+        {isLocked ? (
           <div className="flex max-w-sm flex-col items-center rounded-3xl border border-amber-500/20 bg-zinc-950/90 px-8 py-12 text-center shadow-2xl">
             <div className="flex size-16 items-center justify-center rounded-full bg-amber-500/15 text-amber-300">
               <LockKeyhole className="size-7" />

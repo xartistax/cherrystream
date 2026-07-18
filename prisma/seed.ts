@@ -10,6 +10,7 @@ import { PrismaClient } from "../generated/prisma/client";
 import { cantons } from "./seed/cantons";
 import { categories } from "./seed/categories";
 import { swissCities } from "./seed/cities";
+import { seedCreators } from "./seed/creators";
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -101,9 +102,7 @@ async function main(): Promise<void> {
 
   await seedCities(cantonIds);
 
-  console.log(`Seeded ${categories.length} categories.`);
-  console.log(`Seeded ${cantons.length} cantons.`);
-  console.log(`Seeded ${swissCities.length} cities.`);
+  console.log("Seed completed.");
 }
 
 main()

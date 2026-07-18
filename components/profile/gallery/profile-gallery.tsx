@@ -18,6 +18,7 @@ export type ProfileGalleryMedia = {
   visibility: "PUBLIC" | "FOLLOWERS" | "PREMIUM";
   unlockPrice: number | null;
   posterUrl: string | null;
+  unlocked: boolean;
 };
 
 type ProfileGalleryProps = {
@@ -36,6 +37,18 @@ export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
   const premium = media.filter((item) => item.visibility === "PREMIUM");
 
   function openLightbox(items: ProfileGalleryMedia[], index: number): void {
+    const selectedMedia = items[index];
+
+    if (!selectedMedia) {
+      return;
+    }
+
+    const isLocked = selectedMedia.visibility === "PREMIUM" && !selectedMedia.unlocked;
+
+    if (isLocked) {
+      return;
+    }
+
     setLightboxMedia(items);
     setLightboxIndex(index);
   }
@@ -98,43 +111,19 @@ export function ProfileGallery({ displayName, media }: ProfileGalleryProps) {
         </div>
 
         <TabsContent value="all">
-          <GalleryGrid
-            displayName={displayName}
-            media={media}
-            onSelect={(index) => {
-              openLightbox(media, index);
-            }}
-          />
+          <GalleryGrid displayName={displayName} media={media} onSelect={(index) => openLightbox(media, index)} />
         </TabsContent>
 
         <TabsContent value="photos">
-          <GalleryGrid
-            displayName={displayName}
-            media={photos}
-            onSelect={(index) => {
-              openLightbox(photos, index);
-            }}
-          />
+          <GalleryGrid displayName={displayName} media={photos} onSelect={(index) => openLightbox(photos, index)} />
         </TabsContent>
 
         <TabsContent value="videos">
-          <GalleryGrid
-            displayName={displayName}
-            media={videos}
-            onSelect={(index) => {
-              openLightbox(videos, index);
-            }}
-          />
+          <GalleryGrid displayName={displayName} media={videos} onSelect={(index) => openLightbox(videos, index)} />
         </TabsContent>
 
         <TabsContent value="premium">
-          <GalleryGrid
-            displayName={displayName}
-            media={premium}
-            onSelect={(index) => {
-              openLightbox(premium, index);
-            }}
-          />
+          <GalleryGrid displayName={displayName} media={premium} onSelect={(index) => openLightbox(premium, index)} />
         </TabsContent>
       </Tabs>
 

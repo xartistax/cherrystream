@@ -7,6 +7,23 @@ datasource db {
   provider = "postgresql"
 }
 
+enum WalletTransactionType {
+  CREDIT_PURCHASE
+  PREMIUM_UNLOCK
+  TIP_SENT
+  TIP_RECEIVED
+  BOOST_PURCHASE
+  EARNINGS_CONVERSION
+  PAYOUT
+  ADJUSTMENT
+}
+
+enum WalletBalanceType {
+  USER_CREDITS
+  CREATOR_CREDITS
+  EARNINGS
+}
+
 enum ModerationStatus {
   PENDING
   APPROVED
@@ -80,6 +97,7 @@ model User {
   updatedAt     DateTime   @updatedAt
 
   profile  Profile?
+  wallet   Wallet?
   accounts Account[]
   sessions Session[]
   posts    Post[]
@@ -204,10 +222,11 @@ model Post {
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
 
-  author  User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  media   PostMedia[]
-  likes   PostLike[]
-  unlocks PostUnlock[]
+  unlocks             PostUnlock[]
+
+  author User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  media  PostMedia[]
+  likes  PostLike[]
 
   @@index([authorId, createdAt])
   @@index([status, createdAt])
@@ -283,16 +302,30 @@ model PostLike {
 }
 
 model PostUnlock {
-  userId      String
-  postId      String
-  creditsPaid Int
-  createdAt   DateTime @default(now())
+  id String @id @default(cuid())
+
+  userId String
+  postId String
+
+  creditsPaid           Int
+  grossRappen           Int
+  creatorEarningsRappen Int
+  platformFeeRappen     Int
+
+  buyerTransactionId   String @unique
+  creatorTransactionId String @unique
+
+  createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  @@id([userId, postId])
+  buyerTransaction   WalletTransaction @relation("PostUnlockBuyerTransaction", fields: [buyerTransactionId], references: [id], onDelete: Restrict)
+  creatorTransaction WalletTransaction @relation("PostUnlockCreatorTransaction", fields: [creatorTransactionId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, postId])
   @@index([postId, createdAt])
+  @@index([userId, createdAt])
 }
 
 model Category {
@@ -399,4 +432,48 @@ model ContactMethod {
   sortOrder Int @default(0)
 
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Wallet {
+  id             String              @id @default(cuid())
+  userId         String              @unique
+  userCredits    Int                 @default(0)
+  creatorCredits Int                 @default(0)
+  earningsRappen Int                 @default(0)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions   WalletTransaction[]
+}
+
+model WalletTransaction {
+  id       String @id @default(cuid())
+  walletId String
+
+  type        WalletTransactionType
+  balanceType WalletBalanceType
+
+  amountCredits Int?
+  amountRappen  Int?
+
+  balanceUserCredits    Int @default(0)
+  balanceCreatorCredits Int @default(0)
+  balanceEarningsRappen Int @default(0)
+
+  description String?
+  metadata    Json?
+
+  referenceId    String?
+  idempotencyKey String? @unique
+
+  createdAt DateTime @default(now())
+
+  wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  buyerUnlock   PostUnlock? @relation("PostUnlockBuyerTransaction")
+  creatorUnlock PostUnlock? @relation("PostUnlockCreatorTransaction")
+
+  @@index([walletId, createdAt])
+  @@index([type, createdAt])
+  @@index([referenceId])
 }

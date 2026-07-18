@@ -126,3 +126,13 @@ export type ContactClick = Prisma.ContactClickModel
  * 
  */
 export type ContactMethod = Prisma.ContactMethodModel
+/**
+ * Model Wallet
+ * 
+ */
+export type Wallet = Prisma.WalletModel
+/**
+ * Model WalletTransaction
+ * 
+ */
+export type WalletTransaction = Prisma.WalletTransactionModel

@@ -1,0 +1,572 @@
+import type { PrismaClient } from "../../generated/prisma/client";
+import type { ContactChannel, Gender } from "../../generated/prisma/enums";
+
+type CreatorSeed = {
+  username: string;
+  email: string;
+  name: string;
+  displayName: string;
+  bio: string;
+  gender: Gender;
+  cantonSlug: string;
+  cityName: string;
+  categorySlugs: string[];
+  verified: boolean;
+  phoneNumber: string;
+  phoneEnabled: boolean;
+  whatsappEnabled: boolean;
+  preferredContact: ContactChannel | null;
+  contactNote: string | null;
+  instagram: string | null;
+  instagramEnabled: boolean;
+};
+
+const creators: CreatorSeed[] = [
+  {
+    username: "mia_zurich",
+    email: "mia.zurich@example.test",
+    name: "Mia",
+    displayName: "Mia Zürich",
+    bio: `
+      <h2>Willkommen bei mir ❤️</h2>
+      <p>Ich bin eine gepflegte, diskrete und unkomplizierte Begleitung aus Zürich.</p>
+      <p>Bei mir stehen gegenseitiger Respekt, Sauberkeit und eine entspannte Atmosphäre im Mittelpunkt.</p>
+      <h3>Termine</h3>
+      <ul>
+        <li>Termine nach Vereinbarung</li>
+        <li>Kurzfristige Anfragen möglich</li>
+        <li>Diskrete Kontaktaufnahme</li>
+      </ul>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "zuerich",
+    cityName: "Zürich",
+    categorySlugs: ["lifestyle", "wellness"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 01",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: "Terminanfragen bitte mit gewünschter Uhrzeit und Dauer.",
+    instagram: "mia.zurich",
+    instagramEnabled: true,
+  },
+  {
+    username: "sophia_luxe",
+    email: "sophia.luxe@example.test",
+    name: "Sophia",
+    displayName: "Sophia Luxe",
+    bio: `
+      <h2>Eleganz und Diskretion</h2>
+      <p>Ich freue mich auf respektvolle Gäste, die eine entspannte und stilvolle Zeit schätzen.</p>
+      <blockquote>Qualität, Diskretion und eine persönliche Atmosphäre stehen für mich an erster Stelle.</blockquote>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "zuerich",
+    cityName: "Winterthur",
+    categorySlugs: ["fashion", "lifestyle"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 02",
+    phoneEnabled: true,
+    whatsappEnabled: false,
+    preferredContact: "PHONE",
+    contactNote: "Keine WhatsApp-Kontakte. Bitte ausschliesslich anrufen.",
+    instagram: "sophia.luxe.ch",
+    instagramEnabled: true,
+  },
+  {
+    username: "luna_relax",
+    email: "luna.relax@example.test",
+    name: "Luna",
+    displayName: "Luna Relax",
+    bio: `
+      <h2>Entspannung in ruhiger Atmosphäre</h2>
+      <p>Bei mir kannst du den Alltag für einen Moment vergessen und dich vollständig entspannen.</p>
+      <ul>
+        <li>Gepflegtes Ambiente</li>
+        <li>Diskrete Lage</li>
+        <li>Termine nach Vereinbarung</li>
+      </ul>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "bern",
+    cityName: "Bern",
+    categorySlugs: ["wellness", "lifestyle"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 03",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "valentina_rose",
+    email: "valentina.rose@example.test",
+    name: "Valentina",
+    displayName: "Valentina Rose",
+    bio: `
+      <h2>Schön, dass du hier bist</h2>
+      <p>Ich bin offen, herzlich und lege grossen Wert auf einen respektvollen Umgang.</p>
+      <p>Schreibe mir gerne für weitere Informationen und freie Termine.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "basel-stadt",
+    cityName: "Basel",
+    categorySlugs: ["fashion", "beauty"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 04",
+    phoneEnabled: false,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: "Bitte keine Anrufe. Nachrichten werden täglich beantwortet.",
+    instagram: "valentina.rose",
+    instagramEnabled: true,
+  },
+  {
+    username: "emma_wellness",
+    email: "emma.wellness@example.test",
+    name: "Emma",
+    displayName: "Emma Wellness",
+    bio: `
+      <h2>Zeit für dich</h2>
+      <p>Eine ruhige Atmosphäre, gepflegte Räumlichkeiten und ausreichend Zeit gehören für mich zu einem gelungenen Besuch.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "luzern",
+    cityName: "Luzern",
+    categorySlugs: ["wellness", "fitness"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 05",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "PHONE",
+    contactNote: null,
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "isabella_geneva",
+    email: "isabella.geneva@example.test",
+    name: "Isabella",
+    displayName: "Isabella Geneva",
+    bio: `
+      <h2>Bienvenue</h2>
+      <p>Je suis disponible sur rendez-vous dans une ambiance élégante et discrète.</p>
+      <p>Français, anglais et italien.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "genf",
+    cityName: "Genève",
+    categorySlugs: ["lifestyle", "travel"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 06",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: "Merci d’indiquer votre prénom et l’heure souhaitée.",
+    instagram: "isabella.geneva",
+    instagramEnabled: true,
+  },
+  {
+    username: "lea_love",
+    email: "lea.love@example.test",
+    name: "Lea",
+    displayName: "Lea Love",
+    bio: `
+      <h2>Natürlich und unkompliziert</h2>
+      <p>Ich mag entspannte Begegnungen ohne Zeitdruck und freue mich über sympathische Nachrichten.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "aargau",
+    cityName: "Aarau",
+    categorySlugs: ["lifestyle"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 07",
+    phoneEnabled: false,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "nina_touch",
+    email: "nina.touch@example.test",
+    name: "Nina",
+    displayName: "Nina Touch",
+    bio: `
+      <h2>Entspannt ankommen</h2>
+      <p>Ich empfange dich in einer ruhigen, gepflegten und diskreten Umgebung.</p>
+      <h3>Wichtig</h3>
+      <ul>
+        <li>Nur Termine nach Vereinbarung</li>
+        <li>Keine anonymen Anrufe</li>
+        <li>Respektvoller Umgang</li>
+      </ul>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "st-gallen",
+    cityName: "St. Gallen",
+    categorySlugs: ["wellness"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 08",
+    phoneEnabled: true,
+    whatsappEnabled: false,
+    preferredContact: "PHONE",
+    contactNote: "Termine ausschliesslich telefonisch.",
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "aurora_elite",
+    email: "aurora.elite@example.test",
+    name: "Aurora",
+    displayName: "Aurora Elite",
+    bio: `
+      <h2>Exklusive Begleitung</h2>
+      <p>Stil, Diskretion und eine persönliche Atmosphäre stehen bei mir im Vordergrund.</p>
+      <blockquote>Bitte kontaktiere mich frühzeitig für eine verbindliche Terminplanung.</blockquote>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "waadt",
+    cityName: "Lausanne",
+    categorySlugs: ["fashion", "travel", "lifestyle"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 09",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: "Termine bitte mindestens zwei Stunden vorher vereinbaren.",
+    instagram: "aurora.elite.ch",
+    instagramEnabled: true,
+  },
+  {
+    username: "chloe_dream",
+    email: "chloe.dream@example.test",
+    name: "Chloe",
+    displayName: "Chloe Dream",
+    bio: `
+      <h2>Deine kleine Auszeit</h2>
+      <p>Ich bin freundlich, offen und freue mich darauf, neue Menschen kennenzulernen.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "thurgau",
+    cityName: "Frauenfeld",
+    categorySlugs: ["lifestyle", "beauty"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 10",
+    phoneEnabled: false,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: "chloe.dream.ch",
+    instagramEnabled: true,
+  },
+  {
+    username: "julia_harmony",
+    email: "julia.harmony@example.test",
+    name: "Julia",
+    displayName: "Julia Harmony",
+    bio: `
+      <h2>Ruhe, Harmonie und Diskretion</h2>
+      <p>Bei mir erwartet dich eine angenehme Atmosphäre und ausreichend Zeit zum Abschalten.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "solothurn",
+    cityName: "Solothurn",
+    categorySlugs: ["wellness", "fitness"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 11",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "PHONE",
+    contactNote: null,
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "sofia_noir",
+    email: "sofia.noir@example.test",
+    name: "Sofia",
+    displayName: "Sofia Noir",
+    bio: `
+      <h2>Selbstbewusst und stilvoll</h2>
+      <p>Ich schätze klare Kommunikation, Diskretion und einen respektvollen Umgang.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "neuenburg",
+    cityName: "Neuchâtel",
+    categorySlugs: ["fashion", "beauty"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 12",
+    phoneEnabled: true,
+    whatsappEnabled: false,
+    preferredContact: "PHONE",
+    contactNote: "Bitte keine Sprachnachrichten.",
+    instagram: "sofia.noir",
+    instagramEnabled: true,
+  },
+  {
+    username: "anna_secret",
+    email: "anna.secret@example.test",
+    name: "Anna",
+    displayName: "Anna Secret",
+    bio: `
+      <h2>Diskret und persönlich</h2>
+      <p>Mein Profil richtet sich an respektvolle Gäste, die eine private und entspannte Atmosphäre suchen.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "zug",
+    cityName: "Zug",
+    categorySlugs: ["lifestyle"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 13",
+    phoneEnabled: false,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: null,
+    instagramEnabled: false,
+  },
+  {
+    username: "sarah_spa",
+    email: "sarah.spa@example.test",
+    name: "Sarah",
+    displayName: "Sarah Spa",
+    bio: `
+      <h2>Wellness und Entspannung</h2>
+      <p>Geniesse eine ruhige Auszeit in gepflegter Atmosphäre.</p>
+      <ul>
+        <li>Flexible Termine</li>
+        <li>Zentrale Lage</li>
+        <li>Diskreter Empfang</li>
+      </ul>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "freiburg",
+    cityName: "Fribourg",
+    categorySlugs: ["wellness"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 14",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: "sarah.spa.ch",
+    instagramEnabled: true,
+  },
+  {
+    username: "elena_ticino",
+    email: "elena.ticino@example.test",
+    name: "Elena",
+    displayName: "Elena Ticino",
+    bio: `
+      <h2>Benvenuto</h2>
+      <p>Ti aspetto in un ambiente curato, tranquillo e discreto.</p>
+      <p>Italiano, tedesco e inglese.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "tessin",
+    cityName: "Lugano",
+    categorySlugs: ["travel", "lifestyle"],
+    verified: true,
+    phoneNumber: "+41 79 000 10 15",
+    phoneEnabled: true,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: null,
+    instagram: "elena.ticino",
+    instagramEnabled: true,
+  },
+  {
+    username: "amelie_lausanne",
+    email: "amelie.lausanne@example.test",
+    name: "Amélie",
+    displayName: "Amélie Lausanne",
+    bio: `
+      <h2>Une rencontre élégante</h2>
+      <p>Je vous accueille dans un cadre agréable et discret, uniquement sur rendez-vous.</p>
+    `,
+    gender: "WOMAN",
+    cantonSlug: "waadt",
+    cityName: "Lausanne",
+    categorySlugs: ["fashion", "lifestyle"],
+    verified: false,
+    phoneNumber: "+41 79 000 10 16",
+    phoneEnabled: false,
+    whatsappEnabled: true,
+    preferredContact: "WHATSAPP",
+    contactNote: "Messages uniquement, pas d’appels WhatsApp.",
+    instagram: null,
+    instagramEnabled: false,
+  },
+];
+
+function normalize(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .trim()
+    .toLowerCase();
+}
+
+export async function seedCreators(prisma: PrismaClient): Promise<void> {
+  const [categories, cities] = await Promise.all([
+    prisma.category.findMany({
+      where: {
+        isActive: true,
+      },
+      select: {
+        id: true,
+        slug: true,
+      },
+    }),
+
+    prisma.city.findMany({
+      select: {
+        id: true,
+        name: true,
+        cantonId: true,
+        canton: {
+          select: {
+            slug: true,
+          },
+        },
+      },
+    }),
+  ]);
+
+  const categoryIds = new Map(categories.map((category) => [category.slug, category.id]));
+
+  for (const creator of creators) {
+    const city =
+      cities.find((candidate) => candidate.canton.slug === creator.cantonSlug && normalize(candidate.name) === normalize(creator.cityName)) ??
+      cities.find((candidate) => candidate.canton.slug === creator.cantonSlug);
+
+    if (!city) {
+      console.warn(`Creator ${creator.username} übersprungen: Keine Stadt im Kanton ${creator.cantonSlug} gefunden.`);
+
+      continue;
+    }
+
+    const selectedCategoryIds = creator.categorySlugs.map((slug) => categoryIds.get(slug)).filter((id): id is string => Boolean(id));
+
+    await prisma.user.upsert({
+      where: {
+        username: creator.username,
+      },
+      create: {
+        username: creator.username,
+        email: creator.email,
+        name: creator.name,
+        status: "ACTIVE",
+        profile: {
+          create: {
+            displayName: creator.displayName,
+            bio: creator.bio.trim(),
+            gender: creator.gender,
+            isPublic: true,
+            verified: creator.verified,
+
+            cantonId: city.cantonId,
+            cityId: city.id,
+
+            phoneNumber: creator.phoneNumber,
+            phoneEnabled: creator.phoneEnabled,
+            whatsappEnabled: creator.whatsappEnabled,
+
+            instagram: creator.instagram,
+            instagramEnabled: creator.instagramEnabled,
+
+            preferredContact: creator.preferredContact,
+            contactNote: creator.contactNote,
+
+            categories: {
+              create: selectedCategoryIds.map((categoryId) => ({
+                category: {
+                  connect: {
+                    id: categoryId,
+                  },
+                },
+              })),
+            },
+          },
+        },
+      },
+      update: {
+        email: creator.email,
+        name: creator.name,
+        status: "ACTIVE",
+        profile: {
+          upsert: {
+            create: {
+              displayName: creator.displayName,
+              bio: creator.bio.trim(),
+              gender: creator.gender,
+              isPublic: true,
+              verified: creator.verified,
+
+              cantonId: city.cantonId,
+              cityId: city.id,
+
+              phoneNumber: creator.phoneNumber,
+              phoneEnabled: creator.phoneEnabled,
+              whatsappEnabled: creator.whatsappEnabled,
+
+              instagram: creator.instagram,
+              instagramEnabled: creator.instagramEnabled,
+
+              preferredContact: creator.preferredContact,
+              contactNote: creator.contactNote,
+
+              categories: {
+                create: selectedCategoryIds.map((categoryId) => ({
+                  category: {
+                    connect: {
+                      id: categoryId,
+                    },
+                  },
+                })),
+              },
+            },
+            update: {
+              displayName: creator.displayName,
+              bio: creator.bio.trim(),
+              gender: creator.gender,
+              isPublic: true,
+              verified: creator.verified,
+
+              cantonId: city.cantonId,
+              cityId: city.id,
+
+              phoneNumber: creator.phoneNumber,
+              phoneEnabled: creator.phoneEnabled,
+              whatsappEnabled: creator.whatsappEnabled,
+
+              instagram: creator.instagram,
+              instagramEnabled: creator.instagramEnabled,
+
+              preferredContact: creator.preferredContact,
+              contactNote: creator.contactNote,
+
+              categories: {
+                deleteMany: {},
+                create: selectedCategoryIds.map((categoryId) => ({
+                  category: {
+                    connect: {
+                      id: categoryId,
+                    },
+                  },
+                })),
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  console.log(`✅ ${creators.length} Demo-Profile verarbeitet`);
+}
