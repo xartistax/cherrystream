@@ -28,13 +28,11 @@ export type AggregateWallet = {
 
 export type WalletAvgAggregateOutputType = {
   userCredits: number | null
-  creatorCredits: number | null
   earningsRappen: number | null
 }
 
 export type WalletSumAggregateOutputType = {
   userCredits: number | null
-  creatorCredits: number | null
   earningsRappen: number | null
 }
 
@@ -42,7 +40,6 @@ export type WalletMinAggregateOutputType = {
   id: string | null
   userId: string | null
   userCredits: number | null
-  creatorCredits: number | null
   earningsRappen: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,7 +49,6 @@ export type WalletMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   userCredits: number | null
-  creatorCredits: number | null
   earningsRappen: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -62,7 +58,6 @@ export type WalletCountAggregateOutputType = {
   id: number
   userId: number
   userCredits: number
-  creatorCredits: number
   earningsRappen: number
   createdAt: number
   updatedAt: number
@@ -72,13 +67,11 @@ export type WalletCountAggregateOutputType = {
 
 export type WalletAvgAggregateInputType = {
   userCredits?: true
-  creatorCredits?: true
   earningsRappen?: true
 }
 
 export type WalletSumAggregateInputType = {
   userCredits?: true
-  creatorCredits?: true
   earningsRappen?: true
 }
 
@@ -86,7 +79,6 @@ export type WalletMinAggregateInputType = {
   id?: true
   userId?: true
   userCredits?: true
-  creatorCredits?: true
   earningsRappen?: true
   createdAt?: true
   updatedAt?: true
@@ -96,7 +88,6 @@ export type WalletMaxAggregateInputType = {
   id?: true
   userId?: true
   userCredits?: true
-  creatorCredits?: true
   earningsRappen?: true
   createdAt?: true
   updatedAt?: true
@@ -106,7 +97,6 @@ export type WalletCountAggregateInputType = {
   id?: true
   userId?: true
   userCredits?: true
-  creatorCredits?: true
   earningsRappen?: true
   createdAt?: true
   updatedAt?: true
@@ -203,7 +193,6 @@ export type WalletGroupByOutputType = {
   id: string
   userId: string
   userCredits: number
-  creatorCredits: number
   earningsRappen: number
   createdAt: Date
   updatedAt: Date
@@ -236,7 +225,6 @@ export type WalletWhereInput = {
   id?: Prisma.StringFilter<"Wallet"> | string
   userId?: Prisma.StringFilter<"Wallet"> | string
   userCredits?: Prisma.IntFilter<"Wallet"> | number
-  creatorCredits?: Prisma.IntFilter<"Wallet"> | number
   earningsRappen?: Prisma.IntFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
@@ -248,7 +236,6 @@ export type WalletOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -263,7 +250,6 @@ export type WalletWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.WalletWhereInput[]
   NOT?: Prisma.WalletWhereInput | Prisma.WalletWhereInput[]
   userCredits?: Prisma.IntFilter<"Wallet"> | number
-  creatorCredits?: Prisma.IntFilter<"Wallet"> | number
   earningsRappen?: Prisma.IntFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
@@ -275,7 +261,6 @@ export type WalletOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -293,7 +278,6 @@ export type WalletScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Wallet"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Wallet"> | string
   userCredits?: Prisma.IntWithAggregatesFilter<"Wallet"> | number
-  creatorCredits?: Prisma.IntWithAggregatesFilter<"Wallet"> | number
   earningsRappen?: Prisma.IntWithAggregatesFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Wallet"> | Date | string
@@ -302,7 +286,6 @@ export type WalletScalarWhereWithAggregatesInput = {
 export type WalletCreateInput = {
   id?: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -314,7 +297,6 @@ export type WalletUncheckedCreateInput = {
   id?: string
   userId: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -324,7 +306,6 @@ export type WalletUncheckedCreateInput = {
 export type WalletUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -336,7 +317,6 @@ export type WalletUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -347,7 +327,6 @@ export type WalletCreateManyInput = {
   id?: string
   userId: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -356,7 +335,6 @@ export type WalletCreateManyInput = {
 export type WalletUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -366,7 +344,6 @@ export type WalletUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -381,7 +358,6 @@ export type WalletCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -389,7 +365,6 @@ export type WalletCountOrderByAggregateInput = {
 
 export type WalletAvgOrderByAggregateInput = {
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
 }
 
@@ -397,7 +372,6 @@ export type WalletMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -407,7 +381,6 @@ export type WalletMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -415,7 +388,6 @@ export type WalletMinOrderByAggregateInput = {
 
 export type WalletSumOrderByAggregateInput = {
   userCredits?: Prisma.SortOrder
-  creatorCredits?: Prisma.SortOrder
   earningsRappen?: Prisma.SortOrder
 }
 
@@ -473,7 +445,6 @@ export type WalletUpdateOneRequiredWithoutTransactionsNestedInput = {
 export type WalletCreateWithoutUserInput = {
   id?: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -483,7 +454,6 @@ export type WalletCreateWithoutUserInput = {
 export type WalletUncheckedCreateWithoutUserInput = {
   id?: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -509,7 +479,6 @@ export type WalletUpdateToOneWithWhereWithoutUserInput = {
 export type WalletUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -519,7 +488,6 @@ export type WalletUpdateWithoutUserInput = {
 export type WalletUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -529,7 +497,6 @@ export type WalletUncheckedUpdateWithoutUserInput = {
 export type WalletCreateWithoutTransactionsInput = {
   id?: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -540,7 +507,6 @@ export type WalletUncheckedCreateWithoutTransactionsInput = {
   id?: string
   userId: string
   userCredits?: number
-  creatorCredits?: number
   earningsRappen?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -565,7 +531,6 @@ export type WalletUpdateToOneWithWhereWithoutTransactionsInput = {
 export type WalletUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -576,7 +541,6 @@ export type WalletUncheckedUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   userCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  creatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   earningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,7 +581,6 @@ export type WalletSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   id?: boolean
   userId?: boolean
   userCredits?: boolean
-  creatorCredits?: boolean
   earningsRappen?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -630,7 +593,6 @@ export type WalletSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   userId?: boolean
   userCredits?: boolean
-  creatorCredits?: boolean
   earningsRappen?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -641,7 +603,6 @@ export type WalletSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   userId?: boolean
   userCredits?: boolean
-  creatorCredits?: boolean
   earningsRappen?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -652,13 +613,12 @@ export type WalletSelectScalar = {
   id?: boolean
   userId?: boolean
   userCredits?: boolean
-  creatorCredits?: boolean
   earningsRappen?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type WalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "userCredits" | "creatorCredits" | "earningsRappen" | "createdAt" | "updatedAt", ExtArgs["result"]["wallet"]>
+export type WalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "userCredits" | "earningsRappen" | "createdAt" | "updatedAt", ExtArgs["result"]["wallet"]>
 export type WalletInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Wallet$transactionsArgs<ExtArgs>
@@ -681,7 +641,6 @@ export type $WalletPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: string
     userId: string
     userCredits: number
-    creatorCredits: number
     earningsRappen: number
     createdAt: Date
     updatedAt: Date
@@ -1113,7 +1072,6 @@ export interface WalletFieldRefs {
   readonly id: Prisma.FieldRef<"Wallet", 'String'>
   readonly userId: Prisma.FieldRef<"Wallet", 'String'>
   readonly userCredits: Prisma.FieldRef<"Wallet", 'Int'>
-  readonly creatorCredits: Prisma.FieldRef<"Wallet", 'Int'>
   readonly earningsRappen: Prisma.FieldRef<"Wallet", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Wallet", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Wallet", 'DateTime'>

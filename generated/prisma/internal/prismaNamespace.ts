@@ -1965,7 +1965,6 @@ export const UserScalarFieldEnum = {
   name: 'name',
   emailVerified: 'emailVerified',
   image: 'image',
-  credits: 'credits',
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
@@ -2215,7 +2214,6 @@ export const WalletScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   userCredits: 'userCredits',
-  creatorCredits: 'creatorCredits',
   earningsRappen: 'earningsRappen',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2232,7 +2230,6 @@ export const WalletTransactionScalarFieldEnum = {
   amountCredits: 'amountCredits',
   amountRappen: 'amountRappen',
   balanceUserCredits: 'balanceUserCredits',
-  balanceCreatorCredits: 'balanceCreatorCredits',
   balanceEarningsRappen: 'balanceEarningsRappen',
   description: 'description',
   metadata: 'metadata',
@@ -2327,20 +2324,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
  * Reference to a field of type 'UserRole'
  */
 export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
@@ -2407,6 +2390,20 @@ export type EnumContactChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'ContactChannel[]'
  */
 export type ListEnumContactChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactChannel[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 

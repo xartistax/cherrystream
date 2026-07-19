@@ -34,7 +34,6 @@ export type WalletTransactionType = (typeof WalletTransactionType)[keyof typeof 
 
 export const WalletBalanceType = {
   USER_CREDITS: 'USER_CREDITS',
-  CREATOR_CREDITS: 'CREATOR_CREDITS',
   EARNINGS: 'EARNINGS'
 } as const
 

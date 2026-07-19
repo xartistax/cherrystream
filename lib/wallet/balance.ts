@@ -2,7 +2,6 @@ import { WalletBalanceType } from "@/generated/prisma/client";
 
 type WalletState = {
   userCredits: number;
-  creatorCredits: number;
   earningsRappen: number;
 };
 
@@ -14,18 +13,14 @@ export function applyBalanceChange(wallet: WalletState, balanceType: WalletBalan
         userCredits: wallet.userCredits + amount,
       };
 
-    case WalletBalanceType.CREATOR_CREDITS:
-      return {
-        ...wallet,
-        creatorCredits: wallet.creatorCredits + amount,
-      };
-
     case WalletBalanceType.EARNINGS:
       return {
         ...wallet,
         earningsRappen: wallet.earningsRappen + amount,
       };
   }
+
+  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 export function hasEnoughBalance(wallet: WalletState, balanceType: WalletBalanceType, amount: number): boolean {
@@ -37,10 +32,9 @@ export function hasEnoughBalance(wallet: WalletState, balanceType: WalletBalance
     case WalletBalanceType.USER_CREDITS:
       return wallet.userCredits >= Math.abs(amount);
 
-    case WalletBalanceType.CREATOR_CREDITS:
-      return wallet.creatorCredits >= Math.abs(amount);
-
     case WalletBalanceType.EARNINGS:
       return wallet.earningsRappen >= Math.abs(amount);
   }
+
+  throw new Error(`Unsupported balance type: ${balanceType}`);
 }

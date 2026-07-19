@@ -18,7 +18,6 @@ export async function ensureWallet(userId: string) {
       id: true,
       userId: true,
       userCredits: true,
-      creatorCredits: true,
       earningsRappen: true,
       createdAt: true,
       updatedAt: true,

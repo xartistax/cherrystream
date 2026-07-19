@@ -30,11 +30,7 @@ const menuItems = [
     href: "/credits",
     icon: CreditCard,
   },
-  {
-    label: "Nachrichten",
-    href: "/messages",
-    icon: MessageCircle,
-  },
+
   {
     label: "Benachrichtigungen",
     href: "/notifications",

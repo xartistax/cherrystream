@@ -16,7 +16,6 @@ const transactionSelect = {
   amountCredits: true,
   amountRappen: true,
   balanceUserCredits: true,
-  balanceCreatorCredits: true,
   balanceEarningsRappen: true,
   description: true,
   metadata: true,
@@ -55,15 +54,21 @@ function getStoredAmounts(
   amountCredits: number | null;
   amountRappen: number | null;
 } {
-  return balanceType === WalletBalanceType.EARNINGS
-    ? {
-        amountCredits: null,
-        amountRappen: amount,
-      }
-    : {
+  switch (balanceType) {
+    case WalletBalanceType.USER_CREDITS:
+      return {
         amountCredits: amount,
         amountRappen: null,
       };
+
+    case WalletBalanceType.EARNINGS:
+      return {
+        amountCredits: null,
+        amountRappen: amount,
+      };
+  }
+
+  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function getBalanceFilter(balanceType: WalletBalanceType, amount: number): Prisma.WalletWhereInput {
@@ -81,13 +86,6 @@ function getBalanceFilter(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
 
-    case WalletBalanceType.CREATOR_CREDITS:
-      return {
-        creatorCredits: {
-          gte: requiredBalance,
-        },
-      };
-
     case WalletBalanceType.EARNINGS:
       return {
         earningsRappen: {
@@ -95,6 +93,8 @@ function getBalanceFilter(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
   }
+
+  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function getBalanceUpdate(balanceType: WalletBalanceType, amount: number): Prisma.WalletUpdateManyMutationInput {
@@ -106,13 +106,6 @@ function getBalanceUpdate(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
 
-    case WalletBalanceType.CREATOR_CREDITS:
-      return {
-        creatorCredits: {
-          increment: amount,
-        },
-      };
-
     case WalletBalanceType.EARNINGS:
       return {
         earningsRappen: {
@@ -120,6 +113,8 @@ function getBalanceUpdate(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
   }
+
+  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function assertIdempotentMatch(transaction: WalletTransactionResult, input: WalletTransactionInput): void {
@@ -185,7 +180,6 @@ export async function createWalletTransactionInTx(tx: Prisma.TransactionClient, 
     select: {
       id: true,
       userCredits: true,
-      creatorCredits: true,
       earningsRappen: true,
     },
   });
@@ -200,7 +194,6 @@ export async function createWalletTransactionInTx(tx: Prisma.TransactionClient, 
       amountCredits: amounts.amountCredits,
       amountRappen: amounts.amountRappen,
       balanceUserCredits: wallet.userCredits,
-      balanceCreatorCredits: wallet.creatorCredits,
       balanceEarningsRappen: wallet.earningsRappen,
       description: input.description,
       metadata: input.metadata,

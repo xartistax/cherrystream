@@ -112,7 +112,6 @@ export const UserScalarFieldEnum = {
   name: 'name',
   emailVerified: 'emailVerified',
   image: 'image',
-  credits: 'credits',
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
@@ -362,7 +361,6 @@ export const WalletScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   userCredits: 'userCredits',
-  creatorCredits: 'creatorCredits',
   earningsRappen: 'earningsRappen',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -379,7 +377,6 @@ export const WalletTransactionScalarFieldEnum = {
   amountCredits: 'amountCredits',
   amountRappen: 'amountRappen',
   balanceUserCredits: 'balanceUserCredits',
-  balanceCreatorCredits: 'balanceCreatorCredits',
   balanceEarningsRappen: 'balanceEarningsRappen',
   description: 'description',
   metadata: 'metadata',

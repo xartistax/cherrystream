@@ -36,7 +36,6 @@ export default async function FeedPage() {
         username: true,
         name: true,
         image: true,
-        credits: true,
         profile: {
           select: {
             displayName: true,

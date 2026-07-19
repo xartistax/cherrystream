@@ -78,3 +78,16 @@ export function calculatePlatformSplit(credits: number): {
     creatorRappen: grossRappen - platformRappen,
   };
 }
+
+export function getCreditPackageName(paidCredits: number, bonusCredits: number) {
+  const total = calculateCreditPackageTotal(paidCredits, bonusCredits);
+
+  return `${total} Credits`;
+}
+
+export type CreditPackage = (typeof ECONOMY.creditPackages)[number];
+export type CreditPackageId = CreditPackage["id"];
+
+export function getCreditPackage(packageId: string): CreditPackage | undefined {
+  return ECONOMY.creditPackages.find((creditPackage) => creditPackage.id === packageId);
+}

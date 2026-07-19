@@ -25,7 +25,11 @@ export default async function SocialLayout({
       username: true,
       name: true,
       image: true,
-      credits: true,
+      wallet: {
+        select: {
+          userCredits: true,
+        },
+      },
       profile: {
         select: {
           displayName: true,
@@ -42,8 +46,8 @@ export default async function SocialLayout({
     username: user.username,
     displayName: user.profile?.displayName ?? user.name ?? user.username,
     image: user.image,
-    credits: user.credits,
     role: session.user.role,
+    credits: user.wallet?.userCredits ?? 0,
   };
 
   return (

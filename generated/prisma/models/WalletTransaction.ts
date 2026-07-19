@@ -30,7 +30,6 @@ export type WalletTransactionAvgAggregateOutputType = {
   amountCredits: number | null
   amountRappen: number | null
   balanceUserCredits: number | null
-  balanceCreatorCredits: number | null
   balanceEarningsRappen: number | null
 }
 
@@ -38,7 +37,6 @@ export type WalletTransactionSumAggregateOutputType = {
   amountCredits: number | null
   amountRappen: number | null
   balanceUserCredits: number | null
-  balanceCreatorCredits: number | null
   balanceEarningsRappen: number | null
 }
 
@@ -50,7 +48,6 @@ export type WalletTransactionMinAggregateOutputType = {
   amountCredits: number | null
   amountRappen: number | null
   balanceUserCredits: number | null
-  balanceCreatorCredits: number | null
   balanceEarningsRappen: number | null
   description: string | null
   referenceId: string | null
@@ -66,7 +63,6 @@ export type WalletTransactionMaxAggregateOutputType = {
   amountCredits: number | null
   amountRappen: number | null
   balanceUserCredits: number | null
-  balanceCreatorCredits: number | null
   balanceEarningsRappen: number | null
   description: string | null
   referenceId: string | null
@@ -82,7 +78,6 @@ export type WalletTransactionCountAggregateOutputType = {
   amountCredits: number
   amountRappen: number
   balanceUserCredits: number
-  balanceCreatorCredits: number
   balanceEarningsRappen: number
   description: number
   metadata: number
@@ -97,7 +92,6 @@ export type WalletTransactionAvgAggregateInputType = {
   amountCredits?: true
   amountRappen?: true
   balanceUserCredits?: true
-  balanceCreatorCredits?: true
   balanceEarningsRappen?: true
 }
 
@@ -105,7 +99,6 @@ export type WalletTransactionSumAggregateInputType = {
   amountCredits?: true
   amountRappen?: true
   balanceUserCredits?: true
-  balanceCreatorCredits?: true
   balanceEarningsRappen?: true
 }
 
@@ -117,7 +110,6 @@ export type WalletTransactionMinAggregateInputType = {
   amountCredits?: true
   amountRappen?: true
   balanceUserCredits?: true
-  balanceCreatorCredits?: true
   balanceEarningsRappen?: true
   description?: true
   referenceId?: true
@@ -133,7 +125,6 @@ export type WalletTransactionMaxAggregateInputType = {
   amountCredits?: true
   amountRappen?: true
   balanceUserCredits?: true
-  balanceCreatorCredits?: true
   balanceEarningsRappen?: true
   description?: true
   referenceId?: true
@@ -149,7 +140,6 @@ export type WalletTransactionCountAggregateInputType = {
   amountCredits?: true
   amountRappen?: true
   balanceUserCredits?: true
-  balanceCreatorCredits?: true
   balanceEarningsRappen?: true
   description?: true
   metadata?: true
@@ -253,7 +243,6 @@ export type WalletTransactionGroupByOutputType = {
   amountCredits: number | null
   amountRappen: number | null
   balanceUserCredits: number
-  balanceCreatorCredits: number
   balanceEarningsRappen: number
   description: string | null
   metadata: runtime.JsonValue | null
@@ -293,7 +282,6 @@ export type WalletTransactionWhereInput = {
   amountCredits?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   amountRappen?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   balanceUserCredits?: Prisma.IntFilter<"WalletTransaction"> | number
-  balanceCreatorCredits?: Prisma.IntFilter<"WalletTransaction"> | number
   balanceEarningsRappen?: Prisma.IntFilter<"WalletTransaction"> | number
   description?: Prisma.StringNullableFilter<"WalletTransaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"WalletTransaction">
@@ -313,7 +301,6 @@ export type WalletTransactionOrderByWithRelationInput = {
   amountCredits?: Prisma.SortOrderInput | Prisma.SortOrder
   amountRappen?: Prisma.SortOrderInput | Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -337,7 +324,6 @@ export type WalletTransactionWhereUniqueInput = Prisma.AtLeast<{
   amountCredits?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   amountRappen?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   balanceUserCredits?: Prisma.IntFilter<"WalletTransaction"> | number
-  balanceCreatorCredits?: Prisma.IntFilter<"WalletTransaction"> | number
   balanceEarningsRappen?: Prisma.IntFilter<"WalletTransaction"> | number
   description?: Prisma.StringNullableFilter<"WalletTransaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"WalletTransaction">
@@ -356,7 +342,6 @@ export type WalletTransactionOrderByWithAggregationInput = {
   amountCredits?: Prisma.SortOrderInput | Prisma.SortOrder
   amountRappen?: Prisma.SortOrderInput | Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -381,7 +366,6 @@ export type WalletTransactionScalarWhereWithAggregatesInput = {
   amountCredits?: Prisma.IntNullableWithAggregatesFilter<"WalletTransaction"> | number | null
   amountRappen?: Prisma.IntNullableWithAggregatesFilter<"WalletTransaction"> | number | null
   balanceUserCredits?: Prisma.IntWithAggregatesFilter<"WalletTransaction"> | number
-  balanceCreatorCredits?: Prisma.IntWithAggregatesFilter<"WalletTransaction"> | number
   balanceEarningsRappen?: Prisma.IntWithAggregatesFilter<"WalletTransaction"> | number
   description?: Prisma.StringNullableWithAggregatesFilter<"WalletTransaction"> | string | null
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"WalletTransaction">
@@ -397,7 +381,6 @@ export type WalletTransactionCreateInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -417,7 +400,6 @@ export type WalletTransactionUncheckedCreateInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -435,7 +417,6 @@ export type WalletTransactionUpdateInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -455,7 +436,6 @@ export type WalletTransactionUncheckedUpdateInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -474,7 +454,6 @@ export type WalletTransactionCreateManyInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -490,7 +469,6 @@ export type WalletTransactionUpdateManyMutationInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -507,7 +485,6 @@ export type WalletTransactionUncheckedUpdateManyInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -539,7 +516,6 @@ export type WalletTransactionCountOrderByAggregateInput = {
   amountCredits?: Prisma.SortOrder
   amountRappen?: Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
   description?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
@@ -552,7 +528,6 @@ export type WalletTransactionAvgOrderByAggregateInput = {
   amountCredits?: Prisma.SortOrder
   amountRappen?: Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
 }
 
@@ -564,7 +539,6 @@ export type WalletTransactionMaxOrderByAggregateInput = {
   amountCredits?: Prisma.SortOrder
   amountRappen?: Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
   description?: Prisma.SortOrder
   referenceId?: Prisma.SortOrder
@@ -580,7 +554,6 @@ export type WalletTransactionMinOrderByAggregateInput = {
   amountCredits?: Prisma.SortOrder
   amountRappen?: Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
   description?: Prisma.SortOrder
   referenceId?: Prisma.SortOrder
@@ -592,7 +565,6 @@ export type WalletTransactionSumOrderByAggregateInput = {
   amountCredits?: Prisma.SortOrder
   amountRappen?: Prisma.SortOrder
   balanceUserCredits?: Prisma.SortOrder
-  balanceCreatorCredits?: Prisma.SortOrder
   balanceEarningsRappen?: Prisma.SortOrder
 }
 
@@ -681,7 +653,6 @@ export type WalletTransactionCreateWithoutBuyerUnlockInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -700,7 +671,6 @@ export type WalletTransactionUncheckedCreateWithoutBuyerUnlockInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -722,7 +692,6 @@ export type WalletTransactionCreateWithoutCreatorUnlockInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -741,7 +710,6 @@ export type WalletTransactionUncheckedCreateWithoutCreatorUnlockInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -774,7 +742,6 @@ export type WalletTransactionUpdateWithoutBuyerUnlockInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -793,7 +760,6 @@ export type WalletTransactionUncheckedUpdateWithoutBuyerUnlockInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -821,7 +787,6 @@ export type WalletTransactionUpdateWithoutCreatorUnlockInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -840,7 +805,6 @@ export type WalletTransactionUncheckedUpdateWithoutCreatorUnlockInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -857,7 +821,6 @@ export type WalletTransactionCreateWithoutWalletInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -875,7 +838,6 @@ export type WalletTransactionUncheckedCreateWithoutWalletInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -923,7 +885,6 @@ export type WalletTransactionScalarWhereInput = {
   amountCredits?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   amountRappen?: Prisma.IntNullableFilter<"WalletTransaction"> | number | null
   balanceUserCredits?: Prisma.IntFilter<"WalletTransaction"> | number
-  balanceCreatorCredits?: Prisma.IntFilter<"WalletTransaction"> | number
   balanceEarningsRappen?: Prisma.IntFilter<"WalletTransaction"> | number
   description?: Prisma.StringNullableFilter<"WalletTransaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"WalletTransaction">
@@ -939,7 +900,6 @@ export type WalletTransactionCreateManyWalletInput = {
   amountCredits?: number | null
   amountRappen?: number | null
   balanceUserCredits?: number
-  balanceCreatorCredits?: number
   balanceEarningsRappen?: number
   description?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -955,7 +915,6 @@ export type WalletTransactionUpdateWithoutWalletInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -973,7 +932,6 @@ export type WalletTransactionUncheckedUpdateWithoutWalletInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -991,7 +949,6 @@ export type WalletTransactionUncheckedUpdateManyWithoutWalletInput = {
   amountCredits?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   amountRappen?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   balanceUserCredits?: Prisma.IntFieldUpdateOperationsInput | number
-  balanceCreatorCredits?: Prisma.IntFieldUpdateOperationsInput | number
   balanceEarningsRappen?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1010,7 +967,6 @@ export type WalletTransactionSelect<ExtArgs extends runtime.Types.Extensions.Int
   amountCredits?: boolean
   amountRappen?: boolean
   balanceUserCredits?: boolean
-  balanceCreatorCredits?: boolean
   balanceEarningsRappen?: boolean
   description?: boolean
   metadata?: boolean
@@ -1030,7 +986,6 @@ export type WalletTransactionSelectCreateManyAndReturn<ExtArgs extends runtime.T
   amountCredits?: boolean
   amountRappen?: boolean
   balanceUserCredits?: boolean
-  balanceCreatorCredits?: boolean
   balanceEarningsRappen?: boolean
   description?: boolean
   metadata?: boolean
@@ -1048,7 +1003,6 @@ export type WalletTransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   amountCredits?: boolean
   amountRappen?: boolean
   balanceUserCredits?: boolean
-  balanceCreatorCredits?: boolean
   balanceEarningsRappen?: boolean
   description?: boolean
   metadata?: boolean
@@ -1066,7 +1020,6 @@ export type WalletTransactionSelectScalar = {
   amountCredits?: boolean
   amountRappen?: boolean
   balanceUserCredits?: boolean
-  balanceCreatorCredits?: boolean
   balanceEarningsRappen?: boolean
   description?: boolean
   metadata?: boolean
@@ -1075,7 +1028,7 @@ export type WalletTransactionSelectScalar = {
   createdAt?: boolean
 }
 
-export type WalletTransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "walletId" | "type" | "balanceType" | "amountCredits" | "amountRappen" | "balanceUserCredits" | "balanceCreatorCredits" | "balanceEarningsRappen" | "description" | "metadata" | "referenceId" | "idempotencyKey" | "createdAt", ExtArgs["result"]["walletTransaction"]>
+export type WalletTransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "walletId" | "type" | "balanceType" | "amountCredits" | "amountRappen" | "balanceUserCredits" | "balanceEarningsRappen" | "description" | "metadata" | "referenceId" | "idempotencyKey" | "createdAt", ExtArgs["result"]["walletTransaction"]>
 export type WalletTransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   wallet?: boolean | Prisma.WalletDefaultArgs<ExtArgs>
   buyerUnlock?: boolean | Prisma.WalletTransaction$buyerUnlockArgs<ExtArgs>
@@ -1103,7 +1056,6 @@ export type $WalletTransactionPayload<ExtArgs extends runtime.Types.Extensions.I
     amountCredits: number | null
     amountRappen: number | null
     balanceUserCredits: number
-    balanceCreatorCredits: number
     balanceEarningsRappen: number
     description: string | null
     metadata: runtime.JsonValue | null
@@ -1543,7 +1495,6 @@ export interface WalletTransactionFieldRefs {
   readonly amountCredits: Prisma.FieldRef<"WalletTransaction", 'Int'>
   readonly amountRappen: Prisma.FieldRef<"WalletTransaction", 'Int'>
   readonly balanceUserCredits: Prisma.FieldRef<"WalletTransaction", 'Int'>
-  readonly balanceCreatorCredits: Prisma.FieldRef<"WalletTransaction", 'Int'>
   readonly balanceEarningsRappen: Prisma.FieldRef<"WalletTransaction", 'Int'>
   readonly description: Prisma.FieldRef<"WalletTransaction", 'String'>
   readonly metadata: Prisma.FieldRef<"WalletTransaction", 'Json'>
