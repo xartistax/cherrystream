@@ -105,8 +105,9 @@ async function executeUnlock(tx: Prisma.TransactionClient, userId: string, postI
 
   const creatorTransaction = await createWalletTransactionInTx(tx, {
     userId: post.authorId,
-    type: WalletTransactionType.PREMIUM_UNLOCK,
+    type: WalletTransactionType.PREMIUM_SALE,
     balanceType: WalletBalanceType.EARNINGS,
+
     amount: revenue.creatorEarningsRappen,
     idempotencyKey: `post-unlock:creator:${userId}:${post.id}`,
     referenceId: post.id,

@@ -19,66 +19,63 @@ type WalletHistoryProps = {
 
 function getTransactionMeta(type: WalletTransactionType) {
   switch (type) {
+    case "PREMIUM_SALE":
+      return {
+        icon: Wallet,
+        title: "Premium verkauft",
+      };
+
     case "CREDIT_PURCHASE":
       return {
         icon: Coins,
         title: "Credits gekauft",
-        positive: true,
       };
 
     case "PREMIUM_UNLOCK":
       return {
         icon: ArrowUpRight,
         title: "Premium freigeschaltet",
-        positive: false,
       };
 
     case "TIP_SENT":
       return {
         icon: ArrowUpRight,
         title: "Trinkgeld gesendet",
-        positive: false,
       };
 
     case "TIP_RECEIVED":
       return {
         icon: Gift,
         title: "Trinkgeld erhalten",
-        positive: true,
       };
 
     case "BOOST_PURCHASE":
       return {
         icon: Sparkles,
         title: "Boost gekauft",
-        positive: false,
       };
 
     case "EARNINGS_CONVERSION":
       return {
         icon: Wallet,
         title: "Einnahmen umgewandelt",
-        positive: true,
       };
 
     case "PAYOUT":
       return {
         icon: ArrowDownLeft,
         title: "Auszahlung",
-        positive: false,
       };
 
     case "ADJUSTMENT":
       return {
         icon: Wallet,
         title: "Anpassung",
-        positive: true,
       };
     default:
       return {
         icon: Wallet,
         title: type,
-        positive: true,
       };
   }
 }
@@ -99,6 +96,10 @@ export function WalletHistory({ transactions }: WalletHistoryProps) {
               const meta = getTransactionMeta(transaction.type);
               const Icon = meta.icon;
 
+              const amount = transaction.amountCredits ?? transaction.amountRappen ?? 0;
+
+              const isPositive = amount > 0;
+
               return (
                 <div key={transaction.id} className="flex items-center justify-between gap-6 py-5">
                   <div className="flex min-w-0 items-center gap-4">
@@ -117,16 +118,16 @@ export function WalletHistory({ transactions }: WalletHistoryProps) {
 
                   <div className="shrink-0 text-right">
                     {transaction.amountCredits !== null && (
-                      <p className={meta.positive ? "text-lg font-semibold text-emerald-400" : "text-lg font-semibold text-red-400"}>
-                        {meta.positive ? "+" : "-"}
-                        {transaction.amountCredits.toLocaleString("de-CH")} Credits
+                      <p className={isPositive ? "text-lg font-semibold text-emerald-400" : "text-lg font-semibold text-red-400"}>
+                        {isPositive ? "+" : "-"}
+                        {Math.abs(transaction.amountCredits).toLocaleString("de-CH")} Credits
                       </p>
                     )}
 
                     {transaction.amountRappen !== null && (
-                      <p className={meta.positive ? "text-lg font-semibold text-emerald-400" : "text-lg font-semibold text-red-400"}>
-                        {meta.positive ? "+" : "-"}CHF{" "}
-                        {(transaction.amountRappen / 100).toLocaleString("de-CH", {
+                      <p className={isPositive ? "text-lg font-semibold text-emerald-400" : "text-lg font-semibold text-red-400"}>
+                        {isPositive ? "+" : "-"}CHF{" "}
+                        {(Math.abs(transaction.amountRappen) / 100).toLocaleString("de-CH", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}

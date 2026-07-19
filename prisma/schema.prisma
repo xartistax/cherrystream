@@ -16,6 +16,7 @@ enum UserRole {
 enum WalletTransactionType {
   CREDIT_PURCHASE
   PREMIUM_UNLOCK
+  PREMIUM_SALE
   TIP_SENT
   TIP_RECEIVED
   BOOST_PURCHASE

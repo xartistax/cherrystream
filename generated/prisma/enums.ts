@@ -21,6 +21,7 @@ export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 export const WalletTransactionType = {
   CREDIT_PURCHASE: 'CREDIT_PURCHASE',
   PREMIUM_UNLOCK: 'PREMIUM_UNLOCK',
+  PREMIUM_SALE: 'PREMIUM_SALE',
   TIP_SENT: 'TIP_SENT',
   TIP_RECEIVED: 'TIP_RECEIVED',
   BOOST_PURCHASE: 'BOOST_PURCHASE',
