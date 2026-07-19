@@ -42,8 +42,29 @@ function validateInput(input: WalletTransactionInput): void {
     throw new Error("Idempotency key is required.");
   }
 
-  if (!Number.isSafeInteger(input.amount) || input.amount === 0) {
+  if (!Number.isSafeInteger(input.amount)) {
     throw new InvalidWalletAmountError();
+  }
+
+  if (input.amount === 0) {
+    throw new InvalidWalletAmountError();
+  }
+
+  if (!Number.isFinite(input.amount)) {
+    throw new InvalidWalletAmountError();
+  }
+
+  if (input.description && input.description.length > 255) {
+    throw new Error("Description is too long.");
+  }
+
+  switch (input.balanceType) {
+    case WalletBalanceType.USER_CREDITS:
+    case WalletBalanceType.EARNINGS:
+      break;
+
+    default:
+      throw new Error(`Unsupported balance type: ${input.balanceType}`);
   }
 }
 
@@ -67,8 +88,6 @@ function getStoredAmounts(
         amountRappen: amount,
       };
   }
-
-  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function getBalanceFilter(balanceType: WalletBalanceType, amount: number): Prisma.WalletWhereInput {
@@ -93,8 +112,6 @@ function getBalanceFilter(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
   }
-
-  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function getBalanceUpdate(balanceType: WalletBalanceType, amount: number): Prisma.WalletUpdateManyMutationInput {
@@ -113,8 +130,6 @@ function getBalanceUpdate(balanceType: WalletBalanceType, amount: number): Prism
         },
       };
   }
-
-  throw new Error(`Unsupported balance type: ${balanceType}`);
 }
 
 function assertIdempotentMatch(transaction: WalletTransactionResult, input: WalletTransactionInput): void {
