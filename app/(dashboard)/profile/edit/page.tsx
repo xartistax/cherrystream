@@ -147,7 +147,7 @@ export default async function EditProfilePage() {
       <header className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-4">
           <Link
-            href="/studio"
+            href="/dashboard"
             aria-label="Zurück zum Studio"
             className={cn(
               buttonVariants({

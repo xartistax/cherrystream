@@ -105,7 +105,7 @@ export function StickyProfileHeader({
         {categories.length > 0 ? (
           <div className="hidden min-w-0 flex-1 flex-wrap gap-2 lg:flex">
             {categories.slice(0, 3).map((category) => (
-              <Link key={category.slug} href={`/creators?category=${category.slug}`}>
+              <Link key={category.slug} href={`/explore?category=${category.slug}`}>
                 <Badge variant="secondary" className="border border-rose-500/20 bg-rose-500/10 text-rose-300">
                   {category.name}
                 </Badge>

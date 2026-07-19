@@ -15,6 +15,7 @@ import { ContactButton } from "@/components/profile/contact-button";
 import { ContactCard } from "@/components/profile/contact-card";
 import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
 import { ProfileDescription } from "@/components/profile/profile-description";
+import { BadgeCheck, FileImage, MapPin, UserPlus, UsersRound } from "lucide-react";
 
 type PageProps = {
   params: Promise<{
@@ -37,6 +38,9 @@ export default async function PublicProfilePage({ params }: PageProps) {
   const user = await prisma.user.findUnique({
     where: {
       username,
+      status: "ACTIVE",
+      role: "MODEL",
+      modelStatus: "ACTIVE",
     },
 
     select: {
@@ -258,6 +262,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           preferredContact: user.profile.preferredContact,
         }}
       />
+
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/80 shadow-2xl shadow-black/20">
         <div className="relative h-56 overflow-hidden bg-linear-to-br from-rose-600 via-pink-600 to-fuchsia-700 sm:h-72">
           {user.profile.coverUrl ? (
@@ -271,7 +276,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
             />
           ) : null}
 
-          <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/15 to-black/10" />
+          <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-black/30 to-transparent" />
         </div>
 
         <div className="relative px-5 pb-6 sm:px-8 sm:pb-8">
@@ -284,14 +289,31 @@ export default async function PublicProfilePage({ params }: PageProps) {
               </Avatar>
 
               <div className="pb-1">
-                <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">{displayName}</h1>
+                <div className="flex items-center gap-2">
+                  <h1 className="truncate text-3xl font-black tracking-tight text-white sm:text-4xl">{displayName}</h1>
 
-                <p className="mt-1 text-zinc-500">@{user.username}</p>
+                  {user.profile.verified ? <BadgeCheck className="size-6 shrink-0 text-sky-400" /> : null}
+                </div>
 
-                {user.profile.categories.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-400">
+                  <span>@{user.username}</span>
+
+                  {location ? (
+                    <>
+                      <span className="text-zinc-600">•</span>
+
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin className="size-4 text-rose-400" />
+                        {location}
+                      </span>
+                    </>
+                  ) : null}
+                </div>
+
+                {user.profile.categories.length > 0 ? (
+                  <div className="mt-3 flex flex-wrap gap-2">
                     {user.profile.categories.map(({ category }) => (
-                      <Link key={category.slug} href={`/creators?category=${category.slug}`}>
+                      <Link key={category.slug} href={`/explore?category=${category.slug}`}>
                         <Badge
                           variant="secondary"
                           className="cursor-pointer rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-rose-300 transition hover:border-rose-400/40 hover:bg-rose-500/20"
@@ -301,13 +323,15 @@ export default async function PublicProfilePage({ params }: PageProps) {
                       </Link>
                     ))}
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-3 sm:min-w-80">
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center">
-                <div className="text-2xl font-black text-white">{user._count.posts}</div>
+                <FileImage className="mx-auto mb-1.5 size-4 text-rose-400" />
+
+                <div className="text-xl font-black text-white">{user._count.posts}</div>
 
                 <div className="mt-1 text-xs text-zinc-500">Beiträge</div>
               </div>
@@ -316,7 +340,9 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 href={`/profile/${user.username}/followers`}
                 className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
               >
-                <div className="text-2xl font-black text-white">{user._count.followers}</div>
+                <UsersRound className="mx-auto mb-1.5 size-4 text-rose-400" />
+
+                <div className="text-xl font-black text-white">{user._count.followers}</div>
 
                 <div className="mt-1 text-xs text-zinc-500">Follower</div>
               </Link>
@@ -325,14 +351,14 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 href={`/profile/${user.username}/following`}
                 className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
               >
-                <div className="text-2xl font-black text-white">{user._count.following}</div>
+                <UserPlus className="mx-auto mb-1.5 size-4 text-rose-400" />
+
+                <div className="text-xl font-black text-white">{user._count.following}</div>
 
                 <div className="mt-1 text-xs text-zinc-500">Folgt</div>
               </Link>
             </div>
           </div>
-
-          <div className="mt-6 max-w-2xl">{location && <p className="mt-5 text-zinc-400">{location}</p>}</div>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
             {isOwnProfile ? (
@@ -362,10 +388,6 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 preferredContact: user.profile.preferredContact,
               }}
             />
-
-            <Badge variant="secondary" className="border border-white/10 bg-white/5 text-zinc-300">
-              Öffentliches Profil
-            </Badge>
           </div>
 
           {!isOwnProfile && user.profile.contactNote ? (
@@ -375,6 +397,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           ) : null}
         </div>
       </div>
+
       <div id="profile-header-end" aria-hidden="true" className="h-px" />
 
       {user.profile.bio ? <ProfileDescription html={user.profile.bio} displayName={displayName} /> : null}

@@ -23,7 +23,7 @@ export async function loginAction(_previousState: ActionState, formData: FormDat
     await signIn("credentials", {
       email: parsedData.data.email,
       password: parsedData.data.password,
-      redirectTo: "/studio",
+      redirectTo: "/explore",
     });
 
     return {

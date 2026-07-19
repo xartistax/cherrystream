@@ -18,6 +18,11 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model NotificationSettings
+ * 
+ */
+export type NotificationSettings = Prisma.NotificationSettingsModel
+/**
  * Model User
  * 
  */

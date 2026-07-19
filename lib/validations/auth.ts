@@ -24,10 +24,16 @@ export const registerSchema = z
   })
   .refine(
     (data) => {
-      const birthDate = new Date(`${data.birthDate}T00:00:00.000Z`);
-      const minimumBirthDate = new Date();
+      const [year, month, day] = data.birthDate.split("-").map(Number);
 
-      minimumBirthDate.setUTCFullYear(minimumBirthDate.getUTCFullYear() - 18);
+      if (!year || !month || !day) {
+        return false;
+      }
+
+      const today = new Date();
+      const minimumBirthDate = new Date(Date.UTC(today.getUTCFullYear() - 18, today.getUTCMonth(), today.getUTCDate()));
+
+      const birthDate = new Date(Date.UTC(year, month - 1, day));
 
       return birthDate <= minimumBirthDate;
     },

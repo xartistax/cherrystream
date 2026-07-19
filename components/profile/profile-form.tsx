@@ -1,6 +1,6 @@
 "use client";
 
-import { Globe2, LoaderCircle, Save, UserRound } from "lucide-react";
+import { LoaderCircle, Save, UserRound } from "lucide-react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -8,7 +8,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+
 import type { ActionState } from "@/types/action-state";
 import { updateProfileAction } from "@/actions/update-profile";
 import { AvatarUpload } from "./avatar-upload";
@@ -16,7 +16,7 @@ import { CoverUpload } from "./cover-upload";
 import { CategorySelector } from "./category-selector";
 import { LocationSelector } from "./location-selector";
 import { ContactSettings } from "./contact-settings";
-import { ProfileDescriptionEditor } from "./profile-description-editor";
+import { ProfileDescriptionEditor } from "../editor/rich-text-editor";
 
 type Gender = "WOMAN" | "MAN" | "NON_BINARY" | "OTHER";
 

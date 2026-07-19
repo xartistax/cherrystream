@@ -13,7 +13,7 @@ const credentialsSchema = z.object({
 });
 
 function isUserRole(value: unknown): value is UserRole {
-  return value === "USER" || value === "MODERATOR" || value === "ADMIN";
+  return value === "USER" || value === "MODEL" || value === "ADMIN";
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -86,11 +86,35 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
         token.username = user.username;
         token.role = user.role;
+
+        return token;
       }
+
+      if (!token.sub) {
+        return token;
+      }
+
+      const dbUser = await prisma.user.findUnique({
+        where: {
+          id: token.sub,
+        },
+        select: {
+          username: true,
+          role: true,
+          status: true,
+        },
+      });
+
+      if (!dbUser || dbUser.status !== "ACTIVE") {
+        return {};
+      }
+
+      token.username = dbUser.username;
+      token.role = dbUser.role;
 
       return token;
     },

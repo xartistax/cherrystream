@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
+import { getDashboardButton } from "@/components/layout/navigation";
+import { auth } from "@/lib/auth";
 
 export const revalidate = 60;
 
@@ -14,6 +16,8 @@ async function getHomeData() {
     prisma.user.findMany({
       where: {
         status: "ACTIVE",
+        role: "MODEL",
+        modelStatus: "ACTIVE",
         profile: {
           is: {
             isPublic: true,
@@ -161,6 +165,8 @@ async function getHomeData() {
 
 export default async function PublicHomePage() {
   const [creators, creatorCount, categories] = await getHomeData();
+  const session = await auth();
+  const profileCtaHref = session?.user ? (session.user.role === "USER" ? "/become-model" : "/dashboard") : "/register";
 
   return (
     <>
@@ -171,47 +177,48 @@ export default async function PublicHomePage() {
           <div className="absolute -right-32 top-40 size-96 rounded-full bg-orange-500/10 blur-[100px]" />
         </div>
 
-        <div className="relative mx-auto grid min-h-[calc(100svh-4rem)] max-w-7xl items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-28">
+        <div className="relative mx-auto grid min-h-[calc(82svh-4rem)] max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-20">
           <div className="max-w-3xl">
             <Badge variant="outline" className="gap-2 border-rose-500/25 bg-rose-500/10 px-3 py-1.5 text-rose-300">
               <Sparkles className="size-3.5" />
-              Neue Creator aus der Schweiz
+              Neu auf CherryStream
             </Badge>
 
-            <h1 className="mt-7 text-balance text-5xl font-black tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+            <h1 className="mt-6 text-balance text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               Entdecke Profile, die{" "}
               <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">dich begeistern.</span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 sm:text-xl">
-              Entdecke Creator nach Kategorie, Kanton und Stadt. Fotos, Videos und exklusive Profile an einem Ort.
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 sm:text-xl">
+              Finde Profile nach Kategorie, Kanton und Stadt – mit Fotos, Videos und exklusiven Inhalten.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 mt-10 sm:flex-row">
               <Link
-                href="/creators"
+                href="/explore"
                 className={cn(
                   buttonVariants({
                     size: "lg",
                   }),
-                  "h-12 bg-rose-600 px-7 text-white shadow-xl shadow-rose-950/40 hover:bg-rose-500",
+                  "h-12 rounded-2xl bg-rose-600 px-7 text-base font-semibold text-white shadow-lg shadow-rose-600/20 hover:bg-rose-500",
                 )}
               >
-                Creator entdecken
-                <ArrowRight className="size-4" />
+                Profile entdecken
+                <ArrowRight className="size-5" />
               </Link>
 
               <Link
-                href="/register"
+                href={profileCtaHref}
                 className={cn(
                   buttonVariants({
                     variant: "outline",
                     size: "lg",
                   }),
-                  "h-12 border-white/10 bg-white/5 px-7 text-white hover:bg-white/10",
+                  "h-12 rounded-2xl border-white/15 bg-white/5 px-7 text-base font-semibold text-white backdrop-blur-sm hover:border-white/25 hover:bg-white/10 hover:text-white",
                 )}
               >
-                Creator werden
+                <Sparkles className="size-5 text-rose-400" />
+                Profil veröffentlichen
               </Link>
             </div>
 
@@ -297,11 +304,11 @@ export default async function PublicHomePage() {
       </section>
 
       <section className="border-y border-white/10 bg-white/[0.02]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 text-center sm:grid-cols-3 sm:px-6 lg:px-8">
           <div>
             <p className="text-3xl font-black text-white">{creatorCount}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">öffentliche Creator</p>
+            <p className="mt-1 text-sm text-zinc-500">öffentliche Profile</p>
           </div>
 
           <div>
@@ -319,29 +326,29 @@ export default async function PublicHomePage() {
       </section>
 
       {categories.length > 0 ? (
-        <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-28">
+        <section className="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8 lg:pt-20">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <Badge variant="outline" className="border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300">
                 Kategorien
               </Badge>
 
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Finde genau deinen Geschmack</h2>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Interessen entdecken</h2>
 
-              <p className="mt-3 max-w-xl text-zinc-500">Entdecke Creator nach ihren Schwerpunkten und Interessen.</p>
+              <p className="mt-3 max-w-xl text-zinc-500">Durchsuche Profile nach Kategorien und Schwerpunkten.</p>
             </div>
 
-            <Link href="/creators" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
+            <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
               Alle Kategorien
               <ArrowRight className="size-4" />
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {categories.map((category) => (
               <Link
                 key={category.slug}
-                href={`/creators?category=${category.slug}`}
+                href={`/explore?category=${category.slug}`}
                 className="group rounded-2xl border border-white/10 bg-zinc-900/60 px-5 py-4 transition hover:-translate-y-0.5 hover:border-rose-500/30 hover:bg-rose-500/5"
               >
                 <span className="font-semibold text-white transition group-hover:text-rose-300">{category.name}</span>
@@ -361,13 +368,13 @@ export default async function PublicHomePage() {
               Gerade neu
             </Badge>
 
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Neueste Creator</h2>
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Neueste Profile</h2>
 
             <p className="mt-3 max-w-xl text-zinc-500">Entdecke die neuesten öffentlichen Profile auf CherryStream.</p>
           </div>
 
-          <Link href="/creators?sort=newest" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
-            Alle Creator ansehen
+          <Link href="/explore?sort=newest" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
+            Alle Profile ansehen
             <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -448,7 +455,7 @@ export default async function PublicHomePage() {
 
             <h3 className="mt-5 text-lg font-semibold text-white">Noch keine öffentlichen Profile</h3>
 
-            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald Creator ihr Profil veröffentlichen, erscheinen sie automatisch hier.</p>
+            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald neue Profile veröffentlicht werden, erscheinen sie automatisch hier.</p>
 
             <Link href="/register" className={cn(buttonVariants(), "mt-6 bg-rose-600 text-white hover:bg-rose-500")}>
               Erstes Profil erstellen
@@ -466,11 +473,9 @@ export default async function PublicHomePage() {
               <Cherry className="size-6" />
             </div>
 
-            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Dein Profil. Deine Inhalte.</h2>
+            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Zeig, was dich besonders macht.</h2>
 
-            <p className="mt-4 text-base leading-7 text-zinc-400">
-              Erstelle dein Creator-Profil, veröffentliche Fotos und Videos und werde auf CherryStream entdeckt.
-            </p>
+            <p className="mt-4 text-base leading-7 text-zinc-400">Erstelle dein Profil, veröffentliche deine Inhalte und werde auf CherryStream entdeckt.</p>
 
             <Link
               href="/register"
@@ -481,7 +486,7 @@ export default async function PublicHomePage() {
                 "mt-8 h-12 bg-white px-7 text-zinc-950 hover:bg-zinc-200",
               )}
             >
-              Creator werden
+              Eigenes Profil veröffentlichen
               <ArrowRight className="size-4" />
             </Link>
           </div>

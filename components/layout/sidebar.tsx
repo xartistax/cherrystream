@@ -1,11 +1,12 @@
 import { Coins } from "lucide-react";
 
-import { LogoutButton } from "@/components/auth/logout-button";
+import { LogoutButton } from "@/components/shared/logout-button";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { UserRole } from "@/generated/prisma/enums";
 
 type SidebarProps = {
   user: {
@@ -13,6 +14,7 @@ type SidebarProps = {
     displayName: string;
     image: string | null;
     credits: number;
+    role: UserRole;
   };
 };
 
@@ -31,7 +33,7 @@ export function Sidebar({ user }: SidebarProps) {
       <Logo className="px-2" />
 
       <div className="mt-8">
-        <SidebarNav />
+        <SidebarNav role={user.role} />
       </div>
 
       <div className="mt-auto space-y-4">

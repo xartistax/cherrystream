@@ -9,6 +9,15 @@
 * 🟢 You can import this file directly.
 */
 
+export const UserRole = {
+  USER: 'USER',
+  MODEL: 'MODEL',
+  ADMIN: 'ADMIN'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
 export const WalletTransactionType = {
   CREDIT_PURCHASE: 'CREDIT_PURCHASE',
   PREMIUM_UNLOCK: 'PREMIUM_UNLOCK',
@@ -41,13 +50,14 @@ export const ModerationStatus = {
 export type ModerationStatus = (typeof ModerationStatus)[keyof typeof ModerationStatus]
 
 
-export const UserRole = {
-  USER: 'USER',
-  MODERATOR: 'MODERATOR',
-  ADMIN: 'ADMIN'
+export const ModelStatus = {
+  NONE: 'NONE',
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED'
 } as const
 
-export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+export type ModelStatus = (typeof ModelStatus)[keyof typeof ModelStatus]
 
 
 export const UserStatus = {

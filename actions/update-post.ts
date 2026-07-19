@@ -101,9 +101,9 @@ export async function updatePostAction(_previousState: UpdatePostState, formData
       },
     });
 
-    revalidatePath("/studio");
-    revalidatePath("/studio/posts");
-    revalidatePath(`/studio/posts/${post.id}`);
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/posts");
+    revalidatePath(`/dashboard/posts/${post.id}`);
     revalidatePath(`/profile/${post.author.username}`);
     revalidatePath("/");
 

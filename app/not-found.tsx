@@ -12,6 +12,8 @@ async function getTrendingCreators() {
   return prisma.user.findMany({
     where: {
       status: "ACTIVE",
+      role: "MODEL",
+      modelStatus: "ACTIVE",
       profile: {
         is: {
           isPublic: true,
@@ -127,7 +129,7 @@ export default async function NotFound() {
             </Link>
 
             <Link
-              href="/creators"
+              href="/explore"
               className={cn(
                 buttonVariants({
                   variant: "outline",
@@ -141,7 +143,7 @@ export default async function NotFound() {
             </Link>
 
             <Link
-              href="/creators/random"
+              href="/explore/random"
               className={cn(
                 buttonVariants({
                   variant: "outline",
@@ -171,7 +173,7 @@ export default async function NotFound() {
                 <h2 className="mt-2 text-2xl font-black sm:text-3xl">Vielleicht suchst du eines dieser Profile</h2>
               </div>
 
-              <Link href="/creators" className="text-sm font-medium text-rose-400 transition hover:text-rose-300">
+              <Link href="/explore" className="text-sm font-medium text-rose-400 transition hover:text-rose-300">
                 Alle Creator ansehen
               </Link>
             </div>

@@ -3,17 +3,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { navigationItems } from "@/components/layout/navigation";
+import { getNavigationItems } from "@/components/layout/navigation";
 import { cn } from "@/lib/utils";
+import { UserRole } from "@/generated/prisma/enums";
 
-export function SidebarNav() {
+type SidebarNavProps = {
+  role: UserRole;
+};
+
+export function SidebarNav({ role }: SidebarNavProps) {
   const pathname = usePathname();
+  const isBecomeModelFlow = pathname.startsWith("/become-model");
+  const navigationItems = getNavigationItems(role, isBecomeModelFlow);
 
   return (
     <nav className="space-y-1">
       {navigationItems.map((item) => {
         const Icon = item.icon;
-        const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+        const isActive = item.href === "/dashboard" ? pathname === "/dashboard" : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
         return (
           <Link

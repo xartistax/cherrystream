@@ -14,7 +14,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const session = await auth();
 
   if (session?.user) {
-    redirect("/studio");
+    redirect("/dashboard");
   }
 
   const params = await searchParams;

@@ -3,13 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { navigationItems } from "@/components/layout/navigation";
 import { cn } from "@/lib/utils";
+import { UserRole } from "@/generated/prisma/enums";
+import { getNavigationItems } from "./navigation";
 
-const mobileItems = navigationItems.slice(0, 5);
+type MobileNavProps = {
+  role: UserRole;
+};
 
-export function MobileNav() {
+export function MobileNav({ role }: MobileNavProps) {
   const pathname = usePathname();
+  const mobileItems = getNavigationItems(role).slice(0, 5);
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-zinc-950/90 px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden">

@@ -7,6 +7,12 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  USER
+  MODEL
+  ADMIN
+}
+
 enum WalletTransactionType {
   CREDIT_PURCHASE
   PREMIUM_UNLOCK
@@ -30,10 +36,11 @@ enum ModerationStatus {
   REJECTED
 }
 
-enum UserRole {
-  USER
-  MODERATOR
-  ADMIN
+enum ModelStatus {
+  NONE
+  PENDING
+  ACTIVE
+  SUSPENDED
 }
 
 enum UserStatus {
@@ -82,19 +89,38 @@ enum ContactChannel {
   EMAIL
 }
 
+model NotificationSettings {
+  userId String @id
+
+  marketingEmails Boolean @default(false)
+  accountEmails   Boolean @default(true)
+
+  newFollowers  Boolean @default(true)
+  postLikes     Boolean @default(true)
+  profileViews  Boolean @default(true)
+  contactClicks Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id            String     @id @default(cuid())
-  email         String     @unique
-  username      String     @unique
-  passwordHash  String?
-  name          String?
-  emailVerified DateTime?
-  image         String?
-  credits       Int        @default(0)
-  role          UserRole   @default(USER)
-  status        UserStatus @default(ACTIVE)
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  id                   String                @id @default(cuid())
+  email                String                @unique
+  username             String                @unique
+  passwordHash         String?
+  name                 String?
+  emailVerified        DateTime?
+  image                String?
+  credits              Int                   @default(0)
+  role                 UserRole              @default(USER)
+  status               UserStatus            @default(ACTIVE)
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  modelStatus          ModelStatus           @default(NONE)
+  notificationSettings NotificationSettings?
 
   profile  Profile?
   wallet   Wallet?
@@ -222,7 +248,7 @@ model Post {
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
 
-  unlocks             PostUnlock[]
+  unlocks PostUnlock[]
 
   author User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
   media  PostMedia[]

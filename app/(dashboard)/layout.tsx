@@ -43,6 +43,7 @@ export default async function SocialLayout({
     displayName: user.profile?.displayName ?? user.name ?? user.username,
     image: user.image,
     credits: user.credits,
+    role: session.user.role,
   };
 
   return (
@@ -57,7 +58,7 @@ export default async function SocialLayout({
         <main className="mx-auto min-h-[calc(100svh-4rem)] max-w-7xl px-4 py-6 pb-24 sm:px-6 lg:pb-8">{children}</main>
       </div>
 
-      <MobileNav />
+      <MobileNav role={session.user.role} />
     </div>
   );
 }

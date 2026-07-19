@@ -134,9 +134,9 @@ export async function updateAvatarAction(input: unknown): Promise<UpdateAvatarRe
     revalidatePath("/profile");
     revalidatePath("/profile/edit");
     revalidatePath(`/profile/${currentUser.username}`);
-    revalidatePath("/studio");
+    revalidatePath("/dashboard");
     revalidatePath("/");
-    revalidatePath("/creators");
+    revalidatePath("/explore");
 
     return {
       success: true,

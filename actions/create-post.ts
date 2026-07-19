@@ -102,7 +102,7 @@ export async function createPostAction(input: CreatePostInput): Promise<CreatePo
       });
     }
 
-    revalidatePath("/studio");
+    revalidatePath("/dashboard");
 
     return {
       success: true,

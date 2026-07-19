@@ -119,8 +119,8 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
     });
 
     revalidatePath(`/profile/${targetUser.username}`);
-    revalidatePath("/creators");
-    revalidatePath("/studio");
+    revalidatePath("/explore");
+    revalidatePath("/dashboard");
 
     return {
       success: true,

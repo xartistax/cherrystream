@@ -19,6 +19,11 @@ export async function registerAction(_previousState: ActionState, formData: Form
   });
 
   if (!parsedData.success) {
+    console.error(
+      "Registration validation failed:",
+
+      parsedData.error.flatten(),
+    );
     return {
       success: false,
       errors: parsedData.error.flatten().fieldErrors,

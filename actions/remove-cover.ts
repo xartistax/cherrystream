@@ -66,7 +66,7 @@ export async function removeCoverAction(): Promise<RemoveCoverResult> {
     revalidatePath("/profile/edit");
     revalidatePath(`/profile/${user.username}`);
     revalidatePath("/");
-    revalidatePath("/creators");
+    revalidatePath("/explore");
 
     return {
       success: true,

@@ -10,7 +10,6 @@ import { PrismaClient } from "../generated/prisma/client";
 import { cantons } from "./seed/cantons";
 import { categories } from "./seed/categories";
 import { swissCities } from "./seed/cities";
-import { seedCreators } from "./seed/creators";
 
 const connectionString = process.env.DATABASE_URL;
 

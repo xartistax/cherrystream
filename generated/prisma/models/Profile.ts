@@ -909,10 +909,6 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type NullableEnumContactChannelFieldUpdateOperationsInput = {
   set?: $Enums.ContactChannel | null
 }

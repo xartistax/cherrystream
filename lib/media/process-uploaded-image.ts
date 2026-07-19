@@ -83,7 +83,7 @@ export async function processUploadedImage({ media, userId }: ProcessUploadedIma
         cacheControlMaxAge: 31_536_000,
       }),
 
-      put(`${basePath}/studio.webp`, processed.variants.feed.buffer, {
+      put(`${basePath}/dashboard.webp`, processed.variants.feed.buffer, {
         access: "public",
         token,
         contentType: "image/webp",

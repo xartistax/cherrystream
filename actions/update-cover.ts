@@ -146,7 +146,7 @@ export async function updateCoverAction(input: unknown): Promise<UpdateCoverResu
     revalidatePath("/profile/edit");
     revalidatePath(`/profile/${currentUser.username}`);
     revalidatePath("/");
-    revalidatePath("/creators");
+    revalidatePath("/explore");
 
     return {
       success: true,

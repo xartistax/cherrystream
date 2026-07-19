@@ -384,6 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  NotificationSettings: 'NotificationSettings',
   User: 'User',
   Profile: 'Profile',
   Account: 'Account',
@@ -418,10 +419,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "profile" | "account" | "session" | "verificationToken" | "post" | "postMedia" | "follow" | "postLike" | "postUnlock" | "category" | "profileCategory" | "canton" | "city" | "profileView" | "contactClick" | "contactMethod" | "wallet" | "walletTransaction"
+    modelProps: "notificationSettings" | "user" | "profile" | "account" | "session" | "verificationToken" | "post" | "postMedia" | "follow" | "postLike" | "postUnlock" | "category" | "profileCategory" | "canton" | "city" | "profileView" | "contactClick" | "contactMethod" | "wallet" | "walletTransaction"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    NotificationSettings: {
+      payload: Prisma.$NotificationSettingsPayload<ExtArgs>
+      fields: Prisma.NotificationSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificationSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificationSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.NotificationSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificationSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.NotificationSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.NotificationSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.NotificationSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificationSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.NotificationSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        update: {
+          args: Prisma.NotificationSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificationSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificationSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificationSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificationSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotificationSettings>
+        }
+        groupBy: {
+          args: Prisma.NotificationSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificationSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -1867,6 +1942,21 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const NotificationSettingsScalarFieldEnum = {
+  userId: 'userId',
+  marketingEmails: 'marketingEmails',
+  accountEmails: 'accountEmails',
+  newFollowers: 'newFollowers',
+  postLikes: 'postLikes',
+  profileViews: 'profileViews',
+  contactClicks: 'contactClicks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NotificationSettingsScalarFieldEnum = (typeof NotificationSettingsScalarFieldEnum)[keyof typeof NotificationSettingsScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -1879,7 +1969,8 @@ export const UserScalarFieldEnum = {
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  modelStatus: 'modelStatus'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -2215,6 +2306,13 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2271,6 +2369,20 @@ export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'ModelStatus'
+ */
+export type EnumModelStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ModelStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ModelStatus[]'
+ */
+export type ListEnumModelStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ModelStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Gender'
  */
 export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
@@ -2281,13 +2393,6 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -2526,6 +2631,7 @@ export type PrismaClientOptions = ({
   queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
+  notificationSettings?: Prisma.NotificationSettingsOmit
   user?: Prisma.UserOmit
   profile?: Prisma.ProfileOmit
   account?: Prisma.AccountOmit

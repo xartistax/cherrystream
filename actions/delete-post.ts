@@ -74,8 +74,8 @@ export async function deletePostAction(postId: string): Promise<DeletePostResult
       });
     }
 
-    revalidatePath("/studio");
-    revalidatePath("/studio/posts");
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/posts");
     revalidatePath("/");
 
     return {

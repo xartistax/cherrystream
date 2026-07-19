@@ -485,10 +485,10 @@ export async function updateProfileAction(_previousState: ActionState, formData:
       },
     });
 
-    revalidatePath("/studio");
+    revalidatePath("/dashboard");
     revalidatePath("/profile/edit");
     revalidatePath(`/profile/${user.username}`);
-    revalidatePath("/creators");
+    revalidatePath("/explore");
     revalidatePath("/");
 
     return {

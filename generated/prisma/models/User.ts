@@ -47,6 +47,7 @@ export type UserMinAggregateOutputType = {
   status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  modelStatus: $Enums.ModelStatus | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -62,6 +63,7 @@ export type UserMaxAggregateOutputType = {
   status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  modelStatus: $Enums.ModelStatus | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -77,6 +79,7 @@ export type UserCountAggregateOutputType = {
   status: number
   createdAt: number
   updatedAt: number
+  modelStatus: number
   _all: number
 }
 
@@ -102,6 +105,7 @@ export type UserMinAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  modelStatus?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -117,6 +121,7 @@ export type UserMaxAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  modelStatus?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -132,6 +137,7 @@ export type UserCountAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  modelStatus?: true
   _all?: true
 }
 
@@ -234,6 +240,7 @@ export type UserGroupByOutputType = {
   status: $Enums.UserStatus
   createdAt: Date
   updatedAt: Date
+  modelStatus: $Enums.ModelStatus
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -272,6 +279,8 @@ export type UserWhereInput = {
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  modelStatus?: Prisma.EnumModelStatusFilter<"User"> | $Enums.ModelStatus
+  notificationSettings?: Prisma.XOR<Prisma.NotificationSettingsNullableScalarRelationFilter, Prisma.NotificationSettingsWhereInput> | null
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   wallet?: Prisma.XOR<Prisma.WalletNullableScalarRelationFilter, Prisma.WalletWhereInput> | null
   accounts?: Prisma.AccountListRelationFilter
@@ -300,6 +309,8 @@ export type UserOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  modelStatus?: Prisma.SortOrder
+  notificationSettings?: Prisma.NotificationSettingsOrderByWithRelationInput
   profile?: Prisma.ProfileOrderByWithRelationInput
   wallet?: Prisma.WalletOrderByWithRelationInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
@@ -331,6 +342,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  modelStatus?: Prisma.EnumModelStatusFilter<"User"> | $Enums.ModelStatus
+  notificationSettings?: Prisma.XOR<Prisma.NotificationSettingsNullableScalarRelationFilter, Prisma.NotificationSettingsWhereInput> | null
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   wallet?: Prisma.XOR<Prisma.WalletNullableScalarRelationFilter, Prisma.WalletWhereInput> | null
   accounts?: Prisma.AccountListRelationFilter
@@ -359,6 +372,7 @@ export type UserOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  modelStatus?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -382,6 +396,7 @@ export type UserScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  modelStatus?: Prisma.EnumModelStatusWithAggregatesFilter<"User"> | $Enums.ModelStatus
 }
 
 export type UserCreateInput = {
@@ -397,6 +412,8 @@ export type UserCreateInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -425,6 +442,8 @@ export type UserUncheckedCreateInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -453,6 +472,8 @@ export type UserUpdateInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -481,6 +502,8 @@ export type UserUncheckedUpdateInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -509,6 +532,7 @@ export type UserCreateManyInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
 }
 
 export type UserUpdateManyMutationInput = {
@@ -524,6 +548,7 @@ export type UserUpdateManyMutationInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -539,6 +564,12 @@ export type UserUncheckedUpdateManyInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -554,6 +585,7 @@ export type UserCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  modelStatus?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -573,6 +605,7 @@ export type UserMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  modelStatus?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -588,15 +621,11 @@ export type UserMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  modelStatus?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   credits?: Prisma.SortOrder
-}
-
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -604,8 +633,18 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type UserCreateNestedOneWithoutNotificationSettingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutNotificationSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationSettingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutNotificationSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationSettingsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationSettingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationSettingsInput, Prisma.UserUpdateWithoutNotificationSettingsInput>, Prisma.UserUncheckedUpdateWithoutNotificationSettingsInput>
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
@@ -632,8 +671,8 @@ export type EnumUserStatusFieldUpdateOperationsInput = {
   set?: $Enums.UserStatus
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type EnumModelStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ModelStatus
 }
 
 export type UserCreateNestedOneWithoutProfileInput = {
@@ -822,6 +861,138 @@ export type UserUpdateOneRequiredWithoutWalletNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWalletInput, Prisma.UserUpdateWithoutWalletInput>, Prisma.UserUncheckedUpdateWithoutWalletInput>
 }
 
+export type UserCreateWithoutNotificationSettingsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickCreateNestedManyWithoutVisitorInput
+}
+
+export type UserUncheckedCreateWithoutNotificationSettingsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash?: string | null
+  name?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credits?: number
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  postLikes?: Prisma.PostLikeUncheckedCreateNestedManyWithoutUserInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedCreateNestedManyWithoutUserInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutProfileUserInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedCreateNestedManyWithoutViewerInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutProfileUserInput
+  createdContactClicks?: Prisma.ContactClickUncheckedCreateNestedManyWithoutVisitorInput
+}
+
+export type UserCreateOrConnectWithoutNotificationSettingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutNotificationSettingsInput>
+}
+
+export type UserUpsertWithoutNotificationSettingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationSettingsInput, Prisma.UserUncheckedUpdateWithoutNotificationSettingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutNotificationSettingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationSettingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationSettingsInput, Prisma.UserUncheckedUpdateWithoutNotificationSettingsInput>
+}
+
+export type UserUpdateWithoutNotificationSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUpdateManyWithoutVisitorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  postLikes?: Prisma.PostLikeUncheckedUpdateManyWithoutUserNestedInput
+  unlockedPosts?: Prisma.PostUnlockUncheckedUpdateManyWithoutUserNestedInput
+  receivedProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdProfileViews?: Prisma.ProfileViewUncheckedUpdateManyWithoutViewerNestedInput
+  receivedContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutProfileUserNestedInput
+  createdContactClicks?: Prisma.ContactClickUncheckedUpdateManyWithoutVisitorNestedInput
+}
+
 export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
@@ -835,6 +1006,8 @@ export type UserCreateWithoutProfileInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -862,6 +1035,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -905,6 +1080,8 @@ export type UserUpdateWithoutProfileInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -932,6 +1109,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -959,6 +1138,8 @@ export type UserCreateWithoutAccountsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -986,6 +1167,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1029,6 +1212,8 @@ export type UserUpdateWithoutAccountsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1056,6 +1241,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1083,6 +1270,8 @@ export type UserCreateWithoutSessionsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1110,6 +1299,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1153,6 +1344,8 @@ export type UserUpdateWithoutSessionsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1180,6 +1373,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1207,6 +1402,8 @@ export type UserCreateWithoutPostsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1234,6 +1431,8 @@ export type UserUncheckedCreateWithoutPostsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1277,6 +1476,8 @@ export type UserUpdateWithoutPostsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1304,6 +1505,8 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1331,6 +1534,8 @@ export type UserCreateWithoutFollowingInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1358,6 +1563,8 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1390,6 +1597,8 @@ export type UserCreateWithoutFollowersInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1417,6 +1626,8 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1460,6 +1671,8 @@ export type UserUpdateWithoutFollowingInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1487,6 +1700,8 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1525,6 +1740,8 @@ export type UserUpdateWithoutFollowersInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1552,6 +1769,8 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1579,6 +1798,8 @@ export type UserCreateWithoutPostLikesInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1606,6 +1827,8 @@ export type UserUncheckedCreateWithoutPostLikesInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1649,6 +1872,8 @@ export type UserUpdateWithoutPostLikesInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1676,6 +1901,8 @@ export type UserUncheckedUpdateWithoutPostLikesInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1703,6 +1930,8 @@ export type UserCreateWithoutUnlockedPostsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1730,6 +1959,8 @@ export type UserUncheckedCreateWithoutUnlockedPostsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1773,6 +2004,8 @@ export type UserUpdateWithoutUnlockedPostsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1800,6 +2033,8 @@ export type UserUncheckedUpdateWithoutUnlockedPostsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1827,6 +2062,8 @@ export type UserCreateWithoutReceivedProfileViewsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1854,6 +2091,8 @@ export type UserUncheckedCreateWithoutReceivedProfileViewsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1886,6 +2125,8 @@ export type UserCreateWithoutCreatedProfileViewsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1913,6 +2154,8 @@ export type UserUncheckedCreateWithoutCreatedProfileViewsInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1956,6 +2199,8 @@ export type UserUpdateWithoutReceivedProfileViewsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1983,6 +2228,8 @@ export type UserUncheckedUpdateWithoutReceivedProfileViewsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2021,6 +2268,8 @@ export type UserUpdateWithoutCreatedProfileViewsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -2048,6 +2297,8 @@ export type UserUncheckedUpdateWithoutCreatedProfileViewsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2075,6 +2326,8 @@ export type UserCreateWithoutReceivedContactClicksInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -2102,6 +2355,8 @@ export type UserUncheckedCreateWithoutReceivedContactClicksInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -2134,6 +2389,8 @@ export type UserCreateWithoutCreatedContactClicksInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -2161,6 +2418,8 @@ export type UserUncheckedCreateWithoutCreatedContactClicksInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -2204,6 +2463,8 @@ export type UserUpdateWithoutReceivedContactClicksInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -2231,6 +2492,8 @@ export type UserUncheckedUpdateWithoutReceivedContactClicksInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2269,6 +2532,8 @@ export type UserUpdateWithoutCreatedContactClicksInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -2296,6 +2561,8 @@ export type UserUncheckedUpdateWithoutCreatedContactClicksInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2323,6 +2590,8 @@ export type UserCreateWithoutWalletInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -2350,6 +2619,8 @@ export type UserUncheckedCreateWithoutWalletInput = {
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modelStatus?: $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -2393,6 +2664,8 @@ export type UserUpdateWithoutWalletInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -2420,6 +2693,8 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modelStatus?: Prisma.EnumModelStatusFieldUpdateOperationsInput | $Enums.ModelStatus
+  notificationSettings?: Prisma.NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -2568,6 +2843,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  modelStatus?: boolean
+  notificationSettings?: boolean | Prisma.User$notificationSettingsArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   wallet?: boolean | Prisma.User$walletArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -2597,6 +2874,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  modelStatus?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2612,6 +2890,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  modelStatus?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -2627,10 +2906,12 @@ export type UserSelectScalar = {
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  modelStatus?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "emailVerified" | "image" | "credits" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "emailVerified" | "image" | "credits" | "role" | "status" | "createdAt" | "updatedAt" | "modelStatus", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notificationSettings?: boolean | Prisma.User$notificationSettingsArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   wallet?: boolean | Prisma.User$walletArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -2652,6 +2933,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    notificationSettings: Prisma.$NotificationSettingsPayload<ExtArgs> | null
     profile: Prisma.$ProfilePayload<ExtArgs> | null
     wallet: Prisma.$WalletPayload<ExtArgs> | null
     accounts: Prisma.$AccountPayload<ExtArgs>[]
@@ -2679,6 +2961,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     status: $Enums.UserStatus
     createdAt: Date
     updatedAt: Date
+    modelStatus: $Enums.ModelStatus
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3073,6 +3356,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  notificationSettings<T extends Prisma.User$notificationSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationSettingsArgs<ExtArgs>>): Prisma.Prisma__NotificationSettingsClient<runtime.Types.Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   wallet<T extends Prisma.User$walletArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$walletArgs<ExtArgs>>): Prisma.Prisma__WalletClient<runtime.Types.Result.GetResult<Prisma.$WalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3127,6 +3411,7 @@ export interface UserFieldRefs {
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly modelStatus: Prisma.FieldRef<"User", 'ModelStatus'>
 }
     
 
@@ -3517,6 +3802,25 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.notificationSettings
+ */
+export type User$notificationSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NotificationSettings
+   */
+  select?: Prisma.NotificationSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NotificationSettings
+   */
+  omit?: Prisma.NotificationSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationSettingsInclude<ExtArgs> | null
+  where?: Prisma.NotificationSettingsWhereInput
 }
 
 /**
