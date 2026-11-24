@@ -138,6 +138,9 @@ model User {
   receivedContactClicks ContactClick[] @relation("ContactProfile")
   createdContactClicks  ContactClick[] @relation("ContactVisitor")
 
+  modelVerifications    ModelVerification[] @relation("VerificationSubject")
+  reviewedVerifications ModelVerification[] @relation("VerificationReviewer")
+
   @@index([createdAt])
   @@index([status])
 }
@@ -459,6 +462,31 @@ model ContactMethod {
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
 
+/// Identity and age check of a model, reviewed manually by an admin.
+/// Document pathnames point to private blobs and are cleared once the documents are deleted after review.
+model ModelVerification {
+  id     String           @id @default(cuid())
+  userId String
+  status ModerationStatus @default(PENDING)
+
+  challengeCode String
+
+  idDocumentPathname String?
+  selfiePathname     String?
+  documentsDeletedAt DateTime?
+
+  submittedAt     DateTime  @default(now())
+  reviewedAt      DateTime?
+  reviewedById    String?
+  rejectionReason String?
+
+  user       User  @relation("VerificationSubject", fields: [userId], references: [id], onDelete: Cascade)
+  reviewedBy User? @relation("VerificationReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([status, submittedAt])
+  @@index([userId, submittedAt])
+}
+
 model Wallet {
   id             String              @id @default(cuid())
   userId         String              @unique
@@ -480,7 +508,7 @@ model WalletTransaction {
   amountCredits Int?
   amountRappen  Int?
 
-  balanceUserCredits    Int @default(0)
+  balanceUserCredits Int @default(0)
 
   balanceEarningsRappen Int @default(0)
 

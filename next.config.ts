@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
 
   serverExternalPackages: ["sharp", "ffmpeg-static", "@ffprobe-installer/ffprobe"],
 
+  experimental: {
+    serverActions: {
+      // Verification uploads send two downscaled photos in one action; Vercel caps request bodies at 4.5 MB.
+      bodySizeLimit: "4mb",
+    },
+  },
+
   outputFileTracingIncludes: {
     "/dashboard": ffmpegBinaries,
   },

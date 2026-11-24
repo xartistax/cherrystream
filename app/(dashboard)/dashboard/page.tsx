@@ -9,7 +9,7 @@ import { ComposerUser } from "@/components/dashboard/create-post/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Pencil, Plus, UserRound } from "lucide-react";
+import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Pencil, Plus, ShieldCheck, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostGrid } from "@/components/dashboard/posts/post-grid";
 import { getProfileStats } from "@/lib/analytics/get-profile-stats";
@@ -17,7 +17,9 @@ import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metri
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
 
 export default async function FeedPage() {
-  const { userId } = await requireCreatorPage();
+  const { userId, role, modelStatus } = await requireCreatorPage();
+
+  const isPublished = role === "ADMIN" || modelStatus === "ACTIVE";
 
   const [currentUser, posts, profileStats] = await Promise.all([
     prisma.user.findUnique({
@@ -106,19 +108,40 @@ export default async function FeedPage() {
           <p className="mt-2 text-sm text-zinc-500">Verwalte dein Profil, deine Inhalte und deine Einnahmen.</p>
         </div>
 
-        <Link
-          href={`/profile/${currentUser.username}`}
-          className={cn(
-            buttonVariants({
-              variant: "outline",
-            }),
-            "border-white/10 bg-white/5 text-white hover:bg-white/10",
-          )}
-        >
-          <ExternalLink className="size-4" />
-          Öffentliches Profil ansehen
-        </Link>
+        {isPublished ? (
+          <Link
+            href={`/profile/${currentUser.username}`}
+            className={cn(
+              buttonVariants({
+                variant: "outline",
+              }),
+              "border-white/10 bg-white/5 text-white hover:bg-white/10",
+            )}
+          >
+            <ExternalLink className="size-4" />
+            Öffentliches Profil ansehen
+          </Link>
+        ) : null}
       </header>
+
+      {!isPublished ? (
+        <Link
+          href="/dashboard/verification"
+          className="flex items-start gap-4 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-5 transition hover:bg-amber-500/15"
+        >
+          <ShieldCheck className="mt-0.5 size-5 shrink-0 text-amber-300" />
+
+          <div className="flex-1">
+            <p className="font-semibold text-amber-100">Dein Profil ist noch nicht öffentlich</p>
+
+            <p className="mt-1 text-sm leading-6 text-amber-100/70">
+              Wir prüfen jedes Profil vor der Veröffentlichung. Hier reichst du deine Verifizierung ein und siehst den aktuellen Stand.
+            </p>
+          </div>
+
+          <ChevronRight className="mt-0.5 size-5 shrink-0 text-amber-300" />
+        </Link>
+      ) : null}
 
       <DashboardWelcome displayName={displayName} username={currentUser.username} stats={profileStats} />
 
@@ -141,7 +164,13 @@ export default async function FeedPage() {
               </div>
             </div>
 
-            <CreatePostComposer user={composerUser} />
+            {isPublished ? (
+              <CreatePostComposer user={composerUser} />
+            ) : (
+              <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-6 text-sm leading-6 text-zinc-500">
+                Sobald dein Profil freigegeben ist, kannst du hier Bilder und Videos veröffentlichen.
+              </div>
+            )}
           </section>
 
           <section>
