@@ -2,14 +2,52 @@ import "server-only";
 
 import { execa } from "execa";
 
-function getBinary(environmentVariable: "FFMPEG_PATH" | "FFPROBE_PATH", fallback: string): string {
-  return process.env[environmentVariable]?.trim() || fallback;
+/**
+ * Resolution order: explicit env variable, bundled binary (ffmpeg-static / @ffprobe-installer), system binary.
+ * Bundled binaries make video processing work on Vercel, where no system FFmpeg exists.
+ */
+async function resolveFfmpegPath(): Promise<string> {
+  const configuredPath = process.env.FFMPEG_PATH?.trim();
+
+  if (configuredPath) {
+    return configuredPath;
+  }
+
+  const { default: bundledPath } = await import("ffmpeg-static");
+
+  return bundledPath ?? "ffmpeg";
 }
 
-export const ffmpegPath = getBinary("FFMPEG_PATH", "ffmpeg");
-export const ffprobePath = getBinary("FFPROBE_PATH", "ffprobe");
+async function resolveFfprobePath(): Promise<string> {
+  const configuredPath = process.env.FFPROBE_PATH?.trim();
+
+  if (configuredPath) {
+    return configuredPath;
+  }
+
+  try {
+    const { path: bundledPath } = await import("@ffprobe-installer/ffprobe");
+
+    return bundledPath;
+  } catch {
+    return "ffprobe";
+  }
+}
+
+let binaries: Promise<{ ffmpegPath: string; ffprobePath: string }> | undefined;
+
+export function getFfmpegBinaries() {
+  binaries ??= Promise.all([resolveFfmpegPath(), resolveFfprobePath()]).then(([ffmpegPath, ffprobePath]) => ({
+    ffmpegPath,
+    ffprobePath,
+  }));
+
+  return binaries;
+}
 
 export async function assertFfmpegAvailable(): Promise<void> {
+  const { ffmpegPath, ffprobePath } = await getFfmpegBinaries();
+
   try {
     await Promise.all([execa(ffmpegPath, ["-version"]), execa(ffprobePath, ["-version"])]);
   } catch {
