@@ -81,7 +81,7 @@ async function main(): Promise<void> {
       },
     });
 
-    console.log(`@${user.username} ist jetzt Admin. Bitte einmal ab- und wieder anmelden.`);
+    console.log(`@${user.username} ist jetzt Admin. Seite neu laden, dann erscheint der Admin-Bereich.`);
   } finally {
     await prisma.$disconnect();
   }
