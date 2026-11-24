@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -104,6 +105,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
       posts: {
         where: {
           status: "PUBLISHED",
+          ...(paymentsEnabled ? {} : { visibility: { not: "PREMIUM" } }),
         },
         orderBy: {
           createdAt: "desc",

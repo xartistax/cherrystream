@@ -1,11 +1,12 @@
 import { Coins, CreditCard } from "lucide-react";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { CreditPackages } from "@/components/credits/credit-packages";
 import { CheckoutSuccess } from "@/components/credits/checkout-success";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { ECONOMY } from "@/lib/economy";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { WalletHistory } from "@/components/credits/wallet-history";
 
@@ -17,6 +18,10 @@ type CreditsPageProps = {
 };
 
 export default async function CreditsPage({ searchParams }: CreditsPageProps) {
+  if (!paymentsEnabled) {
+    notFound();
+  }
+
   const { checkout, session_id: sessionId } = await searchParams;
 
   const session = await auth();

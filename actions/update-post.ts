@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { getCreatorAccess } from "@/lib/access";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 
 const updatePostSchema = z
@@ -73,6 +74,7 @@ export async function updatePostAction(_previousState: UpdatePostState, formData
       },
       select: {
         id: true,
+        visibility: true,
         author: {
           select: {
             username: true,
@@ -85,6 +87,13 @@ export async function updatePostAction(_previousState: UpdatePostState, formData
       return {
         success: false,
         message: "Der Inhalt wurde nicht gefunden.",
+      };
+    }
+
+    if (!paymentsEnabled && visibility === "PREMIUM" && post.visibility !== "PREMIUM") {
+      return {
+        success: false,
+        message: "Premium-Inhalte sind noch nicht verfügbar.",
       };
     }
 

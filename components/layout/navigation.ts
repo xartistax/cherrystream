@@ -1,6 +1,7 @@
 import { CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, UserRound, type LucideIcon } from "lucide-react";
 
 import type { UserRole } from "@/generated/prisma/enums";
+import { paymentsEnabled } from "@/lib/features";
 
 export type NavigationItem = {
   label: string;
@@ -50,7 +51,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       return [becomeModelItem];
     }
 
-    return [becomeModelItem, creditsItem, settingsItem];
+    return [becomeModelItem, ...(paymentsEnabled ? [creditsItem] : []), settingsItem];
   }
 
   return [
@@ -69,7 +70,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       href: "/profile/edit",
       icon: UserRound,
     },
-    creditsItem,
+    ...(paymentsEnabled ? [creditsItem] : []),
     settingsItem,
   ];
 }

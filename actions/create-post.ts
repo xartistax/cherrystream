@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 
 import { getCreatorAccess } from "@/lib/access";
 import { getBlobToken } from "@/lib/blob";
+import { paymentsEnabled } from "@/lib/features";
 import { preparePostMedia } from "@/lib/media/prepare-post-media";
 import { prisma } from "@/lib/prisma";
 import { createPostSchema, type CreatePostInput } from "@/lib/validations/post";
@@ -30,6 +31,13 @@ export async function createPostAction(input: CreatePostInput): Promise<CreatePo
     return {
       success: false,
       message: parsedInput.error.issues[0]?.message ?? "Ungültige Eingabe.",
+    };
+  }
+
+  if (!paymentsEnabled && parsedInput.data.visibility === "PREMIUM") {
+    return {
+      success: false,
+      message: "Premium-Inhalte sind noch nicht verfügbar.",
     };
   }
 

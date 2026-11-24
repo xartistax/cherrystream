@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { requireCreatorPage } from "@/lib/access";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { CreatePostComposer } from "@/components/dashboard/create-post/composer";
 import { ComposerUser } from "@/components/dashboard/create-post/types";
@@ -236,17 +237,19 @@ export default async function FeedPage() {
                 <ChevronRight className="size-4" />
               </Link>
 
-              <Link
-                href="/credits"
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <Coins className="size-4" />
-                  Credits
-                </span>
+              {paymentsEnabled ? (
+                <Link
+                  href="/credits"
+                  className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <Coins className="size-4" />
+                    Credits
+                  </span>
 
-                <ChevronRight className="size-4" />
-              </Link>
+                  <ChevronRight className="size-4" />
+                </Link>
+              ) : null}
             </CardContent>
           </Card>
         </aside>

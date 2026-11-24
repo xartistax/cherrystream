@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { PostVisibility } from "@/generated/prisma/enums";
+import { paymentsEnabled } from "@/lib/features";
 import { cn } from "@/lib/utils";
 
 type EditPostFormProps = {
@@ -77,6 +78,9 @@ export function EditPostForm({ post }: EditPostFormProps) {
 
   const [state, formAction] = useActionState(updatePostAction, initialState);
 
+  // Without payments, existing premium posts keep the option; new ones cannot select it.
+  const availableOptions = paymentsEnabled || post.visibility === "PREMIUM" ? visibilityOptions : visibilityOptions.filter((option) => option.value !== "PREMIUM");
+
   return (
     <form action={formAction} className="space-y-8">
       <input type="hidden" name="postId" value={post.id} />
@@ -120,8 +124,8 @@ export function EditPostForm({ post }: EditPostFormProps) {
           <p className="mt-1 text-sm text-zinc-500">Lege fest, wer diesen Inhalt sehen darf.</p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
-          {visibilityOptions.map((option) => {
+        <div className={cn("grid gap-3", availableOptions.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2")}>
+          {availableOptions.map((option) => {
             const Icon = option.icon;
             const selected = visibility === option.value;
 

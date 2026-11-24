@@ -1,10 +1,13 @@
 import { Coins, Search } from "lucide-react";
 import Link from "next/link";
 
+import { isCreatorRole } from "@/components/layout/navigation";
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import type { UserRole } from "@/generated/prisma/enums";
+import { paymentsEnabled } from "@/lib/features";
 import { cn } from "@/lib/utils";
 
 type TopbarProps = {
@@ -12,6 +15,7 @@ type TopbarProps = {
     displayName: string;
     image: string | null;
     credits: number;
+    role: UserRole;
   };
 };
 
@@ -49,14 +53,16 @@ export function Topbar({ user }: TopbarProps) {
           Profile und Beiträge suchen
         </Link>
 
-        <Link href="/credits">
-          <Badge variant="outline" className="gap-1.5 border-amber-500/20 bg-amber-500/10 text-amber-300">
-            <Coins className="size-3.5" />
-            {user.credits}
-          </Badge>
-        </Link>
+        {paymentsEnabled ? (
+          <Link href="/credits">
+            <Badge variant="outline" className="gap-1.5 border-amber-500/20 bg-amber-500/10 text-amber-300">
+              <Coins className="size-3.5" />
+              {user.credits}
+            </Badge>
+          </Link>
+        ) : null}
 
-        <Link href="/profile">
+        <Link href={isCreatorRole(user.role) ? "/profile/edit" : "/settings"}>
           <Avatar className="size-9 border border-white/10">
             <AvatarImage src={user.image ?? undefined} alt={user.displayName} />
 

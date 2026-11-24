@@ -14,6 +14,7 @@ import { UploadProgress } from "./upload-progress";
 import { Toolbar } from "./toolbar";
 import { useUpload } from "./use-upload";
 import { Label } from "@/components/ui/label";
+import { paymentsEnabled } from "@/lib/features";
 import { cn } from "@/lib/utils";
 import { Input } from "@base-ui/react";
 import { Globe2, Users, LockKeyhole } from "lucide-react";
@@ -144,7 +145,7 @@ export function CreatePostComposer({ user }: ComposerProps) {
         <div className="mt-5 space-y-3">
           <Label className="text-sm text-zinc-300">Sichtbarkeit</Label>
 
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div className={cn("grid grid-cols-1 gap-2", paymentsEnabled ? "sm:grid-cols-3" : "sm:grid-cols-2")}>
             <Button
               type="button"
               variant="outline"
@@ -179,21 +180,23 @@ export function CreatePostComposer({ user }: ComposerProps) {
               Follower
             </Button>
 
-            <Button
-              type="button"
-              variant="outline"
-              disabled={isBusy}
-              onClick={() => {
-                setVisibility("PREMIUM");
-              }}
-              className={cn(
-                "justify-start border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/[0.07] hover:text-white",
-                visibility === "PREMIUM" && "border-amber-500/40 bg-amber-500/10 text-amber-300",
-              )}
-            >
-              <LockKeyhole className="size-4" />
-              Premium
-            </Button>
+            {paymentsEnabled ? (
+              <Button
+                type="button"
+                variant="outline"
+                disabled={isBusy}
+                onClick={() => {
+                  setVisibility("PREMIUM");
+                }}
+                className={cn(
+                  "justify-start border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/[0.07] hover:text-white",
+                  visibility === "PREMIUM" && "border-amber-500/40 bg-amber-500/10 text-amber-300",
+                )}
+              >
+                <LockKeyhole className="size-4" />
+                Premium
+              </Button>
+            ) : null}
           </div>
 
           {visibility === "PREMIUM" ? (

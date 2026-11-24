@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Coins, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, MessageCircle, Search, Sparkles } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -32,22 +32,22 @@ export default async function BecomeModelPage() {
           <CardTitle className="mt-4 text-3xl font-black tracking-tight">Werde Model auf CherryStream</CardTitle>
 
           <CardDescription className="max-w-lg text-base leading-7 text-zinc-400">
-            Erstelle exklusive Inhalte, baue deine Community auf und verdiene Credits mit deinen Veröffentlichungen.
+            Werde von neuen Kunden in deiner Region gefunden und erhalte Anfragen direkt über deine bevorzugten Kontaktkanäle.
           </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-8 p-6 sm:p-10">
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <Sparkles className="size-5 text-rose-400" />
-              <p className="mt-3 font-semibold">Premium-Inhalte</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Veröffentliche exklusive Beiträge.</p>
+              <Search className="size-5 text-rose-400" />
+              <p className="mt-3 font-semibold">Gefunden werden</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Sichtbar nach Kanton, Stadt und Kategorie.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <Coins className="size-5 text-amber-400" />
-              <p className="mt-3 font-semibold">Credits verdienen</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Lege Preise für deine Inhalte fest.</p>
+              <MessageCircle className="size-5 text-emerald-400" />
+              <p className="mt-3 font-semibold">Direkte Anfragen</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Kontakt per WhatsApp, Telefon oder Telegram.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">

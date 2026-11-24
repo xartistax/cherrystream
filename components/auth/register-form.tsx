@@ -31,7 +31,7 @@ export function RegisterForm() {
 
         <h1 className="text-2xl font-bold text-white">Konto erstellen</h1>
 
-        <p className="text-sm leading-6 text-zinc-400">Registriere dich kostenlos, entdecke Profile und schalte Premium-Inhalte mit Credits frei.</p>
+        <p className="text-sm leading-6 text-zinc-400">Registriere dich kostenlos, entdecke Profile und folge deinen Favoriten.</p>
       </div>
       {state.message ? (
         <Alert variant="destructive">

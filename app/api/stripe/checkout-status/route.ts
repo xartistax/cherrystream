@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  if (!paymentsEnabled) {
+    return new Response(null, { status: 404 });
+  }
+
   const session = await auth();
 
   if (!session?.user?.id) {

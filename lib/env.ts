@@ -6,6 +6,7 @@ const envSchema = z.object({
   BLOB_READ_WRITE_TOKEN: z.string().min(1),
 
   NEXT_PUBLIC_APP_URL: z.url().optional(),
+  NEXT_PUBLIC_PAYMENTS_ENABLED: z.enum(["true", "false"]).optional(),
 
   STRIPE_SECRET_KEY: z.string().min(1).optional(),
   STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
@@ -20,6 +21,7 @@ const parsedEnv = envSchema.safeParse({
   BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
 
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || undefined,
+  NEXT_PUBLIC_PAYMENTS_ENABLED: process.env.NEXT_PUBLIC_PAYMENTS_ENABLED || undefined,
 
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || undefined,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET || undefined,

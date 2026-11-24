@@ -3,7 +3,8 @@ import type Stripe from "stripe";
 
 import { calculateCreditPackageTotal, getCreditPackage } from "@/lib/economy";
 import { prisma } from "@/lib/prisma";
-import { stripe } from "@/lib/stripe";
+import { paymentsEnabled } from "@/lib/features";
+import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
 
@@ -127,6 +128,10 @@ async function fulfillCheckoutSession(checkoutSession: Stripe.Checkout.Session):
 }
 
 export async function POST(request: Request) {
+  if (!paymentsEnabled) {
+    return new Response(null, { status: 404 });
+  }
+
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   const signature = request.headers.get("stripe-signature");
 
@@ -141,7 +146,7 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+    event = getStripe().webhooks.constructEvent(payload, signature, webhookSecret);
   } catch {
     return new Response("Ungültige Webhook-Signatur.", {
       status: 400,

@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { UserRole } from "@/generated/prisma/enums";
+import { paymentsEnabled } from "@/lib/features";
 
 type SidebarProps = {
   user: {
@@ -37,19 +38,21 @@ export function Sidebar({ user }: SidebarProps) {
       </div>
 
       <div className="mt-auto space-y-4">
-        <div className="rounded-2xl border border-rose-500/15 bg-linear-to-br from-rose-500/10 to-transparent p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-sm text-zinc-400">Guthaben</span>
+        {paymentsEnabled ? (
+          <div className="rounded-2xl border border-rose-500/15 bg-linear-to-br from-rose-500/10 to-transparent p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm text-zinc-400">Guthaben</span>
 
-            <Coins className="size-4 text-amber-400" />
+              <Coins className="size-4 text-amber-400" />
+            </div>
+
+            <div className="flex items-end justify-between">
+              <strong className="text-2xl text-white">{user.credits}</strong>
+
+              <Badge className="bg-rose-500/15 text-rose-300 hover:bg-rose-500/15">Credits</Badge>
+            </div>
           </div>
-
-          <div className="flex items-end justify-between">
-            <strong className="text-2xl text-white">{user.credits}</strong>
-
-            <Badge className="bg-rose-500/15 text-rose-300 hover:bg-rose-500/15">Credits</Badge>
-          </div>
-        </div>
+        ) : null}
 
         <Separator className="bg-white/10" />
 

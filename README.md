@@ -28,6 +28,7 @@ pnpm dev
 | `AUTH_SECRET` | ja | Auth.js Secret, mind. 32 Zeichen |
 | `BLOB_READ_WRITE_TOKEN` | ja | Vercel Blob |
 | `NEXT_PUBLIC_APP_URL` | nein | Öffentliche URL der App |
+| `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` aktiviert Credits, Premium und Stripe (Standard: aus) |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
 | `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 
