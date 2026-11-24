@@ -1,6 +1,6 @@
-import { Bell, CircleUserRound, Compass, CreditCard, FileImage, LayoutDashboard, MessageCircle, Settings, UserRound, type LucideIcon } from "lucide-react";
+import { Bell, CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, UserRound, type LucideIcon } from "lucide-react";
 
-import type { ModelStatus, UserRole } from "@/generated/prisma/enums";
+import type { UserRole } from "@/generated/prisma/enums";
 
 export type NavigationItem = {
   label: string;

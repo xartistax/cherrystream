@@ -3,7 +3,7 @@
 import { upload } from "@vercel/blob/client";
 import { useState } from "react";
 
-import { getMediaKind, MAX_IMAGE_SIZE, MAX_POST_FILES, MAX_VIDEO_SIZE, sanitizeFilename, type UploadMediaKind } from "@/lib/media";
+import { getMediaKind, MAX_IMAGE_SIZE, MAX_POST_FILES, MAX_VIDEO_SIZE, sanitizeFilename } from "@/lib/media";
 import type { CreatePostInput } from "@/lib/validations/post";
 import type { SelectedMediaFile } from "./media-preview";
 import { createVideoThumbnail } from "./create-video-thumbnail";

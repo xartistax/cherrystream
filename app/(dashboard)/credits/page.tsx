@@ -1,4 +1,4 @@
-import { Coins, CreditCard, Wallet } from "lucide-react";
+import { Coins, CreditCard } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { CreditPackages } from "@/components/credits/credit-packages";

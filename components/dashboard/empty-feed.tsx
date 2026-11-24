@@ -1,7 +1,7 @@
 import { Cherry, Compass, UserRoundPlus } from "lucide-react";
 import Link from "next/link";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function EmptyFeed() {

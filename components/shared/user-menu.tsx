@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, CircleUserRound, CreditCard, MessageCircle, Settings, UserRound } from "lucide-react";
+import { Bell, ChevronDown, CircleUserRound, CreditCard, Settings, UserRound } from "lucide-react";
 import Link from "next/link";
 
 import { LogoutMenuItem } from "@/components/shared/logout-button";

@@ -8,7 +8,7 @@ import { ComposerUser } from "@/components/dashboard/create-post/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Images, Pencil, Plus, UserRound } from "lucide-react";
+import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Pencil, Plus, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostGrid } from "@/components/dashboard/posts/post-grid";
 import { getProfileStats } from "@/lib/analytics/get-profile-stats";
