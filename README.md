@@ -12,11 +12,11 @@ Kontaktplattform für professionelle Models in der Schweiz. Vision, Economy und 
 ## Setup
 
 ```bash
-npm install
+pnpm install
 cp .env.example .env   # Werte eintragen
-npx prisma migrate dev
-npm run seed
-npm run dev
+pnpm prisma migrate dev
+pnpm seed
+pnpm dev
 ```
 
 ### Umgebungsvariablen
@@ -35,7 +35,7 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 
 ## Scripts
 
-- `npm run dev` – Entwicklungsserver
-- `npm run build` – Prisma Client generieren und Production Build
-- `npm run lint` – ESLint
-- `npm run seed` – Kantone, Städte, Kategorien und Test-Creator anlegen
+- `pnpm dev` – Entwicklungsserver
+- `pnpm build` – Prisma Client generieren und Production Build
+- `pnpm lint` – ESLint
+- `pnpm seed` – Kantone, Städte, Kategorien und Test-Creator anlegen
