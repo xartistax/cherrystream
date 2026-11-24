@@ -1,6 +1,6 @@
 import "server-only";
 
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import type { ModelStatus, UserRole } from "@/generated/prisma/enums";
 import { auth } from "@/lib/auth";
@@ -103,6 +103,59 @@ export async function requireCreatorPage(options: CreatorAccessOptions = {}) {
 
   if (!access.allowed) {
     redirect(denialRedirects[access.reason]);
+  }
+
+  return access;
+}
+
+export type AdminAccess =
+  | {
+      allowed: true;
+      userId: string;
+    }
+  | {
+      allowed: false;
+      message: string;
+    };
+
+export async function getAdminAccess(): Promise<AdminAccess> {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    return {
+      allowed: false,
+      message: denialMessages.UNAUTHENTICATED,
+    };
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session.user.id,
+    },
+    select: {
+      role: true,
+      status: true,
+    },
+  });
+
+  if (!user || user.status !== "ACTIVE" || user.role !== "ADMIN") {
+    return {
+      allowed: false,
+      message: "Diese Funktion ist nur für Admins verfügbar.",
+    };
+  }
+
+  return {
+    allowed: true,
+    userId: session.user.id,
+  };
+}
+
+export async function requireAdminPage() {
+  const access = await getAdminAccess();
+
+  if (!access.allowed) {
+    notFound();
   }
 
   return access;

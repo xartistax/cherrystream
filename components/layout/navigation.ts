@@ -1,4 +1,4 @@
-import { CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, UserRound, type LucideIcon } from "lucide-react";
+import { CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, ShieldCheck, UserRound, type LucideIcon } from "lucide-react";
 
 import type { UserRole } from "@/generated/prisma/enums";
 import { paymentsEnabled } from "@/lib/features";
@@ -45,6 +45,12 @@ const settingsItem: NavigationItem = {
   icon: Settings,
 };
 
+const adminItem: NavigationItem = {
+  label: "Admin",
+  href: "/admin",
+  icon: ShieldCheck,
+};
+
 export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): NavigationItem[] {
   if (!isCreatorRole(role)) {
     if (isBecomeModelFlow) {
@@ -72,5 +78,6 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
     },
     ...(paymentsEnabled ? [creditsItem] : []),
     settingsItem,
+    ...(role === "ADMIN" ? [adminItem] : []),
   ];
 }

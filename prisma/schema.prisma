@@ -89,6 +89,32 @@ enum ContactChannel {
   EMAIL
 }
 
+enum AdminAction {
+  VERIFICATION_APPROVED
+  VERIFICATION_REJECTED
+  USER_SUSPENDED
+  USER_REACTIVATED
+  POST_HIDDEN
+  POST_RESTORED
+}
+
+/// Who did what in the admin area. Kept when the acting admin is removed.
+model AdminAuditLog {
+  id         String      @id @default(cuid())
+  actorId    String?
+  action     AdminAction
+  targetType String
+  targetId   String
+  metadata   Json?
+  createdAt  DateTime    @default(now())
+
+  actor User? @relation("AdminAuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([targetType, targetId])
+  @@index([actorId, createdAt])
+}
+
 model NotificationSettings {
   userId String @id
 
@@ -140,6 +166,7 @@ model User {
 
   modelVerifications    ModelVerification[] @relation("VerificationSubject")
   reviewedVerifications ModelVerification[] @relation("VerificationReviewer")
+  adminAuditLogs        AdminAuditLog[]     @relation("AdminAuditActor")
 
   @@index([createdAt])
   @@index([status])

@@ -41,3 +41,9 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 - `pnpm build` – Prisma Client generieren und Production Build
 - `pnpm lint` – ESLint
 - `pnpm seed` – Kantone, Städte, Kategorien und Test-Creator anlegen
+- `pnpm make-admin <email> [--revoke]` – Konto zum Admin machen (oder Rechte entziehen)
+
+## Betrieb
+
+- `/admin` – Systemstatus, Verifizierungen, Benutzer, Inhalte und Protokoll (nur Admins)
+- `/api/health` – öffentlicher Health-Check für Uptime-Monitore (`200` oder `503`, ohne Details)
