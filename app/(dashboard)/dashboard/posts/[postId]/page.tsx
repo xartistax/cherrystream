@@ -1,14 +1,14 @@
 import { ArrowLeft, CalendarDays, Coins, ExternalLink, FileImage, Heart, Images, Play, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import { PostMenu } from "@/components/dashboard/posts/post-menu";
 import { VisibilityBadge } from "@/components/dashboard/posts/visibility-badge";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
+import { requireCreatorPage } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { EditPostForm } from "@/components/dashboard/posts/edit-post-form";
@@ -51,18 +51,14 @@ function formatDuration(duration: number | null): string | null {
 }
 
 export default async function StudioPostPage({ params }: StudioPostPageProps) {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
+  const { userId } = await requireCreatorPage();
 
   const { postId } = await params;
 
   const post = await prisma.post.findFirst({
     where: {
       id: postId,
-      authorId: session.user.id,
+      authorId: userId,
       status: {
         not: "DELETED",
       },

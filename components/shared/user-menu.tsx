@@ -1,6 +1,7 @@
-import { Bell, ChevronDown, CircleUserRound, CreditCard, Settings, UserRound } from "lucide-react";
+import { ChevronDown, CircleUserRound } from "lucide-react";
 import Link from "next/link";
 
+import { getNavigationItems } from "@/components/layout/navigation";
 import { LogoutMenuItem } from "@/components/shared/logout-button";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,32 +20,9 @@ type UserMenuProps = {
   role: UserRole;
 };
 
-const menuItems = [
-  {
-    label: "Profil",
-    href: "/profile/edit",
-    icon: UserRound,
-  },
-  {
-    label: "Credits",
-    href: "/credits",
-    icon: CreditCard,
-  },
-
-  {
-    label: "Benachrichtigungen",
-    href: "/notifications",
-    icon: Bell,
-  },
-  {
-    label: "Einstellungen",
-    href: "/settings",
-    icon: Settings,
-  },
-] as const;
-
 export function UserMenu({ username, role }: UserMenuProps) {
-  const isModel = role === "MODEL" || role === "ADMIN";
+  const menuItems = getNavigationItems(role).filter((item) => item.href !== "/dashboard");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -64,7 +42,7 @@ export function UserMenu({ username, role }: UserMenuProps) {
           <DropdownMenuLabel>@{username}</DropdownMenuLabel>
         </DropdownMenuGroup>
 
-        {isModel && (
+        {menuItems.length > 0 && (
           <>
             <DropdownMenuSeparator />
 

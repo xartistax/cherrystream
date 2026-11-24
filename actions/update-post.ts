@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { auth } from "@/lib/auth";
+import { getCreatorAccess } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 
 const updatePostSchema = z
@@ -36,12 +36,12 @@ export type UpdatePostState = {
 };
 
 export async function updatePostAction(_previousState: UpdatePostState, formData: FormData): Promise<UpdatePostState> {
-  const session = await auth();
+  const access = await getCreatorAccess({ requireActive: true });
 
-  if (!session?.user?.id) {
+  if (!access.allowed) {
     return {
       success: false,
-      message: "Du bist nicht angemeldet.",
+      message: access.message,
     };
   }
 
@@ -66,7 +66,7 @@ export async function updatePostAction(_previousState: UpdatePostState, formData
     const post = await prisma.post.findFirst({
       where: {
         id: postId,
-        authorId: session.user.id,
+        authorId: access.userId,
         status: {
           not: "DELETED",
         },

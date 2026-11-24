@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
+import { requireCreatorPage } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import { CreatePostComposer } from "@/components/dashboard/create-post/composer";
 import { ComposerUser } from "@/components/dashboard/create-post/types";
@@ -16,20 +16,12 @@ import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metri
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
 
 export default async function FeedPage() {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
-
-  if (session.user.role !== "MODEL" && session.user.role !== "ADMIN") {
-    redirect("/become-model");
-  }
+  const { userId } = await requireCreatorPage();
 
   const [currentUser, posts, profileStats] = await Promise.all([
     prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: userId,
       },
       select: {
         id: true,
@@ -46,7 +38,7 @@ export default async function FeedPage() {
 
     prisma.post.findMany({
       where: {
-        authorId: session.user.id,
+        authorId: userId,
         status: "PUBLISHED",
       },
       select: {
@@ -83,7 +75,7 @@ export default async function FeedPage() {
       take: 20,
     }),
 
-    getProfileStats(session.user.id),
+    getProfileStats(userId),
   ]);
 
   if (!currentUser) {

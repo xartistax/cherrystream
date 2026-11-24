@@ -4,7 +4,7 @@ import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { auth } from "@/lib/auth";
+import { getCreatorAccess } from "@/lib/access";
 import { ALLOWED_IMAGE_TYPES, ALLOWED_VIDEO_TYPES, MAX_IMAGE_SIZE, MAX_VIDEO_SIZE } from "@/lib/media";
 
 const clientPayloadSchema = z.object({
@@ -37,13 +37,13 @@ export async function POST(request: Request): Promise<NextResponse> {
       token: getBlobToken(),
 
       onBeforeGenerateToken: async (pathname, clientPayload) => {
-        const session = await auth();
+        const access = await getCreatorAccess({ requireActive: true });
 
-        if (!session?.user?.id) {
-          throw new Error("Nicht autorisiert.");
+        if (!access.allowed) {
+          throw new Error(access.message);
         }
 
-        if (!pathname.startsWith(`posts/${session.user.id}/`)) {
+        if (!pathname.startsWith(`posts/${access.userId}/`)) {
           throw new Error("Ungültiger Upload-Pfad.");
         }
 
@@ -68,7 +68,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           maximumSizeInBytes: isImage ? MAX_IMAGE_SIZE : MAX_VIDEO_SIZE,
           addRandomSuffix: true,
           tokenPayload: JSON.stringify({
-            userId: session.user.id,
+            userId: access.userId,
             kind: parsedPayload.data.kind,
           }),
         };

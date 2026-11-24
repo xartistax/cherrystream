@@ -15,11 +15,16 @@ const initialState: ActionState = {
   success: false,
 };
 
-export function LoginForm() {
+type LoginFormProps = {
+  callbackUrl?: string;
+};
+
+export function LoginForm({ callbackUrl }: LoginFormProps) {
   const [state, action] = useActionState(loginAction, initialState);
 
   return (
     <form action={action} className="space-y-5">
+      {callbackUrl ? <input type="hidden" name="callbackUrl" value={callbackUrl} /> : null}
       {state.message ? (
         <Alert variant="destructive">
           <AlertDescription>{state.message}</AlertDescription>

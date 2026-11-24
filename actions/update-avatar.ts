@@ -4,7 +4,7 @@ import { del, put } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { auth } from "@/lib/auth";
+import { getCreatorAccess } from "@/lib/access";
 import { getBlobToken } from "@/lib/blob";
 import { MAX_IMAGE_SIZE } from "@/lib/media";
 import { processImage } from "@/lib/media/image";
@@ -50,12 +50,12 @@ async function downloadImage(url: string): Promise<Buffer> {
 }
 
 export async function updateAvatarAction(input: unknown): Promise<UpdateAvatarResult> {
-  const session = await auth();
+  const access = await getCreatorAccess();
 
-  if (!session?.user?.id) {
+  if (!access.allowed) {
     return {
       success: false,
-      message: "Du bist nicht angemeldet.",
+      message: access.message,
     };
   }
 
@@ -68,7 +68,7 @@ export async function updateAvatarAction(input: unknown): Promise<UpdateAvatarRe
     };
   }
 
-  const userId = session.user.id;
+  const userId = access.userId;
   const expectedPrefix = `profiles/${userId}/raw/`;
 
   if (!parsedInput.data.pathname.startsWith(expectedPrefix)) {

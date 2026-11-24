@@ -6,7 +6,7 @@ import { PostGrid } from "@/components/dashboard/posts/post-grid";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { auth } from "@/lib/auth";
+import { requireCreatorPage } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
@@ -41,11 +41,7 @@ export const metadata = {
 };
 
 export default async function StudioPostsPage({ searchParams }: StudioPostsPageProps) {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
+  const { userId } = await requireCreatorPage();
 
   const params = await searchParams;
 
@@ -56,7 +52,7 @@ export default async function StudioPostsPage({ searchParams }: StudioPostsPageP
   const [currentUser, posts, totalCount] = await Promise.all([
     prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: userId,
       },
       select: {
         username: true,
@@ -65,7 +61,7 @@ export default async function StudioPostsPage({ searchParams }: StudioPostsPageP
 
     prisma.post.findMany({
       where: {
-        authorId: session.user.id,
+        authorId: userId,
         status: {
           not: "DELETED",
         },
@@ -118,7 +114,7 @@ export default async function StudioPostsPage({ searchParams }: StudioPostsPageP
 
     prisma.post.count({
       where: {
-        authorId: session.user.id,
+        authorId: userId,
         status: {
           not: "DELETED",
         },

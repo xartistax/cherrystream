@@ -3,6 +3,7 @@
 import { AuthError } from "next-auth";
 
 import { signIn } from "@/lib/auth";
+import { getSafeRedirectPath } from "@/lib/safe-redirect";
 import { loginSchema } from "@/lib/validations/auth";
 import type { ActionState } from "@/types/action-state";
 
@@ -23,7 +24,7 @@ export async function loginAction(_previousState: ActionState, formData: FormDat
     await signIn("credentials", {
       email: parsedData.data.email,
       password: parsedData.data.password,
-      redirectTo: "/explore",
+      redirectTo: getSafeRedirectPath(formData.get("callbackUrl"), "/explore"),
     });
 
     return {

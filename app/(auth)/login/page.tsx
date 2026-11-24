@@ -1,23 +1,26 @@
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth";
+import { getSafeRedirectPath } from "@/lib/safe-redirect";
 import { LoginForm } from "@/components/auth/login-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 type LoginPageProps = {
   searchParams: Promise<{
     registered?: string;
+    callbackUrl?: string;
   }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const session = await auth();
+  const params = await searchParams;
+  const callbackUrl = getSafeRedirectPath(params.callbackUrl, "");
 
   if (session?.user) {
-    redirect("/dashboard");
+    redirect(callbackUrl || "/dashboard");
   }
 
-  const params = await searchParams;
   const registrationSuccessful = params.registered === "1";
 
   return (
@@ -35,7 +38,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </div>
         ) : null}
 
-        <LoginForm />
+        <LoginForm callbackUrl={callbackUrl || undefined} />
       </CardContent>
     </Card>
   );

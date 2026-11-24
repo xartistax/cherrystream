@@ -1,4 +1,4 @@
-import { Bell, CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, UserRound, type LucideIcon } from "lucide-react";
+import { CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, UserRound, type LucideIcon } from "lucide-react";
 
 import type { UserRole } from "@/generated/prisma/enums";
 
@@ -8,8 +8,12 @@ export type NavigationItem = {
   icon: LucideIcon;
 };
 
+export function isCreatorRole(role: UserRole) {
+  return role === "MODEL" || role === "ADMIN";
+}
+
 export function getDashboardButton(role: UserRole) {
-  if (role === "USER") {
+  if (!isCreatorRole(role)) {
     return {
       label: "Mitglied werden",
       href: "/become-model",
@@ -22,32 +26,39 @@ export function getDashboardButton(role: UserRole) {
   };
 }
 
+const becomeModelItem: NavigationItem = {
+  label: "Mitglied werden",
+  href: "/become-model",
+  icon: CircleUserRound,
+};
+
+const creditsItem: NavigationItem = {
+  label: "Credits",
+  href: "/credits",
+  icon: CreditCard,
+};
+
+const settingsItem: NavigationItem = {
+  label: "Einstellungen",
+  href: "/settings",
+  icon: Settings,
+};
+
 export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): NavigationItem[] {
-  if (isBecomeModelFlow && role === "USER") {
-    return [
-      {
-        label: "Mitglied werden",
-        href: "/become-model",
-        icon: CircleUserRound,
-      },
-    ];
+  if (!isCreatorRole(role)) {
+    if (isBecomeModelFlow) {
+      return [becomeModelItem];
+    }
+
+    return [becomeModelItem, creditsItem, settingsItem];
   }
-  const roleItem: NavigationItem =
-    role === "MODEL" || role === "ADMIN"
-      ? {
-          label: "Dashboard",
-          href: "/dashboard",
-          icon: LayoutDashboard,
-        }
-      : {
-          label: "Mitglied werden",
-          href: "/become-model",
-          icon: CircleUserRound,
-        };
 
   return [
-    roleItem,
-
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
     {
       label: "Inhalte",
       href: "/dashboard/posts",
@@ -58,21 +69,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       href: "/profile/edit",
       icon: UserRound,
     },
-    {
-      label: "Credits",
-      href: "/credits",
-      icon: CreditCard,
-    },
-
-    {
-      label: "Benachrichtigungen",
-      href: "/notifications",
-      icon: Bell,
-    },
-    {
-      label: "Einstellungen",
-      href: "/settings",
-      icon: Settings,
-    },
+    creditsItem,
+    settingsItem,
   ];
 }
