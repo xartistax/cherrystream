@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import { getAdminAccess } from "@/lib/access";
 import { logAdminAction } from "@/lib/admin/audit";
+import { grantStarterCreditsInTx } from "@/lib/boosts/grant-starter-credits";
 import { sendEmail } from "@/lib/email/send";
 import { getAppUrl, verificationApprovedEmail, verificationRejectedEmail } from "@/lib/email/templates";
 import { prisma } from "@/lib/prisma";
@@ -118,14 +119,18 @@ export async function reviewVerificationAction(_previousState: ReviewVerificatio
           },
         });
 
+        // Approval counts as the first bump, so every new profile starts at the top of the listing once.
         await transaction.profile.updateMany({
           where: {
             userId: verification.userId,
           },
           data: {
             verified: true,
+            bumpedAt: new Date(),
           },
         });
+
+        await grantStarterCreditsInTx(transaction, verification.userId);
       }
 
       await logAdminAction(transaction, {

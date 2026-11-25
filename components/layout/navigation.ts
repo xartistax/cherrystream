@@ -9,6 +9,7 @@ import {
   Images,
   LayoutDashboard,
   MailPlus,
+  Rocket,
   Settings,
   UserRound,
   UsersRound,
@@ -148,11 +149,15 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       icon: Images,
     },
     {
+      label: "Sichtbarkeit",
+      href: "/dashboard/visibility",
+      icon: Rocket,
+    },
+    {
       label: "Profil",
       href: "/profile/edit",
       icon: UserRound,
     },
-    ...(paymentsEnabled ? [creditsItem] : []),
     settingsItem,
   ];
 }

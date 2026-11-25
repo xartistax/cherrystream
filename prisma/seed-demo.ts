@@ -10,6 +10,7 @@ import sharp from "sharp";
 
 import type { ContactChannel, ModelStatus, UserRole } from "@/generated/prisma/enums";
 import { syncProfileImage } from "@/lib/gallery/profile-image";
+import { createWalletTransaction } from "@/lib/wallet/create-transaction";
 import { createInviteToken, getInviteExpiry, getInviteUrl } from "@/lib/invites/token";
 import { processImage } from "@/lib/media/image";
 import { storeProcessedImage } from "@/lib/media/process-uploaded-image";
@@ -21,9 +22,9 @@ import { demoCreators, type CreatorSeed } from "./seed/creators";
 
 /**
  * Demo data for local testing: demo models (with photos from prisma/seed/images), fixed test logins
- * and sample entries for the admin queues. Idempotent; refuses to run in production.
+ * and sample entries for the admin queues. Idempotent. Production only with --production and an own SEED_PASSWORD.
  *
- * Usage: pnpm seed:demo [--yes]
+ * Usage: pnpm seed:demo [--yes] [--production]
  */
 
 const IMAGES_DIR = path.join(process.cwd(), "prisma", "seed", "images");
@@ -115,8 +116,18 @@ function normalize(value: string): string {
 }
 
 async function confirmTarget(): Promise<void> {
-  if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
-    throw new Error("Die Demo-Seed läuft nicht in Production.");
+  const isProduction = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+
+  // Production only on purpose (e.g. a demo for partners) and never with the default password from this file,
+  // because the demo accounts include an admin.
+  if (isProduction) {
+    if (!process.argv.includes("--production")) {
+      throw new Error("Production erkannt. Nur mit --production und eigenem SEED_PASSWORD erlaubt.");
+    }
+
+    if (!process.env.SEED_PASSWORD || process.env.SEED_PASSWORD.length < 16) {
+      throw new Error("In Production braucht die Demo-Seed ein eigenes SEED_PASSWORD mit mindestens 16 Zeichen.");
+    }
   }
 
   const databaseUrl = process.env.DATABASE_URL;
@@ -497,6 +508,33 @@ async function seedReports(userIds: Map<string, string>): Promise<number> {
   return created;
 }
 
+/**
+ * Gives active models a place in the default listing (staggered, so the order is stable) and the
+ * active test model credits to try boosts. Existing bump times are kept, so a re-run does not reshuffle.
+ */
+async function seedBoosts(userIds: Map<string, string>, activeUsernames: string[]): Promise<void> {
+  for (const [index, username] of activeUsernames.entries()) {
+    await prisma.profile.updateMany({
+      where: {
+        userId: userIds.get(username)!,
+        bumpedAt: null,
+      },
+      data: {
+        bumpedAt: new Date(Date.now() - index * 37 * 60 * 1000),
+      },
+    });
+  }
+
+  await createWalletTransaction({
+    userId: userIds.get("model_demo")!,
+    type: "ADJUSTMENT",
+    balanceType: "USER_CREDITS",
+    amount: 300,
+    idempotencyKey: "seed:model_demo:boost-credits",
+    description: "Demo-Guthaben zum Testen der Boosts",
+  });
+}
+
 async function main(): Promise<void> {
   await confirmTarget();
 
@@ -520,6 +558,9 @@ async function main(): Promise<void> {
   }
 
   console.log(`  ✓ ${testAccounts.length} Test-Logins, ${demoCreators.length} Demo-Models`);
+
+  await seedBoosts(userIds, ["model_demo", ...demoCreators.map((creator) => creator.username)]);
+  console.log("  ✓ Listenplätze und 300 Demo-Credits für @model_demo");
 
   console.log("Fotos …");
 

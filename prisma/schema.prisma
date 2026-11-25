@@ -20,6 +20,7 @@ enum WalletTransactionType {
   TIP_SENT
   TIP_RECEIVED
   BOOST_PURCHASE
+  STARTER_CREDIT
   EARNINGS_CONVERSION
   PAYOUT
   ADJUSTMENT
@@ -103,6 +104,7 @@ enum AdminAction {
   IMPERSONATION_STOPPED
   REPORT_RESOLVED
   REPORT_DISMISSED
+  CREDITS_ADJUSTED
 }
 
 enum ReportReason {
@@ -201,6 +203,7 @@ model User {
   reportsReceived       Report[]            @relation("ReportedUser")
   reportsFiled          Report[]            @relation("ReportFiler")
   reportsResolved       Report[]            @relation("ReportResolver")
+  boosts                Boost[]
 
   @@index([createdAt])
   @@index([status])
@@ -242,6 +245,11 @@ model Profile {
 
   verified Boolean @default(false)
 
+  /// Last time the profile was pushed to the top of the default listing (manual bump, auto bump or approval).
+  bumpedAt       DateTime?
+  /// Highlight boost (frame and "Top" badge) is active while this lies in the future.
+  highlightUntil DateTime?
+
   /// Image chosen as profile picture. When unset or deleted, the first uploaded image is used (see lib/gallery/profile-image.ts).
   avatarMediaId String?    @unique
   avatarMedia   PostMedia? @relation("ProfileAvatar", fields: [avatarMediaId], references: [id], onDelete: SetNull)
@@ -262,6 +270,7 @@ model Profile {
   @@index([cantonId])
   @@index([cityId])
   @@index([isPublic])
+  @@index([bumpedAt(sort: Desc)])
 }
 
 model Account {
@@ -672,10 +681,42 @@ model WalletTransaction {
 
   wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
 
+  boost         Boost?
   buyerUnlock   PostUnlock? @relation("PostUnlockBuyerTransaction")
   creatorUnlock PostUnlock? @relation("PostUnlockCreatorTransaction")
 
   @@index([walletId, createdAt])
   @@index([type, createdAt])
   @@index([referenceId])
+}
+
+enum BoostType {
+  BUMP
+  AUTO_BUMP
+  HIGHLIGHT
+}
+
+/// Every boost a model bought. Profile.bumpedAt and Profile.highlightUntil hold the effect; this is the history.
+model Boost {
+  id     String    @id @default(cuid())
+  userId String
+  type   BoostType
+  /// Catalog entry from lib/economy.ts, e.g. "auto_bump_7d".
+  option String
+
+  startsAt        DateTime
+  endsAt          DateTime
+  /// Auto bumps only: minutes between two bumps.
+  intervalMinutes Int?
+
+  credits       Int
+  transactionId String? @unique
+
+  createdAt DateTime @default(now())
+
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transaction WalletTransaction? @relation(fields: [transactionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([type, endsAt])
 }
