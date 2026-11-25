@@ -40,3 +40,8 @@ next-env.d.ts
 .env.local
 .env*
 !.env.example
+
+# Demo-Seed-Bilder (nur lokal)
+/prisma/seed/images/*
+!/prisma/seed/images/README.md
+!/prisma/seed/images/.gitkeep

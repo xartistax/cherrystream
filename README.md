@@ -16,6 +16,7 @@ pnpm install
 cp .env.example .env   # Werte eintragen
 pnpm prisma migrate dev
 pnpm seed
+pnpm seed:demo   # optional, Demo-Daten (siehe unten)
 pnpm dev
 ```
 
@@ -41,7 +42,8 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 - `pnpm dev` – Entwicklungsserver
 - `pnpm build` – Prisma Client generieren und Production Build
 - `pnpm lint` – ESLint
-- `pnpm seed` – Kantone, Städte, Kategorien und Test-Creator anlegen
+- `pnpm seed` – Stammdaten: Kategorien, alle 26 Kantone und ihre wichtigsten Städte (sicher für Production)
+- `pnpm seed:demo [--yes]` – Demo-Daten für lokale Tests: 16 Demo-Models mit Fotos aus `prisma/seed/images/`, Test-Logins (Admin, Model, Model in Prüfung, User) sowie eine offene Verifizierung, eine Einladung und Beispiel-Meldungen. Fragt vor dem Schreiben nach und verweigert Production.
 - `pnpm make-admin <email> [--revoke]` – Konto zum Admin machen (oder Rechte entziehen)
 
 ## Betrieb

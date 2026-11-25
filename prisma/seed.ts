@@ -1,8 +1,4 @@
-import { config } from "dotenv";
-
-config({
-  path: ".env.local",
-});
+import "./seed/env";
 
 import { PrismaNeon } from "@prisma/adapter-neon";
 
