@@ -19,8 +19,6 @@ export async function completeModelOnboardingAction() {
       id: session.user.id,
     },
     select: {
-      username: true,
-
       profile: {
         select: {
           displayName: true,
@@ -80,14 +78,13 @@ export async function completeModelOnboardingAction() {
     data: {
       role: UserRole.MODEL,
 
-      modelStatus: ModelStatus.ACTIVE,
+      // The public profile stays hidden until an admin approves the verification.
+      modelStatus: ModelStatus.PENDING,
     },
   });
 
   revalidatePath("/dashboard");
   revalidatePath("/become-model");
-  revalidatePath(`/profile/${user.username}`);
-  revalidatePath("/");
 
-  redirect("/dashboard");
+  redirect("/dashboard/verification");
 }

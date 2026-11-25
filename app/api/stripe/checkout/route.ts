@@ -2,11 +2,16 @@ import { NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { calculateCreditPackageTotal, getCreditPackage } from "@/lib/economy";
-import { stripe } from "@/lib/stripe";
+import { paymentsEnabled } from "@/lib/features";
+import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
+  if (!paymentsEnabled) {
+    return new Response(null, { status: 404 });
+  }
+
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -42,7 +47,7 @@ export async function POST(request: Request) {
   try {
     const totalCredits = calculateCreditPackageTotal(creditPackage.paidCredits, creditPackage.bonusCredits);
 
-    const checkoutSession = await stripe.checkout.sessions.create({
+    const checkoutSession = await getStripe().checkout.sessions.create({
       mode: "payment",
       client_reference_id: session.user.id,
       success_url: `${appUrl}/credits?checkout=success&session_id={CHECKOUT_SESSION_ID}`,

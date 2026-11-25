@@ -15,11 +15,16 @@ const initialState: ActionState = {
   success: false,
 };
 
-export function LoginForm() {
+type LoginFormProps = {
+  callbackUrl?: string;
+};
+
+export function LoginForm({ callbackUrl }: LoginFormProps) {
   const [state, action] = useActionState(loginAction, initialState);
 
   return (
     <form action={action} className="space-y-5">
+      {callbackUrl ? <input type="hidden" name="callbackUrl" value={callbackUrl} /> : null}
       {state.message ? (
         <Alert variant="destructive">
           <AlertDescription>{state.message}</AlertDescription>
@@ -33,7 +38,13 @@ export function LoginForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Passwort</Label>
+        <div className="flex items-center justify-between gap-4">
+          <Label htmlFor="password">Passwort</Label>
+
+          <Link href="/forgot-password" className="text-xs text-zinc-400 hover:text-rose-300">
+            Passwort vergessen?
+          </Link>
+        </div>
         <Input id="password" name="password" type="password" autoComplete="current-password" required />
         <FieldError errors={state.errors?.password} />
       </div>
@@ -42,7 +53,7 @@ export function LoginForm() {
 
       <p className="text-center text-sm text-zinc-400">
         Noch kein Konto?{" "}
-        <Link href="/register" className="font-medium text-rose-400 hover:text-rose-300">
+        <Link href={callbackUrl ? `/register?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/register"} className="font-medium text-rose-400 hover:text-rose-300">
           Jetzt registrieren
         </Link>
       </p>

@@ -111,7 +111,7 @@ export default async function BecomeModelFinishPage() {
           <CardTitle className="mt-4 text-3xl font-black tracking-tight">Dein Model-Profil ist vorbereitet</CardTitle>
 
           <CardDescription className="max-w-lg text-base leading-7 text-zinc-400">
-            Überprüfe deine Angaben und schalte anschließend dein Dashboard frei.
+            Überprüfe deine Angaben. Im nächsten Schritt verifizierst du dein Alter, danach geben wir dein Profil frei.
           </CardDescription>
         </CardHeader>
 
@@ -179,7 +179,7 @@ export default async function BecomeModelFinishPage() {
           <form action={completeModelOnboardingAction}>
             <button type="submit" className={cn(buttonVariants(), "w-full bg-rose-600 text-white hover:bg-rose-500")}>
               <Rocket className="size-4" />
-              Dashboard freischalten
+              Weiter zur Verifizierung
             </button>
           </form>
 

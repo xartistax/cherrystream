@@ -1,6 +1,22 @@
-import { Bell, CircleUserRound, Compass, CreditCard, FileImage, LayoutDashboard, MessageCircle, Settings, UserRound, type LucideIcon } from "lucide-react";
+import {
+  Activity,
+  BadgeCheck,
+  CircleUserRound,
+  CreditCard,
+  FileImage,
+  Flag,
+  History,
+  Images,
+  LayoutDashboard,
+  MailPlus,
+  Settings,
+  UserRound,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react";
 
-import type { ModelStatus, UserRole } from "@/generated/prisma/enums";
+import type { UserRole } from "@/generated/prisma/enums";
+import { paymentsEnabled } from "@/lib/features";
 
 export type NavigationItem = {
   label: string;
@@ -8,8 +24,20 @@ export type NavigationItem = {
   icon: LucideIcon;
 };
 
+/** Models are the only creators; admins act as a model only via impersonation. */
+export function isCreatorRole(role: UserRole) {
+  return role === "MODEL";
+}
+
 export function getDashboardButton(role: UserRole) {
-  if (role === "USER") {
+  if (role === "ADMIN") {
+    return {
+      label: "Admin",
+      href: "/admin",
+    };
+  }
+
+  if (!isCreatorRole(role)) {
     return {
       label: "Mitglied werden",
       href: "/become-model",
@@ -22,32 +50,92 @@ export function getDashboardButton(role: UserRole) {
   };
 }
 
-export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): NavigationItem[] {
-  if (isBecomeModelFlow && role === "USER") {
-    return [
-      {
-        label: "Mitglied werden",
-        href: "/become-model",
-        icon: CircleUserRound,
-      },
-    ];
+const becomeModelItem: NavigationItem = {
+  label: "Mitglied werden",
+  href: "/become-model",
+  icon: CircleUserRound,
+};
+
+const creditsItem: NavigationItem = {
+  label: "Credits",
+  href: "/credits",
+  icon: CreditCard,
+};
+
+const settingsItem: NavigationItem = {
+  label: "Einstellungen",
+  href: "/settings",
+  icon: Settings,
+};
+
+export const adminNavigationItems: NavigationItem[] = [
+  {
+    label: "Status",
+    href: "/admin",
+    icon: Activity,
+  },
+  {
+    label: "Verifizierungen",
+    href: "/admin/verifications",
+    icon: BadgeCheck,
+  },
+  {
+    label: "Meldungen",
+    href: "/admin/reports",
+    icon: Flag,
+  },
+  {
+    label: "Einladungen",
+    href: "/admin/invites",
+    icon: MailPlus,
+  },
+  {
+    label: "Benutzer",
+    href: "/admin/users",
+    icon: UsersRound,
+  },
+  {
+    label: "Inhalte",
+    href: "/admin/posts",
+    icon: Images,
+  },
+  {
+    label: "Protokoll",
+    href: "/admin/audit",
+    icon: History,
+  },
+];
+
+/** Only active on an exact match, because other navigation items live below these paths. */
+const exactMatchPaths = new Set(["/dashboard", "/admin"]);
+
+export function isNavigationItemActive(href: string, pathname: string): boolean {
+  if (exactMatchPaths.has(href)) {
+    return pathname === href;
   }
-  const roleItem: NavigationItem =
-    role === "MODEL" || role === "ADMIN"
-      ? {
-          label: "Dashboard",
-          href: "/dashboard",
-          icon: LayoutDashboard,
-        }
-      : {
-          label: "Mitglied werden",
-          href: "/become-model",
-          icon: CircleUserRound,
-        };
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): NavigationItem[] {
+  if (role === "ADMIN") {
+    return [...adminNavigationItems, settingsItem];
+  }
+
+  if (!isCreatorRole(role)) {
+    if (isBecomeModelFlow) {
+      return [becomeModelItem];
+    }
+
+    return [becomeModelItem, ...(paymentsEnabled ? [creditsItem] : []), settingsItem];
+  }
 
   return [
-    roleItem,
-
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
     {
       label: "Inhalte",
       href: "/dashboard/posts",
@@ -58,21 +146,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       href: "/profile/edit",
       icon: UserRound,
     },
-    {
-      label: "Credits",
-      href: "/credits",
-      icon: CreditCard,
-    },
-
-    {
-      label: "Benachrichtigungen",
-      href: "/notifications",
-      icon: Bell,
-    },
-    {
-      label: "Einstellungen",
-      href: "/settings",
-      icon: Settings,
-    },
+    ...(paymentsEnabled ? [creditsItem] : []),
+    settingsItem,
   ];
 }

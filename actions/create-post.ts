@@ -3,8 +3,9 @@
 import { del } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 
+import { getCreatorAccess } from "@/lib/access";
 import { getBlobToken } from "@/lib/blob";
-import { auth } from "@/lib/auth";
+import { paymentsEnabled } from "@/lib/features";
 import { preparePostMedia } from "@/lib/media/prepare-post-media";
 import { prisma } from "@/lib/prisma";
 import { createPostSchema, type CreatePostInput } from "@/lib/validations/post";
@@ -15,12 +16,12 @@ export type CreatePostResult = {
 };
 
 export async function createPostAction(input: CreatePostInput): Promise<CreatePostResult> {
-  const session = await auth();
+  const access = await getCreatorAccess({ requireActive: true });
 
-  if (!session?.user?.id) {
+  if (!access.allowed) {
     return {
       success: false,
-      message: "Du bist nicht angemeldet.",
+      message: access.message,
     };
   }
 
@@ -33,7 +34,14 @@ export async function createPostAction(input: CreatePostInput): Promise<CreatePo
     };
   }
 
-  const userId = session.user.id;
+  if (!paymentsEnabled && parsedInput.data.visibility === "PREMIUM") {
+    return {
+      success: false,
+      message: "Premium-Inhalte sind noch nicht verfügbar.",
+    };
+  }
+
+  const userId = access.userId;
 
   try {
     const prepared = await preparePostMedia(parsedInput.data.media, userId);

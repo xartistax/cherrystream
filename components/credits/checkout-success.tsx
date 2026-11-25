@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import router, { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type CheckoutStatus =
   | {

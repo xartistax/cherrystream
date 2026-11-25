@@ -6,7 +6,7 @@ import { ProfileForm } from "@/components/profile/profile-form";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
+import { requireCreatorPage } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
@@ -15,16 +15,12 @@ export const metadata = {
 };
 
 export default async function EditProfilePage() {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
+  const { userId } = await requireCreatorPage();
 
   const [user, categories, cantonOptions, cityOptions] = await Promise.all([
     prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: userId,
       },
       select: {
         id: true,

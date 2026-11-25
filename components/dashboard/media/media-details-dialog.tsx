@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import type { StudioMediaCardData } from "@/components/dashboard/media/media-card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type MediaDetailsDialogProps = {

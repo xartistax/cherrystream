@@ -12,7 +12,7 @@ export async function updateProfileVisibility(formData: FormData) {
     throw new Error("Nicht autorisiert.");
   }
 
-  if (session.user.role !== "MODEL" && session.user.role !== "ADMIN") {
+  if (session.user.role !== "MODEL") {
     throw new Error("Kein öffentliches Profil vorhanden.");
   }
 

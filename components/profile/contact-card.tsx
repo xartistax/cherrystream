@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Globe2, Mail, MessageCircle, Phone, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

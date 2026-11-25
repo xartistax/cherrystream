@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
-import { getDashboardButton } from "@/components/layout/navigation";
 import { auth } from "@/lib/auth";
 
 export const revalidate = 60;

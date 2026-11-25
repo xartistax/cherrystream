@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { UserRole } from "@/generated/prisma/enums";
-import { getNavigationItems } from "./navigation";
+import { getNavigationItems, isNavigationItemActive } from "./navigation";
 
 type MobileNavProps = {
   role: UserRole;
@@ -20,7 +20,7 @@ export function MobileNav({ role }: MobileNavProps) {
       <div className="mx-auto grid max-w-lg grid-cols-5">
         {mobileItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const isActive = isNavigationItemActive(item.href, pathname);
 
           return (
             <Link

@@ -8,9 +8,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import type { ActionState } from "@/types/action-state";
-import { profile } from "console";
 import { ProfileDescriptionEditor } from "../editor/rich-text-editor";
 
 type ModelProfileFormProps = {

@@ -2,7 +2,7 @@ import "server-only";
 
 import { execa } from "execa";
 
-import { ffprobePath } from "@/lib/media/video/ffmpeg";
+import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import type { VideoMetadata } from "@/lib/media/video/types";
 
 type ProbeOutput = {
@@ -18,6 +18,7 @@ type ProbeOutput = {
 };
 
 export async function readVideoMetadata(inputPath: string): Promise<VideoMetadata> {
+  const { ffprobePath } = await getFfmpegBinaries();
   const { stdout } = await execa(ffprobePath, ["-v", "error", "-print_format", "json", "-show_streams", "-show_format", inputPath]);
 
   const parsed = JSON.parse(stdout) as ProbeOutput;

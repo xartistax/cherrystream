@@ -13,5 +13,215 @@
     "name": "Uster",
     "slug": "uster",
     "canton": "zh"
+  },
+  {
+    "name": "Bern",
+    "slug": "bern",
+    "canton": "be"
+  },
+  {
+    "name": "Biel/Bienne",
+    "slug": "biel",
+    "canton": "be"
+  },
+  {
+    "name": "Thun",
+    "slug": "thun",
+    "canton": "be"
+  },
+  {
+    "name": "Luzern",
+    "slug": "luzern",
+    "canton": "lu"
+  },
+  {
+    "name": "Kriens",
+    "slug": "kriens",
+    "canton": "lu"
+  },
+  {
+    "name": "Altdorf",
+    "slug": "altdorf",
+    "canton": "ur"
+  },
+  {
+    "name": "Schwyz",
+    "slug": "schwyz",
+    "canton": "sz"
+  },
+  {
+    "name": "Sarnen",
+    "slug": "sarnen",
+    "canton": "ow"
+  },
+  {
+    "name": "Stans",
+    "slug": "stans",
+    "canton": "nw"
+  },
+  {
+    "name": "Glarus",
+    "slug": "glarus",
+    "canton": "gl"
+  },
+  {
+    "name": "Zug",
+    "slug": "zug",
+    "canton": "zg"
+  },
+  {
+    "name": "Baar",
+    "slug": "baar",
+    "canton": "zg"
+  },
+  {
+    "name": "Fribourg",
+    "slug": "fribourg",
+    "canton": "fr"
+  },
+  {
+    "name": "Bulle",
+    "slug": "bulle",
+    "canton": "fr"
+  },
+  {
+    "name": "Solothurn",
+    "slug": "solothurn",
+    "canton": "so"
+  },
+  {
+    "name": "Olten",
+    "slug": "olten",
+    "canton": "so"
+  },
+  {
+    "name": "Basel",
+    "slug": "basel",
+    "canton": "bs"
+  },
+  {
+    "name": "Liestal",
+    "slug": "liestal",
+    "canton": "bl"
+  },
+  {
+    "name": "Allschwil",
+    "slug": "allschwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Schaffhausen",
+    "slug": "schaffhausen",
+    "canton": "sh"
+  },
+  {
+    "name": "Herisau",
+    "slug": "herisau",
+    "canton": "ar"
+  },
+  {
+    "name": "Appenzell",
+    "slug": "appenzell",
+    "canton": "ai"
+  },
+  {
+    "name": "St. Gallen",
+    "slug": "st-gallen",
+    "canton": "sg"
+  },
+  {
+    "name": "Rapperswil-Jona",
+    "slug": "rapperswil-jona",
+    "canton": "sg"
+  },
+  {
+    "name": "Chur",
+    "slug": "chur",
+    "canton": "gr"
+  },
+  {
+    "name": "Davos",
+    "slug": "davos",
+    "canton": "gr"
+  },
+  {
+    "name": "Aarau",
+    "slug": "aarau",
+    "canton": "ag"
+  },
+  {
+    "name": "Baden",
+    "slug": "baden",
+    "canton": "ag"
+  },
+  {
+    "name": "Frauenfeld",
+    "slug": "frauenfeld",
+    "canton": "tg"
+  },
+  {
+    "name": "Kreuzlingen",
+    "slug": "kreuzlingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Lugano",
+    "slug": "lugano",
+    "canton": "ti"
+  },
+  {
+    "name": "Bellinzona",
+    "slug": "bellinzona",
+    "canton": "ti"
+  },
+  {
+    "name": "Locarno",
+    "slug": "locarno",
+    "canton": "ti"
+  },
+  {
+    "name": "Lausanne",
+    "slug": "lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Montreux",
+    "slug": "montreux",
+    "canton": "vd"
+  },
+  {
+    "name": "Yverdon-les-Bains",
+    "slug": "yverdon-les-bains",
+    "canton": "vd"
+  },
+  {
+    "name": "Sion",
+    "slug": "sion",
+    "canton": "vs"
+  },
+  {
+    "name": "Brig-Glis",
+    "slug": "brig-glis",
+    "canton": "vs"
+  },
+  {
+    "name": "Neuchâtel",
+    "slug": "neuchatel",
+    "canton": "ne"
+  },
+  {
+    "name": "La Chaux-de-Fonds",
+    "slug": "la-chaux-de-fonds",
+    "canton": "ne"
+  },
+  {
+    "name": "Genève",
+    "slug": "geneve",
+    "canton": "ge"
+  },
+  {
+    "name": "Delémont",
+    "slug": "delemont",
+    "canton": "ju"
   }
 ]

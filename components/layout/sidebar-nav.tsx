@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { getNavigationItems } from "@/components/layout/navigation";
+import { getNavigationItems, isNavigationItemActive } from "@/components/layout/navigation";
 import { cn } from "@/lib/utils";
 import { UserRole } from "@/generated/prisma/enums";
 
@@ -21,7 +21,7 @@ export function SidebarNav({ role }: SidebarNavProps) {
       {navigationItems.map((item) => {
         const Icon = item.icon;
 
-        const isActive = item.href === "/dashboard" ? pathname === "/dashboard" : pathname === item.href || pathname.startsWith(`${item.href}/`);
+        const isActive = isNavigationItemActive(item.href, pathname);
 
         return (
           <Link

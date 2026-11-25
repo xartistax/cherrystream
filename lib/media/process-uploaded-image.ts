@@ -5,6 +5,7 @@ import { del, put } from "@vercel/blob";
 import { getBlobToken } from "@/lib/blob";
 import { MAX_IMAGE_SIZE } from "@/lib/media";
 import { processImage } from "@/lib/media/image";
+import type { ProcessedImage } from "@/lib/media/types";
 import { UploadedMediaInput, PreparedPostMedia } from "./types";
 
 type ProcessUploadedImageOptions = {
@@ -59,6 +60,11 @@ export async function processUploadedImage({ media, userId }: ProcessUploadedIma
   const sourceBuffer = await downloadSourceImage(media);
   const processed = await processImage(sourceBuffer);
 
+  return storeProcessedImage(processed, userId);
+}
+
+/** Uploads all variants of an already processed image. Shared by uploads and the demo seed. */
+export async function storeProcessedImage(processed: ProcessedImage, userId: string): Promise<ProcessUploadedImageResult> {
   const mediaId = crypto.randomUUID();
   const basePath = `processed/posts/${userId}/${mediaId}`;
   const token = getBlobToken();

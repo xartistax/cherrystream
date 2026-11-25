@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { EmailVerificationBanner } from "@/components/shared/email-verification-banner";
+import { ImpersonationBanner } from "@/components/shared/impersonation-banner";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { auth } from "@/lib/auth";
@@ -25,6 +27,8 @@ export default async function SocialLayout({
       username: true,
       name: true,
       image: true,
+      email: true,
+      emailVerified: true,
       wallet: {
         select: {
           userCredits: true,
@@ -52,6 +56,8 @@ export default async function SocialLayout({
 
   return (
     <div className="min-h-svh bg-zinc-950 text-white">
+      <ImpersonationBanner />
+
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,94,0.08),transparent_30%)]" />
 
       <Sidebar user={socialUser} />
@@ -59,7 +65,11 @@ export default async function SocialLayout({
       <div className="relative lg:pl-72">
         <Topbar user={socialUser} />
 
-        <main className="mx-auto min-h-[calc(100svh-4rem)] max-w-7xl px-4 py-6 pb-24 sm:px-6 lg:pb-8">{children}</main>
+        <main className="mx-auto min-h-[calc(100svh-4rem)] max-w-7xl px-4 py-6 pb-24 sm:px-6 lg:pb-8">
+          {!user.emailVerified && !session.user.impersonatedBy ? <EmailVerificationBanner email={user.email} /> : null}
+
+          {children}
+        </main>
       </div>
 
       <MobileNav role={session.user.role} />

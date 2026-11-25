@@ -1,6 +1,7 @@
 import "server-only";
 
 import { auth } from "@/lib/auth";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 
 export async function getPublicProfile(username: string) {
@@ -64,6 +65,7 @@ export async function getPublicProfile(username: string) {
       posts: {
         where: {
           status: "PUBLISHED",
+          ...(paymentsEnabled ? {} : { visibility: { not: "PREMIUM" } }),
         },
         orderBy: {
           createdAt: "desc",

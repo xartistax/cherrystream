@@ -1,4 +1,4 @@
-import { Bell, ChevronRight, LockKeyhole, ShieldCheck, TriangleAlert, UserRound } from "lucide-react";
+import { Bell, ChevronRight, LockKeyhole, ShieldCheck, TriangleAlert } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

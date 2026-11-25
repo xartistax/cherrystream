@@ -7,7 +7,7 @@ import { join } from "node:path";
 import { execa } from "execa";
 import sharp from "sharp";
 
-import { ffmpegPath } from "@/lib/media/video/ffmpeg";
+import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import { readVideoMetadata } from "@/lib/media/video/metadata";
 import type { GeneratedVideoPoster } from "@/lib/media/video/types";
 
@@ -23,6 +23,7 @@ function getPosterTimestamp(durationSeconds: number): number {
 }
 
 export async function generateVideoPoster(inputPath: string): Promise<GeneratedVideoPoster> {
+  const { ffmpegPath } = await getFfmpegBinaries();
   const metadata = await readVideoMetadata(inputPath);
   const timestampSeconds = getPosterTimestamp(metadata.durationSeconds);
 

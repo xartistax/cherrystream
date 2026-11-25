@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { updateProfileVisibility } from "./actions";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -16,7 +16,7 @@ export default async function PrivacySettingsPage() {
     redirect("/login");
   }
 
-  const hasPublicProfile = session.user.role === "MODEL" || session.user.role === "ADMIN";
+  const hasPublicProfile = session.user.role === "MODEL";
 
   const profile = hasPublicProfile
     ? await prisma.profile.findUnique({

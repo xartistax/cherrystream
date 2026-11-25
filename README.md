@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CherryStream
 
-## Getting Started
+Kontaktplattform für professionelle Models in der Schweiz. Vision, Economy und Entscheidungen liegen in [`docs/`](docs).
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router, `proxy.ts`), React 19
+- Prisma 7 mit Neon (PostgreSQL)
+- Auth.js (Credentials, JWT-Sessions)
+- Vercel Blob für Medien, sharp und FFmpeg für die Medienverarbeitung
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env   # Werte eintragen
+pnpm prisma migrate dev
+pnpm seed
+pnpm seed:demo   # optional, Demo-Daten (siehe unten)
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Umgebungsvariablen
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Pflicht | Zweck |
+| --- | --- | --- |
+| `DATABASE_URL` | ja | Neon Pooled Connection (App) |
+| `DIRECT_URL` | ja | Direkte Verbindung (Prisma Migrationen) |
+| `AUTH_SECRET` | ja | Auth.js Secret, mind. 32 Zeichen |
+| `BLOB_READ_WRITE_TOKEN` | ja | Vercel Blob |
+| `VERIFICATION_BLOB_READ_WRITE_TOKEN` | empfohlen | Privater Blob-Store für Ausweisdokumente (Fallback: `BLOB_READ_WRITE_TOKEN`) |
+| `NEXT_PUBLIC_APP_URL` | nein | Öffentliche URL der App |
+| `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` aktiviert Credits, Premium und Stripe (Standard: aus) |
+| `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
+| `RESEND_API_KEY`, `EMAIL_FROM` | in Production | E-Mail-Versand über Resend. Lokal ohne Key: Mails erscheinen in der Server-Konsole |
+| `EMAIL_DEV_REDIRECT` | nein | Nur lokal: leitet alle Mails an eine Adresse um (z. B. im Resend-Testmodus) |
+| `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | empfohlen | Error-Tracking. `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` nur für Source Maps im Build |
+| `CRON_SECRET` | in Production | Schützt den täglichen Cleanup-Job (`openssl rand -hex 32`) |
+| `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `pnpm dev` – Entwicklungsserver
+- `pnpm build` – Prisma Client generieren und Production Build
+- `pnpm lint` – ESLint
+- `pnpm seed` – Stammdaten: Kategorien, alle 26 Kantone und ihre wichtigsten Städte (sicher für Production)
+- `pnpm seed:demo [--yes]` – Demo-Daten für lokale Tests: 16 Demo-Models mit Fotos aus `prisma/seed/images/`, Test-Logins (Admin, Model, Model in Prüfung, User) sowie eine offene Verifizierung, eine Einladung und Beispiel-Meldungen. Fragt vor dem Schreiben nach und verweigert Production.
+- `pnpm smoke [url]` – Rauchtest gegen ein Deployment (nur lesende Anfragen)
+- `pnpm make-admin <email> [--revoke]` – Konto zum Admin machen (oder Rechte entziehen)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Betrieb
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deployment-Anleitung und Go-Live-Checkliste: [`docs/deploy.md`](docs/deploy.md)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/admin` – Systemstatus, Verifizierungen, Benutzer, Inhalte und Protokoll (nur Admins)
+- `/api/health` – öffentlicher Health-Check für Uptime-Monitore (`200` oder `503`, ohne Details)
+- `/api/cron/cleanup` – täglicher Cleanup um 03:00 UTC (vercel.json): löscht abgelaufene Einladungen und liegengebliebene Ausweisfotos

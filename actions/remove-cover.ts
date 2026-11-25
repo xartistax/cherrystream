@@ -3,7 +3,7 @@
 import { del } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 
-import { auth } from "@/lib/auth";
+import { getCreatorAccess } from "@/lib/access";
 import { getBlobToken } from "@/lib/blob";
 import { prisma } from "@/lib/prisma";
 
@@ -13,19 +13,19 @@ export type RemoveCoverResult = {
 };
 
 export async function removeCoverAction(): Promise<RemoveCoverResult> {
-  const session = await auth();
+  const access = await getCreatorAccess();
 
-  if (!session?.user?.id) {
+  if (!access.allowed) {
     return {
       success: false,
-      message: "Du bist nicht angemeldet.",
+      message: access.message,
     };
   }
 
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: access.userId,
       },
       select: {
         username: true,
@@ -46,7 +46,7 @@ export async function removeCoverAction(): Promise<RemoveCoverResult> {
 
     await prisma.profile.update({
       where: {
-        userId: session.user.id,
+        userId: access.userId,
       },
       data: {
         coverUrl: null,

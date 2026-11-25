@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Camera, Search, SlidersHorizontal, Sparkles, UsersRound, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, Camera, Search, SlidersHorizontal, Video } from "lucide-react";
 import Link from "next/link";
 
 import { CreatorGrid } from "@/components/public/creator-grid";

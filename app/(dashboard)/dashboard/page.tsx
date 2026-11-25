@@ -1,14 +1,15 @@
 import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "@/lib/auth";
+import { requireCreatorPage } from "@/lib/access";
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { CreatePostComposer } from "@/components/dashboard/create-post/composer";
 import { ComposerUser } from "@/components/dashboard/create-post/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Images, Pencil, Plus, UserRound } from "lucide-react";
+import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Pencil, Plus, ShieldCheck, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostGrid } from "@/components/dashboard/posts/post-grid";
 import { getProfileStats } from "@/lib/analytics/get-profile-stats";
@@ -16,20 +17,14 @@ import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metri
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
 
 export default async function FeedPage() {
-  const session = await auth();
+  const { userId, modelStatus } = await requireCreatorPage();
 
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
-
-  if (session.user.role !== "MODEL" && session.user.role !== "ADMIN") {
-    redirect("/become-model");
-  }
+  const isPublished = modelStatus === "ACTIVE";
 
   const [currentUser, posts, profileStats] = await Promise.all([
     prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: userId,
       },
       select: {
         id: true,
@@ -46,7 +41,7 @@ export default async function FeedPage() {
 
     prisma.post.findMany({
       where: {
-        authorId: session.user.id,
+        authorId: userId,
         status: "PUBLISHED",
       },
       select: {
@@ -83,7 +78,7 @@ export default async function FeedPage() {
       take: 20,
     }),
 
-    getProfileStats(session.user.id),
+    getProfileStats(userId),
   ]);
 
   if (!currentUser) {
@@ -113,19 +108,40 @@ export default async function FeedPage() {
           <p className="mt-2 text-sm text-zinc-500">Verwalte dein Profil, deine Inhalte und deine Einnahmen.</p>
         </div>
 
-        <Link
-          href={`/profile/${currentUser.username}`}
-          className={cn(
-            buttonVariants({
-              variant: "outline",
-            }),
-            "border-white/10 bg-white/5 text-white hover:bg-white/10",
-          )}
-        >
-          <ExternalLink className="size-4" />
-          Öffentliches Profil ansehen
-        </Link>
+        {isPublished ? (
+          <Link
+            href={`/profile/${currentUser.username}`}
+            className={cn(
+              buttonVariants({
+                variant: "outline",
+              }),
+              "border-white/10 bg-white/5 text-white hover:bg-white/10",
+            )}
+          >
+            <ExternalLink className="size-4" />
+            Öffentliches Profil ansehen
+          </Link>
+        ) : null}
       </header>
+
+      {!isPublished ? (
+        <Link
+          href="/dashboard/verification"
+          className="flex items-start gap-4 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-5 transition hover:bg-amber-500/15"
+        >
+          <ShieldCheck className="mt-0.5 size-5 shrink-0 text-amber-300" />
+
+          <div className="flex-1">
+            <p className="font-semibold text-amber-100">Dein Profil ist noch nicht öffentlich</p>
+
+            <p className="mt-1 text-sm leading-6 text-amber-100/70">
+              Wir prüfen jedes Profil vor der Veröffentlichung. Hier reichst du deine Verifizierung ein und siehst den aktuellen Stand.
+            </p>
+          </div>
+
+          <ChevronRight className="mt-0.5 size-5 shrink-0 text-amber-300" />
+        </Link>
+      ) : null}
 
       <DashboardWelcome displayName={displayName} username={currentUser.username} stats={profileStats} />
 
@@ -148,7 +164,13 @@ export default async function FeedPage() {
               </div>
             </div>
 
-            <CreatePostComposer user={composerUser} />
+            {isPublished ? (
+              <CreatePostComposer user={composerUser} />
+            ) : (
+              <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-6 text-sm leading-6 text-zinc-500">
+                Sobald dein Profil freigegeben ist, kannst du hier Bilder und Videos veröffentlichen.
+              </div>
+            )}
           </section>
 
           <section>
@@ -244,17 +266,19 @@ export default async function FeedPage() {
                 <ChevronRight className="size-4" />
               </Link>
 
-              <Link
-                href="/credits"
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <Coins className="size-4" />
-                  Credits
-                </span>
+              {paymentsEnabled ? (
+                <Link
+                  href="/credits"
+                  className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <Coins className="size-4" />
+                    Credits
+                  </span>
 
-                <ChevronRight className="size-4" />
-              </Link>
+                  <ChevronRight className="size-4" />
+                </Link>
+              ) : null}
             </CardContent>
           </Card>
         </aside>

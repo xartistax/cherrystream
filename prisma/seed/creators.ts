@@ -1,7 +1,6 @@
-import type { PrismaClient } from "../../generated/prisma/client";
 import type { ContactChannel, Gender } from "../../generated/prisma/enums";
 
-type CreatorSeed = {
+export type CreatorSeed = {
   username: string;
   email: string;
   name: string;
@@ -21,7 +20,8 @@ type CreatorSeed = {
   instagramEnabled: boolean;
 };
 
-const creators: CreatorSeed[] = [
+/** Demo profiles for local testing. Fictional people; used by `pnpm seed:demo` only. */
+export const demoCreators: CreatorSeed[] = [
   {
     username: "mia_zurich",
     email: "mia.zurich@example.test",
@@ -39,9 +39,9 @@ const creators: CreatorSeed[] = [
       </ul>
     `,
     gender: "WOMAN",
-    cantonSlug: "zuerich",
+    cantonSlug: "zh",
     cityName: "Zürich",
-    categorySlugs: ["lifestyle", "wellness"],
+    categorySlugs: ["lifestyle", "beauty"],
     verified: true,
     phoneNumber: "+41 79 000 10 01",
     phoneEnabled: true,
@@ -62,7 +62,7 @@ const creators: CreatorSeed[] = [
       <blockquote>Qualität, Diskretion und eine persönliche Atmosphäre stehen für mich an erster Stelle.</blockquote>
     `,
     gender: "WOMAN",
-    cantonSlug: "zuerich",
+    cantonSlug: "zh",
     cityName: "Winterthur",
     categorySlugs: ["fashion", "lifestyle"],
     verified: true,
@@ -89,9 +89,9 @@ const creators: CreatorSeed[] = [
       </ul>
     `,
     gender: "WOMAN",
-    cantonSlug: "bern",
+    cantonSlug: "be",
     cityName: "Bern",
-    categorySlugs: ["wellness", "lifestyle"],
+    categorySlugs: ["beauty", "lifestyle"],
     verified: false,
     phoneNumber: "+41 79 000 10 03",
     phoneEnabled: true,
@@ -112,7 +112,7 @@ const creators: CreatorSeed[] = [
       <p>Schreibe mir gerne für weitere Informationen und freie Termine.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "basel-stadt",
+    cantonSlug: "bs",
     cityName: "Basel",
     categorySlugs: ["fashion", "beauty"],
     verified: true,
@@ -134,9 +134,9 @@ const creators: CreatorSeed[] = [
       <p>Eine ruhige Atmosphäre, gepflegte Räumlichkeiten und ausreichend Zeit gehören für mich zu einem gelungenen Besuch.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "luzern",
+    cantonSlug: "lu",
     cityName: "Luzern",
-    categorySlugs: ["wellness", "fitness"],
+    categorySlugs: ["beauty", "fitness"],
     verified: false,
     phoneNumber: "+41 79 000 10 05",
     phoneEnabled: true,
@@ -157,7 +157,7 @@ const creators: CreatorSeed[] = [
       <p>Français, anglais et italien.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "genf",
+    cantonSlug: "ge",
     cityName: "Genève",
     categorySlugs: ["lifestyle", "travel"],
     verified: true,
@@ -179,7 +179,7 @@ const creators: CreatorSeed[] = [
       <p>Ich mag entspannte Begegnungen ohne Zeitdruck und freue mich über sympathische Nachrichten.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "aargau",
+    cantonSlug: "ag",
     cityName: "Aarau",
     categorySlugs: ["lifestyle"],
     verified: false,
@@ -207,9 +207,9 @@ const creators: CreatorSeed[] = [
       </ul>
     `,
     gender: "WOMAN",
-    cantonSlug: "st-gallen",
+    cantonSlug: "sg",
     cityName: "St. Gallen",
-    categorySlugs: ["wellness"],
+    categorySlugs: ["beauty"],
     verified: false,
     phoneNumber: "+41 79 000 10 08",
     phoneEnabled: true,
@@ -230,7 +230,7 @@ const creators: CreatorSeed[] = [
       <blockquote>Bitte kontaktiere mich frühzeitig für eine verbindliche Terminplanung.</blockquote>
     `,
     gender: "WOMAN",
-    cantonSlug: "waadt",
+    cantonSlug: "vd",
     cityName: "Lausanne",
     categorySlugs: ["fashion", "travel", "lifestyle"],
     verified: true,
@@ -252,7 +252,7 @@ const creators: CreatorSeed[] = [
       <p>Ich bin freundlich, offen und freue mich darauf, neue Menschen kennenzulernen.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "thurgau",
+    cantonSlug: "tg",
     cityName: "Frauenfeld",
     categorySlugs: ["lifestyle", "beauty"],
     verified: false,
@@ -274,9 +274,9 @@ const creators: CreatorSeed[] = [
       <p>Bei mir erwartet dich eine angenehme Atmosphäre und ausreichend Zeit zum Abschalten.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "solothurn",
+    cantonSlug: "so",
     cityName: "Solothurn",
-    categorySlugs: ["wellness", "fitness"],
+    categorySlugs: ["beauty", "fitness"],
     verified: false,
     phoneNumber: "+41 79 000 10 11",
     phoneEnabled: true,
@@ -296,7 +296,7 @@ const creators: CreatorSeed[] = [
       <p>Ich schätze klare Kommunikation, Diskretion und einen respektvollen Umgang.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "neuenburg",
+    cantonSlug: "ne",
     cityName: "Neuchâtel",
     categorySlugs: ["fashion", "beauty"],
     verified: true,
@@ -318,7 +318,7 @@ const creators: CreatorSeed[] = [
       <p>Mein Profil richtet sich an respektvolle Gäste, die eine private und entspannte Atmosphäre suchen.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "zug",
+    cantonSlug: "zg",
     cityName: "Zug",
     categorySlugs: ["lifestyle"],
     verified: false,
@@ -345,9 +345,9 @@ const creators: CreatorSeed[] = [
       </ul>
     `,
     gender: "WOMAN",
-    cantonSlug: "freiburg",
+    cantonSlug: "fr",
     cityName: "Fribourg",
-    categorySlugs: ["wellness"],
+    categorySlugs: ["beauty"],
     verified: false,
     phoneNumber: "+41 79 000 10 14",
     phoneEnabled: true,
@@ -368,7 +368,7 @@ const creators: CreatorSeed[] = [
       <p>Italiano, tedesco e inglese.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "tessin",
+    cantonSlug: "ti",
     cityName: "Lugano",
     categorySlugs: ["travel", "lifestyle"],
     verified: true,
@@ -390,7 +390,7 @@ const creators: CreatorSeed[] = [
       <p>Je vous accueille dans un cadre agréable et discret, uniquement sur rendez-vous.</p>
     `,
     gender: "WOMAN",
-    cantonSlug: "waadt",
+    cantonSlug: "vd",
     cityName: "Lausanne",
     categorySlugs: ["fashion", "lifestyle"],
     verified: false,
@@ -403,170 +403,3 @@ const creators: CreatorSeed[] = [
     instagramEnabled: false,
   },
 ];
-
-function normalize(value: string): string {
-  return value
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .trim()
-    .toLowerCase();
-}
-
-export async function seedCreators(prisma: PrismaClient): Promise<void> {
-  const [categories, cities] = await Promise.all([
-    prisma.category.findMany({
-      where: {
-        isActive: true,
-      },
-      select: {
-        id: true,
-        slug: true,
-      },
-    }),
-
-    prisma.city.findMany({
-      select: {
-        id: true,
-        name: true,
-        cantonId: true,
-        canton: {
-          select: {
-            slug: true,
-          },
-        },
-      },
-    }),
-  ]);
-
-  const categoryIds = new Map(categories.map((category) => [category.slug, category.id]));
-
-  for (const creator of creators) {
-    const city =
-      cities.find((candidate) => candidate.canton.slug === creator.cantonSlug && normalize(candidate.name) === normalize(creator.cityName)) ??
-      cities.find((candidate) => candidate.canton.slug === creator.cantonSlug);
-
-    if (!city) {
-      console.warn(`Creator ${creator.username} übersprungen: Keine Stadt im Kanton ${creator.cantonSlug} gefunden.`);
-
-      continue;
-    }
-
-    const selectedCategoryIds = creator.categorySlugs.map((slug) => categoryIds.get(slug)).filter((id): id is string => Boolean(id));
-
-    await prisma.user.upsert({
-      where: {
-        username: creator.username,
-      },
-      create: {
-        username: creator.username,
-        email: creator.email,
-        name: creator.name,
-        status: "ACTIVE",
-        profile: {
-          create: {
-            displayName: creator.displayName,
-            bio: creator.bio.trim(),
-            gender: creator.gender,
-            isPublic: true,
-            verified: creator.verified,
-
-            cantonId: city.cantonId,
-            cityId: city.id,
-
-            phoneNumber: creator.phoneNumber,
-            phoneEnabled: creator.phoneEnabled,
-            whatsappEnabled: creator.whatsappEnabled,
-
-            instagram: creator.instagram,
-            instagramEnabled: creator.instagramEnabled,
-
-            preferredContact: creator.preferredContact,
-            contactNote: creator.contactNote,
-
-            categories: {
-              create: selectedCategoryIds.map((categoryId) => ({
-                category: {
-                  connect: {
-                    id: categoryId,
-                  },
-                },
-              })),
-            },
-          },
-        },
-      },
-      update: {
-        email: creator.email,
-        name: creator.name,
-        status: "ACTIVE",
-        profile: {
-          upsert: {
-            create: {
-              displayName: creator.displayName,
-              bio: creator.bio.trim(),
-              gender: creator.gender,
-              isPublic: true,
-              verified: creator.verified,
-
-              cantonId: city.cantonId,
-              cityId: city.id,
-
-              phoneNumber: creator.phoneNumber,
-              phoneEnabled: creator.phoneEnabled,
-              whatsappEnabled: creator.whatsappEnabled,
-
-              instagram: creator.instagram,
-              instagramEnabled: creator.instagramEnabled,
-
-              preferredContact: creator.preferredContact,
-              contactNote: creator.contactNote,
-
-              categories: {
-                create: selectedCategoryIds.map((categoryId) => ({
-                  category: {
-                    connect: {
-                      id: categoryId,
-                    },
-                  },
-                })),
-              },
-            },
-            update: {
-              displayName: creator.displayName,
-              bio: creator.bio.trim(),
-              gender: creator.gender,
-              isPublic: true,
-              verified: creator.verified,
-
-              cantonId: city.cantonId,
-              cityId: city.id,
-
-              phoneNumber: creator.phoneNumber,
-              phoneEnabled: creator.phoneEnabled,
-              whatsappEnabled: creator.whatsappEnabled,
-
-              instagram: creator.instagram,
-              instagramEnabled: creator.instagramEnabled,
-
-              preferredContact: creator.preferredContact,
-              contactNote: creator.contactNote,
-
-              categories: {
-                deleteMany: {},
-                create: selectedCategoryIds.map((categoryId) => ({
-                  category: {
-                    connect: {
-                      id: categoryId,
-                    },
-                  },
-                })),
-              },
-            },
-          },
-        },
-      },
-    });
-  }
-
-  console.log(`✅ ${creators.length} Demo-Profile verarbeitet`);
-}

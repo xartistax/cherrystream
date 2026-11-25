@@ -34,11 +34,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-/src/generated/prisma
+/generated/prisma
 
 
-.env
 .env.local
-.env*.local
-/src/generated/prisma
 .env*
+!.env.example
+
+# Demo-Seed-Bilder (nur lokal)
+/prisma/seed/images/*
+!/prisma/seed/images/README.md
+!/prisma/seed/images/.gitkeep

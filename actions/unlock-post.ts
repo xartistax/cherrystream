@@ -6,6 +6,7 @@ import { InsufficientWalletBalanceError } from "@/lib/wallet/errors";
 import { InvalidPremiumPriceError, OwnPostUnlockError, PostIsNotPremiumError, PostNotFoundError } from "@/lib/premium/errors";
 import { unlockPost } from "@/lib/premium/unlock-post";
 import { auth } from "@/lib/auth";
+import { paymentsEnabled } from "@/lib/features";
 
 type UnlockPostActionResult =
   | {
@@ -17,6 +18,13 @@ type UnlockPostActionResult =
     };
 
 export async function unlockPostAction(postId: string): Promise<UnlockPostActionResult> {
+  if (!paymentsEnabled) {
+    return {
+      success: false,
+      error: "Premium-Inhalte sind noch nicht verfügbar.",
+    };
+  }
+
   const session = await auth();
 
   if (!session?.user?.id) {

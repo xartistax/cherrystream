@@ -1,17 +1,18 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
+import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { ProfileGallery } from "@/components/profile/gallery/profile-gallery";
+import { ReportButton } from "@/components/reports/report-button";
 import { cn } from "@/lib/utils";
 import { FollowButton } from "@/components/profile/follow-button";
 import { auth } from "@/lib/auth";
 import { trackProfileView } from "@/lib/analytics/track-profile-view";
-import { ContactButton } from "@/components/profile/contact-button";
 import { ContactCard } from "@/components/profile/contact-card";
 import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
 import { ProfileDescription } from "@/components/profile/profile-description";
@@ -105,6 +106,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
       posts: {
         where: {
           status: "PUBLISHED",
+          ...(paymentsEnabled ? {} : { visibility: { not: "PREMIUM" } }),
         },
         orderBy: {
           createdAt: "desc",
@@ -390,6 +392,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
             />
           </div>
 
+          {!isOwnProfile ? <ReportButton username={user.username} label="Profil melden" className="mt-5" /> : null}
+
           {!isOwnProfile && user.profile.contactNote ? (
             <div className="mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
               <p className="text-sm leading-6 text-zinc-400">{user.profile.contactNote}</p>
@@ -404,6 +408,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
       <ProfileGallery
         displayName={displayName}
+        username={user.username}
+        canReport={!isOwnProfile}
         media={galleryMedia}
         authenticated={Boolean(session?.user?.id)}
         loginUrl={`/login?callbackUrl=${encodeURIComponent(`/profile/${user.username}`)}`}

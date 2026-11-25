@@ -1,0 +1,9 @@
+allowBuilds:
+  '@ffprobe-installer/darwin-arm64': true
+  '@prisma/engines': true
+  esbuild: true
+  ffmpeg-static: true
+  msgpackr-extract: false
+  prisma: true
+  sharp: true
+  '@ffprobe-installer/linux-x64': true

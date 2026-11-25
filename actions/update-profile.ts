@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { auth } from "@/lib/auth";
+import { getCreatorAccess } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import type { ActionState } from "@/types/action-state";
 import { PROFILE_DESCRIPTION_MAX_LENGTH, sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
@@ -205,12 +205,12 @@ const profileSchema = z
   });
 
 export async function updateProfileAction(_previousState: ActionState, formData: FormData): Promise<ActionState> {
-  const session = await auth();
+  const access = await getCreatorAccess();
 
-  if (!session?.user?.id) {
+  if (!access.allowed) {
     return {
       success: false,
-      message: "Du bist nicht angemeldet.",
+      message: access.message,
     };
   }
 
@@ -323,7 +323,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: session.user.id,
+        id: access.userId,
       },
       select: {
         username: true,
@@ -445,7 +445,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
 
     await prisma.user.update({
       where: {
-        id: session.user.id,
+        id: access.userId,
       },
       data: {
         name: displayName,

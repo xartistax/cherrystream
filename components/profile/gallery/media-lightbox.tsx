@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, LockKeyhole, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Flag, LockKeyhole, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -11,9 +11,10 @@ type MediaLightboxProps = {
   media: ProfileGalleryMedia[];
   initialIndex: number;
   onClose: () => void;
+  onReport?: (postId: string) => void;
 };
 
-export function MediaLightbox({ media, initialIndex, onClose }: MediaLightboxProps) {
+export function MediaLightbox({ media, initialIndex, onClose, onReport }: MediaLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   const currentItem = media[currentIndex];
@@ -80,6 +81,17 @@ export function MediaLightbox({ media, initialIndex, onClose }: MediaLightboxPro
       >
         <X className="size-5" />
       </Button>
+
+      {onReport && currentItem ? (
+        <button
+          type="button"
+          onClick={() => onReport(currentItem.postId)}
+          className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-2 text-xs text-zinc-300 transition hover:bg-white/10 hover:text-rose-300"
+        >
+          <Flag className="size-3.5" />
+          Beitrag melden
+        </button>
+      ) : null}
 
       {media.length > 1 ? (
         <>
