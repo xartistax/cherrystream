@@ -3,6 +3,7 @@
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 
+import { sendVerificationEmail } from "@/lib/email/verification";
 import { prisma } from "@/lib/prisma";
 import { consumeRateLimit, formatRetryAfter, getRequestIpHash } from "@/lib/rate-limit";
 import { getSafeRedirectPath } from "@/lib/safe-redirect";
@@ -90,6 +91,11 @@ export async function registerAction(_previousState: ActionState, formData: Form
           },
         },
       },
+    });
+
+    // Never blocks the registration: a failed mail can be requested again from the settings.
+    await sendVerificationEmail(email).catch((error: unknown) => {
+      console.error("Verification email failed:", error);
     });
   } catch (error) {
     console.error("Registration failed:", error);

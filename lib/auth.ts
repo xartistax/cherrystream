@@ -104,6 +104,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             role: true,
             status: true,
             passwordHash: true,
+            sessionVersion: true,
           },
         });
 
@@ -124,6 +125,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
           image: user.image,
           username: user.username,
           role: user.role,
+          sessionVersion: user.sessionVersion,
         };
       },
     }),
@@ -134,6 +136,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       if (user) {
         token.username = user.username;
         token.role = user.role;
+        token.sessionVersion = user.sessionVersion;
         delete token.impersonation;
 
         return token;
@@ -151,10 +154,12 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
           username: true,
           role: true,
           status: true,
+          sessionVersion: true,
         },
       });
 
-      if (!dbUser || dbUser.status !== "ACTIVE") {
+      // Tokens from before a password reset carry an older sessionVersion and are signed out.
+      if (!dbUser || dbUser.status !== "ACTIVE" || dbUser.sessionVersion !== (typeof token.sessionVersion === "number" ? token.sessionVersion : 0)) {
         return {};
       }
 

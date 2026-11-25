@@ -38,7 +38,13 @@ export function LoginForm({ callbackUrl }: LoginFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Passwort</Label>
+        <div className="flex items-center justify-between gap-4">
+          <Label htmlFor="password">Passwort</Label>
+
+          <Link href="/forgot-password" className="text-xs text-zinc-400 hover:text-rose-300">
+            Passwort vergessen?
+          </Link>
+        </div>
         <Input id="password" name="password" type="password" autoComplete="current-password" required />
         <FieldError errors={state.errors?.password} />
       </div>

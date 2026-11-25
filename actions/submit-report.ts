@@ -3,9 +3,11 @@
 import { z } from "zod";
 
 import { auth } from "@/lib/auth";
+import { getAdminEmails, sendEmail } from "@/lib/email/send";
+import { adminUrgentReportEmail } from "@/lib/email/templates";
 import { prisma } from "@/lib/prisma";
 import { consumeRateLimit, formatRetryAfter, getRequestIpHash } from "@/lib/rate-limit";
-import { reportReasons } from "@/lib/reports/reasons";
+import { reportReasonLabels, reportReasons, urgentReportReasons } from "@/lib/reports/reasons";
 
 export type SubmitReportResult = {
   success: boolean;
@@ -94,6 +96,19 @@ export async function submitReportAction(input: unknown): Promise<SubmitReportRe
       reporterHash,
     },
   });
+
+  const reportReason = reason as (typeof reportReasons)[number]["value"];
+
+  if (urgentReportReasons.includes(reportReason)) {
+    const adminEmails = await getAdminEmails();
+
+    if (adminEmails.length > 0) {
+      await sendEmail({
+        to: adminEmails,
+        ...adminUrgentReportEmail(reportReasonLabels[reportReason], username),
+      });
+    }
+  }
 
   return {
     success: true,

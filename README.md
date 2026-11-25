@@ -32,6 +32,7 @@ pnpm dev
 | `NEXT_PUBLIC_APP_URL` | nein | Öffentliche URL der App |
 | `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` aktiviert Credits, Premium und Stripe (Standard: aus) |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
+| `RESEND_API_KEY`, `EMAIL_FROM` | in Production | E-Mail-Versand über Resend. Lokal ohne Key: Mails erscheinen in der Server-Konsole |
 | `CRON_SECRET` | in Production | Schützt den täglichen Cleanup-Job (`openssl rand -hex 32`) |
 | `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 

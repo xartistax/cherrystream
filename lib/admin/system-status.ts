@@ -223,6 +223,64 @@ async function readBinaryVersion(binaryPath: string): Promise<string> {
   return firstLine.match(/version\s+(\S+)/)?.[1] ?? "unbekannt";
 }
 
+/** Checks the Resend configuration and, with a full-access key, whether the sender domain is verified. */
+async function checkEmail(): Promise<CheckResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EMAIL_FROM;
+
+  if (!apiKey || !from) {
+    return {
+      status: process.env.VERCEL_ENV === "production" ? "error" : "warn",
+      detail: "RESEND_API_KEY oder EMAIL_FROM fehlt. Mails werden nur in der Server-Konsole ausgegeben",
+    };
+  }
+
+  const senderDomain = from.match(/@([^>\s]+)/)?.[1]?.toLowerCase();
+
+  const response = await fetch("https://api.resend.com/domains", {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+    cache: "no-store",
+  });
+
+  const body = (await response.json().catch(() => null)) as { name?: string; message?: string; data?: Array<{ name: string; status: string }> } | null;
+
+  // Sending-only keys may not list domains; the key itself is accepted.
+  if (body?.name === "restricted_api_key") {
+    return {
+      status: "ok",
+      detail: `Konfiguriert (Absender ${from}). Domain-Status mit diesem Sende-Schlüssel nicht prüfbar`,
+    };
+  }
+
+  if (!response.ok) {
+    return {
+      status: "error",
+      detail: `Resend lehnt den API-Key ab: ${body?.message ?? `HTTP ${response.status}`}`,
+    };
+  }
+
+  const domain = body?.data?.find((candidate) => candidate.name.toLowerCase() === senderDomain);
+
+  if (!domain) {
+    return {
+      status: "error",
+      detail: `Absender-Domain ${senderDomain ?? "?"} ist bei Resend nicht angelegt`,
+    };
+  }
+
+  return domain.status === "verified"
+    ? {
+        status: "ok",
+        detail: `Domain ${domain.name} verifiziert, Absender ${from}`,
+      }
+    : {
+        status: "error",
+        detail: `Domain ${domain.name} ist noch nicht verifiziert (${domain.status}). DNS-Einträge prüfen`,
+      };
+}
+
 async function checkFfmpeg(): Promise<CheckResult> {
   const { ffmpegPath, ffprobePath } = await getFfmpegBinaries();
   const [ffmpegVersion, ffprobeVersion] = await Promise.all([readBinaryVersion(ffmpegPath), readBinaryVersion(ffprobePath)]);
@@ -536,13 +594,14 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, email, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
       runCheck("blob-public", "Blob-Store Medien", checkPublicBlobStore),
       runCheck("blob-private", "Blob-Store Ausweise (privat)", checkPrivateBlobStore),
       runCheck("environment", "Umgebungsvariablen", checkEnvironment),
+      runCheck("email", "E-Mail-Versand (Resend)", checkEmail),
       runCheck("ffmpeg", "FFmpeg / FFprobe", checkFfmpeg),
       runCheck("sharp", "Bildverarbeitung (sharp)", checkSharp),
       runCheck("stripe-api", "Stripe API", checkStripeApi),
@@ -558,7 +617,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
   return [
     {
       title: "Infrastruktur",
-      checks: [database, schema, publicBlob, privateBlob, environment],
+      checks: [database, schema, publicBlob, privateBlob, environment, email],
     },
     {
       title: "Medienverarbeitung",

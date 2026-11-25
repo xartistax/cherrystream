@@ -172,6 +172,8 @@ model User {
   createdAt            DateTime              @default(now())
   updatedAt            DateTime              @updatedAt
   modelStatus          ModelStatus           @default(NONE)
+  /// Raised on password reset; JWTs carrying an older value are signed out.
+  sessionVersion       Int                   @default(0)
   notificationSettings NotificationSettings?
 
   profile  Profile?

@@ -14,6 +14,9 @@ const envSchema = z.object({
 
   CRON_SECRET: z.string().min(16).optional(),
 
+  RESEND_API_KEY: z.string().min(1).optional(),
+  EMAIL_FROM: z.string().min(3).optional(),
+
   FFMPEG_PATH: z.string().min(1).optional(),
   FFPROBE_PATH: z.string().min(1).optional(),
 });
@@ -31,6 +34,9 @@ const parsedEnv = envSchema.safeParse({
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET || undefined,
 
   CRON_SECRET: process.env.CRON_SECRET || undefined,
+
+  RESEND_API_KEY: process.env.RESEND_API_KEY || undefined,
+  EMAIL_FROM: process.env.EMAIL_FROM || undefined,
 
   FFMPEG_PATH: process.env.FFMPEG_PATH || undefined,
   FFPROBE_PATH: process.env.FFPROBE_PATH || undefined,

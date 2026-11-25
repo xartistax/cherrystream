@@ -6,6 +6,8 @@ import { z } from "zod";
 
 import { getAdminAccess } from "@/lib/access";
 import { logAdminAction } from "@/lib/admin/audit";
+import { sendEmail } from "@/lib/email/send";
+import { getAppUrl, verificationApprovedEmail, verificationRejectedEmail } from "@/lib/email/templates";
 import { prisma } from "@/lib/prisma";
 import { purgeVerificationDocuments } from "@/lib/verification/purge-documents";
 
@@ -67,6 +69,13 @@ export async function reviewVerificationAction(_previousState: ReviewVerificatio
       user: {
         select: {
           username: true,
+          email: true,
+          name: true,
+          profile: {
+            select: {
+              displayName: true,
+            },
+          },
         },
       },
     },
@@ -150,6 +159,16 @@ export async function reviewVerificationAction(_previousState: ReviewVerificatio
     // The record keeps its pathnames (documentsDeletedAt null), so the status page flags it for cleanup.
     console.error("Verification document purge after review failed:", error);
   }
+
+  const displayName = verification.user.profile?.displayName ?? verification.user.name ?? verification.user.username;
+
+  // A failed mail must not undo the review; sendEmail logs failures itself.
+  await sendEmail({
+    to: verification.user.email,
+    ...(input.decision === "APPROVE"
+      ? verificationApprovedEmail(displayName, getAppUrl(`/profile/${verification.user.username}`))
+      : verificationRejectedEmail(displayName, input.rejectionReason)),
+  });
 
   revalidatePath("/admin");
   revalidatePath("/admin/verifications");
