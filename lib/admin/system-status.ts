@@ -237,6 +237,14 @@ async function checkEmail(): Promise<CheckResult> {
 
   const senderDomain = from.match(/@([^>\s]+)/)?.[1]?.toLowerCase();
 
+  // Resend's shared test sender works without own domain, but only delivers to the account owner's address.
+  if (senderDomain === "resend.dev") {
+    return {
+      status: process.env.VERCEL_ENV === "production" ? "error" : "warn",
+      detail: "Testmodus (onboarding@resend.dev): Mails gehen nur an die Adresse deines Resend-Kontos. Für den Livegang eigene Domain verifizieren",
+    };
+  }
+
   const response = await fetch("https://api.resend.com/domains", {
     headers: {
       Authorization: `Bearer ${apiKey}`,
