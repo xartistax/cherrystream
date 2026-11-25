@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth";
+import { getHomePath } from "@/lib/impersonation";
 import { getSafeRedirectPath } from "@/lib/safe-redirect";
 import { LoginForm } from "@/components/auth/login-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,7 +19,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const callbackUrl = getSafeRedirectPath(params.callbackUrl, "");
 
   if (session?.user) {
-    redirect(callbackUrl || "/dashboard");
+    redirect(callbackUrl || getHomePath(session.user.role));
   }
 
   const registrationSuccessful = params.registered === "1";

@@ -13,6 +13,11 @@ declare module "next-auth" {
       id: string;
       username: string;
       role: UserRole;
+      /** Set while an admin views the app as this user; id/username/role above are the impersonated user. */
+      impersonatedBy?: {
+        id: string;
+        username: string;
+      };
     } & DefaultSession["user"];
   }
 }

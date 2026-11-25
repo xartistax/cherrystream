@@ -10,7 +10,7 @@ type CreatorAccessOptions = {
   requireActive?: boolean;
 };
 
-type CreatorAccessDenial = "UNAUTHENTICATED" | "NOT_CREATOR" | "NOT_ACTIVE";
+type CreatorAccessDenial = "UNAUTHENTICATED" | "NOT_CREATOR" | "NOT_ACTIVE" | "ADMIN";
 
 export type CreatorAccess =
   | {
@@ -29,6 +29,7 @@ const denialMessages: Record<CreatorAccessDenial, string> = {
   UNAUTHENTICATED: "Du bist nicht angemeldet.",
   NOT_CREATOR: "Diese Funktion ist nur für Models verfügbar.",
   NOT_ACTIVE: "Dein Model-Profil ist noch nicht freigeschaltet.",
+  ADMIN: "Admins haben kein Model-Profil. Nutze \"Als Model ansehen\" im Admin-Bereich.",
 };
 
 function deny(reason: CreatorAccessDenial): CreatorAccess {
@@ -40,8 +41,9 @@ function deny(reason: CreatorAccessDenial): CreatorAccess {
 }
 
 /**
- * Creator = MODEL (not suspended) or ADMIN.
- * With `requireActive`, a MODEL must additionally be approved (modelStatus ACTIVE).
+ * Creator = MODEL that is not suspended. Admins are not creators; they act as a model only via impersonation,
+ * in which case the session already carries the model's id.
+ * With `requireActive`, the model must additionally be approved (modelStatus ACTIVE).
  * Role and status are read from the database, not the JWT, so approvals and suspensions apply immediately.
  */
 export async function getCreatorAccess({ requireActive = false }: CreatorAccessOptions = {}): Promise<CreatorAccess> {
@@ -68,12 +70,7 @@ export async function getCreatorAccess({ requireActive = false }: CreatorAccessO
   }
 
   if (user.role === "ADMIN") {
-    return {
-      allowed: true,
-      userId: user.id,
-      role: user.role,
-      modelStatus: user.modelStatus,
-    };
+    return deny("ADMIN");
   }
 
   if (user.role !== "MODEL" || user.modelStatus === "SUSPENDED") {
@@ -96,6 +93,7 @@ const denialRedirects: Record<CreatorAccessDenial, string> = {
   UNAUTHENTICATED: "/login",
   NOT_CREATOR: "/become-model",
   NOT_ACTIVE: "/dashboard",
+  ADMIN: "/admin",
 };
 
 export async function requireCreatorPage(options: CreatorAccessOptions = {}) {

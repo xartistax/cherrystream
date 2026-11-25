@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { PublicFooter } from "@/components/public/footer";
 import { PublicNavbar } from "@/components/public/navbar";
+import { ImpersonationBanner } from "@/components/shared/impersonation-banner";
 
 type PublicLayoutProps = {
   children: ReactNode;
@@ -17,6 +18,8 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <div className="pointer-events-none fixed -left-40 top-64 -z-10 size-[30rem] rounded-full bg-fuchsia-600/8 blur-3xl" />
 
       <div className="pointer-events-none fixed -right-40 top-96 -z-10 size-[30rem] rounded-full bg-rose-600/8 blur-3xl" />
+
+      <ImpersonationBanner />
 
       <PublicNavbar />
 

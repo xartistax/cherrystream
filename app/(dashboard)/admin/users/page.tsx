@@ -1,6 +1,7 @@
 import { format } from "date-fns";
-import { Search } from "lucide-react";
+import { Eye, Search } from "lucide-react";
 
+import { startImpersonationAction } from "@/actions/admin/impersonation";
 import { setUserSuspendedAction } from "@/actions/admin/moderation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -126,24 +127,37 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
                   </p>
                 </div>
 
-                {canModerate ? (
-                  <form action={setUserSuspendedAction}>
-                    <input type="hidden" name="userId" value={user.id} />
-                    <input type="hidden" name="suspend" value={user.status === "SUSPENDED" ? "false" : "true"} />
+                <div className="flex shrink-0 gap-2">
+                  {user.role === "MODEL" && user.status === "ACTIVE" ? (
+                    <form action={startImpersonationAction}>
+                      <input type="hidden" name="userId" value={user.id} />
 
-                    <Button
-                      type="submit"
-                      variant="outline"
-                      size="sm"
-                      className={cn(
-                        "border-white/10 bg-white/5",
-                        user.status === "SUSPENDED" ? "text-emerald-300 hover:text-emerald-200" : "text-rose-300 hover:text-rose-200",
-                      )}
-                    >
-                      {user.status === "SUSPENDED" ? "Entsperren" : "Sperren"}
-                    </Button>
-                  </form>
-                ) : null}
+                      <Button type="submit" variant="outline" size="sm" className="border-white/10 bg-white/5 text-white">
+                        <Eye className="size-3.5" />
+                        Als Model ansehen
+                      </Button>
+                    </form>
+                  ) : null}
+
+                  {canModerate ? (
+                    <form action={setUserSuspendedAction}>
+                      <input type="hidden" name="userId" value={user.id} />
+                      <input type="hidden" name="suspend" value={user.status === "SUSPENDED" ? "false" : "true"} />
+
+                      <Button
+                        type="submit"
+                        variant="outline"
+                        size="sm"
+                        className={cn(
+                          "border-white/10 bg-white/5",
+                          user.status === "SUSPENDED" ? "text-emerald-300 hover:text-emerald-200" : "text-rose-300 hover:text-rose-200",
+                        )}
+                      >
+                        {user.status === "SUSPENDED" ? "Entsperren" : "Sperren"}
+                      </Button>
+                    </form>
+                  ) : null}
+                </div>
               </div>
             );
           })}

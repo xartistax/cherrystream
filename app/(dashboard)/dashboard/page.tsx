@@ -17,9 +17,9 @@ import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metri
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
 
 export default async function FeedPage() {
-  const { userId, role, modelStatus } = await requireCreatorPage();
+  const { userId, modelStatus } = await requireCreatorPage();
 
-  const isPublished = role === "ADMIN" || modelStatus === "ACTIVE";
+  const isPublished = modelStatus === "ACTIVE";
 
   const [currentUser, posts, profileStats] = await Promise.all([
     prisma.user.findUnique({

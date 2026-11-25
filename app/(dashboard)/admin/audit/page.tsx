@@ -16,6 +16,8 @@ const actionLabels: Record<AdminAction, string> = {
   INVITE_CREATED: "Einladung erstellt",
   INVITE_RENEWED: "Einladungslink erneuert",
   INVITE_REVOKED: "Einladung widerrufen",
+  IMPERSONATION_STARTED: "Als Model angesehen (Start)",
+  IMPERSONATION_STOPPED: "Model-Ansicht beendet",
 };
 
 function describeTarget(metadata: unknown): string {

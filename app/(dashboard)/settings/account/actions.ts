@@ -36,6 +36,13 @@ const passwordSchema = z
 export async function updateEmail(_previousState: AccountActionState, formData: FormData): Promise<AccountActionState> {
   const session = await auth();
 
+  if (session?.user?.impersonatedBy) {
+    return {
+      status: "error",
+      message: "Diese Aktion ist in der Admin-Ansicht gesperrt. Beende zuerst die Model-Ansicht.",
+    };
+  }
+
   if (!session?.user?.id) {
     return {
       status: "error",
@@ -131,6 +138,13 @@ export async function updateEmail(_previousState: AccountActionState, formData: 
 
 export async function updatePassword(_previousState: AccountActionState, formData: FormData): Promise<AccountActionState> {
   const session = await auth();
+
+  if (session?.user?.impersonatedBy) {
+    return {
+      status: "error",
+      message: "Diese Aktion ist in der Admin-Ansicht gesperrt. Beende zuerst die Model-Ansicht.",
+    };
+  }
 
   if (!session?.user?.id) {
     return {

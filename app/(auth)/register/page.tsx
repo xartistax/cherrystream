@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth";
+import { getHomePath } from "@/lib/impersonation";
 import { RegisterForm } from "@/components/auth/register-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSafeRedirectPath } from "@/lib/safe-redirect";
@@ -16,7 +17,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   const callbackUrl = getSafeRedirectPath((await searchParams).callbackUrl, "");
 
   if (session?.user) {
-    redirect(callbackUrl || "/dashboard");
+    redirect(callbackUrl || getHomePath(session.user.role));
   }
 
   return (

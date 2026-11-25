@@ -5,6 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 
 import type { UserRole } from "@/generated/prisma/enums";
+import { IMPERSONATION_MAX_AGE_MS, verifyImpersonationGrant } from "@/lib/impersonation";
 import { prisma } from "@/lib/prisma";
 
 const credentialsSchema = z.object({
@@ -16,7 +17,34 @@ function isUserRole(value: unknown): value is UserRole {
   return value === "USER" || value === "MODEL" || value === "ADMIN";
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+type TokenImpersonation = {
+  userId: string;
+  startedAt: number;
+  username?: string;
+  role?: UserRole;
+};
+
+/** The JWT is an untyped record at runtime, so the impersonation entry is validated before use. */
+function readImpersonation(value: unknown): TokenImpersonation | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  const candidate = value as Record<string, unknown>;
+
+  if (typeof candidate.userId !== "string" || typeof candidate.startedAt !== "number") {
+    return null;
+  }
+
+  return {
+    userId: candidate.userId,
+    startedAt: candidate.startedAt,
+    username: typeof candidate.username === "string" ? candidate.username : undefined,
+    role: isUserRole(candidate.role) ? candidate.role : undefined,
+  };
+}
+
+export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   adapter: PrismaAdapter(prisma),
 
   session: {
@@ -86,10 +114,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.username = user.username;
         token.role = user.role;
+        delete token.impersonation;
 
         return token;
       }
@@ -116,15 +145,82 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.username = dbUser.username;
       token.role = dbUser.role;
 
+      if (trigger === "update" && session && typeof session === "object" && "impersonation" in session) {
+        const request = (session as { impersonation: unknown }).impersonation;
+
+        if (request === null) {
+          delete token.impersonation;
+        } else if (dbUser.role === "ADMIN") {
+          const grant = request && typeof request === "object" ? (request as { grant?: unknown }).grant : null;
+          const targetUserId = verifyImpersonationGrant(grant, token.sub);
+
+          if (targetUserId) {
+            token.impersonation = {
+              userId: targetUserId,
+              startedAt: Date.now(),
+            };
+          }
+        }
+      }
+
+      // Re-validated on every request: the admin must still be an admin, the time limit applies,
+      // and the target must still be an active non-admin account.
+      const impersonation = readImpersonation(token.impersonation);
+
+      if (!impersonation) {
+        delete token.impersonation;
+      } else {
+        const target =
+          dbUser.role === "ADMIN" && Date.now() - impersonation.startedAt < IMPERSONATION_MAX_AGE_MS
+            ? await prisma.user.findUnique({
+                where: {
+                  id: impersonation.userId,
+                },
+                select: {
+                  username: true,
+                  role: true,
+                  status: true,
+                },
+              })
+            : null;
+
+        if (!target || target.status !== "ACTIVE" || target.role === "ADMIN") {
+          delete token.impersonation;
+        } else {
+          token.impersonation = {
+            ...impersonation,
+            username: target.username,
+            role: target.role,
+          };
+        }
+      }
+
       return token;
     },
 
     session({ session, token }) {
-      if (session.user && typeof token.sub === "string" && typeof token.username === "string" && isUserRole(token.role)) {
-        session.user.id = token.sub;
-        session.user.username = token.username;
-        session.user.role = token.role;
+      if (!session.user || typeof token.sub !== "string" || typeof token.username !== "string" || !isUserRole(token.role)) {
+        return session;
       }
+
+      const impersonation = readImpersonation(token.impersonation);
+
+      if (impersonation?.username && impersonation.role) {
+        // Everything that reads the session acts as the impersonated user; the real admin stays in impersonatedBy.
+        session.user.id = impersonation.userId;
+        session.user.username = impersonation.username;
+        session.user.role = impersonation.role;
+        session.user.impersonatedBy = {
+          id: token.sub,
+          username: token.username,
+        };
+
+        return session;
+      }
+
+      session.user.id = token.sub;
+      session.user.username = token.username;
+      session.user.role = token.role;
 
       return session;
     },

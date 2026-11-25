@@ -21,6 +21,13 @@ export type DeleteAccountState = {
 export async function deleteAccount(_: DeleteAccountState, formData: FormData): Promise<DeleteAccountState> {
   const session = await auth();
 
+  if (session?.user?.impersonatedBy) {
+    return {
+      success: false,
+      error: "Diese Aktion ist in der Admin-Ansicht gesperrt. Beende zuerst die Model-Ansicht.",
+    };
+  }
+
   if (!session?.user?.id) {
     return {
       success: false,

@@ -21,7 +21,7 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ username, role }: UserMenuProps) {
-  const menuItems = getNavigationItems(role).filter((item) => item.href !== "/dashboard");
+  const menuItems = getNavigationItems(role).filter((item) => (role === "ADMIN" ? item.href === "/admin" || item.href === "/settings" : item.href !== "/dashboard"));
 
   return (
     <DropdownMenu>

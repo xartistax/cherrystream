@@ -62,7 +62,7 @@ export function Topbar({ user }: TopbarProps) {
           </Link>
         ) : null}
 
-        <Link href={isCreatorRole(user.role) ? "/profile/edit" : "/settings"}>
+        <Link href={user.role === "ADMIN" ? "/admin" : isCreatorRole(user.role) ? "/profile/edit" : "/settings"}>
           <Avatar className="size-9 border border-white/10">
             <AvatarImage src={user.image ?? undefined} alt={user.displayName} />
 

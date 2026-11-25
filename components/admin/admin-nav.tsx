@@ -3,42 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { adminNavigationItems, isNavigationItemActive } from "@/components/layout/navigation";
 import { cn } from "@/lib/utils";
-
-const items = [
-  {
-    label: "Status",
-    href: "/admin",
-  },
-  {
-    label: "Verifizierungen",
-    href: "/admin/verifications",
-  },
-  {
-    label: "Einladungen",
-    href: "/admin/invites",
-  },
-  {
-    label: "Benutzer",
-    href: "/admin/users",
-  },
-  {
-    label: "Inhalte",
-    href: "/admin/posts",
-  },
-  {
-    label: "Protokoll",
-    href: "/admin/audit",
-  },
-] as const;
 
 export function AdminNav({ pendingVerifications }: { pendingVerifications: number }) {
   const pathname = usePathname();
 
   return (
-    <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
-      {items.map((item) => {
-        const isActive = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
+    // Mobile only: on desktop the sidebar lists the same sections.
+    <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0 lg:hidden">
+      {adminNavigationItems.map((item) => {
+        const isActive = isNavigationItemActive(item.href, pathname);
 
         return (
           <Link

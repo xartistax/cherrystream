@@ -16,7 +16,7 @@ export default async function PrivacySettingsPage() {
     redirect("/login");
   }
 
-  const hasPublicProfile = session.user.role === "MODEL" || session.user.role === "ADMIN";
+  const hasPublicProfile = session.user.role === "MODEL";
 
   const profile = hasPublicProfile
     ? await prisma.profile.findUnique({

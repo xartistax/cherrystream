@@ -15,9 +15,9 @@ export const metadata = {
 };
 
 export default async function VerificationPage() {
-  const { userId, role, modelStatus } = await requireCreatorPage();
+  const { userId, modelStatus } = await requireCreatorPage();
 
-  const overview = role === "ADMIN" ? ({ state: "VERIFIED" } as const) : await getVerificationOverview(userId, modelStatus);
+  const overview = await getVerificationOverview(userId, modelStatus);
 
   return (
     <div className="mx-auto w-full max-w-2xl space-y-8">

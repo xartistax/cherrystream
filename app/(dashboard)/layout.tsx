@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { ImpersonationBanner } from "@/components/shared/impersonation-banner";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { auth } from "@/lib/auth";
@@ -52,6 +53,8 @@ export default async function SocialLayout({
 
   return (
     <div className="min-h-svh bg-zinc-950 text-white">
+      <ImpersonationBanner />
+
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,94,0.08),transparent_30%)]" />
 
       <Sidebar user={socialUser} />

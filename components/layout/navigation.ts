@@ -1,4 +1,18 @@
-import { CircleUserRound, CreditCard, FileImage, LayoutDashboard, Settings, ShieldCheck, UserRound, type LucideIcon } from "lucide-react";
+import {
+  Activity,
+  BadgeCheck,
+  CircleUserRound,
+  CreditCard,
+  FileImage,
+  History,
+  Images,
+  LayoutDashboard,
+  MailPlus,
+  Settings,
+  UserRound,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react";
 
 import type { UserRole } from "@/generated/prisma/enums";
 import { paymentsEnabled } from "@/lib/features";
@@ -9,11 +23,19 @@ export type NavigationItem = {
   icon: LucideIcon;
 };
 
+/** Models are the only creators; admins act as a model only via impersonation. */
 export function isCreatorRole(role: UserRole) {
-  return role === "MODEL" || role === "ADMIN";
+  return role === "MODEL";
 }
 
 export function getDashboardButton(role: UserRole) {
+  if (role === "ADMIN") {
+    return {
+      label: "Admin",
+      href: "/admin",
+    };
+  }
+
   if (!isCreatorRole(role)) {
     return {
       label: "Mitglied werden",
@@ -45,13 +67,55 @@ const settingsItem: NavigationItem = {
   icon: Settings,
 };
 
-const adminItem: NavigationItem = {
-  label: "Admin",
-  href: "/admin",
-  icon: ShieldCheck,
-};
+export const adminNavigationItems: NavigationItem[] = [
+  {
+    label: "Status",
+    href: "/admin",
+    icon: Activity,
+  },
+  {
+    label: "Verifizierungen",
+    href: "/admin/verifications",
+    icon: BadgeCheck,
+  },
+  {
+    label: "Einladungen",
+    href: "/admin/invites",
+    icon: MailPlus,
+  },
+  {
+    label: "Benutzer",
+    href: "/admin/users",
+    icon: UsersRound,
+  },
+  {
+    label: "Inhalte",
+    href: "/admin/posts",
+    icon: Images,
+  },
+  {
+    label: "Protokoll",
+    href: "/admin/audit",
+    icon: History,
+  },
+];
+
+/** Only active on an exact match, because other navigation items live below these paths. */
+const exactMatchPaths = new Set(["/dashboard", "/admin"]);
+
+export function isNavigationItemActive(href: string, pathname: string): boolean {
+  if (exactMatchPaths.has(href)) {
+    return pathname === href;
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): NavigationItem[] {
+  if (role === "ADMIN") {
+    return [...adminNavigationItems, settingsItem];
+  }
+
   if (!isCreatorRole(role)) {
     if (isBecomeModelFlow) {
       return [becomeModelItem];
@@ -78,6 +142,5 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
     },
     ...(paymentsEnabled ? [creditsItem] : []),
     settingsItem,
-    ...(role === "ADMIN" ? [adminItem] : []),
   ];
 }

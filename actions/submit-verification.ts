@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { getCreatorAccess } from "@/lib/access";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getChallengeCode } from "@/lib/verification/challenge";
 import { deleteVerificationImages, storeVerificationImage, VerificationImageError } from "@/lib/verification/storage";
@@ -19,6 +20,13 @@ function getFile(formData: FormData, key: string): File | null {
 }
 
 export async function submitVerificationAction(formData: FormData): Promise<SubmitVerificationResult> {
+  if ((await auth())?.user?.impersonatedBy) {
+    return {
+      success: false,
+      message: "Diese Aktion ist in der Admin-Ansicht gesperrt. Beende zuerst die Model-Ansicht.",
+    };
+  }
+
   const access = await getCreatorAccess();
 
   if (!access.allowed) {
