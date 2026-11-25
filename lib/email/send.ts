@@ -13,28 +13,54 @@ export type SendEmailResult = { status: "sent"; id: string } | { status: "logged
 
 const RESEND_API_URL = "https://api.resend.com/emails";
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+
 export function isEmailConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM);
 }
 
+function logEmail(message: EmailMessage, reason: string): void {
+  console.info(
+    [
+      "",
+      `──────── E-Mail (${reason}) ────────`,
+      `An:      ${[message.to].flat().join(", ")}`,
+      `Betreff: ${message.subject}`,
+      "",
+      message.text,
+      "────────────────────────────────────────────────────────────────",
+    ].join("\n"),
+  );
+}
+
 /**
- * Sends via the Resend REST API. Without RESEND_API_KEY the mail is printed to the server log in development,
- * so every flow can be tested locally. Never throws: callers decide whether a failed mail matters.
+ * In development, EMAIL_DEV_REDIRECT sends every mail to one inbox (e.g. the Resend account address, which is the
+ * only allowed recipient in Resend's test mode). The original recipients are kept in the subject.
  */
-export async function sendEmail(message: EmailMessage): Promise<SendEmailResult> {
+function applyDevRedirect(message: EmailMessage): EmailMessage {
+  const redirectTo = process.env.EMAIL_DEV_REDIRECT;
+
+  if (!isDevelopment || !redirectTo) {
+    return message;
+  }
+
+  return {
+    ...message,
+    to: redirectTo,
+    subject: `[an ${[message.to].flat().join(", ")}] ${message.subject}`,
+  };
+}
+
+/**
+ * Sends via the Resend REST API. In development, mails that are not sent (no key, or rejected by Resend)
+ * are printed to the server log, so every flow can be tested locally. Never throws: callers decide whether a failed mail matters.
+ */
+export async function sendEmail(originalMessage: EmailMessage): Promise<SendEmailResult> {
+  const message = applyDevRedirect(originalMessage);
+
   if (!isEmailConfigured()) {
-    if (process.env.NODE_ENV !== "production") {
-      console.info(
-        [
-          "",
-          "──────── E-Mail (nicht versendet, RESEND_API_KEY fehlt) ────────",
-          `An:      ${[message.to].flat().join(", ")}`,
-          `Betreff: ${message.subject}`,
-          "",
-          message.text,
-          "────────────────────────────────────────────────────────────────",
-        ].join("\n"),
-      );
+    if (isDevelopment) {
+      logEmail(message, "nicht versendet, RESEND_API_KEY fehlt");
 
       return {
         status: "logged",
@@ -70,6 +96,10 @@ export async function sendEmail(message: EmailMessage): Promise<SendEmailResult>
     if (!response.ok || !body?.id) {
       const error = body?.message ?? `HTTP ${response.status}`;
       console.error("E-Mail-Versand fehlgeschlagen:", { subject: message.subject, error });
+
+      if (isDevelopment) {
+        logEmail(message, "von Resend abgelehnt, Inhalt zum Testen");
+      }
 
       return {
         status: "failed",
