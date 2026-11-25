@@ -15,7 +15,7 @@ import { processImage } from "@/lib/media/image";
 import { storeProcessedImage } from "@/lib/media/process-uploaded-image";
 import { prisma } from "@/lib/prisma";
 import { getChallengeCode } from "@/lib/verification/challenge";
-import { getVerificationBlobToken } from "@/lib/verification/storage";
+import { verificationBlobOptions } from "@/lib/verification/storage";
 
 import { demoCreators, type CreatorSeed } from "./seed/creators";
 
@@ -428,7 +428,7 @@ async function seedPendingVerification(userId: string): Promise<string> {
   }
 
   const challengeCode = getChallengeCode(userId, 0);
-  const token = getVerificationBlobToken();
+  const blobOptions = verificationBlobOptions();
 
   const [idDocument, selfie] = await Promise.all([
     createPlaceholderDocument("DEMO-AUSWEIS", "Kein echtes Dokument"),
@@ -436,8 +436,8 @@ async function seedPendingVerification(userId: string): Promise<string> {
   ]);
 
   const [idBlob, selfieBlob] = await Promise.all([
-    put(`verifications/${userId}/id-document.jpg`, idDocument, { access: "private", token, contentType: "image/jpeg", addRandomSuffix: true }),
-    put(`verifications/${userId}/selfie.jpg`, selfie, { access: "private", token, contentType: "image/jpeg", addRandomSuffix: true }),
+    put(`verifications/${userId}/id-document.jpg`, idDocument, { access: "private", ...blobOptions, contentType: "image/jpeg", addRandomSuffix: true }),
+    put(`verifications/${userId}/selfie.jpg`, selfie, { access: "private", ...blobOptions, contentType: "image/jpeg", addRandomSuffix: true }),
   ]);
 
   await prisma.modelVerification.create({

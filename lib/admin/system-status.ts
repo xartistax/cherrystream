@@ -13,7 +13,7 @@ import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import { prisma } from "@/lib/prisma";
 import { urgentReportReasons } from "@/lib/reports/reasons";
 import { getStripe } from "@/lib/stripe";
-import { getVerificationBlobToken } from "@/lib/verification/storage";
+import { getVerificationBlobAuth, verificationBlobOptions } from "@/lib/verification/storage";
 import packageJson from "@/package.json";
 
 export type CheckStatus = "ok" | "warn" | "error" | "disabled";
@@ -195,28 +195,27 @@ async function checkPublicBlobStore(): Promise<CheckResult> {
 
 /** Writes and deletes a tiny private blob, because listing alone does not prove that private uploads are accepted. */
 async function checkPrivateBlobStore(): Promise<CheckResult> {
-  const token = getVerificationBlobToken();
+  const { mode } = getVerificationBlobAuth();
+  const options = verificationBlobOptions();
 
   const probe = await put(`health/probe-${crypto.randomUUID()}.txt`, "ok", {
     access: "private",
-    token,
+    ...options,
     contentType: "text/plain",
   });
 
-  await del(probe.pathname, {
-    token,
-  });
+  await del(probe.pathname, options);
 
-  if (!process.env.VERIFICATION_BLOB_READ_WRITE_TOKEN) {
+  if (mode === "fallback") {
     return {
       status: "warn",
-      detail: "Private Uploads funktionieren, aber es ist kein separater Store für Ausweise konfiguriert (VERIFICATION_BLOB_READ_WRITE_TOKEN)",
+      detail: "Private Uploads funktionieren, aber Ausweise liegen im Medien-Store. Separaten privaten Store verbinden (Prefix BLOB_VERIFICATION)",
     };
   }
 
   return {
     status: "ok",
-    detail: "Privater Store für Ausweise akzeptiert private Uploads",
+    detail: `Privater Store für Ausweise akzeptiert private Uploads (${mode === "oidc" ? "Vercel OIDC" : "Token"})`,
   };
 }
 

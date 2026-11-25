@@ -15,18 +15,43 @@ export type VerificationImageKind = "id-document" | "selfie";
 /** Errors with a message that is safe to show to the model. */
 export class VerificationImageError extends Error {}
 
-/**
- * Verification documents must live in a private Blob store.
- * VERIFICATION_BLOB_READ_WRITE_TOKEN allows a separate private store; it falls back to the default token.
- */
-export function getVerificationBlobToken(): string {
-  const token = process.env.VERIFICATION_BLOB_READ_WRITE_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+export type VerificationBlobAuth = { token: string; storeId?: undefined } | { storeId: string; token?: undefined };
 
-  if (!token) {
-    throw new Error("VERIFICATION_BLOB_READ_WRITE_TOKEN fehlt.");
+export type VerificationBlobMode = "token" | "oidc" | "fallback";
+
+/**
+ * Verification documents must live in a private Blob store. In order of precedence:
+ * 1. VERIFICATION_BLOB_READ_WRITE_TOKEN: a read-write token (local development).
+ * 2. BLOB_VERIFICATION_STORE_ID: store connected in Vercel with prefix BLOB_VERIFICATION; authenticates via
+ *    Vercel OIDC (VERCEL_OIDC_TOKEN), because newly connected stores no longer get a read-write token.
+ * 3. BLOB_READ_WRITE_TOKEN: the media store, which only works if it is private; the status page warns.
+ */
+export function getVerificationBlobAuth(): VerificationBlobAuth & { mode: VerificationBlobMode } {
+  const token = process.env.VERIFICATION_BLOB_READ_WRITE_TOKEN;
+
+  if (token) {
+    return { token, mode: "token" };
   }
 
-  return token;
+  const storeId = process.env.BLOB_VERIFICATION_STORE_ID;
+
+  if (storeId) {
+    return { storeId, mode: "oidc" };
+  }
+
+  const fallbackToken = process.env.BLOB_READ_WRITE_TOKEN;
+
+  if (!fallbackToken) {
+    throw new Error("Kein Blob-Store für Ausweisdokumente konfiguriert.");
+  }
+
+  return { token: fallbackToken, mode: "fallback" };
+}
+
+export function verificationBlobOptions(): VerificationBlobAuth {
+  const auth = getVerificationBlobAuth();
+
+  return auth.mode === "oidc" ? { storeId: auth.storeId! } : { token: auth.token! };
 }
 
 export function getVerificationPathPrefix(userId: string): string {
@@ -85,7 +110,7 @@ export async function storeVerificationImage(userId: string, kind: VerificationI
 
   const blob = await put(`${getVerificationPathPrefix(userId)}${kind}.jpg`, output, {
     access: "private",
-    token: getVerificationBlobToken(),
+    ...verificationBlobOptions(),
     contentType: "image/jpeg",
     addRandomSuffix: true,
   });
@@ -96,7 +121,7 @@ export async function storeVerificationImage(userId: string, kind: VerificationI
 export async function readVerificationImage(pathname: string) {
   return get(pathname, {
     access: "private",
-    token: getVerificationBlobToken(),
+    ...verificationBlobOptions(),
     useCache: false,
   });
 }
@@ -108,7 +133,5 @@ export async function deleteVerificationImages(pathnames: Array<string | null>):
     return;
   }
 
-  await del(existing, {
-    token: getVerificationBlobToken(),
-  });
+  await del(existing, verificationBlobOptions());
 }
