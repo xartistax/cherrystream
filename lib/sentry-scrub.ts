@@ -6,12 +6,14 @@ type DataCollection = NonNullable<NonNullable<Parameters<typeof init>[0]>["dataC
  * Sentry 11 collects cookies, headers and request/response bodies by default. For an adult platform with
  * personal profiles we send none of that: no user info, no cookies, no bodies, no query strings, only harmless headers.
  */
+const ALLOWED_REQUEST_HEADERS = ["user-agent", "content-type", "accept-language"];
+
 export const sentryDataCollection = {
   userInfo: false,
   cookies: false,
   httpHeaders: {
     request: {
-      allow: ["user-agent", "content-type", "accept-language"],
+      allow: ALLOWED_REQUEST_HEADERS,
     },
     response: false,
   },
@@ -38,9 +40,11 @@ export function scrubSentryEvent(event: ErrorEvent): ErrorEvent {
     delete event.request.cookies;
     delete event.request.data;
 
+    // Next.js' request error hook attaches headers itself, so the allowlist is enforced here as well.
     if (event.request.headers) {
-      delete event.request.headers.cookie;
-      delete event.request.headers.authorization;
+      event.request.headers = Object.fromEntries(
+        Object.entries(event.request.headers).filter(([name]) => ALLOWED_REQUEST_HEADERS.includes(name.toLowerCase())),
+      );
     }
   }
 
