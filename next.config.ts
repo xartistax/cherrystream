@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
 
   outputFileTracingIncludes: {
     "/dashboard": ffmpegBinaries,
+    // The status page compares these folders with the applied migrations.
+    "/admin": ["./prisma/migrations/**/*"],
   },
 };
 

@@ -1,5 +1,8 @@
 import "server-only";
 
+import { readdir } from "node:fs/promises";
+import path from "node:path";
+
 import { del, list, put } from "@vercel/blob";
 import { execa } from "execa";
 import sharp from "sharp";
@@ -105,21 +108,50 @@ async function checkDatabase(): Promise<CheckResult> {
 }
 
 /** Compares the tables in the database with the models of the generated client to catch missing migrations. */
+/** Migration folders shipped with this deployment (traced into the /admin function via next.config.ts). */
+async function readLocalMigrations(): Promise<string[] | null> {
+  try {
+    const entries = await readdir(path.join(process.cwd(), "prisma", "migrations"), {
+      withFileTypes: true,
+    });
+
+    return entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  } catch {
+    return null;
+  }
+}
+
 async function checkSchema(): Promise<CheckResult> {
-  const [tables, failedMigrations] = await Promise.all([
+  const [tables, migrations, localMigrations] = await Promise.all([
     prisma.$queryRaw<Array<{ table_name: string }>>`
       SELECT table_name FROM information_schema.tables WHERE table_schema = current_schema()
     `,
-    prisma.$queryRaw<Array<{ migration_name: string }>>`
-      SELECT migration_name FROM _prisma_migrations WHERE finished_at IS NULL AND rolled_back_at IS NULL
+    prisma.$queryRaw<Array<{ migration_name: string; finished_at: Date | null; rolled_back_at: Date | null }>>`
+      SELECT migration_name, finished_at, rolled_back_at FROM _prisma_migrations
     `,
+    readLocalMigrations(),
   ]);
+
+  const failedMigrations = migrations.filter((migration) => !migration.finished_at && !migration.rolled_back_at);
 
   if (failedMigrations.length > 0) {
     return {
       status: "error",
       detail: `Fehlgeschlagene Migration: ${failedMigrations.map((migration) => migration.migration_name).join(", ")}`,
     };
+  }
+
+  // Catches pending migrations that only add columns, which the table comparison below cannot see.
+  if (localMigrations) {
+    const applied = new Set(migrations.filter((migration) => migration.finished_at).map((migration) => migration.migration_name));
+    const pending = localMigrations.filter((name) => !applied.has(name));
+
+    if (pending.length > 0) {
+      return {
+        status: "error",
+        detail: `Migration ausstehend: ${pending.join(", ")}. Ausführen: pnpm prisma migrate deploy`,
+      };
+    }
   }
 
   const existingTables = new Set(tables.map((table) => table.table_name));
@@ -134,7 +166,9 @@ async function checkSchema(): Promise<CheckResult> {
 
   return {
     status: "ok",
-    detail: `${Object.values(Prisma.ModelName).length} Tabellen vorhanden, keine offenen Migrationen`,
+    detail: localMigrations
+      ? `${localMigrations.length} Migrationen angewendet, ${Object.values(Prisma.ModelName).length} Tabellen vorhanden`
+      : `${Object.values(Prisma.ModelName).length} Tabellen vorhanden (Migrationsordner nicht verfügbar)`,
   };
 }
 
