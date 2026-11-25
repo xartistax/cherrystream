@@ -124,7 +124,7 @@ async function readLocalMigrations(): Promise<string[] | null> {
 async function checkSchema(): Promise<CheckResult> {
   const [tables, migrations, localMigrations] = await Promise.all([
     prisma.$queryRaw<Array<{ table_name: string }>>`
-      SELECT table_name FROM information_schema.tables WHERE table_schema = current_schema()
+      SELECT table_name::text AS table_name FROM information_schema.tables WHERE table_schema = current_schema()
     `,
     prisma.$queryRaw<Array<{ migration_name: string; finished_at: Date | null; rolled_back_at: Date | null }>>`
       SELECT migration_name, finished_at, rolled_back_at FROM _prisma_migrations
