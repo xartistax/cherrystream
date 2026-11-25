@@ -9,29 +9,22 @@ export const postMediaSchema = z.object({
   mimeType: z.string().min(1),
   size: z.number().int().positive(),
 });
-export const createPostSchema = z
+
+/** One upload can contain several files; each becomes its own gallery item. Premium only applies while payments are enabled. */
+export const galleryUploadSchema = z
   .object({
-    content: z.string().trim().max(2000),
-    visibility: z.enum(["PUBLIC", "FOLLOWERS", "PREMIUM"]),
-    unlockPrice: z.number().int().positive().nullable(),
     media: z.array(postMediaSchema).min(1).max(MAX_POST_FILES),
+    premium: z.boolean().default(false),
+    unlockPrice: z.number().int().positive().max(10_000).nullable().default(null),
   })
   .superRefine((data, context) => {
-    if (data.visibility === "PREMIUM" && data.unlockPrice === null) {
+    if (data.premium && data.unlockPrice === null) {
       context.addIssue({
         code: "custom",
         path: ["unlockPrice"],
-        message: "Lege einen Preis für den Premium-Beitrag fest.",
-      });
-    }
-
-    if (data.visibility !== "PREMIUM" && data.unlockPrice !== null) {
-      context.addIssue({
-        code: "custom",
-        path: ["unlockPrice"],
-        message: "Ein Freischaltpreis ist nur für Premium-Beiträge erlaubt.",
+        message: "Lege einen Preis für die Premium-Inhalte fest.",
       });
     }
   });
 
-export type CreatePostInput = z.infer<typeof createPostSchema>;
+export type GalleryUploadInput = z.input<typeof galleryUploadSchema>;

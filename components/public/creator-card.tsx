@@ -1,7 +1,6 @@
-import { BadgeCheck, Camera, MapPin, UsersRound, Video } from "lucide-react";
+import { BadgeCheck, Camera, MapPin, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
 
 export type CreatorCardData = {
   username: string;
@@ -33,7 +32,6 @@ export type CreatorCardData = {
 
   _count: {
     posts: number;
-    followers: number;
   };
 
   mediaCounts: {
@@ -52,8 +50,9 @@ export function CreatorCard({ creator, priority = false }: CreatorCardProps) {
 
   const firstMedia = creator.posts[0]?.media[0];
 
+  // The profile picture (chosen by the model, otherwise her first image) represents her; the latest upload is only a fallback.
   const previewUrl =
-    firstMedia?.type === "VIDEO" ? (firstMedia.posterUrl ?? firstMedia.feedUrl ?? firstMedia.url) : (firstMedia?.feedUrl ?? firstMedia?.url ?? creator.image);
+    creator.image ?? (firstMedia?.type === "VIDEO" ? (firstMedia.posterUrl ?? firstMedia.feedUrl ?? firstMedia.url) : (firstMedia?.feedUrl ?? firstMedia?.url));
 
   const location = [creator.profile?.city, creator.profile?.canton].filter(Boolean).join(", ");
 
@@ -114,7 +113,7 @@ export function CreatorCard({ creator, priority = false }: CreatorCardProps) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between px-4 py-3 text-xs text-zinc-400">
+        <div className="flex items-center gap-5 px-4 py-3 text-xs text-zinc-400">
           <span className="inline-flex items-center gap-1.5">
             <Camera className="size-3.5" />
             {creator.mediaCounts.images}
@@ -125,10 +124,6 @@ export function CreatorCard({ creator, priority = false }: CreatorCardProps) {
             {creator.mediaCounts.videos}
           </span>
 
-          <span className="inline-flex items-center gap-1.5">
-            <UsersRound className="size-3.5" />
-            {creator._count.followers}
-          </span>
         </div>
       </Link>
     </article>

@@ -248,7 +248,7 @@ export default async function PublicHomePage() {
 
                 const media = creator.posts[0]?.media[0];
 
-                const imageUrl = media?.type === "VIDEO" ? (media.posterUrl ?? media.feedUrl ?? media.url) : (media?.feedUrl ?? media?.url ?? creator.image);
+                const imageUrl = creator.image ?? (media?.type === "VIDEO" ? (media.posterUrl ?? media.feedUrl ?? media.url) : (media?.feedUrl ?? media?.url));
 
                 const location = [creator.profile?.city?.name, creator.profile?.canton?.name].filter(Boolean).join(", ");
 
@@ -385,7 +385,7 @@ export default async function PublicHomePage() {
 
               const media = creator.posts[0]?.media[0];
 
-              const imageUrl = media?.type === "VIDEO" ? (media.posterUrl ?? media.feedUrl ?? media.url) : (media?.feedUrl ?? media?.url ?? creator.image);
+              const imageUrl = creator.image ?? (media?.type === "VIDEO" ? (media.posterUrl ?? media.feedUrl ?? media.url) : (media?.feedUrl ?? media?.url));
 
               const location = [creator.profile?.city?.name, creator.profile?.canton?.name].filter(Boolean).join(", ");
 

@@ -36,7 +36,7 @@ export function RegisterForm({ callbackUrl }: RegisterFormProps) {
 
         <h1 className="text-2xl font-bold text-white">Konto erstellen</h1>
 
-        <p className="text-sm leading-6 text-zinc-400">Registriere dich kostenlos, entdecke Profile und folge deinen Favoriten.</p>
+        <p className="text-sm leading-6 text-zinc-400">Registriere dich kostenlos, entdecke Profile und merke dir deine Favoriten.</p>
       </div>
       {state.message ? (
         <Alert variant="destructive">

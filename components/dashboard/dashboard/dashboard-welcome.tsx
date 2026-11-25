@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Eye, MessageCircle, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, Eye, Heart, MessageCircle, Sparkles } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,10 +26,10 @@ function getMessage(stats: ProfileStats): string {
   }
 
   if (stats.posts === 0) {
-    return "Veröffentliche deinen ersten Beitrag und zeige, was dich besonders macht.";
+    return "Lade deine ersten Bilder hoch. Das erste Bild wird automatisch dein Profilbild.";
   }
 
-  return "Heute ist es noch ruhig. Ein neuer Beitrag kann dein Profil wieder sichtbar machen.";
+  return "Heute ist es noch ruhig. Neue Bilder halten dein Profil aktuell und sichtbar.";
 }
 
 export function DashboardWelcome({ displayName, username, stats }: DashboardWelcomeProps) {
@@ -51,8 +51,8 @@ export function DashboardWelcome({ displayName, username, stats }: DashboardWelc
             <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-300 sm:text-base">{getMessage(stats)}</p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link href="#publish" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
-                Neuen Beitrag erstellen
+              <Link href="/dashboard/gallery" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
+                Bilder & Videos hochladen
                 <ArrowRight className="size-4" />
               </Link>
 
@@ -88,11 +88,11 @@ export function DashboardWelcome({ displayName, username, stats }: DashboardWelc
             </div>
 
             <div className="min-w-0 rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
-              <UsersRound className="size-4 text-violet-400" />
+              <Heart className="size-4 text-violet-400" />
 
               <p className="mt-3 text-xl font-black sm:text-2xl">{formatNumber(stats.followers)}</p>
 
-              <p className="mt-1 truncate text-[11px] text-zinc-500 sm:text-xs">Follower</p>
+              <p className="mt-1 truncate text-[11px] text-zinc-500 sm:text-xs">In Favoriten</p>
             </div>
           </div>
         </div>

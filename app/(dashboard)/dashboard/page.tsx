@@ -1,33 +1,32 @@
+import { ArrowRight, ChevronRight, ExternalLink, Pencil, ShieldCheck, Upload } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { requireCreatorPage } from "@/lib/access";
-import { paymentsEnabled } from "@/lib/features";
-import { prisma } from "@/lib/prisma";
-import { CreatePostComposer } from "@/components/dashboard/create-post/composer";
-import { ComposerUser } from "@/components/dashboard/create-post/types";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { ArrowRight, ChevronRight, Coins, ExternalLink, FileImage, Pencil, Plus, ShieldCheck, UserRound } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { PostGrid } from "@/components/dashboard/posts/post-grid";
-import { getProfileStats } from "@/lib/analytics/get-profile-stats";
 import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metrics";
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
+import { GalleryManager } from "@/components/gallery/gallery-manager";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { requireCreatorPage } from "@/lib/access";
+import { getProfileStats } from "@/lib/analytics/get-profile-stats";
+import { getGalleryItems } from "@/lib/gallery/get-gallery-items";
+import { prisma } from "@/lib/prisma";
+import { cn } from "@/lib/utils";
 
-export default async function FeedPage() {
+const GALLERY_PREVIEW_SIZE = 8;
+
+export default async function DashboardPage() {
   const { userId, modelStatus } = await requireCreatorPage();
 
   const isPublished = modelStatus === "ACTIVE";
 
-  const [currentUser, posts, profileStats] = await Promise.all([
+  const [currentUser, galleryItems, profileStats] = await Promise.all([
     prisma.user.findUnique({
       where: {
         id: userId,
       },
       select: {
-        id: true,
         username: true,
         name: true,
         image: true,
@@ -38,46 +37,7 @@ export default async function FeedPage() {
         },
       },
     }),
-
-    prisma.post.findMany({
-      where: {
-        authorId: userId,
-        status: "PUBLISHED",
-      },
-      select: {
-        id: true,
-        content: true,
-        visibility: true,
-        unlockPrice: true,
-        createdAt: true,
-        media: {
-          where: {
-            status: "READY",
-          },
-          select: {
-            id: true,
-            type: true,
-            url: true,
-            feedUrl: true,
-            posterUrl: true,
-          },
-          orderBy: {
-            sortOrder: "asc",
-          },
-        },
-        _count: {
-          select: {
-            likes: true,
-            unlocks: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: 20,
-    }),
-
+    getGalleryItems(userId, GALLERY_PREVIEW_SIZE + 1),
     getProfileStats(userId),
   ]);
 
@@ -86,16 +46,7 @@ export default async function FeedPage() {
   }
 
   const displayName = currentUser.profile?.displayName ?? currentUser.name ?? currentUser.username;
-
-  const recentPosts = posts.slice(0, 6);
-
-  const composerUser: ComposerUser = {
-    id: currentUser.id,
-
-    displayName,
-
-    image: currentUser.image,
-  };
+  const hasMoreItems = galleryItems.length > GALLERY_PREVIEW_SIZE;
 
   return (
     <div className="space-y-8">
@@ -105,7 +56,7 @@ export default async function FeedPage() {
 
           <h1 className="mt-1 text-3xl font-black tracking-tight text-white sm:text-4xl">Dashboard</h1>
 
-          <p className="mt-2 text-sm text-zinc-500">Verwalte dein Profil, deine Inhalte und deine Einnahmen.</p>
+          <p className="mt-2 text-sm text-zinc-500">Deine Reichweite, deine Kontakte und deine Galerie.</p>
         </div>
 
         {isPublished ? (
@@ -148,57 +99,40 @@ export default async function FeedPage() {
       <BusinessMetrics stats={profileStats} />
 
       <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="min-w-0 space-y-8">
-          <section id="publish">
-            <div className="mb-4">
-              <div className="flex items-center gap-2">
-                <div className="flex size-9 items-center justify-center rounded-xl bg-rose-500/10 text-rose-400">
-                  <Plus className="size-4" />
-                </div>
+        <section className="min-w-0 space-y-5">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-bold text-white">Galerie</h2>
 
-                <div>
-                  <h2 className="text-lg font-bold text-white">Neue Veröffentlichung</h2>
-
-                  <p className="text-sm text-zinc-500">Lade Bilder oder Videos hoch und füge optional eine Beschreibung hinzu.</p>
-                </div>
-              </div>
+              <p className="mt-1 text-sm text-zinc-500">Deine zuletzt hochgeladenen Bilder und Videos.</p>
             </div>
 
-            {isPublished ? (
-              <CreatePostComposer user={composerUser} />
-            ) : (
-              <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-6 text-sm leading-6 text-zinc-500">
-                Sobald dein Profil freigegeben ist, kannst du hier Bilder und Videos veröffentlichen.
-              </div>
-            )}
-          </section>
-
-          <section>
-            <div className="mb-5 flex items-end justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-bold text-white">Letzte Inhalte</h2>
-
-                <p className="mt-1 text-sm text-zinc-500">Deine zuletzt veröffentlichten Medien.</p>
-              </div>
-
-              {posts.length > 6 ? (
-                <Link href="/dashboard/posts" className="inline-flex items-center gap-1.5 text-sm font-medium text-rose-400 hover:text-rose-300">
-                  Alle verwalten
+            <div className="flex items-center gap-3">
+              {hasMoreItems ? (
+                <Link href="/dashboard/gallery" className="inline-flex items-center gap-1.5 text-sm font-medium text-rose-400 hover:text-rose-300">
+                  Ganze Galerie
                   <ArrowRight className="size-4" />
                 </Link>
               ) : null}
+
+              {isPublished ? (
+                <Link href="/dashboard/gallery" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
+                  <Upload className="size-4" />
+                  Bilder & Videos hochladen
+                </Link>
+              ) : null}
             </div>
+          </div>
 
-            <PostGrid posts={recentPosts} username={currentUser.username} />
-          </section>
-        </div>
+          <GalleryManager items={galleryItems.slice(0, GALLERY_PREVIEW_SIZE)} username={currentUser.username} />
+        </section>
 
-        <aside className="space-y-5">
+        <aside>
           <Card className="border-white/10 bg-zinc-900/60 text-white">
             <CardHeader>
               <CardTitle className="text-base">Dein Profil</CardTitle>
 
-              <CardDescription className="text-zinc-500">So wirst du öffentlich angezeigt.</CardDescription>
+              <CardDescription className="text-zinc-500">So wirst du öffentlich angezeigt. Das Profilbild wählst du in der Galerie.</CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
@@ -220,65 +154,6 @@ export default async function FeedPage() {
                 <Pencil className="size-4" />
                 Profil bearbeiten
               </Link>
-
-              <Link
-                href={`/profile/${currentUser.username}`}
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                  }),
-                  "w-full border-white/10 bg-white/5 text-white hover:bg-white/10",
-                )}
-              >
-                <ExternalLink className="size-4" />
-                Öffentlich ansehen
-              </Link>
-            </CardContent>
-          </Card>
-
-          <Card className="border-white/10 bg-zinc-900/60 text-white">
-            <CardHeader>
-              <CardTitle className="text-base">Schnellzugriff</CardTitle>
-            </CardHeader>
-
-            <CardContent className="space-y-1">
-              <Link
-                href="/dashboard/posts"
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <FileImage className="size-4" />
-                  Inhalte verwalten
-                </span>
-
-                <ChevronRight className="size-4" />
-              </Link>
-
-              <Link
-                href="/profile/edit"
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <UserRound className="size-4" />
-                  Profil bearbeiten
-                </span>
-
-                <ChevronRight className="size-4" />
-              </Link>
-
-              {paymentsEnabled ? (
-                <Link
-                  href="/credits"
-                  className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <Coins className="size-4" />
-                    Credits
-                  </span>
-
-                  <ChevronRight className="size-4" />
-                </Link>
-              ) : null}
             </CardContent>
           </Card>
         </aside>

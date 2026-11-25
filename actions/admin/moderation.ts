@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { getAdminAccess } from "@/lib/access";
 import { logAdminAction } from "@/lib/admin/audit";
+import { syncProfileImage } from "@/lib/gallery/profile-image";
 import { prisma } from "@/lib/prisma";
 
 const idSchema = z.string().min(1);
@@ -98,6 +99,7 @@ export async function setPostHiddenAction(formData: FormData): Promise<void> {
     },
     select: {
       status: true,
+      authorId: true,
       author: {
         select: {
           username: true,
@@ -135,6 +137,10 @@ export async function setPostHiddenAction(formData: FormData): Promise<void> {
     });
   });
 
+  // A hidden image can no longer be the profile picture: a chosen one is forgotten and the oldest visible image takes over.
+  await syncProfileImage(post.authorId);
+
   revalidatePath("/admin/posts");
   revalidatePath(`/profile/${post.author.username}`);
+  revalidatePath("/explore");
 }

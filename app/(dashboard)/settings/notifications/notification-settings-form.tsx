@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Bell, Eye, Heart, Mail, Megaphone, MousePointerClick, UserPlus } from "lucide-react";
+import { Bell, Eye, Mail, Megaphone, MousePointerClick } from "lucide-react";
 
 import { updateNotificationSetting, type NotificationSetting } from "./actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,18 +34,6 @@ const emailSettings = [
 }>;
 
 const activitySettings = [
-  {
-    key: "newFollowers",
-    title: "Neue Follower",
-    description: "Informiere mich, wenn mir jemand neu folgt.",
-    icon: UserPlus,
-  },
-  {
-    key: "postLikes",
-    title: "Likes auf Beiträge",
-    description: "Informiere mich über neue Likes auf meinen Beiträgen.",
-    icon: Heart,
-  },
   {
     key: "profileViews",
     title: "Profilaufrufe",

@@ -7,7 +7,7 @@ import { getBlobToken } from "@/lib/blob";
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from "@/lib/media";
 
 const payloadSchema = z.object({
-  target: z.enum(["avatar", "cover"]),
+  target: z.enum(["cover"]),
 });
 
 export async function POST(request: Request): Promise<NextResponse> {

@@ -55,7 +55,7 @@ export function PublicFooter() {
           <Logo />
 
           <p className="mt-5 text-sm leading-7 text-zinc-500">
-            Entdecke Profile aus der Schweiz, folge deinen Favoriten und finde Fotos, Videos und exklusive Inhalte auf CherryStream.
+            Entdecke verifizierte Profile aus der Schweiz, merke dir deine Favoriten und nimm direkt Kontakt auf.
           </p>
         </div>
 

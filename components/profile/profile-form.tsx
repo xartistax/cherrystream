@@ -1,17 +1,18 @@
 "use client";
 
 import { LoaderCircle, Save, UserRound } from "lucide-react";
+import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import type { ActionState } from "@/types/action-state";
 import { updateProfileAction } from "@/actions/update-profile";
-import { AvatarUpload } from "./avatar-upload";
 import { CoverUpload } from "./cover-upload";
 import { CategorySelector } from "./category-selector";
 import { LocationSelector } from "./location-selector";
@@ -128,15 +129,22 @@ export function ProfileForm({ user, categories, cantonOptions, cityOptions }: Pr
           }}
         />
 
-        <AvatarUpload
-          user={{
-            id: user.id,
+        <div className="flex items-center gap-4">
+          <Avatar className="size-20 border-4 border-zinc-900 bg-zinc-900 shadow-xl">
+            <AvatarImage src={user.image ?? undefined} alt={user.displayName} />
+            <AvatarFallback className="bg-rose-500/15 text-lg text-rose-300">{user.displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+          </Avatar>
 
-            displayName: user.displayName,
-
-            image: user.image,
-          }}
-        />
+          <div className="text-sm leading-6 text-zinc-400">
+            <p className="font-medium text-white">Profilbild</p>
+            <p>
+              Dein Profilbild ist ein Bild aus deiner Galerie, automatisch das erste.{" "}
+              <Link href="/dashboard/gallery" className="font-medium text-rose-400 hover:text-rose-300">
+                In der Galerie ändern
+              </Link>
+            </p>
+          </div>
+        </div>
       </section>
 
       <div className="space-y-8 px-5 py-8 sm:px-8">

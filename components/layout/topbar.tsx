@@ -50,7 +50,7 @@ export function Topbar({ user }: TopbarProps) {
           )}
         >
           <Search className="size-4" />
-          Profile und Beiträge suchen
+          Profile suchen
         </Link>
 
         {paymentsEnabled ? (

@@ -6,6 +6,7 @@ import type { CreatorCardData } from "@/components/public/creator-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { creatorCardSelect, toCreatorCards } from "@/lib/creators/creator-cards";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { Prisma } from "@/generated/prisma/client";
@@ -304,94 +305,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
     prisma.user.findMany({
       where: creatorWhere,
 
-      select: {
-        id: true,
-        username: true,
-        name: true,
-        image: true,
-        createdAt: true,
-
-        profile: {
-          select: {
-            displayName: true,
-            verified: true,
-
-            city: {
-              select: {
-                name: true,
-              },
-            },
-
-            canton: {
-              select: {
-                name: true,
-                slug: true,
-              },
-            },
-
-            categories: {
-              select: {
-                category: {
-                  select: {
-                    name: true,
-                    slug: true,
-                  },
-                },
-              },
-              orderBy: {
-                category: {
-                  sortOrder: "asc",
-                },
-              },
-              take: 3,
-            },
-          },
-        },
-
-        posts: {
-          where: {
-            status: "PUBLISHED",
-            visibility: "PUBLIC",
-            media: {
-              some: {
-                status: "READY",
-              },
-            },
-          },
-          select: {
-            media: {
-              where: {
-                status: "READY",
-              },
-              select: {
-                type: true,
-                url: true,
-                feedUrl: true,
-                posterUrl: true,
-              },
-              orderBy: {
-                sortOrder: "asc",
-              },
-              take: 1,
-            },
-          },
-          orderBy: {
-            createdAt: "desc",
-          },
-          take: 1,
-        },
-
-        _count: {
-          select: {
-            posts: {
-              where: {
-                status: "PUBLISHED",
-              },
-            },
-            followers: true,
-          },
-        },
-      },
+      select: creatorCardSelect,
 
       orderBy:
         sort === "trending"
@@ -414,83 +328,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
     }),
   ]);
 
-  const creatorIds = creators.map((creator) => creator.id);
-
-  const creatorMedia =
-    creatorIds.length > 0
-      ? await prisma.postMedia.findMany({
-          where: {
-            status: "READY",
-            post: {
-              authorId: {
-                in: creatorIds,
-              },
-              status: "PUBLISHED",
-            },
-          },
-          select: {
-            type: true,
-            post: {
-              select: {
-                authorId: true,
-              },
-            },
-          },
-        })
-      : [];
-
-  const mediaCounts = new Map<
-    string,
-    {
-      images: number;
-      videos: number;
-    }
-  >();
-
-  creatorIds.forEach((creatorId) => {
-    mediaCounts.set(creatorId, {
-      images: 0,
-      videos: 0,
-    });
-  });
-
-  creatorMedia.forEach((media) => {
-    const count = mediaCounts.get(media.post.authorId);
-
-    if (!count) {
-      return;
-    }
-
-    if (media.type === "VIDEO") {
-      count.videos += 1;
-    } else {
-      count.images += 1;
-    }
-  });
-
-  const normalizedCreators: CreatorCardData[] = creators.map((creator) => ({
-    username: creator.username,
-    name: creator.name,
-    image: creator.image,
-
-    profile: creator.profile
-      ? {
-          displayName: creator.profile.displayName,
-          verified: creator.profile.verified,
-          city: creator.profile.city?.name ?? null,
-          canton: creator.profile.canton?.name ?? null,
-          categories: creator.profile.categories,
-        }
-      : null,
-
-    posts: creator.posts,
-    _count: creator._count,
-
-    mediaCounts: mediaCounts.get(creator.id) ?? {
-      images: 0,
-      videos: 0,
-    },
-  }));
+  const normalizedCreators: CreatorCardData[] = await toCreatorCards(creators);
 
   const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
 

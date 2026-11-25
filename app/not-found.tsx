@@ -184,7 +184,7 @@ export default async function NotFound() {
 
                 const media = creator.posts[0]?.media[0];
 
-                const imageUrl = media?.feedUrl ?? media?.url ?? creator.image;
+                const imageUrl = creator.image ?? media?.feedUrl ?? media?.url;
 
                 const location = [creator.profile?.city, creator.profile?.canton].filter(Boolean).join(", ");
 
@@ -218,10 +218,8 @@ export default async function NotFound() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between gap-2 px-3 py-2.5">
+                    <div className="px-3 py-2.5">
                       <span className="truncate text-xs text-zinc-500">@{creator.username}</span>
-
-                      <span className="shrink-0 text-xs text-zinc-500">{creator._count.followers} Follower</span>
                     </div>
                   </Link>
                 );

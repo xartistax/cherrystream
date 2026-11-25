@@ -23,6 +23,7 @@ export const config = {
     "/admin/:path*",
     "/settings/:path*",
     "/credits/:path*",
+    "/favorites",
     "/notifications",
     "/profile",
     "/profile/edit",
