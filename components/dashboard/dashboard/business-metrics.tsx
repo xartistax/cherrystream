@@ -1,4 +1,4 @@
-import { Eye, MessageCircle, Percent, UsersRound } from "lucide-react";
+import { Eye, Heart, MessageCircle, Percent } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ProfileStats } from "@/lib/analytics/get-profile-stats";
@@ -56,15 +56,15 @@ export function BusinessMetrics({ stats }: BusinessMetricsProps) {
       <div>
         <h2 className="text-lg font-bold text-white">Deine Entwicklung</h2>
 
-        <p className="mt-1 text-sm text-zinc-500">Reichweite, Kontakte und Wachstum auf einen Blick.</p>
+        <p className="mt-1 text-sm text-zinc-500">Wie oft du gefunden und kontaktiert wirst. Nur für dich sichtbar.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard
-          label="Follower"
+          label="In Favoriten"
           value={formatNumber(stats.followers)}
-          description={`${formatNumber(stats.posts)} veröffentlichte Inhalte`}
-          icon={UsersRound}
+          description={`${formatNumber(stats.posts)} Bilder & Videos in deiner Galerie`}
+          icon={Heart}
           iconClassName="text-violet-400"
           featured
         />

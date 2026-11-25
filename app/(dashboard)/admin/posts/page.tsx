@@ -71,7 +71,7 @@ export default async function AdminPostsPage({ searchParams }: AdminPostsPagePro
         ))}
       </div>
 
-      {posts.length === 0 ? <p className="rounded-2xl border border-dashed border-white/10 p-6 text-sm text-zinc-500">Keine Beiträge.</p> : null}
+      {posts.length === 0 ? <p className="rounded-2xl border border-dashed border-white/10 p-6 text-sm text-zinc-500">Keine Uploads.</p> : null}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {posts.map((post) => {

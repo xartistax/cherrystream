@@ -10,13 +10,13 @@ import Link from "next/link";
 import { ProfileGallery } from "@/components/profile/gallery/profile-gallery";
 import { ReportButton } from "@/components/reports/report-button";
 import { cn } from "@/lib/utils";
-import { FollowButton } from "@/components/profile/follow-button";
+import { FavoriteButton } from "@/components/profile/favorite-button";
 import { auth } from "@/lib/auth";
 import { trackProfileView } from "@/lib/analytics/track-profile-view";
 import { ContactCard } from "@/components/profile/contact-card";
 import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
 import { ProfileDescription } from "@/components/profile/profile-description";
-import { BadgeCheck, FileImage, MapPin, UserPlus, UsersRound } from "lucide-react";
+import { BadgeCheck, CalendarDays, Camera, MapPin, Video } from "lucide-react";
 
 type PageProps = {
   params: Promise<{
@@ -153,9 +153,6 @@ export default async function PublicProfilePage({ params }: PageProps) {
               status: "PUBLISHED",
             },
           },
-          followers: true,
-          following: true,
-          postLikes: true,
         },
       },
     },
@@ -169,6 +166,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
   const isOwnProfile = session?.user?.id === user.id;
 
+  // Favorites are stored in the Follow table; only the visitor sees whether they marked this profile.
   const existingFollow =
     session?.user?.id && !isOwnProfile
       ? await prisma.follow.findUnique({
@@ -184,7 +182,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
         })
       : null;
 
-  const initialFollowing = existingFollow !== null;
+  const initialFavorite = existingFollow !== null;
 
   const displayName = user.profile.displayName ?? user.username;
   const location = [user.profile.city?.name, user.profile.canton?.name]
@@ -237,6 +235,10 @@ export default async function PublicProfilePage({ params }: PageProps) {
     });
   });
 
+  const photoCount = galleryMedia.filter((media) => media.type === "IMAGE").length;
+  const videoCount = galleryMedia.length - photoCount;
+  const memberSince = new Intl.DateTimeFormat("de-CH", { month: "short", year: "numeric" }).format(user.createdAt);
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <StickyProfileHeader
@@ -250,8 +252,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           slug: category.slug,
         }))}
         authenticated={Boolean(session?.user?.id)}
-        initialFollowing={initialFollowing}
-        initialFollowerCount={user._count.followers}
+        initialFavorite={initialFavorite}
         isOwnProfile={isOwnProfile}
         contactProfile={{
           phoneEnabled: user.profile.phoneEnabled,
@@ -330,35 +331,19 @@ export default async function PublicProfilePage({ params }: PageProps) {
             </div>
 
             <div className="grid grid-cols-3 gap-3 sm:min-w-80">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center">
-                <FileImage className="mx-auto mb-1.5 size-4 text-rose-400" />
+              {[
+                { icon: Camera, value: String(photoCount), label: photoCount === 1 ? "Foto" : "Fotos" },
+                { icon: Video, value: String(videoCount), label: videoCount === 1 ? "Video" : "Videos" },
+                { icon: CalendarDays, value: memberSince, label: "Dabei seit" },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center">
+                  <stat.icon className="mx-auto mb-1.5 size-4 text-rose-400" />
 
-                <div className="text-xl font-black text-white">{user._count.posts}</div>
+                  <div className="text-xl font-black text-white">{stat.value}</div>
 
-                <div className="mt-1 text-xs text-zinc-500">Beiträge</div>
-              </div>
-
-              <Link
-                href={`/profile/${user.username}/followers`}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
-              >
-                <UsersRound className="mx-auto mb-1.5 size-4 text-rose-400" />
-
-                <div className="text-xl font-black text-white">{user._count.followers}</div>
-
-                <div className="mt-1 text-xs text-zinc-500">Follower</div>
-              </Link>
-
-              <Link
-                href={`/profile/${user.username}/following`}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center transition hover:border-rose-500/30 hover:bg-white/[0.06]"
-              >
-                <UserPlus className="mx-auto mb-1.5 size-4 text-rose-400" />
-
-                <div className="text-xl font-black text-white">{user._count.following}</div>
-
-                <div className="mt-1 text-xs text-zinc-500">Folgt</div>
-              </Link>
+                  <div className="mt-1 text-xs text-zinc-500">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -367,14 +352,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
               <Link href="/profile/edit" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
                 Profil bearbeiten
               </Link>
-            ) : (
-              <FollowButton
-                username={user.username}
-                authenticated={Boolean(session?.user?.id)}
-                initialFollowing={initialFollowing}
-                initialFollowerCount={user._count.followers}
-              />
-            )}
+            ) : null}
 
             <ContactCard
               username={user.username}
@@ -390,6 +368,10 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 preferredContact: user.profile.preferredContact,
               }}
             />
+
+            {!isOwnProfile ? (
+              <FavoriteButton username={user.username} authenticated={Boolean(session?.user?.id)} initialFavorite={initialFavorite} />
+            ) : null}
           </div>
 
           {!isOwnProfile ? <ReportButton username={user.username} label="Profil melden" className="mt-5" /> : null}

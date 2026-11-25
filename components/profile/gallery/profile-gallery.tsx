@@ -8,6 +8,7 @@ import { MediaLightbox } from "@/components/profile/gallery/media-lightbox";
 import { ReportDialog } from "@/components/reports/report-button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { paymentsEnabled } from "@/lib/features";
 
 export type ProfileGalleryMedia = {
   id: string;
@@ -41,6 +42,9 @@ export function ProfileGallery({ displayName, username, media, authenticated, lo
   const videos = media.filter((item) => item.type === "VIDEO" && item.visibility !== "PREMIUM");
 
   const premium = media.filter((item) => item.visibility === "PREMIUM");
+
+  // Premium only exists while payments are enabled.
+  const showPremium = paymentsEnabled && premium.length > 0;
 
   function openLightbox(items: ProfileGalleryMedia[], index: number): void {
     const selectedMedia = items[index];
@@ -108,11 +112,13 @@ export function ProfileGallery({ displayName, username, media, authenticated, lo
               <Badge className="ml-1 bg-white/10 text-zinc-300 hover:bg-white/10">{videos.length}</Badge>
             </TabsTrigger>
 
-            <TabsTrigger value="premium" className="gap-2 px-3 py-2">
-              <LockKeyhole className="size-4" />
-              Premium
-              <Badge className="ml-1 border border-amber-500/20 bg-amber-500/10 text-amber-300 hover:bg-amber-500/10">{premium.length}</Badge>
-            </TabsTrigger>
+            {showPremium ? (
+              <TabsTrigger value="premium" className="gap-2 px-3 py-2">
+                <LockKeyhole className="size-4" />
+                Premium
+                <Badge className="ml-1 border border-amber-500/20 bg-amber-500/10 text-amber-300 hover:bg-amber-500/10">{premium.length}</Badge>
+              </TabsTrigger>
+            ) : null}
           </TabsList>
         </div>
 
@@ -146,15 +152,17 @@ export function ProfileGallery({ displayName, username, media, authenticated, lo
           />
         </TabsContent>
 
-        <TabsContent value="premium">
-          <GalleryGrid
-            displayName={displayName}
-            media={premium}
-            onSelect={(index) => openLightbox(premium, index)}
-            authenticated={authenticated}
-            loginUrl={loginUrl}
-          />
-        </TabsContent>
+        {showPremium ? (
+          <TabsContent value="premium">
+            <GalleryGrid
+              displayName={displayName}
+              media={premium}
+              onSelect={(index) => openLightbox(premium, index)}
+              authenticated={authenticated}
+              loginUrl={loginUrl}
+            />
+          </TabsContent>
+        ) : null}
       </Tabs>
 
       {lightboxIndex !== null ? (

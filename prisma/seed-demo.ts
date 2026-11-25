@@ -9,7 +9,7 @@ import bcrypt from "bcryptjs";
 import sharp from "sharp";
 
 import type { ContactChannel, ModelStatus, UserRole } from "@/generated/prisma/enums";
-import { getBlobToken } from "@/lib/blob";
+import { syncProfileImage } from "@/lib/gallery/profile-image";
 import { createInviteToken, getInviteExpiry, getInviteUrl } from "@/lib/invites/token";
 import { processImage } from "@/lib/media/image";
 import { storeProcessedImage } from "@/lib/media/process-uploaded-image";
@@ -368,35 +368,11 @@ async function seedImages(userId: string, files: string[]): Promise<number> {
       },
     });
 
-    const user = await prisma.user.findUniqueOrThrow({
-      where: {
-        id: userId,
-      },
-      select: {
-        image: true,
-      },
-    });
-
-    if (!user.image) {
-      const avatar = await put(`profiles/${userId}/avatar/avatar.webp`, processed.variants.profile.buffer, {
-        access: "public",
-        token: getBlobToken(),
-        contentType: "image/webp",
-        addRandomSuffix: true,
-      });
-
-      await prisma.user.update({
-        where: {
-          id: userId,
-        },
-        data: {
-          image: avatar.url,
-        },
-      });
-    }
-
     created += 1;
   }
+
+  // Same rule as real uploads: the first image becomes the profile picture.
+  await syncProfileImage(userId);
 
   return created;
 }

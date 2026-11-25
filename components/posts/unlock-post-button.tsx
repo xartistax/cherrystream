@@ -29,7 +29,7 @@ export function UnlockPostButton({ postId, priceCredits, disabled = false }: Unl
       }
 
       setIsUnlocked(true);
-      toast.success("Beitrag wurde freigeschaltet.");
+      toast.success("Inhalt wurde freigeschaltet.");
       router.refresh();
     });
   }

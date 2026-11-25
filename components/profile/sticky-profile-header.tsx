@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { ContactCard } from "@/components/profile/contact-card";
-import { FollowButton } from "@/components/profile/follow-button";
+import { FavoriteButton } from "@/components/profile/favorite-button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -22,8 +22,7 @@ type StickyProfileHeaderProps = {
     slug: string;
   }>;
   authenticated: boolean;
-  initialFollowing: boolean;
-  initialFollowerCount: number;
+  initialFavorite: boolean;
   isOwnProfile: boolean;
   contactProfile: {
     phoneEnabled: boolean;
@@ -45,8 +44,7 @@ export function StickyProfileHeader({
   location,
   categories,
   authenticated,
-  initialFollowing,
-  initialFollowerCount,
+  initialFavorite,
   isOwnProfile,
   contactProfile,
 }: StickyProfileHeaderProps) {
@@ -118,7 +116,7 @@ export function StickyProfileHeader({
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
           {!isOwnProfile ? (
-            <FollowButton username={username} authenticated={authenticated} initialFollowing={initialFollowing} initialFollowerCount={initialFollowerCount} />
+            <FavoriteButton username={username} authenticated={authenticated} initialFavorite={initialFavorite} compact />
           ) : null}
 
           <div className="hidden sm:block">

@@ -89,7 +89,7 @@ export function MediaLightbox({ media, initialIndex, onClose, onReport }: MediaL
           className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-2 text-xs text-zinc-300 transition hover:bg-white/10 hover:text-rose-300"
         >
           <Flag className="size-3.5" />
-          Beitrag melden
+          Melden
         </button>
       ) : null}
 

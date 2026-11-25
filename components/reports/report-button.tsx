@@ -86,7 +86,7 @@ export function ReportDialog({ username, postId, open, onOpenChange }: ReportDia
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle>{postId ? "Beitrag melden" : "Profil melden"}</DialogTitle>
+              <DialogTitle>{postId ? "Bild oder Video melden" : "Profil melden"}</DialogTitle>
 
               <DialogDescription className="text-zinc-500">
                 Meldungen sind anonym. Ist eine Person in Gefahr, kontaktiere zusätzlich die Polizei (117).

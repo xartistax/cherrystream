@@ -20,7 +20,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
       success: false,
       following: false,
       followerCount: 0,
-      message: "Bitte melde dich an, um diesem Profil zu folgen.",
+      message: "Bitte melde dich an, um Profile zu merken.",
     };
   }
 
@@ -72,7 +72,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
         success: false,
         following: false,
         followerCount,
-        message: "Du kannst deinem eigenen Profil nicht folgen.",
+        message: "Du kannst dein eigenes Profil nicht merken.",
       };
     }
 
@@ -134,7 +134,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
       success: false,
       following: false,
       followerCount: 0,
-      message: "Der Follow-Status konnte nicht geändert werden.",
+      message: "Die Favoriten konnten nicht geändert werden.",
     };
   }
 }

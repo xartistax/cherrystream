@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Bell, Eye, Heart, Mail, Megaphone, MousePointerClick, UserPlus } from "lucide-react";
+import { Bell, Mail, Megaphone } from "lucide-react";
 
 import { updateNotificationSetting, type NotificationSetting } from "./actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,13 +13,9 @@ type NotificationSettingsFormProps = {
   initialValues: NotificationSettingsValues;
 };
 
+// Account emails (verification, password reset, approval) are always sent and therefore not configurable.
+// Activity notifications are not implemented yet, so they are not offered.
 const emailSettings = [
-  {
-    key: "accountEmails",
-    title: "Konto-E-Mails",
-    description: "Erhalte wichtige Hinweise zu deinem Konto und deiner Sicherheit.",
-    icon: Mail,
-  },
   {
     key: "marketingEmails",
     title: "Neuigkeiten und Angebote",
@@ -33,37 +29,6 @@ const emailSettings = [
   icon: typeof Bell;
 }>;
 
-const activitySettings = [
-  {
-    key: "newFollowers",
-    title: "Neue Follower",
-    description: "Informiere mich, wenn mir jemand neu folgt.",
-    icon: UserPlus,
-  },
-  {
-    key: "postLikes",
-    title: "Likes auf Beiträge",
-    description: "Informiere mich über neue Likes auf meinen Beiträgen.",
-    icon: Heart,
-  },
-  {
-    key: "profileViews",
-    title: "Profilaufrufe",
-    description: "Informiere mich über neue Aufrufe meines Profils.",
-    icon: Eye,
-  },
-  {
-    key: "contactClicks",
-    title: "Kontaktklicks",
-    description: "Informiere mich, wenn ein Besucher eine Kontaktmöglichkeit verwendet.",
-    icon: MousePointerClick,
-  },
-] satisfies ReadonlyArray<{
-  key: NotificationSetting;
-  title: string;
-  description: string;
-  icon: typeof Bell;
-}>;
 
 export function NotificationSettingsForm({ initialValues }: NotificationSettingsFormProps) {
   const [values, setValues] = useState<NotificationSettingsValues>(initialValues);
@@ -109,16 +74,9 @@ export function NotificationSettingsForm({ initialValues }: NotificationSettings
         onChange={handleChange}
       />
 
-      <SettingsCard
-        title="Aktivität"
-        description="Bestimme, über welche Aktivitäten du informiert werden möchtest."
-        icon={Bell}
-        settings={activitySettings}
-        values={values}
-        isPending={isPending}
-        pendingSetting={pendingSetting}
-        onChange={handleChange}
-      />
+      <p className="text-sm leading-6 text-zinc-500">
+        Wichtige E-Mails zu deinem Konto, etwa zur Bestätigung deiner Adresse, zum Zurücksetzen des Passworts oder zur Verifizierung, erhältst du immer.
+      </p>
 
       {error ? (
         <p role="alert" className="text-sm text-rose-400">

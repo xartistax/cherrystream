@@ -11,7 +11,8 @@
     "seed": "tsx prisma/seed.ts",
     "seed:demo": "tsx --conditions=react-server prisma/seed-demo.ts",
     "make-admin": "tsx scripts/make-admin.ts",
-    "smoke": "tsx scripts/smoke.ts"
+    "smoke": "tsx scripts/smoke.ts",
+    "sync-profile-images": "tsx --conditions=react-server scripts/sync-profile-images.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",

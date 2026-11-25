@@ -3,8 +3,8 @@ import {
   BadgeCheck,
   CircleUserRound,
   CreditCard,
-  FileImage,
   Flag,
+  Heart,
   History,
   Images,
   LayoutDashboard,
@@ -56,6 +56,12 @@ const becomeModelItem: NavigationItem = {
   icon: CircleUserRound,
 };
 
+const favoritesItem: NavigationItem = {
+  label: "Favoriten",
+  href: "/favorites",
+  icon: Heart,
+};
+
 const creditsItem: NavigationItem = {
   label: "Credits",
   href: "/credits",
@@ -95,7 +101,7 @@ export const adminNavigationItems: NavigationItem[] = [
     icon: UsersRound,
   },
   {
-    label: "Inhalte",
+    label: "Uploads",
     href: "/admin/posts",
     icon: Images,
   },
@@ -127,7 +133,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       return [becomeModelItem];
     }
 
-    return [becomeModelItem, ...(paymentsEnabled ? [creditsItem] : []), settingsItem];
+    return [favoritesItem, becomeModelItem, ...(paymentsEnabled ? [creditsItem] : []), settingsItem];
   }
 
   return [
@@ -137,9 +143,9 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       icon: LayoutDashboard,
     },
     {
-      label: "Inhalte",
-      href: "/dashboard/posts",
-      icon: FileImage,
+      label: "Galerie",
+      href: "/dashboard/gallery",
+      icon: Images,
     },
     {
       label: "Profil",

@@ -95,7 +95,7 @@ async function executeUnlock(tx: Prisma.TransactionClient, userId: string, postI
     amount: -priceCredits,
     idempotencyKey: `post-unlock:buyer:${userId}:${post.id}`,
     referenceId: post.id,
-    description: "Premium-Beitrag freigeschaltet",
+    description: "Premium-Inhalt freigeschaltet",
     metadata: {
       postId: post.id,
       creatorId: post.authorId,

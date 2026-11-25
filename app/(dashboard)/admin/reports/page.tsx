@@ -111,7 +111,7 @@ export default async function AdminReportsPage() {
                       </p>
 
                       <p className="mt-1 text-sm text-zinc-500">
-                        {report.post ? "Beitrag" : "Profil"} von{" "}
+                        {report.post ? "Upload" : "Profil"} von{" "}
                         <Link href={`/profile/${user.username}`} target="_blank" className="text-zinc-300 hover:underline">
                           @{user.username}
                         </Link>{" "}
@@ -122,7 +122,7 @@ export default async function AdminReportsPage() {
 
                     <span className="text-xs text-zinc-500">
                       Konto: {user.status === "ACTIVE" ? "aktiv" : user.status === "SUSPENDED" ? "gesperrt" : "gelöscht"}
-                      {report.post ? ` · Beitrag: ${report.post.status === "HIDDEN" ? "ausgeblendet" : "sichtbar"}` : null}
+                      {report.post ? ` · Upload: ${report.post.status === "HIDDEN" ? "ausgeblendet" : "sichtbar"}` : null}
                     </span>
                   </div>
 
@@ -134,7 +134,7 @@ export default async function AdminReportsPage() {
                         <input type="hidden" name="postId" value={report.post.id} />
                         <input type="hidden" name="hide" value="true" />
                         <Button type="submit" variant="outline" size="sm" className="border-white/10 bg-white/5 text-rose-300">
-                          Beitrag ausblenden
+                          Upload ausblenden
                         </Button>
                       </form>
                     ) : null}

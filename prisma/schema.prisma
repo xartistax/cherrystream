@@ -242,6 +242,10 @@ model Profile {
 
   verified Boolean @default(false)
 
+  /// Image chosen as profile picture. When unset or deleted, the first uploaded image is used (see lib/gallery/profile-image.ts).
+  avatarMediaId String?    @unique
+  avatarMedia   PostMedia? @relation("ProfileAvatar", fields: [avatarMediaId], references: [id], onDelete: SetNull)
+
   cantonId String?
   canton   Canton? @relation(fields: [cantonId], references: [id])
 
@@ -360,6 +364,8 @@ model PostMedia {
   createdAt DateTime @default(now())
 
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  avatarOfProfile Profile? @relation("ProfileAvatar")
 
   @@unique([pathname])
   @@index([postId, sortOrder])
