@@ -2,7 +2,8 @@ import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
 // FFmpeg binaries are spawned as child processes, so file tracing cannot discover them.
-// They are only needed where createPostAction runs (the composer lives on /dashboard).
+// They are only needed where uploadGalleryAction runs (/dashboard/gallery). Include keys match as
+// substrings, so a broader key like "/dashboard" would copy ~230 MB into every dashboard function.
 const ffmpegBinaries = [
   "./node_modules/ffmpeg-static/ffmpeg",
   "./node_modules/.pnpm/ffmpeg-static@*/node_modules/ffmpeg-static/ffmpeg",
@@ -37,9 +38,20 @@ const nextConfig: NextConfig = {
 
   outputFileTracingIncludes: {
     "/*": sharpNativeLibraries,
-    "/dashboard": ffmpegBinaries,
+    "/dashboard/gallery": ffmpegBinaries,
     // The status page compares these folders with the applied migrations.
     "/admin": ["./prisma/migrations/**/*"],
+  },
+
+  // Former post management; uploads live in the gallery now. Config redirects need no function.
+  async redirects() {
+    return [
+      {
+        source: "/dashboard/posts/:path*",
+        destination: "/dashboard/gallery",
+        permanent: true,
+      },
+    ];
   },
 
   async headers() {

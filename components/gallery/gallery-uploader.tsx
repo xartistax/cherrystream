@@ -4,7 +4,7 @@ import { ImagePlus, LoaderCircle, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type ChangeEvent, type DragEvent, useRef, useState, useTransition } from "react";
 
-import { uploadGalleryAction } from "@/actions/gallery";
+import { uploadGalleryAction } from "@/actions/gallery-upload";
 import { MediaPreview } from "@/components/gallery/media-preview";
 import { UploadProgress } from "@/components/gallery/upload-progress";
 import { useUpload } from "@/components/gallery/use-upload";
