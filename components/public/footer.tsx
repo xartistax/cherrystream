@@ -12,8 +12,8 @@ const discoverLinks = [
     href: "/explore",
   },
   {
-    label: "Neueste Profile",
-    href: "/explore?sort=newest",
+    label: "Beliebte Profile",
+    href: "/explore?sort=trending",
   },
 ] as const;
 

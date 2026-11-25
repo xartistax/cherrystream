@@ -1,7 +1,8 @@
-import { ArrowRight, ChevronRight, ExternalLink, Pencil, ShieldCheck, Upload } from "lucide-react";
+import { ArrowRight, ChevronRight, ExternalLink, Pencil, Rocket, ShieldCheck, Upload } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { BoostButton } from "@/components/boosts/boost-button";
 import { BusinessMetrics } from "@/components/dashboard/dashboard/business-metrics";
 import { DashboardWelcome } from "@/components/dashboard/dashboard/dashboard-welcome";
 import { GalleryManager } from "@/components/gallery/gallery-manager";
@@ -10,6 +11,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { requireCreatorPage } from "@/lib/access";
 import { getProfileStats } from "@/lib/analytics/get-profile-stats";
+import { getBoostStatus } from "@/lib/boosts/get-boost-status";
+import { ECONOMY } from "@/lib/economy";
 import { getGalleryItems } from "@/lib/gallery/get-gallery-items";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
@@ -21,7 +24,7 @@ export default async function DashboardPage() {
 
   const isPublished = modelStatus === "ACTIVE";
 
-  const [currentUser, galleryItems, profileStats] = await Promise.all([
+  const [currentUser, galleryItems, profileStats, boostStatus] = await Promise.all([
     prisma.user.findUnique({
       where: {
         id: userId,
@@ -39,6 +42,7 @@ export default async function DashboardPage() {
     }),
     getGalleryItems(userId, GALLERY_PREVIEW_SIZE + 1),
     getProfileStats(userId),
+    getBoostStatus(userId),
   ]);
 
   if (!currentUser) {
@@ -47,6 +51,7 @@ export default async function DashboardPage() {
 
   const displayName = currentUser.profile?.displayName ?? currentUser.name ?? currentUser.username;
   const hasMoreItems = galleryItems.length > GALLERY_PREVIEW_SIZE;
+  const bumpOption = ECONOMY.boostOptions.find((option) => option.type === "BUMP");
 
   return (
     <div className="space-y-8">
@@ -127,7 +132,41 @@ export default async function DashboardPage() {
           <GalleryManager items={galleryItems.slice(0, GALLERY_PREVIEW_SIZE)} username={currentUser.username} />
         </section>
 
-        <aside>
+        <aside className="space-y-6">
+          {isPublished && bumpOption ? (
+            <Card className="border-rose-500/20 bg-linear-to-br from-rose-500/10 to-zinc-900/60 text-white">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Rocket className="size-4 text-rose-400" />
+                  Sichtbarkeit
+                </CardTitle>
+
+                <CardDescription className="text-zinc-400">
+                  {boostStatus.position ? `Du stehst auf Platz ${boostStatus.position}. ` : ""}
+                  Guthaben: {boostStatus.credits} Credits
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="space-y-3">
+                <BoostButton
+                  option={bumpOption}
+                  balance={boostStatus.credits}
+                  label={`Jetzt hochschieben · ${bumpOption.credits} Credits`}
+                  blockedReason={
+                    boostStatus.nextBumpAt
+                      ? `Wieder möglich ab ${boostStatus.nextBumpAt.toLocaleTimeString("de-CH", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Zurich" })} Uhr`
+                      : null
+                  }
+                />
+
+                <Link href="/dashboard/visibility" className="inline-flex items-center gap-1.5 text-sm font-medium text-rose-400 hover:text-rose-300">
+                  Alle Boosts
+                  <ArrowRight className="size-4" />
+                </Link>
+              </CardContent>
+            </Card>
+          ) : null}
+
           <Card className="border-white/10 bg-zinc-900/60 text-white">
             <CardHeader>
               <CardTitle className="text-base">Dein Profil</CardTitle>

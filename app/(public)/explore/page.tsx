@@ -6,6 +6,7 @@ import type { CreatorCardData } from "@/components/public/creator-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { applyDueAutoBumps } from "@/lib/boosts/apply-auto-bumps";
 import { creatorCardSelect, toCreatorCards } from "@/lib/creators/creator-cards";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
@@ -24,7 +25,8 @@ type CreatorsPageProps = {
   }>;
 };
 
-type CreatorSort = "newest" | "trending";
+// "current" lists the most recently bumped profiles first (see docs/ranking.md).
+type CreatorSort = "current" | "trending";
 type MediaFilter = "IMAGE" | "VIDEO";
 
 const PAGE_SIZE = 24;
@@ -89,7 +91,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
   const mediaType: MediaFilter | undefined = params.media === "IMAGE" || params.media === "VIDEO" ? params.media : undefined;
 
-  const sort: CreatorSort = params.sort === "trending" ? "trending" : "newest";
+  const sort: CreatorSort = params.sort === "trending" ? "trending" : "current";
 
   const page = parsePage(params.page);
 
@@ -224,6 +226,8 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       : {}),
   };
 
+  await applyDueAutoBumps();
+
   const [categories, cantons, cities, totalCount, creators] = await Promise.all([
     prisma.category.findMany({
       where: {
@@ -319,9 +323,19 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
                 createdAt: "desc",
               },
             ]
-          : {
-              createdAt: "desc",
-            },
+          : [
+              {
+                profile: {
+                  bumpedAt: {
+                    sort: "desc",
+                    nulls: "last",
+                  },
+                },
+              },
+              {
+                createdAt: "desc",
+              },
+            ],
 
       skip: (page - 1) * PAGE_SIZE,
       take: PAGE_SIZE,
@@ -409,7 +423,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             defaultValue={sort}
             className="h-11 rounded-md border border-white/10 bg-zinc-950 px-3 text-sm text-zinc-300 outline-none focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
           >
-            <option value="newest">Neueste zuerst</option>
+            <option value="current">Aktuell</option>
             <option value="trending">Beliebteste zuerst</option>
           </select>
 

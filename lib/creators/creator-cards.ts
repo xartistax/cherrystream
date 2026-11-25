@@ -16,6 +16,7 @@ export const creatorCardSelect = {
     select: {
       displayName: true,
       verified: true,
+      highlightUntil: true,
       city: {
         select: {
           name: true,
@@ -130,6 +131,8 @@ export async function toCreatorCards(creators: CreatorCardRow[]): Promise<Creato
     }
   }
 
+  const now = new Date();
+
   return creators.map((creator) => ({
     username: creator.username,
     name: creator.name,
@@ -138,6 +141,7 @@ export async function toCreatorCards(creators: CreatorCardRow[]): Promise<Creato
       ? {
           displayName: creator.profile.displayName,
           verified: creator.profile.verified,
+          highlighted: creator.profile.highlightUntil !== null && creator.profile.highlightUntil > now,
           city: creator.profile.city?.name ?? null,
           canton: creator.profile.canton?.name ?? null,
           categories: creator.profile.categories,

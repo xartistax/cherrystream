@@ -20,6 +20,7 @@ const actionLabels: Record<AdminAction, string> = {
   IMPERSONATION_STOPPED: "Model-Ansicht beendet",
   REPORT_RESOLVED: "Meldung erledigt",
   REPORT_DISMISSED: "Meldung verworfen",
+  CREDITS_ADJUSTED: "Credits gebucht",
 };
 
 function describeTarget(metadata: unknown): string {
@@ -31,6 +32,11 @@ function describeTarget(metadata: unknown): string {
   const name = values.username ?? values.author;
 
   if (typeof name === "string") {
+    // Credit bookings also show amount and reason, so the log explains every manual change of a balance.
+    if (typeof values.amount === "number") {
+      return `@${name} · ${values.amount > 0 ? "+" : ""}${values.amount} Credits · ${String(values.reason ?? "")}`;
+    }
+
     return `@${name}`;
   }
 

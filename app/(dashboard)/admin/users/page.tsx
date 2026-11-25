@@ -3,6 +3,7 @@ import { Eye, Search } from "lucide-react";
 
 import { startImpersonationAction } from "@/actions/admin/impersonation";
 import { setUserSuspendedAction } from "@/actions/admin/moderation";
+import { CreditAdjustForm } from "@/components/admin/credit-adjust-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -94,6 +95,11 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
           displayName: true,
         },
       },
+      wallet: {
+        select: {
+          userCredits: true,
+        },
+      },
     },
   });
 
@@ -127,7 +133,9 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
                   </p>
                 </div>
 
-                <div className="flex shrink-0 gap-2">
+                <div className="flex shrink-0 flex-wrap gap-2">
+                  {user.role === "MODEL" && user.status !== "DELETED" ? <CreditAdjustForm userId={user.id} balance={user.wallet?.userCredits ?? 0} /> : null}
+
                   {user.role === "MODEL" && user.status === "ACTIVE" ? (
                     <form action={startImpersonationAction}>
                       <input type="hidden" name="userId" value={user.id} />

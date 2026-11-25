@@ -4,13 +4,19 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { applyDueAutoBumps } from "@/lib/boosts/apply-auto-bumps";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/auth";
 
 export const revalidate = 60;
 
+/** Profiles younger than this get a "Neu" badge. */
+const NEW_PROFILE_DAYS = 14;
+
 async function getHomeData() {
+  await applyDueAutoBumps();
+
   return Promise.all([
     prisma.user.findMany({
       where: {
@@ -33,6 +39,7 @@ async function getHomeData() {
           select: {
             displayName: true,
             bio: true,
+            highlightUntil: true,
 
             city: {
               select: {
@@ -110,9 +117,20 @@ async function getHomeData() {
           },
         },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      // Same order as the default listing on /explore: most recently bumped first (docs/ranking.md).
+      orderBy: [
+        {
+          profile: {
+            bumpedAt: {
+              sort: "desc",
+              nulls: "last",
+            },
+          },
+        },
+        {
+          createdAt: "desc",
+        },
+      ],
       take: 12,
     }),
 
@@ -166,6 +184,8 @@ export default async function PublicHomePage() {
   const [creators, creatorCount, categories] = await getHomeData();
   const session = await auth();
   const profileCtaHref = session?.user ? (session.user.role === "USER" ? "/become-model" : "/dashboard") : "/register";
+  const now = new Date();
+  const newSince = new Date(now.getTime() - NEW_PROFILE_DAYS * 24 * 60 * 60 * 1000);
 
   return (
     <>
@@ -257,7 +277,8 @@ export default async function PublicHomePage() {
                     key={creator.username}
                     href={`/profile/${creator.username}`}
                     className={cn(
-                      "group relative overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-900 shadow-2xl shadow-black/30",
+                      "group relative overflow-hidden rounded-[2rem] border bg-zinc-900 shadow-2xl shadow-black/30",
+                      creator.profile?.highlightUntil && creator.profile.highlightUntil > now ? "border-rose-500/70 ring-2 ring-rose-500/40" : "border-white/10",
                       index === 1 || index === 2 ? "translate-y-8" : "",
                     )}
                   >
@@ -364,15 +385,15 @@ export default async function PublicHomePage() {
           <div>
             <Badge variant="outline" className="gap-2 border-orange-500/20 bg-orange-500/10 text-orange-300">
               <Flame className="size-3.5" />
-              Gerade neu
+              Gerade aktiv
             </Badge>
 
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Neueste Profile</h2>
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Profile</h2>
 
-            <p className="mt-3 max-w-xl text-zinc-500">Entdecke die neuesten öffentlichen Profile auf CherryStream.</p>
+            <p className="mt-3 max-w-xl text-zinc-500">Die Profile, die gerade aktiv sind, zuerst.</p>
           </div>
 
-          <Link href="/explore?sort=newest" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
+          <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
             Alle Profile ansehen
             <ArrowRight className="size-4" />
           </Link>
@@ -389,11 +410,16 @@ export default async function PublicHomePage() {
 
               const location = [creator.profile?.city?.name, creator.profile?.canton?.name].filter(Boolean).join(", ");
 
+              const highlighted = Boolean(creator.profile?.highlightUntil && creator.profile.highlightUntil > now);
+
               return (
                 <Link
                   key={creator.username}
                   href={`/profile/${creator.username}`}
-                  className="group overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 transition duration-300 hover:-translate-y-1 hover:border-rose-500/30 hover:shadow-2xl hover:shadow-rose-950/20 sm:rounded-3xl"
+                  className={cn(
+                    "group overflow-hidden rounded-2xl border bg-zinc-900/70 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-rose-950/20 sm:rounded-3xl",
+                    highlighted ? "border-rose-500/70 ring-2 ring-rose-500/40" : "border-white/10 hover:border-rose-500/30",
+                  )}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-zinc-900">
                     {imageUrl ? (
@@ -412,7 +438,14 @@ export default async function PublicHomePage() {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-transparent" />
 
-                    <Badge className="absolute left-3 top-3 border-white/10 bg-black/50 text-[10px] text-white backdrop-blur-md hover:bg-black/50">Neu</Badge>
+                    {highlighted ? (
+                      <Badge className="absolute left-3 top-3 gap-1 border-0 bg-rose-600 text-[10px] font-bold uppercase text-white hover:bg-rose-600">
+                        <Sparkles className="size-3" />
+                        Top
+                      </Badge>
+                    ) : creator.createdAt > newSince ? (
+                      <Badge className="absolute left-3 top-3 border-white/10 bg-black/50 text-[10px] text-white backdrop-blur-md hover:bg-black/50">Neu</Badge>
+                    ) : null}
 
                     <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
                       <p className="truncate text-sm font-bold text-white sm:text-base">{displayName}</p>

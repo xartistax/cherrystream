@@ -55,6 +55,12 @@ function getTransactionMeta(type: WalletTransactionType) {
         title: "Boost gekauft",
       };
 
+    case "STARTER_CREDIT":
+      return {
+        icon: Gift,
+        title: "Startguthaben",
+      };
+
     case "EARNINGS_CONVERSION":
       return {
         icon: Wallet,
@@ -84,7 +90,7 @@ export function WalletHistory({ transactions }: WalletHistoryProps) {
   return (
     <Card className="border-white/10 bg-white/[0.03]">
       <CardHeader>
-        <CardTitle className="text-white">Wallet-Verlauf</CardTitle>
+        <CardTitle className="text-white">Credit-Verlauf</CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -112,7 +118,7 @@ export function WalletHistory({ transactions }: WalletHistoryProps) {
 
                       {transaction.description && <p className="mt-0.5 truncate text-sm text-zinc-400">{transaction.description}</p>}
 
-                      <p className="mt-1 text-xs text-zinc-600">{transaction.createdAt.toLocaleString("de-CH")}</p>
+                      <p className="mt-1 text-xs text-zinc-600">{transaction.createdAt.toLocaleString("de-CH", { timeZone: "Europe/Zurich" })}</p>
                     </div>
                   </div>
 

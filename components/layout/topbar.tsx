@@ -53,8 +53,9 @@ export function Topbar({ user }: TopbarProps) {
           Profile suchen
         </Link>
 
-        {paymentsEnabled ? (
-          <Link href="/credits">
+        {/* Models spend credits on boosts; members only need credits once premium purchases are enabled. */}
+        {isCreatorRole(user.role) || paymentsEnabled ? (
+          <Link href={isCreatorRole(user.role) ? "/dashboard/visibility" : "/credits"}>
             <Badge variant="outline" className="gap-1.5 border-amber-500/20 bg-amber-500/10 text-amber-300">
               <Coins className="size-3.5" />
               {user.credits}

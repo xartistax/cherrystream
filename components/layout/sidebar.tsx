@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { UserRole } from "@/generated/prisma/enums";
+import { isCreatorRole } from "@/components/layout/navigation";
 import { paymentsEnabled } from "@/lib/features";
 
 type SidebarProps = {
@@ -38,7 +39,7 @@ export function Sidebar({ user }: SidebarProps) {
       </div>
 
       <div className="mt-auto space-y-4">
-        {paymentsEnabled ? (
+        {isCreatorRole(user.role) || paymentsEnabled ? (
           <div className="rounded-2xl border border-rose-500/15 bg-linear-to-br from-rose-500/10 to-transparent p-4">
             <div className="mb-3 flex items-center justify-between">
               <span className="text-sm text-zinc-400">Guthaben</span>

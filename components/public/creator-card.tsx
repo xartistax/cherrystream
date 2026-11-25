@@ -1,6 +1,8 @@
-import { BadgeCheck, Camera, MapPin, Video } from "lucide-react";
+import { BadgeCheck, Camera, MapPin, Sparkles, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 
 export type CreatorCardData = {
   username: string;
@@ -12,6 +14,8 @@ export type CreatorCardData = {
     city: string | null;
     canton: string | null;
     verified: boolean;
+    /** Highlight boost: frame and "Top" badge, the position in the list stays the same. */
+    highlighted: boolean;
 
     categories: Array<{
       category: {
@@ -55,9 +59,15 @@ export function CreatorCard({ creator, priority = false }: CreatorCardProps) {
     creator.image ?? (firstMedia?.type === "VIDEO" ? (firstMedia.posterUrl ?? firstMedia.feedUrl ?? firstMedia.url) : (firstMedia?.feedUrl ?? firstMedia?.url));
 
   const location = [creator.profile?.city, creator.profile?.canton].filter(Boolean).join(", ");
+  const highlighted = creator.profile?.highlighted ?? false;
 
   return (
-    <article className="group overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/70 transition-all duration-300 hover:-translate-y-1 hover:border-rose-500/30 hover:shadow-2xl hover:shadow-rose-950/20">
+    <article
+      className={cn(
+        "group overflow-hidden rounded-3xl border bg-zinc-900/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-rose-950/20",
+        highlighted ? "border-rose-500/70 ring-2 ring-rose-500/40" : "border-white/10 hover:border-rose-500/30",
+      )}
+    >
       <Link href={`/profile/${creator.username}`} className="block">
         <div className="relative aspect-[4/5] overflow-hidden bg-zinc-900">
           {previewUrl ? (
@@ -76,6 +86,13 @@ export function CreatorCard({ creator, priority = false }: CreatorCardProps) {
           )}
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-transparent transition-all duration-300 group-hover:from-black group-hover:via-black/30" />
+
+          {highlighted ? (
+            <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-rose-600 px-2.5 py-1 text-[11px] font-bold tracking-wide text-white uppercase shadow-lg shadow-rose-950/40">
+              <Sparkles className="size-3" />
+              Top
+            </span>
+          ) : null}
 
           <div className="absolute inset-x-0 bottom-0 p-4">
             <div className="flex items-center gap-2">

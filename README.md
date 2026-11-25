@@ -46,7 +46,7 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 - `pnpm build` – Prisma Client generieren und Production Build
 - `pnpm lint` – ESLint
 - `pnpm seed` – Stammdaten: Kategorien, alle 26 Kantone und ihre wichtigsten Städte (sicher für Production)
-- `pnpm seed:demo [--yes]` – Demo-Daten für lokale Tests: 16 Demo-Models mit Fotos aus `prisma/seed/images/`, Test-Logins (Admin, Model, Model in Prüfung, User) sowie eine offene Verifizierung, eine Einladung und Beispiel-Meldungen. Fragt vor dem Schreiben nach und verweigert Production.
+- `pnpm seed:demo [--yes]` – Demo-Daten für lokale Tests: 16 Demo-Models mit Fotos aus `prisma/seed/images/`, Test-Logins (Admin, Model, Model in Prüfung, User) sowie eine offene Verifizierung, eine Einladung und Beispiel-Meldungen. Fragt vor dem Schreiben nach. Production nur mit `--production` und eigenem `SEED_PASSWORD` (siehe docs/deploy.md).
 - `pnpm smoke [url]` – Rauchtest gegen ein Deployment (nur lesende Anfragen)
 - `pnpm make-admin <email> [--revoke]` – Konto zum Admin machen (oder Rechte entziehen)
 

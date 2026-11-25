@@ -44,7 +44,7 @@ pnpm prisma migrate deploy   # wendet alle Migrationen an, ändert nichts an bes
 pnpm seed                    # Stammdaten: Kategorien, Kantone, Städte
 ```
 
-`pnpm seed:demo` **nie** gegen Production ausführen.
+`pnpm seed:demo` gegen Production nur bewusst, z. B. für eine Demo: mit `--production` und einem eigenen, starken `SEED_PASSWORD` (mindestens 16 Zeichen), das nur als Prozess-Variable gesetzt wird und nicht in Vercel. Die Demo-Konten enthalten einen Admin.
 
 ## 4. Deployen
 
