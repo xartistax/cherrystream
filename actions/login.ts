@@ -43,6 +43,13 @@ export async function loginAction(_previousState: ActionState, formData: FormDat
       success: true,
     };
   } catch (error) {
+    if (error instanceof AuthError && "code" in error && error.code === "rate_limited") {
+      return {
+        success: false,
+        message: "Zu viele Anmeldeversuche. Bitte versuche es in 15 Minuten erneut.",
+      };
+    }
+
     if (error instanceof AuthError) {
       return {
         success: false,

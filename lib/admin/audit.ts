@@ -6,7 +6,7 @@ import type { AdminAction } from "@/generated/prisma/enums";
 type AuditEntry = {
   actorId: string;
   action: AdminAction;
-  targetType: "ModelVerification" | "User" | "Post" | "ModelInvite";
+  targetType: "ModelVerification" | "User" | "Post" | "ModelInvite" | "Report";
   targetId: string;
   metadata?: Prisma.InputJsonValue;
 };

@@ -18,6 +18,8 @@ const actionLabels: Record<AdminAction, string> = {
   INVITE_REVOKED: "Einladung widerrufen",
   IMPERSONATION_STARTED: "Als Model angesehen (Start)",
   IMPERSONATION_STOPPED: "Model-Ansicht beendet",
+  REPORT_RESOLVED: "Meldung erledigt",
+  REPORT_DISMISSED: "Meldung verworfen",
 };
 
 function describeTarget(metadata: unknown): string {

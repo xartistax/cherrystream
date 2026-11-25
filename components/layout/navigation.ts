@@ -4,6 +4,7 @@ import {
   CircleUserRound,
   CreditCard,
   FileImage,
+  Flag,
   History,
   Images,
   LayoutDashboard,
@@ -77,6 +78,11 @@ export const adminNavigationItems: NavigationItem[] = [
     label: "Verifizierungen",
     href: "/admin/verifications",
     icon: BadgeCheck,
+  },
+  {
+    label: "Meldungen",
+    href: "/admin/reports",
+    icon: Flag,
   },
   {
     label: "Einladungen",

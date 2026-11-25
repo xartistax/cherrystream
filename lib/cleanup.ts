@@ -5,6 +5,7 @@ import { purgeVerificationDocuments } from "@/lib/verification/purge-documents";
 
 export type CleanupResult = {
   expiredInvitesDeleted: number;
+  rateLimitsDeleted: number;
   verificationDocumentsPurged: boolean;
 };
 
@@ -15,6 +16,15 @@ export async function runCleanup(): Promise<CleanupResult> {
       status: "OPEN",
       expiresAt: {
         lt: new Date(),
+      },
+    },
+  });
+
+  // The longest rate-limit window is one hour; a day keeps the table small with plenty of margin.
+  const rateLimits = await prisma.rateLimit.deleteMany({
+    where: {
+      windowStart: {
+        lt: new Date(Date.now() - 24 * 60 * 60 * 1000),
       },
     },
   });
@@ -44,6 +54,7 @@ export async function runCleanup(): Promise<CleanupResult> {
 
   return {
     expiredInvitesDeleted: expiredInvites.count,
+    rateLimitsDeleted: rateLimits.count,
     verificationDocumentsPurged,
   };
 }

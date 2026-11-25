@@ -11,11 +11,18 @@ export const metadata = {
 export default async function AdminLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   await requireAdminPage();
 
-  const pendingVerifications = await prisma.modelVerification.count({
-    where: {
-      status: "PENDING",
-    },
-  });
+  const [pendingVerifications, openReports] = await Promise.all([
+    prisma.modelVerification.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.report.count({
+      where: {
+        status: "OPEN",
+      },
+    }),
+  ]);
 
   return (
     <div className="space-y-8">
@@ -32,7 +39,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
           </div>
         </div>
 
-        <AdminNav pendingVerifications={pendingVerifications} />
+        <AdminNav pendingVerifications={pendingVerifications} openReports={openReports} />
       </header>
 
       {children}

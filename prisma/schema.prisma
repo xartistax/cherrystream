@@ -101,6 +101,23 @@ enum AdminAction {
   INVITE_REVOKED
   IMPERSONATION_STARTED
   IMPERSONATION_STOPPED
+  REPORT_RESOLVED
+  REPORT_DISMISSED
+}
+
+enum ReportReason {
+  MINOR
+  NON_CONSENSUAL
+  FAKE_PROFILE
+  ILLEGAL_CONTENT
+  SPAM_SCAM
+  OTHER
+}
+
+enum ReportStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
 }
 
 enum InviteStatus {
@@ -179,6 +196,9 @@ model User {
   adminAuditLogs        AdminAuditLog[]     @relation("AdminAuditActor")
   createdInvites        ModelInvite[]       @relation("InviteCreator")
   claimedInvite         ModelInvite?        @relation("InviteClaimer")
+  reportsReceived       Report[]            @relation("ReportedUser")
+  reportsFiled          Report[]            @relation("ReportFiler")
+  reportsResolved       Report[]            @relation("ReportResolver")
 
   @@index([createdAt])
   @@index([status])
@@ -295,6 +315,8 @@ model Post {
   media  PostMedia[]
   likes  PostLike[]
 
+  reports Report[]
+
   @@index([authorId, createdAt])
   @@index([status, createdAt])
   @@index([visibility, createdAt])
@@ -354,6 +376,45 @@ model Follow {
   @@id([followerId, followingId])
   @@index([followingId, createdAt])
   @@index([followerId, createdAt])
+}
+
+/// Report of a profile or a single post. Anyone can report, also without an account.
+model Report {
+  id String @id @default(cuid())
+
+  reportedUserId String
+  postId         String?
+
+  reason  ReportReason
+  details String?
+
+  reporterId   String?
+  /// Keyed hash of the reporter's IP, to spot repeated reports without storing the address.
+  reporterHash String
+
+  status         ReportStatus @default(OPEN)
+  resolvedAt     DateTime?
+  resolvedById   String?
+  resolutionNote String?
+
+  createdAt DateTime @default(now())
+
+  reportedUser User  @relation("ReportedUser", fields: [reportedUserId], references: [id], onDelete: Cascade)
+  post         Post? @relation(fields: [postId], references: [id], onDelete: SetNull)
+  reporter     User? @relation("ReportFiler", fields: [reporterId], references: [id], onDelete: SetNull)
+  resolvedBy   User? @relation("ReportResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@index([reportedUserId, createdAt])
+}
+
+/// Fixed-window counters for rate limiting (no Redis needed). Old rows are removed by the cleanup cron.
+model RateLimit {
+  key         String   @id
+  count       Int
+  windowStart DateTime
+
+  @@index([windowStart])
 }
 
 model PostLike {

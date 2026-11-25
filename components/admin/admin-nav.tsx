@@ -6,7 +6,12 @@ import { usePathname } from "next/navigation";
 import { adminNavigationItems, isNavigationItemActive } from "@/components/layout/navigation";
 import { cn } from "@/lib/utils";
 
-export function AdminNav({ pendingVerifications }: { pendingVerifications: number }) {
+type AdminNavProps = {
+  pendingVerifications: number;
+  openReports: number;
+};
+
+export function AdminNav({ pendingVerifications, openReports }: AdminNavProps) {
   const pathname = usePathname();
 
   return (
@@ -28,6 +33,10 @@ export function AdminNav({ pendingVerifications }: { pendingVerifications: numbe
 
             {item.href === "/admin/verifications" && pendingVerifications > 0 ? (
               <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">{pendingVerifications}</span>
+            ) : null}
+
+            {item.href === "/admin/reports" && openReports > 0 ? (
+              <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-xs font-semibold text-rose-300">{openReports}</span>
             ) : null}
           </Link>
         );

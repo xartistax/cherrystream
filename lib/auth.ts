@@ -1,17 +1,22 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 
 import type { UserRole } from "@/generated/prisma/enums";
 import { IMPERSONATION_MAX_AGE_MS, verifyImpersonationGrant } from "@/lib/impersonation";
 import { prisma } from "@/lib/prisma";
+import { consumeRateLimit, getClientIp, hashIdentifier } from "@/lib/rate-limit";
 
 const credentialsSchema = z.object({
   email: z.string().trim().toLowerCase().email(),
   password: z.string().min(8).max(72),
 });
+
+export class LoginRateLimited extends CredentialsSignin {
+  code = "rate_limited";
+}
 
 function isUserRole(value: unknown): value is UserRole {
   return value === "USER" || value === "MODEL" || value === "ADMIN";
@@ -68,11 +73,22 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
         },
       },
 
-      async authorize(credentials) {
+      // Rate limited here and not only in loginAction, because /api/auth/callback/credentials can be called directly.
+      async authorize(credentials, request) {
         const parsedCredentials = credentialsSchema.safeParse(credentials);
 
         if (!parsedCredentials.success) {
           return null;
+        }
+
+        const ipHash = hashIdentifier(getClientIp(request.headers));
+        const [byIp, byEmail] = await Promise.all([
+          consumeRateLimit(`login:ip:${ipHash}`, 20, 15 * 60),
+          consumeRateLimit(`login:email:${hashIdentifier(parsedCredentials.data.email)}`, 5, 15 * 60),
+        ]);
+
+        if (!byIp.allowed || !byEmail.allowed) {
+          throw new LoginRateLimited();
         }
 
         const user = await prisma.user.findUnique({

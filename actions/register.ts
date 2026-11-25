@@ -4,11 +4,21 @@ import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
+import { consumeRateLimit, formatRetryAfter, getRequestIpHash } from "@/lib/rate-limit";
 import { getSafeRedirectPath } from "@/lib/safe-redirect";
 import { registerSchema } from "@/lib/validations/auth";
 import type { ActionState } from "@/types/action-state";
 
 export async function registerAction(_previousState: ActionState, formData: FormData): Promise<ActionState> {
+  const limit = await consumeRateLimit(`register:${await getRequestIpHash()}`, 5, 60 * 60);
+
+  if (!limit.allowed) {
+    return {
+      success: false,
+      message: `Zu viele Registrierungen von deinem Netzwerk. Bitte versuche es ${formatRetryAfter(limit.retryAfterSeconds)} erneut.`,
+    };
+  }
+
   const parsedData = registerSchema.safeParse({
     displayName: formData.get("displayName"),
     username: formData.get("username"),

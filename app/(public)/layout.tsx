@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { AgeGate } from "@/components/public/age-gate";
 import { PublicFooter } from "@/components/public/footer";
 import { PublicNavbar } from "@/components/public/navbar";
 import { ImpersonationBanner } from "@/components/shared/impersonation-banner";
@@ -26,6 +27,8 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <main className="relative flex-1">{children}</main>
 
       <PublicFooter />
+
+      <AgeGate />
     </div>
   );
 }

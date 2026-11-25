@@ -8,6 +8,7 @@ import { Prisma } from "@/generated/prisma/client";
 import { paymentsEnabled } from "@/lib/features";
 import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import { prisma } from "@/lib/prisma";
+import { urgentReportReasons } from "@/lib/reports/reasons";
 import { getStripe } from "@/lib/stripe";
 import { getVerificationBlobToken } from "@/lib/verification/storage";
 import packageJson from "@/package.json";
@@ -462,6 +463,45 @@ async function checkCleanupJob(): Promise<CheckResult> {
   };
 }
 
+/** Card networks expect reported content to be reviewed promptly; urgent reasons older than 24 h are an error. */
+async function checkOpenReports(): Promise<CheckResult> {
+  const reports = await prisma.report.findMany({
+    where: {
+      status: "OPEN",
+    },
+    select: {
+      reason: true,
+      createdAt: true,
+    },
+  });
+
+  if (reports.length === 0) {
+    return {
+      status: "ok",
+      detail: "Keine offenen Meldungen",
+    };
+  }
+
+  const now = Date.now();
+  const urgent = reports.filter((report) => urgentReportReasons.includes(report.reason));
+  const oldestUrgentHours = urgent.length > 0 ? Math.floor((now - Math.min(...urgent.map((report) => report.createdAt.getTime()))) / HOUR_MS) : 0;
+  const oldestHours = Math.floor((now - Math.min(...reports.map((report) => report.createdAt.getTime()))) / HOUR_MS);
+
+  const detail = `${reports.length} offen${urgent.length > 0 ? `, davon ${urgent.length} dringend` : ""}, älteste seit ${oldestHours} h`;
+
+  if (urgent.length > 0 && oldestUrgentHours >= 24) {
+    return {
+      status: "error",
+      detail,
+    };
+  }
+
+  return {
+    status: urgent.length > 0 || oldestHours >= 72 ? "warn" : "ok",
+    detail,
+  };
+}
+
 async function checkActivity(): Promise<CheckResult> {
   const since = new Date(Date.now() - 24 * HOUR_MS);
 
@@ -496,7 +536,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -508,6 +548,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("stripe-api", "Stripe API", checkStripeApi),
       runCheck("stripe-webhook", "Stripe Webhook", checkStripeWebhook),
       runCheck("verifications", "Offene Verifizierungen", checkPendingVerifications),
+      runCheck("reports", "Offene Meldungen", checkOpenReports),
       runCheck("documents", "Löschung Ausweisdokumente", checkUnpurgedDocuments),
       runCheck("cleanup", "Cleanup-Job und Einladungen", checkCleanupJob),
       runCheck("media", "Medien-Uploads", checkMediaPipeline),
@@ -529,7 +570,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
     },
     {
       title: "Betrieb",
-      checks: [verifications, documents, cleanup, media, activity],
+      checks: [verifications, reports, documents, cleanup, media, activity],
     },
   ];
 }

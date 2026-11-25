@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { GalleryGrid } from "@/components/profile/gallery/gallery-grid";
 import { MediaLightbox } from "@/components/profile/gallery/media-lightbox";
+import { ReportDialog } from "@/components/reports/report-button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -23,14 +24,17 @@ export type ProfileGalleryMedia = {
 
 type ProfileGalleryProps = {
   displayName: string;
+  username: string;
   media: ProfileGalleryMedia[];
   authenticated: boolean;
   loginUrl: string;
+  canReport: boolean;
 };
 
-export function ProfileGallery({ displayName, media, authenticated, loginUrl }: ProfileGalleryProps) {
+export function ProfileGallery({ displayName, username, media, authenticated, loginUrl, canReport }: ProfileGalleryProps) {
   const [lightboxMedia, setLightboxMedia] = useState<ProfileGalleryMedia[]>([]);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [reportPostId, setReportPostId] = useState<string | null>(null);
 
   const photos = media.filter((item) => item.type === "IMAGE" && item.visibility !== "PREMIUM");
 
@@ -153,7 +157,35 @@ export function ProfileGallery({ displayName, media, authenticated, loginUrl }: 
         </TabsContent>
       </Tabs>
 
-      {lightboxIndex !== null ? <MediaLightbox media={lightboxMedia} initialIndex={lightboxIndex} onClose={closeLightbox} /> : null}
+      {lightboxIndex !== null ? (
+        <MediaLightbox
+          media={lightboxMedia}
+          initialIndex={lightboxIndex}
+          onClose={closeLightbox}
+          onReport={
+            canReport
+              ? (postId) => {
+                  // The lightbox sits above dialogs, so it closes before the report dialog opens.
+                  closeLightbox();
+                  setReportPostId(postId);
+                }
+              : undefined
+          }
+        />
+      ) : null}
+
+      {reportPostId ? (
+        <ReportDialog
+          username={username}
+          postId={reportPostId}
+          open
+          onOpenChange={(open) => {
+            if (!open) {
+              setReportPostId(null);
+            }
+          }}
+        />
+      ) : null}
     </section>
   );
 }

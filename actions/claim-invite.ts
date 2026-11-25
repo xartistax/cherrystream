@@ -8,6 +8,7 @@ import { plainTextToParagraphs } from "@/lib/invites/draft";
 import { getOpenInvite } from "@/lib/invites/get-open-invite";
 import { hashContact } from "@/lib/invites/token";
 import { prisma } from "@/lib/prisma";
+import { consumeRateLimit, formatRetryAfter, getRequestIpHash } from "@/lib/rate-limit";
 import { sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
 
 export type ClaimInviteState = {
@@ -24,6 +25,15 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
     return {
       success: false,
       message: "Bitte melde dich an, um das Profil zu übernehmen.",
+    };
+  }
+
+  const limit = await consumeRateLimit(`invite:${await getRequestIpHash()}`, 20, 60 * 60);
+
+  if (!limit.allowed) {
+    return {
+      success: false,
+      message: `Zu viele Versuche. Bitte versuche es ${formatRetryAfter(limit.retryAfterSeconds)} erneut.`,
     };
   }
 
@@ -174,6 +184,12 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
 
 /** "Not interested": deletes the draft right away and blocks future invites for this phone number. Works without an account. */
 export async function declineInviteAction(formData: FormData): Promise<void> {
+  const limit = await consumeRateLimit(`invite:${await getRequestIpHash()}`, 20, 60 * 60);
+
+  if (!limit.allowed) {
+    throw new Error("Zu viele Versuche. Bitte versuche es später erneut.");
+  }
+
   const token = formData.get("token");
   const invite = typeof token === "string" ? await getOpenInvite(token) : null;
 
