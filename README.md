@@ -34,6 +34,7 @@ pnpm dev
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
 | `RESEND_API_KEY`, `EMAIL_FROM` | in Production | E-Mail-Versand über Resend. Lokal ohne Key: Mails erscheinen in der Server-Konsole |
 | `EMAIL_DEV_REDIRECT` | nein | Nur lokal: leitet alle Mails an eine Adresse um (z. B. im Resend-Testmodus) |
+| `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | empfohlen | Error-Tracking. `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` nur für Source Maps im Build |
 | `CRON_SECRET` | in Production | Schützt den täglichen Cleanup-Job (`openssl rand -hex 32`) |
 | `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 
@@ -46,9 +47,12 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 - `pnpm lint` – ESLint
 - `pnpm seed` – Stammdaten: Kategorien, alle 26 Kantone und ihre wichtigsten Städte (sicher für Production)
 - `pnpm seed:demo [--yes]` – Demo-Daten für lokale Tests: 16 Demo-Models mit Fotos aus `prisma/seed/images/`, Test-Logins (Admin, Model, Model in Prüfung, User) sowie eine offene Verifizierung, eine Einladung und Beispiel-Meldungen. Fragt vor dem Schreiben nach und verweigert Production.
+- `pnpm smoke [url]` – Rauchtest gegen ein Deployment (nur lesende Anfragen)
 - `pnpm make-admin <email> [--revoke]` – Konto zum Admin machen (oder Rechte entziehen)
 
 ## Betrieb
+
+Deployment-Anleitung und Go-Live-Checkliste: [`docs/deploy.md`](docs/deploy.md)
 
 - `/admin` – Systemstatus, Verifizierungen, Benutzer, Inhalte und Protokoll (nur Admins)
 - `/api/health` – öffentlicher Health-Check für Uptime-Monitore (`200` oder `503`, ohne Details)

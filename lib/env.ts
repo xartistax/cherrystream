@@ -18,6 +18,9 @@ const envSchema = z.object({
   EMAIL_FROM: z.string().min(3).optional(),
   EMAIL_DEV_REDIRECT: z.email().optional(),
 
+  SENTRY_DSN: z.url().optional(),
+  NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
+
   FFMPEG_PATH: z.string().min(1).optional(),
   FFPROBE_PATH: z.string().min(1).optional(),
 });
@@ -39,6 +42,9 @@ const parsedEnv = envSchema.safeParse({
   RESEND_API_KEY: process.env.RESEND_API_KEY || undefined,
   EMAIL_FROM: process.env.EMAIL_FROM || undefined,
   EMAIL_DEV_REDIRECT: process.env.EMAIL_DEV_REDIRECT || undefined,
+
+  SENTRY_DSN: process.env.SENTRY_DSN || undefined,
+  NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN || undefined,
 
   FFMPEG_PATH: process.env.FFMPEG_PATH || undefined,
   FFPROBE_PATH: process.env.FFPROBE_PATH || undefined,

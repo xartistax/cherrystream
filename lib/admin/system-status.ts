@@ -323,6 +323,23 @@ async function checkEmail(): Promise<CheckResult> {
       };
 }
 
+async function checkErrorTracking(): Promise<CheckResult> {
+  const server = Boolean(process.env.SENTRY_DSN);
+  const client = Boolean(process.env.NEXT_PUBLIC_SENTRY_DSN);
+
+  if (server && client) {
+    return {
+      status: "ok",
+      detail: "Sentry aktiv für Server und Browser",
+    };
+  }
+
+  return {
+    status: process.env.VERCEL_ENV === "production" ? "warn" : "disabled",
+    detail: server || client ? `Sentry nur für ${server ? "Server" : "Browser"} konfiguriert` : "Sentry nicht konfiguriert (SENTRY_DSN, NEXT_PUBLIC_SENTRY_DSN)",
+  };
+}
+
 async function checkFfmpeg(): Promise<CheckResult> {
   const { ffmpegPath, ffprobePath } = await getFfmpegBinaries();
   const [ffmpegVersion, ffprobeVersion] = await Promise.all([readBinaryVersion(ffmpegPath), readBinaryVersion(ffprobePath)]);
@@ -636,7 +653,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, email, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -644,6 +661,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("blob-private", "Blob-Store Ausweise (privat)", checkPrivateBlobStore),
       runCheck("environment", "Umgebungsvariablen", checkEnvironment),
       runCheck("email", "E-Mail-Versand (Resend)", checkEmail),
+      runCheck("error-tracking", "Error-Tracking (Sentry)", checkErrorTracking),
       runCheck("ffmpeg", "FFmpeg / FFprobe", checkFfmpeg),
       runCheck("sharp", "Bildverarbeitung (sharp)", checkSharp),
       runCheck("stripe-api", "Stripe API", checkStripeApi),
@@ -659,7 +677,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
   return [
     {
       title: "Infrastruktur",
-      checks: [database, schema, publicBlob, privateBlob, environment, email],
+      checks: [database, schema, publicBlob, privateBlob, environment, email, errorTracking],
     },
     {
       title: "Medienverarbeitung",

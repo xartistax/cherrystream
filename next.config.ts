@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
 // FFmpeg binaries are spawned as child processes, so file tracing cannot discover them.
@@ -32,6 +33,29 @@ const nextConfig: NextConfig = {
     // The status page compares these folders with the applied migrations.
     "/admin": ["./prisma/migrations/**/*"],
   },
+
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          // The app is never embedded in other sites (clickjacking).
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+        ],
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+// Without SENTRY_AUTH_TOKEN the build works, only source maps are not uploaded.
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent: !process.env.CI,
+  telemetry: false,
+  widenClientFileUpload: true,
+});
