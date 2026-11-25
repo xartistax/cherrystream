@@ -96,6 +96,14 @@ enum AdminAction {
   USER_REACTIVATED
   POST_HIDDEN
   POST_RESTORED
+  INVITE_CREATED
+  INVITE_RENEWED
+  INVITE_REVOKED
+}
+
+enum InviteStatus {
+  OPEN
+  CLAIMED
 }
 
 /// Who did what in the admin area. Kept when the acting admin is removed.
@@ -167,6 +175,8 @@ model User {
   modelVerifications    ModelVerification[] @relation("VerificationSubject")
   reviewedVerifications ModelVerification[] @relation("VerificationReviewer")
   adminAuditLogs        AdminAuditLog[]     @relation("AdminAuditActor")
+  createdInvites        ModelInvite[]       @relation("InviteCreator")
+  claimedInvite         ModelInvite?        @relation("InviteClaimer")
 
   @@index([createdAt])
   @@index([status])
@@ -487,6 +497,48 @@ model ContactMethod {
   sortOrder Int @default(0)
 
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+/// Prepared, never public profile draft that a model can claim via a one-time link.
+/// Only the SHA-256 hash of the token is stored. Declined invites are deleted, expired ones are removed by the cleanup cron.
+model ModelInvite {
+  id        String       @id @default(cuid())
+  tokenHash String       @unique
+  status    InviteStatus @default(OPEN)
+  expiresAt DateTime
+
+  displayName      String
+  bio              String?
+  cantonId         String?
+  cityId           String?
+  categoryIds      String[]
+  phoneNumber      String?
+  whatsappEnabled  Boolean  @default(false)
+  telegramUsername String?
+  instagram        String?
+  website          String?
+
+  /// Internal note for admins, e.g. where the contact came from. Never shown to the model.
+  sourceNote String?
+
+  createdById String?
+  claimedById String?   @unique
+  claimedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  createdBy User? @relation("InviteCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  claimedBy User? @relation("InviteClaimer", fields: [claimedById], references: [id], onDelete: SetNull)
+
+  @@index([status, expiresAt])
+  @@index([phoneNumber])
+}
+
+/// Contacts that chose "not interested". Only a hash of the normalised phone number is kept,
+/// so they are never invited again without storing who they are.
+model DeclinedContact {
+  contactHash String   @id
+  declinedAt  DateTime @default(now())
 }
 
 /// Identity and age check of a model, reviewed manually by an admin.

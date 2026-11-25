@@ -17,13 +17,18 @@ const initialState: ActionState = {
   success: false,
 };
 
-export function RegisterForm() {
+type RegisterFormProps = {
+  callbackUrl?: string;
+};
+
+export function RegisterForm({ callbackUrl }: RegisterFormProps) {
   const [state, action] = useActionState(registerAction, initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
 
   return (
     <form action={action} className="space-y-5">
+      {callbackUrl ? <input type="hidden" name="callbackUrl" value={callbackUrl} /> : null}
       <div className="space-y-2 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-400">
           <ShieldCheck className="size-6" />
@@ -167,7 +172,7 @@ export function RegisterForm() {
 
       <p className="text-center text-sm text-zinc-400">
         Bereits registriert?{" "}
-        <Link href="/login" className="font-medium text-rose-400 hover:text-rose-300">
+        <Link href={callbackUrl ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/login"} className="font-medium text-rose-400 hover:text-rose-300">
           Anmelden
         </Link>
       </p>

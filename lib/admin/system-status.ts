@@ -421,6 +421,47 @@ async function checkMediaPipeline(): Promise<CheckResult> {
   };
 }
 
+/** The cron leaves no trace of its own, so expired invites that are still there show that it is not running. */
+async function checkCleanupJob(): Promise<CheckResult> {
+  if (!process.env.CRON_SECRET) {
+    return {
+      status: process.env.VERCEL_ENV === "production" ? "error" : "warn",
+      detail: "CRON_SECRET fehlt, der tägliche Cleanup wird abgewiesen",
+    };
+  }
+
+  const [openInvites, staleInvites] = await Promise.all([
+    prisma.modelInvite.count({
+      where: {
+        status: "OPEN",
+        expiresAt: {
+          gt: new Date(),
+        },
+      },
+    }),
+    prisma.modelInvite.count({
+      where: {
+        status: "OPEN",
+        expiresAt: {
+          lt: new Date(Date.now() - 48 * HOUR_MS),
+        },
+      },
+    }),
+  ]);
+
+  if (staleInvites > 0) {
+    return {
+      status: "warn",
+      detail: `${staleInvites} seit über 2 Tagen abgelaufene Einladung(en) nicht gelöscht, der Cleanup läuft offenbar nicht`,
+    };
+  }
+
+  return {
+    status: "ok",
+    detail: `${openInvites} offene Einladung(en), keine überfälligen Daten`,
+  };
+}
+
 async function checkActivity(): Promise<CheckResult> {
   const since = new Date(Date.now() - 24 * HOUR_MS);
 
@@ -455,7 +496,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, documents, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -468,6 +509,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("stripe-webhook", "Stripe Webhook", checkStripeWebhook),
       runCheck("verifications", "Offene Verifizierungen", checkPendingVerifications),
       runCheck("documents", "Löschung Ausweisdokumente", checkUnpurgedDocuments),
+      runCheck("cleanup", "Cleanup-Job und Einladungen", checkCleanupJob),
       runCheck("media", "Medien-Uploads", checkMediaPipeline),
       runCheck("activity", "Aktivität", checkActivity),
     ]);
@@ -487,7 +529,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
     },
     {
       title: "Betrieb",
-      checks: [verifications, documents, media, activity],
+      checks: [verifications, documents, cleanup, media, activity],
     },
   ];
 }

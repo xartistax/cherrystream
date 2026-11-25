@@ -31,6 +31,7 @@ pnpm dev
 | `NEXT_PUBLIC_APP_URL` | nein | Öffentliche URL der App |
 | `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` aktiviert Credits, Premium und Stripe (Standard: aus) |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
+| `CRON_SECRET` | in Production | Schützt den täglichen Cleanup-Job (`openssl rand -hex 32`) |
 | `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 
 Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
@@ -47,3 +48,4 @@ Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
 
 - `/admin` – Systemstatus, Verifizierungen, Benutzer, Inhalte und Protokoll (nur Admins)
 - `/api/health` – öffentlicher Health-Check für Uptime-Monitore (`200` oder `503`, ohne Details)
+- `/api/cron/cleanup` – täglicher Cleanup um 03:00 UTC (vercel.json): löscht abgelaufene Einladungen und liegengebliebene Ausweisfotos

@@ -47,7 +47,7 @@ export function LoginForm({ callbackUrl }: LoginFormProps) {
 
       <p className="text-center text-sm text-zinc-400">
         Noch kein Konto?{" "}
-        <Link href="/register" className="font-medium text-rose-400 hover:text-rose-300">
+        <Link href={callbackUrl ? `/register?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/register"} className="font-medium text-rose-400 hover:text-rose-300">
           Jetzt registrieren
         </Link>
       </p>

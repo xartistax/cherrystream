@@ -15,6 +15,10 @@ const items = [
     href: "/admin/verifications",
   },
   {
+    label: "Einladungen",
+    href: "/admin/invites",
+  },
+  {
     label: "Benutzer",
     href: "/admin/users",
   },

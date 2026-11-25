@@ -13,6 +13,9 @@ const actionLabels: Record<AdminAction, string> = {
   USER_REACTIVATED: "Benutzer entsperrt",
   POST_HIDDEN: "Beitrag ausgeblendet",
   POST_RESTORED: "Beitrag eingeblendet",
+  INVITE_CREATED: "Einladung erstellt",
+  INVITE_RENEWED: "Einladungslink erneuert",
+  INVITE_REVOKED: "Einladung widerrufen",
 };
 
 function describeTarget(metadata: unknown): string {
@@ -23,7 +26,11 @@ function describeTarget(metadata: unknown): string {
   const values = metadata as Record<string, unknown>;
   const name = values.username ?? values.author;
 
-  return typeof name === "string" ? `@${name}` : "";
+  if (typeof name === "string") {
+    return `@${name}`;
+  }
+
+  return typeof values.displayName === "string" ? values.displayName : "";
 }
 
 export default async function AdminAuditPage() {
