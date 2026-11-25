@@ -9,6 +9,13 @@ const ffmpegBinaries = [
   "./node_modules/.pnpm/@ffprobe-installer+linux-x64@*/node_modules/@ffprobe-installer/linux-x64/**/*",
 ];
 
+// sharp loads libvips via a relative rpath, not require(), so file tracing misses it. With pnpm the
+// platform packages live under node_modules/.pnpm and must be included explicitly (Vercel builds on linux-x64).
+const sharpNativeLibraries = [
+  "./node_modules/.pnpm/@img+sharp-linux-x64@*/node_modules/@img/sharp-linux-x64/**/*",
+  "./node_modules/.pnpm/@img+sharp-libvips-linux-x64@*/node_modules/@img/sharp-libvips-linux-x64/**/*",
+];
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -29,6 +36,7 @@ const nextConfig: NextConfig = {
   },
 
   outputFileTracingIncludes: {
+    "/*": sharpNativeLibraries,
     "/dashboard": ffmpegBinaries,
     // The status page compares these folders with the applied migrations.
     "/admin": ["./prisma/migrations/**/*"],
