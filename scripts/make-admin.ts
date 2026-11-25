@@ -41,11 +41,7 @@ async function main(): Promise<void> {
         username: true,
         role: true,
         status: true,
-        profile: {
-          select: {
-            id: true,
-          },
-        },
+        modelStatus: true,
       },
     });
 
@@ -63,8 +59,8 @@ async function main(): Promise<void> {
           id: user.id,
         },
         data: {
-          // Accounts with a model profile fall back to MODEL, everyone else to USER.
-          role: user.profile ? "MODEL" : "USER",
+          // Every account has a profile (created at registration), so the model status decides.
+          role: user.modelStatus === "NONE" ? "USER" : "MODEL",
         },
       });
 
