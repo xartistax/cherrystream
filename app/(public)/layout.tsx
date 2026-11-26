@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { AgeGate } from "@/components/public/age-gate";
 import { PublicFooter } from "@/components/public/footer";
 import { PublicNavbar } from "@/components/public/navbar";
+import { NavigationTracker } from "@/components/public/navigation-tracker";
 import { ImpersonationBanner } from "@/components/shared/impersonation-banner";
 
 type PublicLayoutProps = {
@@ -29,6 +30,8 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <PublicFooter />
 
       <AgeGate />
+
+      <NavigationTracker />
     </div>
   );
 }

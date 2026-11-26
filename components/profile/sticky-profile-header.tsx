@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { ContactCard } from "@/components/profile/contact-card";
 import { FavoriteButton } from "@/components/profile/favorite-button";
+import { BackButton } from "@/components/public/back-button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -81,7 +82,10 @@ export function StickyProfileHeader({
         visible ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-full opacity-0",
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:px-8">
+        {/* The bar covers the site navigation while scrolling, so it needs its own way back. */}
+        <BackButton fallbackHref="/explore" compact className="-ml-2" />
+
         <Link href={`/profile/${username}`} className="flex min-w-0 items-center gap-3">
           <div className="relative size-11 shrink-0 overflow-hidden rounded-full border border-white/10 bg-zinc-900">
             {image ? (
