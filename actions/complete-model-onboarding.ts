@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { UserRole, ModelStatus } from "@/generated/prisma/enums";
@@ -19,6 +20,7 @@ export async function completeModelOnboardingAction() {
       id: session.user.id,
     },
     select: {
+      username: true,
       profile: {
         select: {
           displayName: true,
@@ -81,6 +83,11 @@ export async function completeModelOnboardingAction() {
       // The public profile stays hidden until an admin approves the verification.
       modelStatus: ModelStatus.PENDING,
     },
+  });
+
+  notifyAdmins("MODEL_REGISTERED", {
+    lines: [`@${user.username}`],
+    path: `/admin/users?q=${encodeURIComponent(user.username)}`,
   });
 
   revalidatePath("/dashboard");

@@ -21,6 +21,7 @@ const actionLabels: Record<AdminAction, string> = {
   REPORT_RESOLVED: "Meldung erledigt",
   REPORT_DISMISSED: "Meldung verworfen",
   CREDITS_ADJUSTED: "Credits gebucht",
+  ALERT_SETTING_CHANGED: "Telegram-Benachrichtigung geändert",
 };
 
 function describeTarget(metadata: unknown): string {

@@ -105,6 +105,7 @@ enum AdminAction {
   REPORT_RESOLVED
   REPORT_DISMISSED
   CREDITS_ADJUSTED
+  ALERT_SETTING_CHANGED
 }
 
 enum ReportReason {
@@ -754,4 +755,19 @@ model ProfileService {
 
   @@id([profileId, serviceId])
   @@index([serviceId, profileId])
+}
+
+enum AdminAlertEvent {
+  VERIFICATION_SUBMITTED
+  REPORT_CREATED
+  INVITE_CLAIMED
+  MODEL_REGISTERED
+}
+
+/// Admins switch each Telegram alert on or off; a missing row means on.
+model AdminAlertSetting {
+  event       AdminAlertEvent @id
+  enabled     Boolean         @default(true)
+  updatedById String?
+  updatedAt   DateTime        @updatedAt
 }

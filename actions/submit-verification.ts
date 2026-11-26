@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { getCreatorAccess } from "@/lib/access";
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth } from "@/lib/auth";
 import { getAdminEmails, sendEmail } from "@/lib/email/send";
 import { adminNewVerificationEmail, getAppUrl } from "@/lib/email/templates";
@@ -132,6 +133,11 @@ export async function submitVerificationAction(formData: FormData): Promise<Subm
         ...adminNewVerificationEmail(account.username, getAppUrl(`/admin/verifications/${verification.id}`)),
       });
     }
+
+    notifyAdmins("VERIFICATION_SUBMITTED", {
+      lines: [`@${account.username}`],
+      path: `/admin/verifications/${verification.id}`,
+    });
   } catch (error) {
     await deleteVerificationImages(storedPathnames).catch((cleanupError: unknown) => {
       console.error("Verification blob cleanup failed:", cleanupError);
