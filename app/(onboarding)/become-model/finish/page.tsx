@@ -83,7 +83,7 @@ export default async function BecomeModelFinishPage() {
       <header className="flex items-center gap-4">
         <Link
           href="/become-model/categories"
-          aria-label="Zurück zu den Kategorien"
+          aria-label="Zurück zu den Rubriken"
           className={cn(
             buttonVariants({
               variant: "outline",
@@ -160,7 +160,7 @@ export default async function BecomeModelFinishPage() {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-white">Kategorien</p>
+                  <p className="font-semibold text-white">Rubriken</p>
 
                   <CheckCircle2 className="size-5 text-emerald-400" />
                 </div>

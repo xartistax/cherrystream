@@ -1,152 +1,42 @@
 [
   {
-    "name": "Zürich",
-    "slug": "zuerich",
-    "canton": "zh"
-  },
-  {
-    "name": "Winterthur",
-    "slug": "winterthur",
-    "canton": "zh"
-  },
-  {
-    "name": "Uster",
-    "slug": "uster",
-    "canton": "zh"
-  },
-  {
-    "name": "Bern",
-    "slug": "bern",
-    "canton": "be"
-  },
-  {
-    "name": "Biel/Bienne",
-    "slug": "biel",
-    "canton": "be"
-  },
-  {
-    "name": "Thun",
-    "slug": "thun",
-    "canton": "be"
-  },
-  {
-    "name": "Luzern",
-    "slug": "luzern",
-    "canton": "lu"
-  },
-  {
-    "name": "Kriens",
-    "slug": "kriens",
-    "canton": "lu"
-  },
-  {
-    "name": "Altdorf",
-    "slug": "altdorf",
-    "canton": "ur"
-  },
-  {
-    "name": "Schwyz",
-    "slug": "schwyz",
-    "canton": "sz"
-  },
-  {
-    "name": "Sarnen",
-    "slug": "sarnen",
-    "canton": "ow"
-  },
-  {
-    "name": "Stans",
-    "slug": "stans",
-    "canton": "nw"
-  },
-  {
-    "name": "Glarus",
-    "slug": "glarus",
-    "canton": "gl"
-  },
-  {
-    "name": "Zug",
-    "slug": "zug",
-    "canton": "zg"
-  },
-  {
-    "name": "Baar",
-    "slug": "baar",
-    "canton": "zg"
-  },
-  {
-    "name": "Fribourg",
-    "slug": "fribourg",
-    "canton": "fr"
-  },
-  {
-    "name": "Bulle",
-    "slug": "bulle",
-    "canton": "fr"
-  },
-  {
-    "name": "Solothurn",
-    "slug": "solothurn",
-    "canton": "so"
-  },
-  {
-    "name": "Olten",
-    "slug": "olten",
-    "canton": "so"
-  },
-  {
-    "name": "Basel",
-    "slug": "basel",
-    "canton": "bs"
-  },
-  {
-    "name": "Liestal",
-    "slug": "liestal",
-    "canton": "bl"
-  },
-  {
-    "name": "Allschwil",
-    "slug": "allschwil",
-    "canton": "bl"
-  },
-  {
-    "name": "Schaffhausen",
-    "slug": "schaffhausen",
-    "canton": "sh"
-  },
-  {
-    "name": "Herisau",
-    "slug": "herisau",
-    "canton": "ar"
-  },
-  {
-    "name": "Appenzell",
-    "slug": "appenzell",
-    "canton": "ai"
-  },
-  {
-    "name": "St. Gallen",
-    "slug": "st-gallen",
-    "canton": "sg"
-  },
-  {
-    "name": "Rapperswil-Jona",
-    "slug": "rapperswil-jona",
-    "canton": "sg"
-  },
-  {
-    "name": "Chur",
-    "slug": "chur",
-    "canton": "gr"
-  },
-  {
-    "name": "Davos",
-    "slug": "davos",
-    "canton": "gr"
-  },
-  {
     "name": "Aarau",
     "slug": "aarau",
+    "canton": "ag"
+  },
+  {
+    "name": "Aarburg",
+    "slug": "aarburg",
+    "canton": "ag"
+  },
+  {
+    "name": "Abtwil",
+    "slug": "abtwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Ammerswil",
+    "slug": "ammerswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Aristau",
+    "slug": "aristau",
+    "canton": "ag"
+  },
+  {
+    "name": "Arni (AG)",
+    "slug": "arni-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Auenstein",
+    "slug": "auenstein",
+    "canton": "ag"
+  },
+  {
+    "name": "Auw",
+    "slug": "auw",
     "canton": "ag"
   },
   {
@@ -155,58 +45,5193 @@
     "canton": "ag"
   },
   {
-    "name": "Frauenfeld",
-    "slug": "frauenfeld",
-    "canton": "tg"
+    "name": "Beinwil (Freiamt)",
+    "slug": "beinwil-freiamt",
+    "canton": "ag"
   },
   {
-    "name": "Kreuzlingen",
-    "slug": "kreuzlingen",
-    "canton": "tg"
+    "name": "Beinwil am See",
+    "slug": "beinwil-am-see",
+    "canton": "ag"
   },
   {
-    "name": "Lugano",
-    "slug": "lugano",
-    "canton": "ti"
+    "name": "Bellikon",
+    "slug": "bellikon",
+    "canton": "ag"
   },
   {
-    "name": "Bellinzona",
-    "slug": "bellinzona",
-    "canton": "ti"
+    "name": "Bergdietikon",
+    "slug": "bergdietikon",
+    "canton": "ag"
   },
   {
-    "name": "Locarno",
-    "slug": "locarno",
-    "canton": "ti"
+    "name": "Berikon",
+    "slug": "berikon",
+    "canton": "ag"
   },
   {
-    "name": "Lausanne",
-    "slug": "lausanne",
-    "canton": "vd"
+    "name": "Besenbüren",
+    "slug": "besenbueren",
+    "canton": "ag"
   },
   {
-    "name": "Montreux",
-    "slug": "montreux",
-    "canton": "vd"
+    "name": "Bettwil",
+    "slug": "bettwil",
+    "canton": "ag"
   },
   {
-    "name": "Yverdon-les-Bains",
-    "slug": "yverdon-les-bains",
-    "canton": "vd"
+    "name": "Biberstein",
+    "slug": "biberstein",
+    "canton": "ag"
   },
   {
-    "name": "Sion",
-    "slug": "sion",
-    "canton": "vs"
+    "name": "Birmenstorf (AG)",
+    "slug": "birmenstorf-ag",
+    "canton": "ag"
   },
   {
-    "name": "Brig-Glis",
-    "slug": "brig-glis",
-    "canton": "vs"
+    "name": "Birr",
+    "slug": "birr",
+    "canton": "ag"
   },
   {
-    "name": "Neuchâtel",
-    "slug": "neuchatel",
+    "name": "Birrhard",
+    "slug": "birrhard",
+    "canton": "ag"
+  },
+  {
+    "name": "Birrwil",
+    "slug": "birrwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Boniswil",
+    "slug": "boniswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Boswil",
+    "slug": "boswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Bottenwil",
+    "slug": "bottenwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Bremgarten (AG)",
+    "slug": "bremgarten-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Brittnau",
+    "slug": "brittnau",
+    "canton": "ag"
+  },
+  {
+    "name": "Brugg",
+    "slug": "brugg",
+    "canton": "ag"
+  },
+  {
+    "name": "Brunegg",
+    "slug": "brunegg",
+    "canton": "ag"
+  },
+  {
+    "name": "Buchs (AG)",
+    "slug": "buchs-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Buttwil",
+    "slug": "buttwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Böttstein",
+    "slug": "boettstein",
+    "canton": "ag"
+  },
+  {
+    "name": "Bözberg",
+    "slug": "boezberg",
+    "canton": "ag"
+  },
+  {
+    "name": "Böztal",
+    "slug": "boeztal",
+    "canton": "ag"
+  },
+  {
+    "name": "Bünzen",
+    "slug": "buenzen",
+    "canton": "ag"
+  },
+  {
+    "name": "Büttikon",
+    "slug": "buettikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Densbüren",
+    "slug": "densbueren",
+    "canton": "ag"
+  },
+  {
+    "name": "Dietwil",
+    "slug": "dietwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Dintikon",
+    "slug": "dintikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Dottikon",
+    "slug": "dottikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Döttingen",
+    "slug": "doettingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Dürrenäsch",
+    "slug": "duerrenaesch",
+    "canton": "ag"
+  },
+  {
+    "name": "Eggenwil",
+    "slug": "eggenwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Egliswil",
+    "slug": "egliswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Ehrendingen",
+    "slug": "ehrendingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Eiken",
+    "slug": "eiken",
+    "canton": "ag"
+  },
+  {
+    "name": "Endingen",
+    "slug": "endingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Ennetbaden",
+    "slug": "ennetbaden",
+    "canton": "ag"
+  },
+  {
+    "name": "Erlinsbach (AG)",
+    "slug": "erlinsbach-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Fahrwangen",
+    "slug": "fahrwangen",
+    "canton": "ag"
+  },
+  {
+    "name": "Fischbach-Göslikon",
+    "slug": "fischbach-goeslikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Fisibach",
+    "slug": "fisibach",
+    "canton": "ag"
+  },
+  {
+    "name": "Fislisbach",
+    "slug": "fislisbach",
+    "canton": "ag"
+  },
+  {
+    "name": "Freienwil",
+    "slug": "freienwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Frick",
+    "slug": "frick",
+    "canton": "ag"
+  },
+  {
+    "name": "Full-Reuenthal",
+    "slug": "full-reuenthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Gansingen",
+    "slug": "gansingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Gebenstorf",
+    "slug": "gebenstorf",
+    "canton": "ag"
+  },
+  {
+    "name": "Geltwil",
+    "slug": "geltwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Gipf-Oberfrick",
+    "slug": "gipf-oberfrick",
+    "canton": "ag"
+  },
+  {
+    "name": "Gontenschwil",
+    "slug": "gontenschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Gränichen",
+    "slug": "graenichen",
+    "canton": "ag"
+  },
+  {
+    "name": "Habsburg",
+    "slug": "habsburg",
+    "canton": "ag"
+  },
+  {
+    "name": "Hallwil",
+    "slug": "hallwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Hausen (AG)",
+    "slug": "hausen-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Hellikon",
+    "slug": "hellikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Hendschiken",
+    "slug": "hendschiken",
+    "canton": "ag"
+  },
+  {
+    "name": "Herznach-Ueken",
+    "slug": "herznach-ueken",
+    "canton": "ag"
+  },
+  {
+    "name": "Hirschthal",
+    "slug": "hirschthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Holderbank (AG)",
+    "slug": "holderbank-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Holziken",
+    "slug": "holziken",
+    "canton": "ag"
+  },
+  {
+    "name": "Hunzenschwil",
+    "slug": "hunzenschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Hägglingen",
+    "slug": "haegglingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Islisberg",
+    "slug": "islisberg",
+    "canton": "ag"
+  },
+  {
+    "name": "Jonen",
+    "slug": "jonen",
+    "canton": "ag"
+  },
+  {
+    "name": "Kaiseraugst",
+    "slug": "kaiseraugst",
+    "canton": "ag"
+  },
+  {
+    "name": "Kaisten",
+    "slug": "kaisten",
+    "canton": "ag"
+  },
+  {
+    "name": "Kallern",
+    "slug": "kallern",
+    "canton": "ag"
+  },
+  {
+    "name": "Killwangen",
+    "slug": "killwangen",
+    "canton": "ag"
+  },
+  {
+    "name": "Kirchleerau",
+    "slug": "kirchleerau",
+    "canton": "ag"
+  },
+  {
+    "name": "Klingnau",
+    "slug": "klingnau",
+    "canton": "ag"
+  },
+  {
+    "name": "Koblenz",
+    "slug": "koblenz",
+    "canton": "ag"
+  },
+  {
+    "name": "Kölliken",
+    "slug": "koelliken",
+    "canton": "ag"
+  },
+  {
+    "name": "Künten",
+    "slug": "kuenten",
+    "canton": "ag"
+  },
+  {
+    "name": "Küttigen",
+    "slug": "kuettigen",
+    "canton": "ag"
+  },
+  {
+    "name": "Laufenburg",
+    "slug": "laufenburg",
+    "canton": "ag"
+  },
+  {
+    "name": "Leibstadt",
+    "slug": "leibstadt",
+    "canton": "ag"
+  },
+  {
+    "name": "Leimbach (AG)",
+    "slug": "leimbach-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Lengnau (AG)",
+    "slug": "lengnau-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Lenzburg",
+    "slug": "lenzburg",
+    "canton": "ag"
+  },
+  {
+    "name": "Leuggern",
+    "slug": "leuggern",
+    "canton": "ag"
+  },
+  {
+    "name": "Leutwil",
+    "slug": "leutwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Lupfig",
+    "slug": "lupfig",
+    "canton": "ag"
+  },
+  {
+    "name": "Magden",
+    "slug": "magden",
+    "canton": "ag"
+  },
+  {
+    "name": "Mandach",
+    "slug": "mandach",
+    "canton": "ag"
+  },
+  {
+    "name": "Meisterschwanden",
+    "slug": "meisterschwanden",
+    "canton": "ag"
+  },
+  {
+    "name": "Mellikon",
+    "slug": "mellikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Mellingen",
+    "slug": "mellingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Menziken",
+    "slug": "menziken",
+    "canton": "ag"
+  },
+  {
+    "name": "Merenschwand",
+    "slug": "merenschwand",
+    "canton": "ag"
+  },
+  {
+    "name": "Mettauertal",
+    "slug": "mettauertal",
+    "canton": "ag"
+  },
+  {
+    "name": "Moosleerau",
+    "slug": "moosleerau",
+    "canton": "ag"
+  },
+  {
+    "name": "Muhen",
+    "slug": "muhen",
+    "canton": "ag"
+  },
+  {
+    "name": "Mumpf",
+    "slug": "mumpf",
+    "canton": "ag"
+  },
+  {
+    "name": "Murgenthal",
+    "slug": "murgenthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Muri (AG)",
+    "slug": "muri-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Mägenwil",
+    "slug": "maegenwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Möhlin",
+    "slug": "moehlin",
+    "canton": "ag"
+  },
+  {
+    "name": "Mönthal",
+    "slug": "moenthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Möriken-Wildegg",
+    "slug": "moeriken-wildegg",
+    "canton": "ag"
+  },
+  {
+    "name": "Mühlau",
+    "slug": "muehlau",
+    "canton": "ag"
+  },
+  {
+    "name": "Mülligen",
+    "slug": "muelligen",
+    "canton": "ag"
+  },
+  {
+    "name": "Münchwilen (AG)",
+    "slug": "muenchwilen-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Neuenhof",
+    "slug": "neuenhof",
+    "canton": "ag"
+  },
+  {
+    "name": "Niederlenz",
+    "slug": "niederlenz",
+    "canton": "ag"
+  },
+  {
+    "name": "Niederrohrdorf",
+    "slug": "niederrohrdorf",
+    "canton": "ag"
+  },
+  {
+    "name": "Niederwil (AG)",
+    "slug": "niederwil-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberentfelden",
+    "slug": "oberentfelden",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberhof",
+    "slug": "oberhof",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberkulm",
+    "slug": "oberkulm",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberlunkhofen",
+    "slug": "oberlunkhofen",
+    "canton": "ag"
+  },
+  {
+    "name": "Obermumpf",
+    "slug": "obermumpf",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberrohrdorf",
+    "slug": "oberrohrdorf",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberrüti",
+    "slug": "oberrueti",
+    "canton": "ag"
+  },
+  {
+    "name": "Obersiggenthal",
+    "slug": "obersiggenthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Oberwil-Lieli",
+    "slug": "oberwil-lieli",
+    "canton": "ag"
+  },
+  {
+    "name": "Oeschgen",
+    "slug": "oeschgen",
+    "canton": "ag"
+  },
+  {
+    "name": "Oftringen",
+    "slug": "oftringen",
+    "canton": "ag"
+  },
+  {
+    "name": "Olsberg",
+    "slug": "olsberg",
+    "canton": "ag"
+  },
+  {
+    "name": "Othmarsingen",
+    "slug": "othmarsingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Reinach (AG)",
+    "slug": "reinach-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Reitnau",
+    "slug": "reitnau",
+    "canton": "ag"
+  },
+  {
+    "name": "Remetschwil",
+    "slug": "remetschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Remigen",
+    "slug": "remigen",
+    "canton": "ag"
+  },
+  {
+    "name": "Rheinfelden",
+    "slug": "rheinfelden",
+    "canton": "ag"
+  },
+  {
+    "name": "Riniken",
+    "slug": "riniken",
+    "canton": "ag"
+  },
+  {
+    "name": "Rothrist",
+    "slug": "rothrist",
+    "canton": "ag"
+  },
+  {
+    "name": "Rottenschwil",
+    "slug": "rottenschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Rudolfstetten-Friedlisberg",
+    "slug": "rudolfstetten-friedlisberg",
+    "canton": "ag"
+  },
+  {
+    "name": "Rupperswil",
+    "slug": "rupperswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Rüfenach",
+    "slug": "ruefenach",
+    "canton": "ag"
+  },
+  {
+    "name": "Safenwil",
+    "slug": "safenwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Sarmenstorf",
+    "slug": "sarmenstorf",
+    "canton": "ag"
+  },
+  {
+    "name": "Schafisheim",
+    "slug": "schafisheim",
+    "canton": "ag"
+  },
+  {
+    "name": "Schinznach",
+    "slug": "schinznach",
+    "canton": "ag"
+  },
+  {
+    "name": "Schlossrued",
+    "slug": "schlossrued",
+    "canton": "ag"
+  },
+  {
+    "name": "Schmiedrued",
+    "slug": "schmiedrued",
+    "canton": "ag"
+  },
+  {
+    "name": "Schneisingen",
+    "slug": "schneisingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Schupfart",
+    "slug": "schupfart",
+    "canton": "ag"
+  },
+  {
+    "name": "Schwaderloch",
+    "slug": "schwaderloch",
+    "canton": "ag"
+  },
+  {
+    "name": "Schöftland",
+    "slug": "schoeftland",
+    "canton": "ag"
+  },
+  {
+    "name": "Seengen",
+    "slug": "seengen",
+    "canton": "ag"
+  },
+  {
+    "name": "Seon",
+    "slug": "seon",
+    "canton": "ag"
+  },
+  {
+    "name": "Siglistorf",
+    "slug": "siglistorf",
+    "canton": "ag"
+  },
+  {
+    "name": "Sins",
+    "slug": "sins",
+    "canton": "ag"
+  },
+  {
+    "name": "Sisseln",
+    "slug": "sisseln",
+    "canton": "ag"
+  },
+  {
+    "name": "Spreitenbach",
+    "slug": "spreitenbach",
+    "canton": "ag"
+  },
+  {
+    "name": "Staffelbach",
+    "slug": "staffelbach",
+    "canton": "ag"
+  },
+  {
+    "name": "Staufen",
+    "slug": "staufen",
+    "canton": "ag"
+  },
+  {
+    "name": "Stein (AG)",
+    "slug": "stein-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Stetten (AG)",
+    "slug": "stetten-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Strengelbach",
+    "slug": "strengelbach",
+    "canton": "ag"
+  },
+  {
+    "name": "Suhr",
+    "slug": "suhr",
+    "canton": "ag"
+  },
+  {
+    "name": "Tegerfelden",
+    "slug": "tegerfelden",
+    "canton": "ag"
+  },
+  {
+    "name": "Teufenthal (AG)",
+    "slug": "teufenthal-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Thalheim (AG)",
+    "slug": "thalheim-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Tägerig",
+    "slug": "taegerig",
+    "canton": "ag"
+  },
+  {
+    "name": "Uerkheim",
+    "slug": "uerkheim",
+    "canton": "ag"
+  },
+  {
+    "name": "Uezwil",
+    "slug": "uezwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Unterentfelden",
+    "slug": "unterentfelden",
+    "canton": "ag"
+  },
+  {
+    "name": "Unterkulm",
+    "slug": "unterkulm",
+    "canton": "ag"
+  },
+  {
+    "name": "Unterlunkhofen",
+    "slug": "unterlunkhofen",
+    "canton": "ag"
+  },
+  {
+    "name": "Untersiggenthal",
+    "slug": "untersiggenthal",
+    "canton": "ag"
+  },
+  {
+    "name": "Veltheim (AG)",
+    "slug": "veltheim-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Villigen",
+    "slug": "villigen",
+    "canton": "ag"
+  },
+  {
+    "name": "Villmergen",
+    "slug": "villmergen",
+    "canton": "ag"
+  },
+  {
+    "name": "Vordemwald",
+    "slug": "vordemwald",
+    "canton": "ag"
+  },
+  {
+    "name": "Wallbach",
+    "slug": "wallbach",
+    "canton": "ag"
+  },
+  {
+    "name": "Waltenschwil",
+    "slug": "waltenschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Wegenstetten",
+    "slug": "wegenstetten",
+    "canton": "ag"
+  },
+  {
+    "name": "Wettingen",
+    "slug": "wettingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Widen",
+    "slug": "widen",
+    "canton": "ag"
+  },
+  {
+    "name": "Wiliberg",
+    "slug": "wiliberg",
+    "canton": "ag"
+  },
+  {
+    "name": "Windisch",
+    "slug": "windisch",
+    "canton": "ag"
+  },
+  {
+    "name": "Wittnau",
+    "slug": "wittnau",
+    "canton": "ag"
+  },
+  {
+    "name": "Wohlen (AG)",
+    "slug": "wohlen-ag",
+    "canton": "ag"
+  },
+  {
+    "name": "Wohlenschwil",
+    "slug": "wohlenschwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Wölflinswil",
+    "slug": "woelflinswil",
+    "canton": "ag"
+  },
+  {
+    "name": "Würenlingen",
+    "slug": "wuerenlingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Würenlos",
+    "slug": "wuerenlos",
+    "canton": "ag"
+  },
+  {
+    "name": "Zeihen",
+    "slug": "zeihen",
+    "canton": "ag"
+  },
+  {
+    "name": "Zeiningen",
+    "slug": "zeiningen",
+    "canton": "ag"
+  },
+  {
+    "name": "Zetzwil",
+    "slug": "zetzwil",
+    "canton": "ag"
+  },
+  {
+    "name": "Zofingen",
+    "slug": "zofingen",
+    "canton": "ag"
+  },
+  {
+    "name": "Zufikon",
+    "slug": "zufikon",
+    "canton": "ag"
+  },
+  {
+    "name": "Zurzach",
+    "slug": "zurzach",
+    "canton": "ag"
+  },
+  {
+    "name": "Zuzgen",
+    "slug": "zuzgen",
+    "canton": "ag"
+  },
+  {
+    "name": "Appenzell",
+    "slug": "appenzell",
+    "canton": "ai"
+  },
+  {
+    "name": "Gonten",
+    "slug": "gonten",
+    "canton": "ai"
+  },
+  {
+    "name": "Oberegg",
+    "slug": "oberegg",
+    "canton": "ai"
+  },
+  {
+    "name": "Schlatt-Haslen",
+    "slug": "schlatt-haslen",
+    "canton": "ai"
+  },
+  {
+    "name": "Schwende-Rüte",
+    "slug": "schwende-ruete",
+    "canton": "ai"
+  },
+  {
+    "name": "Bühler",
+    "slug": "buehler",
+    "canton": "ar"
+  },
+  {
+    "name": "Gais",
+    "slug": "gais",
+    "canton": "ar"
+  },
+  {
+    "name": "Grub (AR)",
+    "slug": "grub-ar",
+    "canton": "ar"
+  },
+  {
+    "name": "Heiden",
+    "slug": "heiden",
+    "canton": "ar"
+  },
+  {
+    "name": "Herisau",
+    "slug": "herisau",
+    "canton": "ar"
+  },
+  {
+    "name": "Hundwil",
+    "slug": "hundwil",
+    "canton": "ar"
+  },
+  {
+    "name": "Lutzenberg",
+    "slug": "lutzenberg",
+    "canton": "ar"
+  },
+  {
+    "name": "Rehetobel",
+    "slug": "rehetobel",
+    "canton": "ar"
+  },
+  {
+    "name": "Reute (AR)",
+    "slug": "reute-ar",
+    "canton": "ar"
+  },
+  {
+    "name": "Schwellbrunn",
+    "slug": "schwellbrunn",
+    "canton": "ar"
+  },
+  {
+    "name": "Schönengrund",
+    "slug": "schoenengrund",
+    "canton": "ar"
+  },
+  {
+    "name": "Speicher",
+    "slug": "speicher",
+    "canton": "ar"
+  },
+  {
+    "name": "Stein (AR)",
+    "slug": "stein-ar",
+    "canton": "ar"
+  },
+  {
+    "name": "Teufen (AR)",
+    "slug": "teufen-ar",
+    "canton": "ar"
+  },
+  {
+    "name": "Trogen",
+    "slug": "trogen",
+    "canton": "ar"
+  },
+  {
+    "name": "Urnäsch",
+    "slug": "urnaesch",
+    "canton": "ar"
+  },
+  {
+    "name": "Wald (AR)",
+    "slug": "wald-ar",
+    "canton": "ar"
+  },
+  {
+    "name": "Waldstatt",
+    "slug": "waldstatt",
+    "canton": "ar"
+  },
+  {
+    "name": "Walzenhausen",
+    "slug": "walzenhausen",
+    "canton": "ar"
+  },
+  {
+    "name": "Wolfhalden",
+    "slug": "wolfhalden",
+    "canton": "ar"
+  },
+  {
+    "name": "Aarberg",
+    "slug": "aarberg",
+    "canton": "be"
+  },
+  {
+    "name": "Aarwangen",
+    "slug": "aarwangen",
+    "canton": "be"
+  },
+  {
+    "name": "Adelboden",
+    "slug": "adelboden",
+    "canton": "be"
+  },
+  {
+    "name": "Aefligen",
+    "slug": "aefligen",
+    "canton": "be"
+  },
+  {
+    "name": "Aegerten",
+    "slug": "aegerten",
+    "canton": "be"
+  },
+  {
+    "name": "Aeschi bei Spiez",
+    "slug": "aeschi-bei-spiez",
+    "canton": "be"
+  },
+  {
+    "name": "Affoltern im Emmental",
+    "slug": "affoltern-im-emmental",
+    "canton": "be"
+  },
+  {
+    "name": "Alchenstorf",
+    "slug": "alchenstorf",
+    "canton": "be"
+  },
+  {
+    "name": "Allmendingen",
+    "slug": "allmendingen",
+    "canton": "be"
+  },
+  {
+    "name": "Amsoldingen",
+    "slug": "amsoldingen",
+    "canton": "be"
+  },
+  {
+    "name": "Arch",
+    "slug": "arch",
+    "canton": "be"
+  },
+  {
+    "name": "Arni (BE)",
+    "slug": "arni-be",
+    "canton": "be"
+  },
+  {
+    "name": "Attiswil",
+    "slug": "attiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Auswil",
+    "slug": "auswil",
+    "canton": "be"
+  },
+  {
+    "name": "Bannwil",
+    "slug": "bannwil",
+    "canton": "be"
+  },
+  {
+    "name": "Bargen (BE)",
+    "slug": "bargen-be",
+    "canton": "be"
+  },
+  {
+    "name": "Beatenberg",
+    "slug": "beatenberg",
+    "canton": "be"
+  },
+  {
+    "name": "Bellmund",
+    "slug": "bellmund",
+    "canton": "be"
+  },
+  {
+    "name": "Belp",
+    "slug": "belp",
+    "canton": "be"
+  },
+  {
+    "name": "Belprahon",
+    "slug": "belprahon",
+    "canton": "be"
+  },
+  {
+    "name": "Berken",
+    "slug": "berken",
+    "canton": "be"
+  },
+  {
+    "name": "Bern",
+    "slug": "bern",
+    "canton": "be"
+  },
+  {
+    "name": "Bettenhausen",
+    "slug": "bettenhausen",
+    "canton": "be"
+  },
+  {
+    "name": "Biel/Bienne",
+    "slug": "biel",
+    "canton": "be"
+  },
+  {
+    "name": "Biglen",
+    "slug": "biglen",
+    "canton": "be"
+  },
+  {
+    "name": "Bleienbach",
+    "slug": "bleienbach",
+    "canton": "be"
+  },
+  {
+    "name": "Blumenstein",
+    "slug": "blumenstein",
+    "canton": "be"
+  },
+  {
+    "name": "Bolligen",
+    "slug": "bolligen",
+    "canton": "be"
+  },
+  {
+    "name": "Boltigen",
+    "slug": "boltigen",
+    "canton": "be"
+  },
+  {
+    "name": "Bowil",
+    "slug": "bowil",
+    "canton": "be"
+  },
+  {
+    "name": "Bremgarten bei Bern",
+    "slug": "bremgarten-bei-bern",
+    "canton": "be"
+  },
+  {
+    "name": "Brenzikofen",
+    "slug": "brenzikofen",
+    "canton": "be"
+  },
+  {
+    "name": "Brienz (BE)",
+    "slug": "brienz-be",
+    "canton": "be"
+  },
+  {
+    "name": "Brienzwiler",
+    "slug": "brienzwiler",
+    "canton": "be"
+  },
+  {
+    "name": "Brügg",
+    "slug": "bruegg",
+    "canton": "be"
+  },
+  {
+    "name": "Brüttelen",
+    "slug": "bruettelen",
+    "canton": "be"
+  },
+  {
+    "name": "Buchholterberg",
+    "slug": "buchholterberg",
+    "canton": "be"
+  },
+  {
+    "name": "Burgdorf",
+    "slug": "burgdorf",
+    "canton": "be"
+  },
+  {
+    "name": "Burgistein",
+    "slug": "burgistein",
+    "canton": "be"
+  },
+  {
+    "name": "Busswil bei Melchnau",
+    "slug": "busswil-bei-melchnau",
+    "canton": "be"
+  },
+  {
+    "name": "Bäriswil",
+    "slug": "baeriswil",
+    "canton": "be"
+  },
+  {
+    "name": "Bätterkinden",
+    "slug": "baetterkinden",
+    "canton": "be"
+  },
+  {
+    "name": "Bönigen",
+    "slug": "boenigen",
+    "canton": "be"
+  },
+  {
+    "name": "Büetigen",
+    "slug": "bueetigen",
+    "canton": "be"
+  },
+  {
+    "name": "Bühl",
+    "slug": "buehl",
+    "canton": "be"
+  },
+  {
+    "name": "Büren an der Aare",
+    "slug": "bueren-an-der-aare",
+    "canton": "be"
+  },
+  {
+    "name": "Champoz",
+    "slug": "champoz",
+    "canton": "be"
+  },
+  {
+    "name": "Corcelles (BE)",
+    "slug": "corcelles-be",
+    "canton": "be"
+  },
+  {
+    "name": "Corgémont",
+    "slug": "corgemont",
+    "canton": "be"
+  },
+  {
+    "name": "Cormoret",
+    "slug": "cormoret",
+    "canton": "be"
+  },
+  {
+    "name": "Cortébert",
+    "slug": "cortebert",
+    "canton": "be"
+  },
+  {
+    "name": "Court",
+    "slug": "court",
+    "canton": "be"
+  },
+  {
+    "name": "Courtelary",
+    "slug": "courtelary",
+    "canton": "be"
+  },
+  {
+    "name": "Crémines",
+    "slug": "cremines",
+    "canton": "be"
+  },
+  {
+    "name": "Deisswil bei Münchenbuchsee",
+    "slug": "deisswil-bei-muenchenbuchsee",
+    "canton": "be"
+  },
+  {
+    "name": "Diemtigen",
+    "slug": "diemtigen",
+    "canton": "be"
+  },
+  {
+    "name": "Diessbach bei Büren",
+    "slug": "diessbach-bei-bueren",
+    "canton": "be"
+  },
+  {
+    "name": "Dotzigen",
+    "slug": "dotzigen",
+    "canton": "be"
+  },
+  {
+    "name": "Därligen",
+    "slug": "daerligen",
+    "canton": "be"
+  },
+  {
+    "name": "Därstetten",
+    "slug": "daerstetten",
+    "canton": "be"
+  },
+  {
+    "name": "Dürrenroth",
+    "slug": "duerrenroth",
+    "canton": "be"
+  },
+  {
+    "name": "Eggiwil",
+    "slug": "eggiwil",
+    "canton": "be"
+  },
+  {
+    "name": "Epsach",
+    "slug": "epsach",
+    "canton": "be"
+  },
+  {
+    "name": "Eriswil",
+    "slug": "eriswil",
+    "canton": "be"
+  },
+  {
+    "name": "Eriz",
+    "slug": "eriz",
+    "canton": "be"
+  },
+  {
+    "name": "Erlach",
+    "slug": "erlach",
+    "canton": "be"
+  },
+  {
+    "name": "Erlenbach im Simmental",
+    "slug": "erlenbach-im-simmental",
+    "canton": "be"
+  },
+  {
+    "name": "Ersigen",
+    "slug": "ersigen",
+    "canton": "be"
+  },
+  {
+    "name": "Eschert",
+    "slug": "eschert",
+    "canton": "be"
+  },
+  {
+    "name": "Evilard",
+    "slug": "evilard",
+    "canton": "be"
+  },
+  {
+    "name": "Fahrni",
+    "slug": "fahrni",
+    "canton": "be"
+  },
+  {
+    "name": "Farnern",
+    "slug": "farnern",
+    "canton": "be"
+  },
+  {
+    "name": "Ferenbalm",
+    "slug": "ferenbalm",
+    "canton": "be"
+  },
+  {
+    "name": "Finsterhennen",
+    "slug": "finsterhennen",
+    "canton": "be"
+  },
+  {
+    "name": "Forst-Längenbühl",
+    "slug": "forst-laengenbuehl",
+    "canton": "be"
+  },
+  {
+    "name": "Fraubrunnen",
+    "slug": "fraubrunnen",
+    "canton": "be"
+  },
+  {
+    "name": "Frauenkappelen",
+    "slug": "frauenkappelen",
+    "canton": "be"
+  },
+  {
+    "name": "Freimettigen",
+    "slug": "freimettigen",
+    "canton": "be"
+  },
+  {
+    "name": "Frutigen",
+    "slug": "frutigen",
+    "canton": "be"
+  },
+  {
+    "name": "Gals",
+    "slug": "gals",
+    "canton": "be"
+  },
+  {
+    "name": "Gampelen",
+    "slug": "gampelen",
+    "canton": "be"
+  },
+  {
+    "name": "Gerzensee",
+    "slug": "gerzensee",
+    "canton": "be"
+  },
+  {
+    "name": "Gondiswil",
+    "slug": "gondiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Graben",
+    "slug": "graben",
+    "canton": "be"
+  },
+  {
+    "name": "Grandval",
+    "slug": "grandval",
+    "canton": "be"
+  },
+  {
+    "name": "Grindelwald",
+    "slug": "grindelwald",
+    "canton": "be"
+  },
+  {
+    "name": "Grossaffoltern",
+    "slug": "grossaffoltern",
+    "canton": "be"
+  },
+  {
+    "name": "Grosshöchstetten",
+    "slug": "grosshoechstetten",
+    "canton": "be"
+  },
+  {
+    "name": "Gsteig",
+    "slug": "gsteig",
+    "canton": "be"
+  },
+  {
+    "name": "Gsteigwiler",
+    "slug": "gsteigwiler",
+    "canton": "be"
+  },
+  {
+    "name": "Guggisberg",
+    "slug": "guggisberg",
+    "canton": "be"
+  },
+  {
+    "name": "Gurbrü",
+    "slug": "gurbrue",
+    "canton": "be"
+  },
+  {
+    "name": "Gurzelen",
+    "slug": "gurzelen",
+    "canton": "be"
+  },
+  {
+    "name": "Guttannen",
+    "slug": "guttannen",
+    "canton": "be"
+  },
+  {
+    "name": "Gündlischwand",
+    "slug": "guendlischwand",
+    "canton": "be"
+  },
+  {
+    "name": "Habkern",
+    "slug": "habkern",
+    "canton": "be"
+  },
+  {
+    "name": "Hagneck",
+    "slug": "hagneck",
+    "canton": "be"
+  },
+  {
+    "name": "Hasle bei Burgdorf",
+    "slug": "hasle-bei-burgdorf",
+    "canton": "be"
+  },
+  {
+    "name": "Hasliberg",
+    "slug": "hasliberg",
+    "canton": "be"
+  },
+  {
+    "name": "Heiligenschwendi",
+    "slug": "heiligenschwendi",
+    "canton": "be"
+  },
+  {
+    "name": "Heimberg",
+    "slug": "heimberg",
+    "canton": "be"
+  },
+  {
+    "name": "Heimenhausen",
+    "slug": "heimenhausen",
+    "canton": "be"
+  },
+  {
+    "name": "Heimiswil",
+    "slug": "heimiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Hellsau",
+    "slug": "hellsau",
+    "canton": "be"
+  },
+  {
+    "name": "Herbligen",
+    "slug": "herbligen",
+    "canton": "be"
+  },
+  {
+    "name": "Hermrigen",
+    "slug": "hermrigen",
+    "canton": "be"
+  },
+  {
+    "name": "Herzogenbuchsee",
+    "slug": "herzogenbuchsee",
+    "canton": "be"
+  },
+  {
+    "name": "Hilterfingen",
+    "slug": "hilterfingen",
+    "canton": "be"
+  },
+  {
+    "name": "Hindelbank",
+    "slug": "hindelbank",
+    "canton": "be"
+  },
+  {
+    "name": "Hofstetten bei Brienz",
+    "slug": "hofstetten-bei-brienz",
+    "canton": "be"
+  },
+  {
+    "name": "Homberg",
+    "slug": "homberg",
+    "canton": "be"
+  },
+  {
+    "name": "Horrenbach-Buchen",
+    "slug": "horrenbach-buchen",
+    "canton": "be"
+  },
+  {
+    "name": "Huttwil",
+    "slug": "huttwil",
+    "canton": "be"
+  },
+  {
+    "name": "Häutligen",
+    "slug": "haeutligen",
+    "canton": "be"
+  },
+  {
+    "name": "Höchstetten",
+    "slug": "hoechstetten",
+    "canton": "be"
+  },
+  {
+    "name": "Iffwil",
+    "slug": "iffwil",
+    "canton": "be"
+  },
+  {
+    "name": "Inkwil",
+    "slug": "inkwil",
+    "canton": "be"
+  },
+  {
+    "name": "Innertkirchen",
+    "slug": "innertkirchen",
+    "canton": "be"
+  },
+  {
+    "name": "Ins",
+    "slug": "ins",
+    "canton": "be"
+  },
+  {
+    "name": "Interlaken",
+    "slug": "interlaken",
+    "canton": "be"
+  },
+  {
+    "name": "Ipsach",
+    "slug": "ipsach",
+    "canton": "be"
+  },
+  {
+    "name": "Iseltwald",
+    "slug": "iseltwald",
+    "canton": "be"
+  },
+  {
+    "name": "Ittigen",
+    "slug": "ittigen",
+    "canton": "be"
+  },
+  {
+    "name": "Jaberg",
+    "slug": "jaberg",
+    "canton": "be"
+  },
+  {
+    "name": "Jegenstorf",
+    "slug": "jegenstorf",
+    "canton": "be"
+  },
+  {
+    "name": "Jens",
+    "slug": "jens",
+    "canton": "be"
+  },
+  {
+    "name": "Kallnach",
+    "slug": "kallnach",
+    "canton": "be"
+  },
+  {
+    "name": "Kandergrund",
+    "slug": "kandergrund",
+    "canton": "be"
+  },
+  {
+    "name": "Kandersteg",
+    "slug": "kandersteg",
+    "canton": "be"
+  },
+  {
+    "name": "Kappelen",
+    "slug": "kappelen",
+    "canton": "be"
+  },
+  {
+    "name": "Kaufdorf",
+    "slug": "kaufdorf",
+    "canton": "be"
+  },
+  {
+    "name": "Kehrsatz",
+    "slug": "kehrsatz",
+    "canton": "be"
+  },
+  {
+    "name": "Kernenried",
+    "slug": "kernenried",
+    "canton": "be"
+  },
+  {
+    "name": "Kiesen",
+    "slug": "kiesen",
+    "canton": "be"
+  },
+  {
+    "name": "Kirchberg (BE)",
+    "slug": "kirchberg-be",
+    "canton": "be"
+  },
+  {
+    "name": "Kirchdorf (BE)",
+    "slug": "kirchdorf-be",
+    "canton": "be"
+  },
+  {
+    "name": "Kirchlindach",
+    "slug": "kirchlindach",
+    "canton": "be"
+  },
+  {
+    "name": "Konolfingen",
+    "slug": "konolfingen",
+    "canton": "be"
+  },
+  {
+    "name": "Koppigen",
+    "slug": "koppigen",
+    "canton": "be"
+  },
+  {
+    "name": "Krattigen",
+    "slug": "krattigen",
+    "canton": "be"
+  },
+  {
+    "name": "Krauchthal",
+    "slug": "krauchthal",
+    "canton": "be"
+  },
+  {
+    "name": "Kriechenwil",
+    "slug": "kriechenwil",
+    "canton": "be"
+  },
+  {
+    "name": "Köniz",
+    "slug": "koeniz",
+    "canton": "be"
+  },
+  {
+    "name": "La Ferrière",
+    "slug": "la-ferriere",
+    "canton": "be"
+  },
+  {
+    "name": "La Neuveville",
+    "slug": "la-neuveville",
+    "canton": "be"
+  },
+  {
+    "name": "Landiswil",
+    "slug": "landiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Langenthal",
+    "slug": "langenthal",
+    "canton": "be"
+  },
+  {
+    "name": "Langnau im Emmental",
+    "slug": "langnau-im-emmental",
+    "canton": "be"
+  },
+  {
+    "name": "Lauenen",
+    "slug": "lauenen",
+    "canton": "be"
+  },
+  {
+    "name": "Laupen",
+    "slug": "laupen",
+    "canton": "be"
+  },
+  {
+    "name": "Lauperswil",
+    "slug": "lauperswil",
+    "canton": "be"
+  },
+  {
+    "name": "Lauterbrunnen",
+    "slug": "lauterbrunnen",
+    "canton": "be"
+  },
+  {
+    "name": "Leissigen",
+    "slug": "leissigen",
+    "canton": "be"
+  },
+  {
+    "name": "Lengnau (BE)",
+    "slug": "lengnau-be",
+    "canton": "be"
+  },
+  {
+    "name": "Lenk",
+    "slug": "lenk",
+    "canton": "be"
+  },
+  {
+    "name": "Leuzigen",
+    "slug": "leuzigen",
+    "canton": "be"
+  },
+  {
+    "name": "Ligerz",
+    "slug": "ligerz",
+    "canton": "be"
+  },
+  {
+    "name": "Linden",
+    "slug": "linden",
+    "canton": "be"
+  },
+  {
+    "name": "Lotzwil",
+    "slug": "lotzwil",
+    "canton": "be"
+  },
+  {
+    "name": "Loveresse",
+    "slug": "loveresse",
+    "canton": "be"
+  },
+  {
+    "name": "Lyss",
+    "slug": "lyss",
+    "canton": "be"
+  },
+  {
+    "name": "Lyssach",
+    "slug": "lyssach",
+    "canton": "be"
+  },
+  {
+    "name": "Lüscherz",
+    "slug": "luescherz",
+    "canton": "be"
+  },
+  {
+    "name": "Lütschental",
+    "slug": "luetschental",
+    "canton": "be"
+  },
+  {
+    "name": "Lützelflüh",
+    "slug": "luetzelflueh",
+    "canton": "be"
+  },
+  {
+    "name": "Madiswil",
+    "slug": "madiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Matten bei Interlaken",
+    "slug": "matten-bei-interlaken",
+    "canton": "be"
+  },
+  {
+    "name": "Mattstetten",
+    "slug": "mattstetten",
+    "canton": "be"
+  },
+  {
+    "name": "Meienried",
+    "slug": "meienried",
+    "canton": "be"
+  },
+  {
+    "name": "Meikirch",
+    "slug": "meikirch",
+    "canton": "be"
+  },
+  {
+    "name": "Meinisberg",
+    "slug": "meinisberg",
+    "canton": "be"
+  },
+  {
+    "name": "Meiringen",
+    "slug": "meiringen",
+    "canton": "be"
+  },
+  {
+    "name": "Melchnau",
+    "slug": "melchnau",
+    "canton": "be"
+  },
+  {
+    "name": "Merzligen",
+    "slug": "merzligen",
+    "canton": "be"
+  },
+  {
+    "name": "Mirchel",
+    "slug": "mirchel",
+    "canton": "be"
+  },
+  {
+    "name": "Mont-Tramelan",
+    "slug": "mont-tramelan",
+    "canton": "be"
+  },
+  {
+    "name": "Moosseedorf",
+    "slug": "moosseedorf",
+    "canton": "be"
+  },
+  {
+    "name": "Muri bei Bern",
+    "slug": "muri-bei-bern",
+    "canton": "be"
+  },
+  {
+    "name": "Mörigen",
+    "slug": "moerigen",
+    "canton": "be"
+  },
+  {
+    "name": "Mühleberg",
+    "slug": "muehleberg",
+    "canton": "be"
+  },
+  {
+    "name": "Münchenbuchsee",
+    "slug": "muenchenbuchsee",
+    "canton": "be"
+  },
+  {
+    "name": "Münchenwiler",
+    "slug": "muenchenwiler",
+    "canton": "be"
+  },
+  {
+    "name": "Münsingen",
+    "slug": "muensingen",
+    "canton": "be"
+  },
+  {
+    "name": "Müntschemier",
+    "slug": "muentschemier",
+    "canton": "be"
+  },
+  {
+    "name": "Neuenegg",
+    "slug": "neuenegg",
+    "canton": "be"
+  },
+  {
+    "name": "Nidau",
+    "slug": "nidau",
+    "canton": "be"
+  },
+  {
+    "name": "Niederbipp",
+    "slug": "niederbipp",
+    "canton": "be"
+  },
+  {
+    "name": "Niederhünigen",
+    "slug": "niederhuenigen",
+    "canton": "be"
+  },
+  {
+    "name": "Niedermuhlern",
+    "slug": "niedermuhlern",
+    "canton": "be"
+  },
+  {
+    "name": "Niederried bei Interlaken",
+    "slug": "niederried-bei-interlaken",
+    "canton": "be"
+  },
+  {
+    "name": "Niederönz",
+    "slug": "niederoenz",
+    "canton": "be"
+  },
+  {
+    "name": "Nods",
+    "slug": "nods",
+    "canton": "be"
+  },
+  {
+    "name": "Oberbalm",
+    "slug": "oberbalm",
+    "canton": "be"
+  },
+  {
+    "name": "Oberbipp",
+    "slug": "oberbipp",
+    "canton": "be"
+  },
+  {
+    "name": "Oberburg",
+    "slug": "oberburg",
+    "canton": "be"
+  },
+  {
+    "name": "Oberdiessbach",
+    "slug": "oberdiessbach",
+    "canton": "be"
+  },
+  {
+    "name": "Oberhofen am Thunersee",
+    "slug": "oberhofen-am-thunersee",
+    "canton": "be"
+  },
+  {
+    "name": "Oberhünigen",
+    "slug": "oberhuenigen",
+    "canton": "be"
+  },
+  {
+    "name": "Oberlangenegg",
+    "slug": "oberlangenegg",
+    "canton": "be"
+  },
+  {
+    "name": "Oberried am Brienzersee",
+    "slug": "oberried-am-brienzersee",
+    "canton": "be"
+  },
+  {
+    "name": "Oberthal",
+    "slug": "oberthal",
+    "canton": "be"
+  },
+  {
+    "name": "Oberwil bei Büren",
+    "slug": "oberwil-bei-bueren",
+    "canton": "be"
+  },
+  {
+    "name": "Oberwil im Simmental",
+    "slug": "oberwil-im-simmental",
+    "canton": "be"
+  },
+  {
+    "name": "Ochlenberg",
+    "slug": "ochlenberg",
+    "canton": "be"
+  },
+  {
+    "name": "Oeschenbach",
+    "slug": "oeschenbach",
+    "canton": "be"
+  },
+  {
+    "name": "Oppligen",
+    "slug": "oppligen",
+    "canton": "be"
+  },
+  {
+    "name": "Orpund",
+    "slug": "orpund",
+    "canton": "be"
+  },
+  {
+    "name": "Orvin",
+    "slug": "orvin",
+    "canton": "be"
+  },
+  {
+    "name": "Ostermundigen",
+    "slug": "ostermundigen",
+    "canton": "be"
+  },
+  {
+    "name": "Perrefitte",
+    "slug": "perrefitte",
+    "canton": "be"
+  },
+  {
+    "name": "Petit-Val",
+    "slug": "petit-val",
+    "canton": "be"
+  },
+  {
+    "name": "Pieterlen",
+    "slug": "pieterlen",
+    "canton": "be"
+  },
+  {
+    "name": "Plateau de Diesse",
+    "slug": "plateau-de-diesse",
+    "canton": "be"
+  },
+  {
+    "name": "Pohlern",
+    "slug": "pohlern",
+    "canton": "be"
+  },
+  {
+    "name": "Port",
+    "slug": "port",
+    "canton": "be"
+  },
+  {
+    "name": "Péry-La Heutte",
+    "slug": "pery-la-heutte",
+    "canton": "be"
+  },
+  {
+    "name": "Radelfingen",
+    "slug": "radelfingen",
+    "canton": "be"
+  },
+  {
+    "name": "Rapperswil (BE)",
+    "slug": "rapperswil-be",
+    "canton": "be"
+  },
+  {
+    "name": "Rebévelier",
+    "slug": "rebevelier",
+    "canton": "be"
+  },
+  {
+    "name": "Reconvilier",
+    "slug": "reconvilier",
+    "canton": "be"
+  },
+  {
+    "name": "Reichenbach im Kandertal",
+    "slug": "reichenbach-im-kandertal",
+    "canton": "be"
+  },
+  {
+    "name": "Reisiswil",
+    "slug": "reisiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Renan (BE)",
+    "slug": "renan-be",
+    "canton": "be"
+  },
+  {
+    "name": "Reutigen",
+    "slug": "reutigen",
+    "canton": "be"
+  },
+  {
+    "name": "Riggisberg",
+    "slug": "riggisberg",
+    "canton": "be"
+  },
+  {
+    "name": "Ringgenberg (BE)",
+    "slug": "ringgenberg-be",
+    "canton": "be"
+  },
+  {
+    "name": "Roches (BE)",
+    "slug": "roches-be",
+    "canton": "be"
+  },
+  {
+    "name": "Roggwil (BE)",
+    "slug": "roggwil-be",
+    "canton": "be"
+  },
+  {
+    "name": "Rohrbach",
+    "slug": "rohrbach",
+    "canton": "be"
+  },
+  {
+    "name": "Rohrbachgraben",
+    "slug": "rohrbachgraben",
+    "canton": "be"
+  },
+  {
+    "name": "Romont (BE)",
+    "slug": "romont-be",
+    "canton": "be"
+  },
+  {
+    "name": "Rubigen",
+    "slug": "rubigen",
+    "canton": "be"
+  },
+  {
+    "name": "Rumendingen",
+    "slug": "rumendingen",
+    "canton": "be"
+  },
+  {
+    "name": "Rumisberg",
+    "slug": "rumisberg",
+    "canton": "be"
+  },
+  {
+    "name": "Röthenbach im Emmental",
+    "slug": "roethenbach-im-emmental",
+    "canton": "be"
+  },
+  {
+    "name": "Rüderswil",
+    "slug": "ruederswil",
+    "canton": "be"
+  },
+  {
+    "name": "Rüdtligen-Alchenflüh",
+    "slug": "ruedtligen-alchenflueh",
+    "canton": "be"
+  },
+  {
+    "name": "Rüeggisberg",
+    "slug": "rueeggisberg",
+    "canton": "be"
+  },
+  {
+    "name": "Rüegsau",
+    "slug": "rueegsau",
+    "canton": "be"
+  },
+  {
+    "name": "Rüschegg",
+    "slug": "rueschegg",
+    "canton": "be"
+  },
+  {
+    "name": "Rüti bei Büren",
+    "slug": "rueti-bei-bueren",
+    "canton": "be"
+  },
+  {
+    "name": "Rüti bei Lyssach",
+    "slug": "rueti-bei-lyssach",
+    "canton": "be"
+  },
+  {
+    "name": "Rütschelen",
+    "slug": "ruetschelen",
+    "canton": "be"
+  },
+  {
+    "name": "Saanen",
+    "slug": "saanen",
+    "canton": "be"
+  },
+  {
+    "name": "Safnern",
+    "slug": "safnern",
+    "canton": "be"
+  },
+  {
+    "name": "Saicourt",
+    "slug": "saicourt",
+    "canton": "be"
+  },
+  {
+    "name": "Saint-Imier",
+    "slug": "saint-imier",
+    "canton": "be"
+  },
+  {
+    "name": "Sauge",
+    "slug": "sauge",
+    "canton": "be"
+  },
+  {
+    "name": "Saules (BE)",
+    "slug": "saules-be",
+    "canton": "be"
+  },
+  {
+    "name": "Saxeten",
+    "slug": "saxeten",
+    "canton": "be"
+  },
+  {
+    "name": "Schangnau",
+    "slug": "schangnau",
+    "canton": "be"
+  },
+  {
+    "name": "Schattenhalb",
+    "slug": "schattenhalb",
+    "canton": "be"
+  },
+  {
+    "name": "Schelten",
+    "slug": "schelten",
+    "canton": "be"
+  },
+  {
+    "name": "Scheuren",
+    "slug": "scheuren",
+    "canton": "be"
+  },
+  {
+    "name": "Schwadernau",
+    "slug": "schwadernau",
+    "canton": "be"
+  },
+  {
+    "name": "Schwanden bei Brienz",
+    "slug": "schwanden-bei-brienz",
+    "canton": "be"
+  },
+  {
+    "name": "Schwarzenburg",
+    "slug": "schwarzenburg",
+    "canton": "be"
+  },
+  {
+    "name": "Schwarzhäusern",
+    "slug": "schwarzhaeusern",
+    "canton": "be"
+  },
+  {
+    "name": "Schüpfen",
+    "slug": "schuepfen",
+    "canton": "be"
+  },
+  {
+    "name": "Seeberg",
+    "slug": "seeberg",
+    "canton": "be"
+  },
+  {
+    "name": "Seedorf (BE)",
+    "slug": "seedorf-be",
+    "canton": "be"
+  },
+  {
+    "name": "Seehof",
+    "slug": "seehof",
+    "canton": "be"
+  },
+  {
+    "name": "Seftigen",
+    "slug": "seftigen",
+    "canton": "be"
+  },
+  {
+    "name": "Signau",
+    "slug": "signau",
+    "canton": "be"
+  },
+  {
+    "name": "Sigriswil",
+    "slug": "sigriswil",
+    "canton": "be"
+  },
+  {
+    "name": "Siselen",
+    "slug": "siselen",
+    "canton": "be"
+  },
+  {
+    "name": "Sonceboz-Sombeval",
+    "slug": "sonceboz-sombeval",
+    "canton": "be"
+  },
+  {
+    "name": "Sonvilier",
+    "slug": "sonvilier",
+    "canton": "be"
+  },
+  {
+    "name": "Sorvilier",
+    "slug": "sorvilier",
+    "canton": "be"
+  },
+  {
+    "name": "Spiez",
+    "slug": "spiez",
+    "canton": "be"
+  },
+  {
+    "name": "St. Stephan",
+    "slug": "st-stephan",
+    "canton": "be"
+  },
+  {
+    "name": "Steffisburg",
+    "slug": "steffisburg",
+    "canton": "be"
+  },
+  {
+    "name": "Stettlen",
+    "slug": "stettlen",
+    "canton": "be"
+  },
+  {
+    "name": "Stocken-Höfen",
+    "slug": "stocken-hoefen",
+    "canton": "be"
+  },
+  {
+    "name": "Studen (BE)",
+    "slug": "studen-be",
+    "canton": "be"
+  },
+  {
+    "name": "Sumiswald",
+    "slug": "sumiswald",
+    "canton": "be"
+  },
+  {
+    "name": "Sutz-Lattrigen",
+    "slug": "sutz-lattrigen",
+    "canton": "be"
+  },
+  {
+    "name": "Tavannes",
+    "slug": "tavannes",
+    "canton": "be"
+  },
+  {
+    "name": "Teuffenthal (BE)",
+    "slug": "teuffenthal-be",
+    "canton": "be"
+  },
+  {
+    "name": "Thierachern",
+    "slug": "thierachern",
+    "canton": "be"
+  },
+  {
+    "name": "Thun",
+    "slug": "thun",
+    "canton": "be"
+  },
+  {
+    "name": "Thunstetten",
+    "slug": "thunstetten",
+    "canton": "be"
+  },
+  {
+    "name": "Thurnen",
+    "slug": "thurnen",
+    "canton": "be"
+  },
+  {
+    "name": "Thörigen",
+    "slug": "thoerigen",
+    "canton": "be"
+  },
+  {
+    "name": "Toffen",
+    "slug": "toffen",
+    "canton": "be"
+  },
+  {
+    "name": "Trachselwald",
+    "slug": "trachselwald",
+    "canton": "be"
+  },
+  {
+    "name": "Tramelan",
+    "slug": "tramelan",
+    "canton": "be"
+  },
+  {
+    "name": "Treiten",
+    "slug": "treiten",
+    "canton": "be"
+  },
+  {
+    "name": "Trub",
+    "slug": "trub",
+    "canton": "be"
+  },
+  {
+    "name": "Trubschachen",
+    "slug": "trubschachen",
+    "canton": "be"
+  },
+  {
+    "name": "Tschugg",
+    "slug": "tschugg",
+    "canton": "be"
+  },
+  {
+    "name": "Twann-Tüscherz",
+    "slug": "twann-tuescherz",
+    "canton": "be"
+  },
+  {
+    "name": "Täuffelen",
+    "slug": "taeuffelen",
+    "canton": "be"
+  },
+  {
+    "name": "Uebeschi",
+    "slug": "uebeschi",
+    "canton": "be"
+  },
+  {
+    "name": "Uetendorf",
+    "slug": "uetendorf",
+    "canton": "be"
+  },
+  {
+    "name": "Unterlangenegg",
+    "slug": "unterlangenegg",
+    "canton": "be"
+  },
+  {
+    "name": "Unterseen",
+    "slug": "unterseen",
+    "canton": "be"
+  },
+  {
+    "name": "Ursenbach",
+    "slug": "ursenbach",
+    "canton": "be"
+  },
+  {
+    "name": "Urtenen-Schönbühl",
+    "slug": "urtenen-schoenbuehl",
+    "canton": "be"
+  },
+  {
+    "name": "Uttigen",
+    "slug": "uttigen",
+    "canton": "be"
+  },
+  {
+    "name": "Utzenstorf",
+    "slug": "utzenstorf",
+    "canton": "be"
+  },
+  {
+    "name": "Valbirse",
+    "slug": "valbirse",
+    "canton": "be"
+  },
+  {
+    "name": "Vechigen",
+    "slug": "vechigen",
+    "canton": "be"
+  },
+  {
+    "name": "Villeret",
+    "slug": "villeret",
+    "canton": "be"
+  },
+  {
+    "name": "Vinelz",
+    "slug": "vinelz",
+    "canton": "be"
+  },
+  {
+    "name": "Wachseldorn",
+    "slug": "wachseldorn",
+    "canton": "be"
+  },
+  {
+    "name": "Wald (BE)",
+    "slug": "wald-be",
+    "canton": "be"
+  },
+  {
+    "name": "Walkringen",
+    "slug": "walkringen",
+    "canton": "be"
+  },
+  {
+    "name": "Walliswil bei Niederbipp",
+    "slug": "walliswil-bei-niederbipp",
+    "canton": "be"
+  },
+  {
+    "name": "Walliswil bei Wangen",
+    "slug": "walliswil-bei-wangen",
+    "canton": "be"
+  },
+  {
+    "name": "Walperswil",
+    "slug": "walperswil",
+    "canton": "be"
+  },
+  {
+    "name": "Walterswil (BE)",
+    "slug": "walterswil-be",
+    "canton": "be"
+  },
+  {
+    "name": "Wangen an der Aare",
+    "slug": "wangen-an-der-aare",
+    "canton": "be"
+  },
+  {
+    "name": "Wattenwil",
+    "slug": "wattenwil",
+    "canton": "be"
+  },
+  {
+    "name": "Wengi",
+    "slug": "wengi",
+    "canton": "be"
+  },
+  {
+    "name": "Wichtrach",
+    "slug": "wichtrach",
+    "canton": "be"
+  },
+  {
+    "name": "Wiedlisbach",
+    "slug": "wiedlisbach",
+    "canton": "be"
+  },
+  {
+    "name": "Wiggiswil",
+    "slug": "wiggiswil",
+    "canton": "be"
+  },
+  {
+    "name": "Wilderswil",
+    "slug": "wilderswil",
+    "canton": "be"
+  },
+  {
+    "name": "Wiler bei Utzenstorf",
+    "slug": "wiler-bei-utzenstorf",
+    "canton": "be"
+  },
+  {
+    "name": "Wileroltigen",
+    "slug": "wileroltigen",
+    "canton": "be"
+  },
+  {
+    "name": "Willadingen",
+    "slug": "willadingen",
+    "canton": "be"
+  },
+  {
+    "name": "Wimmis",
+    "slug": "wimmis",
+    "canton": "be"
+  },
+  {
+    "name": "Wohlen bei Bern",
+    "slug": "wohlen-bei-bern",
+    "canton": "be"
+  },
+  {
+    "name": "Worb",
+    "slug": "worb",
+    "canton": "be"
+  },
+  {
+    "name": "Worben",
+    "slug": "worben",
+    "canton": "be"
+  },
+  {
+    "name": "Wynau",
+    "slug": "wynau",
+    "canton": "be"
+  },
+  {
+    "name": "Wynigen",
+    "slug": "wynigen",
+    "canton": "be"
+  },
+  {
+    "name": "Wyssachen",
+    "slug": "wyssachen",
+    "canton": "be"
+  },
+  {
+    "name": "Zielebach",
+    "slug": "zielebach",
+    "canton": "be"
+  },
+  {
+    "name": "Zollikofen",
+    "slug": "zollikofen",
+    "canton": "be"
+  },
+  {
+    "name": "Zuzwil (BE)",
+    "slug": "zuzwil-be",
+    "canton": "be"
+  },
+  {
+    "name": "Zweisimmen",
+    "slug": "zweisimmen",
+    "canton": "be"
+  },
+  {
+    "name": "Zäziwil",
+    "slug": "zaeziwil",
+    "canton": "be"
+  },
+  {
+    "name": "Aesch (BL)",
+    "slug": "aesch-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Allschwil",
+    "slug": "allschwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Anwil",
+    "slug": "anwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Arboldswil",
+    "slug": "arboldswil",
+    "canton": "bl"
+  },
+  {
+    "name": "Arisdorf",
+    "slug": "arisdorf",
+    "canton": "bl"
+  },
+  {
+    "name": "Arlesheim",
+    "slug": "arlesheim",
+    "canton": "bl"
+  },
+  {
+    "name": "Augst",
+    "slug": "augst",
+    "canton": "bl"
+  },
+  {
+    "name": "Bennwil",
+    "slug": "bennwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Biel-Benken",
+    "slug": "biel-benken",
+    "canton": "bl"
+  },
+  {
+    "name": "Binningen",
+    "slug": "binningen",
+    "canton": "bl"
+  },
+  {
+    "name": "Birsfelden",
+    "slug": "birsfelden",
+    "canton": "bl"
+  },
+  {
+    "name": "Blauen",
+    "slug": "blauen",
+    "canton": "bl"
+  },
+  {
+    "name": "Bottmingen",
+    "slug": "bottmingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Bretzwil",
+    "slug": "bretzwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Brislach",
+    "slug": "brislach",
+    "canton": "bl"
+  },
+  {
+    "name": "Bubendorf",
+    "slug": "bubendorf",
+    "canton": "bl"
+  },
+  {
+    "name": "Buckten",
+    "slug": "buckten",
+    "canton": "bl"
+  },
+  {
+    "name": "Burg im Leimental",
+    "slug": "burg-im-leimental",
+    "canton": "bl"
+  },
+  {
+    "name": "Buus",
+    "slug": "buus",
+    "canton": "bl"
+  },
+  {
+    "name": "Böckten",
+    "slug": "boeckten",
+    "canton": "bl"
+  },
+  {
+    "name": "Diegten",
+    "slug": "diegten",
+    "canton": "bl"
+  },
+  {
+    "name": "Diepflingen",
+    "slug": "diepflingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Dittingen",
+    "slug": "dittingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Duggingen",
+    "slug": "duggingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Eptingen",
+    "slug": "eptingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Ettingen",
+    "slug": "ettingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Frenkendorf",
+    "slug": "frenkendorf",
+    "canton": "bl"
+  },
+  {
+    "name": "Füllinsdorf",
+    "slug": "fuellinsdorf",
+    "canton": "bl"
+  },
+  {
+    "name": "Gelterkinden",
+    "slug": "gelterkinden",
+    "canton": "bl"
+  },
+  {
+    "name": "Giebenach",
+    "slug": "giebenach",
+    "canton": "bl"
+  },
+  {
+    "name": "Grellingen",
+    "slug": "grellingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Hemmiken",
+    "slug": "hemmiken",
+    "canton": "bl"
+  },
+  {
+    "name": "Hersberg",
+    "slug": "hersberg",
+    "canton": "bl"
+  },
+  {
+    "name": "Häfelfingen",
+    "slug": "haefelfingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Hölstein",
+    "slug": "hoelstein",
+    "canton": "bl"
+  },
+  {
+    "name": "Itingen",
+    "slug": "itingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Kilchberg (BL)",
+    "slug": "kilchberg-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Känerkinden",
+    "slug": "kaenerkinden",
+    "canton": "bl"
+  },
+  {
+    "name": "Lampenberg",
+    "slug": "lampenberg",
+    "canton": "bl"
+  },
+  {
+    "name": "Langenbruck",
+    "slug": "langenbruck",
+    "canton": "bl"
+  },
+  {
+    "name": "Laufen",
+    "slug": "laufen",
+    "canton": "bl"
+  },
+  {
+    "name": "Lausen",
+    "slug": "lausen",
+    "canton": "bl"
+  },
+  {
+    "name": "Lauwil",
+    "slug": "lauwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Liedertswil",
+    "slug": "liedertswil",
+    "canton": "bl"
+  },
+  {
+    "name": "Liesberg",
+    "slug": "liesberg",
+    "canton": "bl"
+  },
+  {
+    "name": "Liestal",
+    "slug": "liestal",
+    "canton": "bl"
+  },
+  {
+    "name": "Lupsingen",
+    "slug": "lupsingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Läufelfingen",
+    "slug": "laeufelfingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Maisprach",
+    "slug": "maisprach",
+    "canton": "bl"
+  },
+  {
+    "name": "Muttenz",
+    "slug": "muttenz",
+    "canton": "bl"
+  },
+  {
+    "name": "Münchenstein",
+    "slug": "muenchenstein",
+    "canton": "bl"
+  },
+  {
+    "name": "Nenzlingen",
+    "slug": "nenzlingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Niederdorf",
+    "slug": "niederdorf",
+    "canton": "bl"
+  },
+  {
+    "name": "Nusshof",
+    "slug": "nusshof",
+    "canton": "bl"
+  },
+  {
+    "name": "Oberdorf (BL)",
+    "slug": "oberdorf-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Oberwil (BL)",
+    "slug": "oberwil-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Oltingen",
+    "slug": "oltingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Ormalingen",
+    "slug": "ormalingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Pfeffingen",
+    "slug": "pfeffingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Pratteln",
+    "slug": "pratteln",
+    "canton": "bl"
+  },
+  {
+    "name": "Ramlinsburg",
+    "slug": "ramlinsburg",
+    "canton": "bl"
+  },
+  {
+    "name": "Reigoldswil",
+    "slug": "reigoldswil",
+    "canton": "bl"
+  },
+  {
+    "name": "Reinach (BL)",
+    "slug": "reinach-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Rickenbach (BL)",
+    "slug": "rickenbach-bl",
+    "canton": "bl"
+  },
+  {
+    "name": "Roggenburg",
+    "slug": "roggenburg",
+    "canton": "bl"
+  },
+  {
+    "name": "Rothenfluh",
+    "slug": "rothenfluh",
+    "canton": "bl"
+  },
+  {
+    "name": "Röschenz",
+    "slug": "roeschenz",
+    "canton": "bl"
+  },
+  {
+    "name": "Rümlingen",
+    "slug": "ruemlingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Rünenberg",
+    "slug": "ruenenberg",
+    "canton": "bl"
+  },
+  {
+    "name": "Schönenbuch",
+    "slug": "schoenenbuch",
+    "canton": "bl"
+  },
+  {
+    "name": "Seltisberg",
+    "slug": "seltisberg",
+    "canton": "bl"
+  },
+  {
+    "name": "Sissach",
+    "slug": "sissach",
+    "canton": "bl"
+  },
+  {
+    "name": "Tecknau",
+    "slug": "tecknau",
+    "canton": "bl"
+  },
+  {
+    "name": "Tenniken",
+    "slug": "tenniken",
+    "canton": "bl"
+  },
+  {
+    "name": "Therwil",
+    "slug": "therwil",
+    "canton": "bl"
+  },
+  {
+    "name": "Thürnen",
+    "slug": "thuernen",
+    "canton": "bl"
+  },
+  {
+    "name": "Titterten",
+    "slug": "titterten",
+    "canton": "bl"
+  },
+  {
+    "name": "Wahlen",
+    "slug": "wahlen",
+    "canton": "bl"
+  },
+  {
+    "name": "Waldenburg",
+    "slug": "waldenburg",
+    "canton": "bl"
+  },
+  {
+    "name": "Wenslingen",
+    "slug": "wenslingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Wintersingen",
+    "slug": "wintersingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Wittinsburg",
+    "slug": "wittinsburg",
+    "canton": "bl"
+  },
+  {
+    "name": "Zeglingen",
+    "slug": "zeglingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Ziefen",
+    "slug": "ziefen",
+    "canton": "bl"
+  },
+  {
+    "name": "Zunzgen",
+    "slug": "zunzgen",
+    "canton": "bl"
+  },
+  {
+    "name": "Zwingen",
+    "slug": "zwingen",
+    "canton": "bl"
+  },
+  {
+    "name": "Basel",
+    "slug": "basel",
+    "canton": "bs"
+  },
+  {
+    "name": "Bettingen",
+    "slug": "bettingen",
+    "canton": "bs"
+  },
+  {
+    "name": "Riehen",
+    "slug": "riehen",
+    "canton": "bs"
+  },
+  {
+    "name": "Attalens",
+    "slug": "attalens",
+    "canton": "fr"
+  },
+  {
+    "name": "Autigny",
+    "slug": "autigny",
+    "canton": "fr"
+  },
+  {
+    "name": "Avry",
+    "slug": "avry",
+    "canton": "fr"
+  },
+  {
+    "name": "Bas-Intyamon",
+    "slug": "bas-intyamon",
+    "canton": "fr"
+  },
+  {
+    "name": "Belfaux",
+    "slug": "belfaux",
+    "canton": "fr"
+  },
+  {
+    "name": "Belmont-Broye",
+    "slug": "belmont-broye",
+    "canton": "fr"
+  },
+  {
+    "name": "Billens-Hennens",
+    "slug": "billens-hennens",
+    "canton": "fr"
+  },
+  {
+    "name": "Bois-d'Amont",
+    "slug": "bois-d-amont",
+    "canton": "fr"
+  },
+  {
+    "name": "Bossonnens",
+    "slug": "bossonnens",
+    "canton": "fr"
+  },
+  {
+    "name": "Botterens",
+    "slug": "botterens",
+    "canton": "fr"
+  },
+  {
+    "name": "Broc",
+    "slug": "broc",
+    "canton": "fr"
+  },
+  {
+    "name": "Brünisried",
+    "slug": "bruenisried",
+    "canton": "fr"
+  },
+  {
+    "name": "Bulle",
+    "slug": "bulle",
+    "canton": "fr"
+  },
+  {
+    "name": "Bösingen",
+    "slug": "boesingen",
+    "canton": "fr"
+  },
+  {
+    "name": "Cheyres-Châbles",
+    "slug": "cheyres-chables",
+    "canton": "fr"
+  },
+  {
+    "name": "Châtel-Saint-Denis",
+    "slug": "chatel-saint-denis",
+    "canton": "fr"
+  },
+  {
+    "name": "Châtel-sur-Montsalvens",
+    "slug": "chatel-sur-montsalvens",
+    "canton": "fr"
+  },
+  {
+    "name": "Châtillon (FR)",
+    "slug": "chatillon-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Châtonnaye",
+    "slug": "chatonnaye",
+    "canton": "fr"
+  },
+  {
+    "name": "Chénens",
+    "slug": "chenens",
+    "canton": "fr"
+  },
+  {
+    "name": "Corbières",
+    "slug": "corbieres",
+    "canton": "fr"
+  },
+  {
+    "name": "Corminboeuf",
+    "slug": "corminboeuf",
+    "canton": "fr"
+  },
+  {
+    "name": "Cottens (FR)",
+    "slug": "cottens-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Courgevaux",
+    "slug": "courgevaux",
+    "canton": "fr"
+  },
+  {
+    "name": "Courtepin",
+    "slug": "courtepin",
+    "canton": "fr"
+  },
+  {
+    "name": "Cressier (FR)",
+    "slug": "cressier-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Crésuz",
+    "slug": "cresuz",
+    "canton": "fr"
+  },
+  {
+    "name": "Cugy (FR)",
+    "slug": "cugy-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Delley-Portalban",
+    "slug": "delley-portalban",
+    "canton": "fr"
+  },
+  {
+    "name": "Düdingen",
+    "slug": "duedingen",
+    "canton": "fr"
+  },
+  {
+    "name": "Echarlens",
+    "slug": "echarlens",
+    "canton": "fr"
+  },
+  {
+    "name": "Estavayer",
+    "slug": "estavayer",
+    "canton": "fr"
+  },
+  {
+    "name": "Ferpicloz",
+    "slug": "ferpicloz",
+    "canton": "fr"
+  },
+  {
+    "name": "Fribourg",
+    "slug": "fribourg",
+    "canton": "fr"
+  },
+  {
+    "name": "Fräschels",
+    "slug": "fraeschels",
+    "canton": "fr"
+  },
+  {
+    "name": "Fétigny-Ménières",
+    "slug": "fetigny-menieres",
+    "canton": "fr"
+  },
+  {
+    "name": "Gibloux",
+    "slug": "gibloux",
+    "canton": "fr"
+  },
+  {
+    "name": "Giffers",
+    "slug": "giffers",
+    "canton": "fr"
+  },
+  {
+    "name": "Givisiez",
+    "slug": "givisiez",
+    "canton": "fr"
+  },
+  {
+    "name": "Gletterens",
+    "slug": "gletterens",
+    "canton": "fr"
+  },
+  {
+    "name": "Grandvillard",
+    "slug": "grandvillard",
+    "canton": "fr"
+  },
+  {
+    "name": "Granges (Veveyse)",
+    "slug": "granges-veveyse",
+    "canton": "fr"
+  },
+  {
+    "name": "Granges-Paccot",
+    "slug": "granges-paccot",
+    "canton": "fr"
+  },
+  {
+    "name": "Grangettes",
+    "slug": "grangettes",
+    "canton": "fr"
+  },
+  {
+    "name": "Greng",
+    "slug": "greng",
+    "canton": "fr"
+  },
+  {
+    "name": "Grolley-Ponthaux",
+    "slug": "grolley-ponthaux",
+    "canton": "fr"
+  },
+  {
+    "name": "Gruyères",
+    "slug": "gruyeres",
+    "canton": "fr"
+  },
+  {
+    "name": "Gurmels",
+    "slug": "gurmels",
+    "canton": "fr"
+  },
+  {
+    "name": "Haut-Intyamon",
+    "slug": "haut-intyamon",
+    "canton": "fr"
+  },
+  {
+    "name": "Hauterive (FR)",
+    "slug": "hauterive-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Hauteville",
+    "slug": "hauteville",
+    "canton": "fr"
+  },
+  {
+    "name": "Heitenried",
+    "slug": "heitenried",
+    "canton": "fr"
+  },
+  {
+    "name": "Jaun",
+    "slug": "jaun",
+    "canton": "fr"
+  },
+  {
+    "name": "Kerzers",
+    "slug": "kerzers",
+    "canton": "fr"
+  },
+  {
+    "name": "Kleinbösingen",
+    "slug": "kleinboesingen",
+    "canton": "fr"
+  },
+  {
+    "name": "La Brillaz",
+    "slug": "la-brillaz",
+    "canton": "fr"
+  },
+  {
+    "name": "La Roche",
+    "slug": "la-roche",
+    "canton": "fr"
+  },
+  {
+    "name": "La Sonnaz",
+    "slug": "la-sonnaz",
+    "canton": "fr"
+  },
+  {
+    "name": "La Verrerie",
+    "slug": "la-verrerie",
+    "canton": "fr"
+  },
+  {
+    "name": "Le Châtelard",
+    "slug": "le-chatelard",
+    "canton": "fr"
+  },
+  {
+    "name": "Le Flon",
+    "slug": "le-flon",
+    "canton": "fr"
+  },
+  {
+    "name": "Le Mouret",
+    "slug": "le-mouret",
+    "canton": "fr"
+  },
+  {
+    "name": "Le Pâquier (FR)",
+    "slug": "le-paquier-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Les Montets",
+    "slug": "les-montets",
+    "canton": "fr"
+  },
+  {
+    "name": "Lully (FR)",
+    "slug": "lully-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Marly",
+    "slug": "marly",
+    "canton": "fr"
+  },
+  {
+    "name": "Marsens",
+    "slug": "marsens",
+    "canton": "fr"
+  },
+  {
+    "name": "Massonnens",
+    "slug": "massonnens",
+    "canton": "fr"
+  },
+  {
+    "name": "Matran",
+    "slug": "matran",
+    "canton": "fr"
+  },
+  {
+    "name": "Meyriez",
+    "slug": "meyriez",
+    "canton": "fr"
+  },
+  {
+    "name": "Misery-Courtion",
+    "slug": "misery-courtion",
+    "canton": "fr"
+  },
+  {
+    "name": "Mont-Vully",
+    "slug": "mont-vully",
+    "canton": "fr"
+  },
+  {
+    "name": "Montagny (FR)",
+    "slug": "montagny-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Morlon",
+    "slug": "morlon",
+    "canton": "fr"
+  },
+  {
+    "name": "Muntelier",
+    "slug": "muntelier",
+    "canton": "fr"
+  },
+  {
+    "name": "Murten",
+    "slug": "murten",
+    "canton": "fr"
+  },
+  {
+    "name": "Mézières (FR)",
+    "slug": "mezieres-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Neyruz (FR)",
+    "slug": "neyruz-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Nuvilly",
+    "slug": "nuvilly",
+    "canton": "fr"
+  },
+  {
+    "name": "Pierrafortscha",
+    "slug": "pierrafortscha",
+    "canton": "fr"
+  },
+  {
+    "name": "Plaffeien",
+    "slug": "plaffeien",
+    "canton": "fr"
+  },
+  {
+    "name": "Plasselb",
+    "slug": "plasselb",
+    "canton": "fr"
+  },
+  {
+    "name": "Pont-en-Ogoz",
+    "slug": "pont-en-ogoz",
+    "canton": "fr"
+  },
+  {
+    "name": "Pont-la-Ville",
+    "slug": "pont-la-ville",
+    "canton": "fr"
+  },
+  {
+    "name": "Prez",
+    "slug": "prez",
+    "canton": "fr"
+  },
+  {
+    "name": "Prévondavaux",
+    "slug": "prevondavaux",
+    "canton": "fr"
+  },
+  {
+    "name": "Rechthalten",
+    "slug": "rechthalten",
+    "canton": "fr"
+  },
+  {
+    "name": "Remaufens",
+    "slug": "remaufens",
+    "canton": "fr"
+  },
+  {
+    "name": "Riaz",
+    "slug": "riaz",
+    "canton": "fr"
+  },
+  {
+    "name": "Ried bei Kerzers",
+    "slug": "ried-bei-kerzers",
+    "canton": "fr"
+  },
+  {
+    "name": "Romont (FR)",
+    "slug": "romont-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Rue",
+    "slug": "rue",
+    "canton": "fr"
+  },
+  {
+    "name": "Saint-Aubin (FR)",
+    "slug": "saint-aubin-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Saint-Martin (FR)",
+    "slug": "saint-martin-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Schmitten (FR)",
+    "slug": "schmitten-fr",
+    "canton": "fr"
+  },
+  {
+    "name": "Semsales",
+    "slug": "semsales",
+    "canton": "fr"
+  },
+  {
+    "name": "Siviriez",
+    "slug": "siviriez",
+    "canton": "fr"
+  },
+  {
+    "name": "Sorens",
+    "slug": "sorens",
+    "canton": "fr"
+  },
+  {
+    "name": "St. Silvester",
+    "slug": "st-silvester",
+    "canton": "fr"
+  },
+  {
+    "name": "St. Ursen",
+    "slug": "st-ursen",
+    "canton": "fr"
+  },
+  {
+    "name": "Surpierre",
+    "slug": "surpierre",
+    "canton": "fr"
+  },
+  {
+    "name": "Sâles",
+    "slug": "sales",
+    "canton": "fr"
+  },
+  {
+    "name": "Sévaz",
+    "slug": "sevaz",
+    "canton": "fr"
+  },
+  {
+    "name": "Tafers",
+    "slug": "tafers",
+    "canton": "fr"
+  },
+  {
+    "name": "Tentlingen",
+    "slug": "tentlingen",
+    "canton": "fr"
+  },
+  {
+    "name": "Torny",
+    "slug": "torny",
+    "canton": "fr"
+  },
+  {
+    "name": "Treyvaux",
+    "slug": "treyvaux",
+    "canton": "fr"
+  },
+  {
+    "name": "Ueberstorf",
+    "slug": "ueberstorf",
+    "canton": "fr"
+  },
+  {
+    "name": "Ursy",
+    "slug": "ursy",
+    "canton": "fr"
+  },
+  {
+    "name": "Val-de-Charmey",
+    "slug": "val-de-charmey",
+    "canton": "fr"
+  },
+  {
+    "name": "Vallon",
+    "slug": "vallon",
+    "canton": "fr"
+  },
+  {
+    "name": "Vaulruz",
+    "slug": "vaulruz",
+    "canton": "fr"
+  },
+  {
+    "name": "Villars-sur-Glâne",
+    "slug": "villars-sur-glane",
+    "canton": "fr"
+  },
+  {
+    "name": "Villarsel-sur-Marly",
+    "slug": "villarsel-sur-marly",
+    "canton": "fr"
+  },
+  {
+    "name": "Villaz",
+    "slug": "villaz",
+    "canton": "fr"
+  },
+  {
+    "name": "Villorsonnens",
+    "slug": "villorsonnens",
+    "canton": "fr"
+  },
+  {
+    "name": "Vuadens",
+    "slug": "vuadens",
+    "canton": "fr"
+  },
+  {
+    "name": "Vuisternens-devant-Romont",
+    "slug": "vuisternens-devant-romont",
+    "canton": "fr"
+  },
+  {
+    "name": "Wünnewil-Flamatt",
+    "slug": "wuennewil-flamatt",
+    "canton": "fr"
+  },
+  {
+    "name": "Aire-la-Ville",
+    "slug": "aire-la-ville",
+    "canton": "ge"
+  },
+  {
+    "name": "Anières",
+    "slug": "anieres",
+    "canton": "ge"
+  },
+  {
+    "name": "Avully",
+    "slug": "avully",
+    "canton": "ge"
+  },
+  {
+    "name": "Avusy",
+    "slug": "avusy",
+    "canton": "ge"
+  },
+  {
+    "name": "Bardonnex",
+    "slug": "bardonnex",
+    "canton": "ge"
+  },
+  {
+    "name": "Bellevue",
+    "slug": "bellevue",
+    "canton": "ge"
+  },
+  {
+    "name": "Bernex",
+    "slug": "bernex",
+    "canton": "ge"
+  },
+  {
+    "name": "Carouge (GE)",
+    "slug": "carouge-ge",
+    "canton": "ge"
+  },
+  {
+    "name": "Cartigny",
+    "slug": "cartigny",
+    "canton": "ge"
+  },
+  {
+    "name": "Chancy",
+    "slug": "chancy",
+    "canton": "ge"
+  },
+  {
+    "name": "Choulex",
+    "slug": "choulex",
+    "canton": "ge"
+  },
+  {
+    "name": "Chêne-Bougeries",
+    "slug": "chene-bougeries",
+    "canton": "ge"
+  },
+  {
+    "name": "Chêne-Bourg",
+    "slug": "chene-bourg",
+    "canton": "ge"
+  },
+  {
+    "name": "Collex-Bossy",
+    "slug": "collex-bossy",
+    "canton": "ge"
+  },
+  {
+    "name": "Collonge-Bellerive",
+    "slug": "collonge-bellerive",
+    "canton": "ge"
+  },
+  {
+    "name": "Cologny",
+    "slug": "cologny",
+    "canton": "ge"
+  },
+  {
+    "name": "Confignon",
+    "slug": "confignon",
+    "canton": "ge"
+  },
+  {
+    "name": "Corsier (GE)",
+    "slug": "corsier-ge",
+    "canton": "ge"
+  },
+  {
+    "name": "Céligny",
+    "slug": "celigny",
+    "canton": "ge"
+  },
+  {
+    "name": "Dardagny",
+    "slug": "dardagny",
+    "canton": "ge"
+  },
+  {
+    "name": "Genthod",
+    "slug": "genthod",
+    "canton": "ge"
+  },
+  {
+    "name": "Genève",
+    "slug": "geneve",
+    "canton": "ge"
+  },
+  {
+    "name": "Gy",
+    "slug": "gy",
+    "canton": "ge"
+  },
+  {
+    "name": "Hermance",
+    "slug": "hermance",
+    "canton": "ge"
+  },
+  {
+    "name": "Jussy",
+    "slug": "jussy",
+    "canton": "ge"
+  },
+  {
+    "name": "Laconnex",
+    "slug": "laconnex",
+    "canton": "ge"
+  },
+  {
+    "name": "Lancy",
+    "slug": "lancy",
+    "canton": "ge"
+  },
+  {
+    "name": "Le Grand-Saconnex",
+    "slug": "le-grand-saconnex",
+    "canton": "ge"
+  },
+  {
+    "name": "Meinier",
+    "slug": "meinier",
+    "canton": "ge"
+  },
+  {
+    "name": "Meyrin",
+    "slug": "meyrin",
+    "canton": "ge"
+  },
+  {
+    "name": "Onex",
+    "slug": "onex",
+    "canton": "ge"
+  },
+  {
+    "name": "Perly-Certoux",
+    "slug": "perly-certoux",
+    "canton": "ge"
+  },
+  {
+    "name": "Plan-les-Ouates",
+    "slug": "plan-les-ouates",
+    "canton": "ge"
+  },
+  {
+    "name": "Pregny-Chambésy",
+    "slug": "pregny-chambesy",
+    "canton": "ge"
+  },
+  {
+    "name": "Presinge",
+    "slug": "presinge",
+    "canton": "ge"
+  },
+  {
+    "name": "Puplinge",
+    "slug": "puplinge",
+    "canton": "ge"
+  },
+  {
+    "name": "Russin",
+    "slug": "russin",
+    "canton": "ge"
+  },
+  {
+    "name": "Satigny",
+    "slug": "satigny",
+    "canton": "ge"
+  },
+  {
+    "name": "Soral",
+    "slug": "soral",
+    "canton": "ge"
+  },
+  {
+    "name": "Thônex",
+    "slug": "thonex",
+    "canton": "ge"
+  },
+  {
+    "name": "Troinex",
+    "slug": "troinex",
+    "canton": "ge"
+  },
+  {
+    "name": "Vandoeuvres",
+    "slug": "vandoeuvres",
+    "canton": "ge"
+  },
+  {
+    "name": "Vernier",
+    "slug": "vernier",
+    "canton": "ge"
+  },
+  {
+    "name": "Versoix",
+    "slug": "versoix",
+    "canton": "ge"
+  },
+  {
+    "name": "Veyrier",
+    "slug": "veyrier",
+    "canton": "ge"
+  },
+  {
+    "name": "Glarus",
+    "slug": "glarus",
+    "canton": "gl"
+  },
+  {
+    "name": "Glarus Nord",
+    "slug": "glarus-nord",
+    "canton": "gl"
+  },
+  {
+    "name": "Glarus Süd",
+    "slug": "glarus-sued",
+    "canton": "gl"
+  },
+  {
+    "name": "Albula/Alvra",
+    "slug": "albula-alvra",
+    "canton": "gr"
+  },
+  {
+    "name": "Andeer",
+    "slug": "andeer",
+    "canton": "gr"
+  },
+  {
+    "name": "Arosa",
+    "slug": "arosa",
+    "canton": "gr"
+  },
+  {
+    "name": "Avers",
+    "slug": "avers",
+    "canton": "gr"
+  },
+  {
+    "name": "Bergün Filisur",
+    "slug": "berguen-filisur",
+    "canton": "gr"
+  },
+  {
+    "name": "Bever",
+    "slug": "bever",
+    "canton": "gr"
+  },
+  {
+    "name": "Bonaduz",
+    "slug": "bonaduz",
+    "canton": "gr"
+  },
+  {
+    "name": "Bregaglia",
+    "slug": "bregaglia",
+    "canton": "gr"
+  },
+  {
+    "name": "Breil/Brigels",
+    "slug": "breil-brigels",
+    "canton": "gr"
+  },
+  {
+    "name": "Brusio",
+    "slug": "brusio",
+    "canton": "gr"
+  },
+  {
+    "name": "Buseno",
+    "slug": "buseno",
+    "canton": "gr"
+  },
+  {
+    "name": "Calanca",
+    "slug": "calanca",
+    "canton": "gr"
+  },
+  {
+    "name": "Cama",
+    "slug": "cama",
+    "canton": "gr"
+  },
+  {
+    "name": "Castaneda",
+    "slug": "castaneda",
+    "canton": "gr"
+  },
+  {
+    "name": "Cazis",
+    "slug": "cazis",
+    "canton": "gr"
+  },
+  {
+    "name": "Celerina/Schlarigna",
+    "slug": "celerina-schlarigna",
+    "canton": "gr"
+  },
+  {
+    "name": "Chur",
+    "slug": "chur",
+    "canton": "gr"
+  },
+  {
+    "name": "Churwalden",
+    "slug": "churwalden",
+    "canton": "gr"
+  },
+  {
+    "name": "Conters im Prättigau",
+    "slug": "conters-im-praettigau",
+    "canton": "gr"
+  },
+  {
+    "name": "Davos",
+    "slug": "davos",
+    "canton": "gr"
+  },
+  {
+    "name": "Disentis/Mustér",
+    "slug": "disentis-muster",
+    "canton": "gr"
+  },
+  {
+    "name": "Domat/Ems",
+    "slug": "domat-ems",
+    "canton": "gr"
+  },
+  {
+    "name": "Domleschg",
+    "slug": "domleschg",
+    "canton": "gr"
+  },
+  {
+    "name": "Falera",
+    "slug": "falera",
+    "canton": "gr"
+  },
+  {
+    "name": "Felsberg",
+    "slug": "felsberg",
+    "canton": "gr"
+  },
+  {
+    "name": "Ferrera",
+    "slug": "ferrera",
+    "canton": "gr"
+  },
+  {
+    "name": "Fideris",
+    "slug": "fideris",
+    "canton": "gr"
+  },
+  {
+    "name": "Flerden",
+    "slug": "flerden",
+    "canton": "gr"
+  },
+  {
+    "name": "Flims",
+    "slug": "flims",
+    "canton": "gr"
+  },
+  {
+    "name": "Fläsch",
+    "slug": "flaesch",
+    "canton": "gr"
+  },
+  {
+    "name": "Furna",
+    "slug": "furna",
+    "canton": "gr"
+  },
+  {
+    "name": "Fürstenau",
+    "slug": "fuerstenau",
+    "canton": "gr"
+  },
+  {
+    "name": "Grono",
+    "slug": "grono",
+    "canton": "gr"
+  },
+  {
+    "name": "Grüsch",
+    "slug": "gruesch",
+    "canton": "gr"
+  },
+  {
+    "name": "Ilanz/Glion",
+    "slug": "ilanz-glion",
+    "canton": "gr"
+  },
+  {
+    "name": "Jenaz",
+    "slug": "jenaz",
+    "canton": "gr"
+  },
+  {
+    "name": "Jenins",
+    "slug": "jenins",
+    "canton": "gr"
+  },
+  {
+    "name": "Klosters",
+    "slug": "klosters",
+    "canton": "gr"
+  },
+  {
+    "name": "Küblis",
+    "slug": "kueblis",
+    "canton": "gr"
+  },
+  {
+    "name": "La Punt Chamues-ch",
+    "slug": "la-punt-chamues-ch",
+    "canton": "gr"
+  },
+  {
+    "name": "Laax",
+    "slug": "laax",
+    "canton": "gr"
+  },
+  {
+    "name": "Landquart",
+    "slug": "landquart",
+    "canton": "gr"
+  },
+  {
+    "name": "Lantsch/Lenz",
+    "slug": "lantsch-lenz",
+    "canton": "gr"
+  },
+  {
+    "name": "Lostallo",
+    "slug": "lostallo",
+    "canton": "gr"
+  },
+  {
+    "name": "Lumnezia",
+    "slug": "lumnezia",
+    "canton": "gr"
+  },
+  {
+    "name": "Luzein",
+    "slug": "luzein",
+    "canton": "gr"
+  },
+  {
+    "name": "Madulain",
+    "slug": "madulain",
+    "canton": "gr"
+  },
+  {
+    "name": "Maienfeld",
+    "slug": "maienfeld",
+    "canton": "gr"
+  },
+  {
+    "name": "Malans",
+    "slug": "malans",
+    "canton": "gr"
+  },
+  {
+    "name": "Masein",
+    "slug": "masein",
+    "canton": "gr"
+  },
+  {
+    "name": "Medel (Lucmagn)",
+    "slug": "medel-lucmagn",
+    "canton": "gr"
+  },
+  {
+    "name": "Mesocco",
+    "slug": "mesocco",
+    "canton": "gr"
+  },
+  {
+    "name": "Muntogna da Schons",
+    "slug": "muntogna-da-schons",
+    "canton": "gr"
+  },
+  {
+    "name": "Obersaxen Mundaun",
+    "slug": "obersaxen-mundaun",
+    "canton": "gr"
+  },
+  {
+    "name": "Pontresina",
+    "slug": "pontresina",
+    "canton": "gr"
+  },
+  {
+    "name": "Poschiavo",
+    "slug": "poschiavo",
+    "canton": "gr"
+  },
+  {
+    "name": "Rheinwald",
+    "slug": "rheinwald",
+    "canton": "gr"
+  },
+  {
+    "name": "Rhäzüns",
+    "slug": "rhaezuens",
+    "canton": "gr"
+  },
+  {
+    "name": "Rongellen",
+    "slug": "rongellen",
+    "canton": "gr"
+  },
+  {
+    "name": "Rossa",
+    "slug": "rossa",
+    "canton": "gr"
+  },
+  {
+    "name": "Rothenbrunnen",
+    "slug": "rothenbrunnen",
+    "canton": "gr"
+  },
+  {
+    "name": "Roveredo (GR)",
+    "slug": "roveredo-gr",
+    "canton": "gr"
+  },
+  {
+    "name": "S-chanf",
+    "slug": "s-chanf",
+    "canton": "gr"
+  },
+  {
+    "name": "Safiental",
+    "slug": "safiental",
+    "canton": "gr"
+  },
+  {
+    "name": "Sagogn",
+    "slug": "sagogn",
+    "canton": "gr"
+  },
+  {
+    "name": "Samedan",
+    "slug": "samedan",
+    "canton": "gr"
+  },
+  {
+    "name": "Samnaun",
+    "slug": "samnaun",
+    "canton": "gr"
+  },
+  {
+    "name": "San Vittore",
+    "slug": "san-vittore",
+    "canton": "gr"
+  },
+  {
+    "name": "Santa Maria in Calanca",
+    "slug": "santa-maria-in-calanca",
+    "canton": "gr"
+  },
+  {
+    "name": "Scharans",
+    "slug": "scharans",
+    "canton": "gr"
+  },
+  {
+    "name": "Schiers",
+    "slug": "schiers",
+    "canton": "gr"
+  },
+  {
+    "name": "Schluein",
+    "slug": "schluein",
+    "canton": "gr"
+  },
+  {
+    "name": "Schmitten (GR)",
+    "slug": "schmitten-gr",
+    "canton": "gr"
+  },
+  {
+    "name": "Scuol",
+    "slug": "scuol",
+    "canton": "gr"
+  },
+  {
+    "name": "Seewis im Prättigau",
+    "slug": "seewis-im-praettigau",
+    "canton": "gr"
+  },
+  {
+    "name": "Sils im Domleschg",
+    "slug": "sils-im-domleschg",
+    "canton": "gr"
+  },
+  {
+    "name": "Sils im Engadin/Segl",
+    "slug": "sils-im-engadin-segl",
+    "canton": "gr"
+  },
+  {
+    "name": "Silvaplana",
+    "slug": "silvaplana",
+    "canton": "gr"
+  },
+  {
+    "name": "Soazza",
+    "slug": "soazza",
+    "canton": "gr"
+  },
+  {
+    "name": "St. Moritz",
+    "slug": "st-moritz",
+    "canton": "gr"
+  },
+  {
+    "name": "Sufers",
+    "slug": "sufers",
+    "canton": "gr"
+  },
+  {
+    "name": "Sumvitg",
+    "slug": "sumvitg",
+    "canton": "gr"
+  },
+  {
+    "name": "Surses",
+    "slug": "surses",
+    "canton": "gr"
+  },
+  {
+    "name": "Tamins",
+    "slug": "tamins",
+    "canton": "gr"
+  },
+  {
+    "name": "Thusis",
+    "slug": "thusis",
+    "canton": "gr"
+  },
+  {
+    "name": "Trimmis",
+    "slug": "trimmis",
+    "canton": "gr"
+  },
+  {
+    "name": "Trin",
+    "slug": "trin",
+    "canton": "gr"
+  },
+  {
+    "name": "Trun",
+    "slug": "trun",
+    "canton": "gr"
+  },
+  {
+    "name": "Tschappina",
+    "slug": "tschappina",
+    "canton": "gr"
+  },
+  {
+    "name": "Tujetsch",
+    "slug": "tujetsch",
+    "canton": "gr"
+  },
+  {
+    "name": "Untervaz",
+    "slug": "untervaz",
+    "canton": "gr"
+  },
+  {
+    "name": "Urmein",
+    "slug": "urmein",
+    "canton": "gr"
+  },
+  {
+    "name": "Val Müstair",
+    "slug": "val-muestair",
+    "canton": "gr"
+  },
+  {
+    "name": "Vals",
+    "slug": "vals",
+    "canton": "gr"
+  },
+  {
+    "name": "Valsot",
+    "slug": "valsot",
+    "canton": "gr"
+  },
+  {
+    "name": "Vaz/Obervaz",
+    "slug": "vaz-obervaz",
+    "canton": "gr"
+  },
+  {
+    "name": "Zernez",
+    "slug": "zernez",
+    "canton": "gr"
+  },
+  {
+    "name": "Zillis-Reischen",
+    "slug": "zillis-reischen",
+    "canton": "gr"
+  },
+  {
+    "name": "Zizers",
+    "slug": "zizers",
+    "canton": "gr"
+  },
+  {
+    "name": "Zuoz",
+    "slug": "zuoz",
+    "canton": "gr"
+  },
+  {
+    "name": "Alle",
+    "slug": "alle",
+    "canton": "ju"
+  },
+  {
+    "name": "Basse-Allaine",
+    "slug": "basse-allaine",
+    "canton": "ju"
+  },
+  {
+    "name": "Basse-Vendline",
+    "slug": "basse-vendline",
+    "canton": "ju"
+  },
+  {
+    "name": "Boncourt",
+    "slug": "boncourt",
+    "canton": "ju"
+  },
+  {
+    "name": "Bourrignon",
+    "slug": "bourrignon",
+    "canton": "ju"
+  },
+  {
+    "name": "Boécourt",
+    "slug": "boecourt",
+    "canton": "ju"
+  },
+  {
+    "name": "Bure",
+    "slug": "bure",
+    "canton": "ju"
+  },
+  {
+    "name": "Châtillon (JU)",
+    "slug": "chatillon-ju",
+    "canton": "ju"
+  },
+  {
+    "name": "Clos du Doubs",
+    "slug": "clos-du-doubs",
+    "canton": "ju"
+  },
+  {
+    "name": "Coeuve",
+    "slug": "coeuve",
+    "canton": "ju"
+  },
+  {
+    "name": "Cornol",
+    "slug": "cornol",
+    "canton": "ju"
+  },
+  {
+    "name": "Courchapoix",
+    "slug": "courchapoix",
+    "canton": "ju"
+  },
+  {
+    "name": "Courchavon",
+    "slug": "courchavon",
+    "canton": "ju"
+  },
+  {
+    "name": "Courgenay",
+    "slug": "courgenay",
+    "canton": "ju"
+  },
+  {
+    "name": "Courrendlin",
+    "slug": "courrendlin",
+    "canton": "ju"
+  },
+  {
+    "name": "Courroux",
+    "slug": "courroux",
+    "canton": "ju"
+  },
+  {
+    "name": "Courtedoux",
+    "slug": "courtedoux",
+    "canton": "ju"
+  },
+  {
+    "name": "Courtételle",
+    "slug": "courtetelle",
+    "canton": "ju"
+  },
+  {
+    "name": "Damphreux-Lugnez",
+    "slug": "damphreux-lugnez",
+    "canton": "ju"
+  },
+  {
+    "name": "Delémont",
+    "slug": "delemont",
+    "canton": "ju"
+  },
+  {
+    "name": "Develier",
+    "slug": "develier",
+    "canton": "ju"
+  },
+  {
+    "name": "Ederswiler",
+    "slug": "ederswiler",
+    "canton": "ju"
+  },
+  {
+    "name": "Fahy",
+    "slug": "fahy",
+    "canton": "ju"
+  },
+  {
+    "name": "Fontenais",
+    "slug": "fontenais",
+    "canton": "ju"
+  },
+  {
+    "name": "Grandfontaine",
+    "slug": "grandfontaine",
+    "canton": "ju"
+  },
+  {
+    "name": "Haute-Ajoie",
+    "slug": "haute-ajoie",
+    "canton": "ju"
+  },
+  {
+    "name": "Haute-Sorne",
+    "slug": "haute-sorne",
+    "canton": "ju"
+  },
+  {
+    "name": "La Baroche",
+    "slug": "la-baroche",
+    "canton": "ju"
+  },
+  {
+    "name": "Lajoux (JU)",
+    "slug": "lajoux-ju",
+    "canton": "ju"
+  },
+  {
+    "name": "Le Bémont (JU)",
+    "slug": "le-bemont-ju",
+    "canton": "ju"
+  },
+  {
+    "name": "Le Noirmont",
+    "slug": "le-noirmont",
+    "canton": "ju"
+  },
+  {
+    "name": "Les Bois",
+    "slug": "les-bois",
+    "canton": "ju"
+  },
+  {
+    "name": "Les Breuleux",
+    "slug": "les-breuleux",
+    "canton": "ju"
+  },
+  {
+    "name": "Les Enfers",
+    "slug": "les-enfers",
+    "canton": "ju"
+  },
+  {
+    "name": "Les Genevez (JU)",
+    "slug": "les-genevez-ju",
+    "canton": "ju"
+  },
+  {
+    "name": "Mervelier",
+    "slug": "mervelier",
+    "canton": "ju"
+  },
+  {
+    "name": "Mettembert",
+    "slug": "mettembert",
+    "canton": "ju"
+  },
+  {
+    "name": "Montfaucon",
+    "slug": "montfaucon",
+    "canton": "ju"
+  },
+  {
+    "name": "Moutier",
+    "slug": "moutier",
+    "canton": "ju"
+  },
+  {
+    "name": "Movelier",
+    "slug": "movelier",
+    "canton": "ju"
+  },
+  {
+    "name": "Muriaux",
+    "slug": "muriaux",
+    "canton": "ju"
+  },
+  {
+    "name": "Pleigne",
+    "slug": "pleigne",
+    "canton": "ju"
+  },
+  {
+    "name": "Porrentruy",
+    "slug": "porrentruy",
+    "canton": "ju"
+  },
+  {
+    "name": "Rossemaison",
+    "slug": "rossemaison",
+    "canton": "ju"
+  },
+  {
+    "name": "Saignelégier",
+    "slug": "saignelegier",
+    "canton": "ju"
+  },
+  {
+    "name": "Saint-Brais",
+    "slug": "saint-brais",
+    "canton": "ju"
+  },
+  {
+    "name": "Saulcy",
+    "slug": "saulcy",
+    "canton": "ju"
+  },
+  {
+    "name": "Soubey",
+    "slug": "soubey",
+    "canton": "ju"
+  },
+  {
+    "name": "Soyhières",
+    "slug": "soyhieres",
+    "canton": "ju"
+  },
+  {
+    "name": "Val Terbi",
+    "slug": "val-terbi",
+    "canton": "ju"
+  },
+  {
+    "name": "Vendlincourt",
+    "slug": "vendlincourt",
+    "canton": "ju"
+  },
+  {
+    "name": "Adligenswil",
+    "slug": "adligenswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Aesch (LU)",
+    "slug": "aesch-lu",
+    "canton": "lu"
+  },
+  {
+    "name": "Alberswil",
+    "slug": "alberswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Altbüron",
+    "slug": "altbueron",
+    "canton": "lu"
+  },
+  {
+    "name": "Altishofen",
+    "slug": "altishofen",
+    "canton": "lu"
+  },
+  {
+    "name": "Ballwil",
+    "slug": "ballwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Beromünster",
+    "slug": "beromuenster",
+    "canton": "lu"
+  },
+  {
+    "name": "Buchrain",
+    "slug": "buchrain",
+    "canton": "lu"
+  },
+  {
+    "name": "Buttisholz",
+    "slug": "buttisholz",
+    "canton": "lu"
+  },
+  {
+    "name": "Büron",
+    "slug": "bueron",
+    "canton": "lu"
+  },
+  {
+    "name": "Dagmersellen",
+    "slug": "dagmersellen",
+    "canton": "lu"
+  },
+  {
+    "name": "Dierikon",
+    "slug": "dierikon",
+    "canton": "lu"
+  },
+  {
+    "name": "Doppleschwand",
+    "slug": "doppleschwand",
+    "canton": "lu"
+  },
+  {
+    "name": "Ebikon",
+    "slug": "ebikon",
+    "canton": "lu"
+  },
+  {
+    "name": "Egolzwil",
+    "slug": "egolzwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Eich",
+    "slug": "eich",
+    "canton": "lu"
+  },
+  {
+    "name": "Emmen",
+    "slug": "emmen",
+    "canton": "lu"
+  },
+  {
+    "name": "Entlebuch",
+    "slug": "entlebuch",
+    "canton": "lu"
+  },
+  {
+    "name": "Ermensee",
+    "slug": "ermensee",
+    "canton": "lu"
+  },
+  {
+    "name": "Eschenbach (LU)",
+    "slug": "eschenbach-lu",
+    "canton": "lu"
+  },
+  {
+    "name": "Escholzmatt-Marbach",
+    "slug": "escholzmatt-marbach",
+    "canton": "lu"
+  },
+  {
+    "name": "Ettiswil",
+    "slug": "ettiswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Fischbach",
+    "slug": "fischbach",
+    "canton": "lu"
+  },
+  {
+    "name": "Flühli",
+    "slug": "fluehli",
+    "canton": "lu"
+  },
+  {
+    "name": "Geuensee",
+    "slug": "geuensee",
+    "canton": "lu"
+  },
+  {
+    "name": "Gisikon",
+    "slug": "gisikon",
+    "canton": "lu"
+  },
+  {
+    "name": "Greppen",
+    "slug": "greppen",
+    "canton": "lu"
+  },
+  {
+    "name": "Grossdietwil",
+    "slug": "grossdietwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Grosswangen",
+    "slug": "grosswangen",
+    "canton": "lu"
+  },
+  {
+    "name": "Hasle (LU)",
+    "slug": "hasle-lu",
+    "canton": "lu"
+  },
+  {
+    "name": "Hergiswil bei Willisau",
+    "slug": "hergiswil-bei-willisau",
+    "canton": "lu"
+  },
+  {
+    "name": "Hildisrieden",
+    "slug": "hildisrieden",
+    "canton": "lu"
+  },
+  {
+    "name": "Hitzkirch",
+    "slug": "hitzkirch",
+    "canton": "lu"
+  },
+  {
+    "name": "Hochdorf",
+    "slug": "hochdorf",
+    "canton": "lu"
+  },
+  {
+    "name": "Hohenrain",
+    "slug": "hohenrain",
+    "canton": "lu"
+  },
+  {
+    "name": "Horw",
+    "slug": "horw",
+    "canton": "lu"
+  },
+  {
+    "name": "Inwil",
+    "slug": "inwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Knutwil",
+    "slug": "knutwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Kriens",
+    "slug": "kriens",
+    "canton": "lu"
+  },
+  {
+    "name": "Luthern",
+    "slug": "luthern",
+    "canton": "lu"
+  },
+  {
+    "name": "Luzern",
+    "slug": "luzern",
+    "canton": "lu"
+  },
+  {
+    "name": "Malters",
+    "slug": "malters",
+    "canton": "lu"
+  },
+  {
+    "name": "Mauensee",
+    "slug": "mauensee",
+    "canton": "lu"
+  },
+  {
+    "name": "Meggen",
+    "slug": "meggen",
+    "canton": "lu"
+  },
+  {
+    "name": "Meierskappel",
+    "slug": "meierskappel",
+    "canton": "lu"
+  },
+  {
+    "name": "Menznau",
+    "slug": "menznau",
+    "canton": "lu"
+  },
+  {
+    "name": "Nebikon",
+    "slug": "nebikon",
+    "canton": "lu"
+  },
+  {
+    "name": "Neuenkirch",
+    "slug": "neuenkirch",
+    "canton": "lu"
+  },
+  {
+    "name": "Nottwil",
+    "slug": "nottwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Oberkirch",
+    "slug": "oberkirch",
+    "canton": "lu"
+  },
+  {
+    "name": "Pfaffnau",
+    "slug": "pfaffnau",
+    "canton": "lu"
+  },
+  {
+    "name": "Rain",
+    "slug": "rain",
+    "canton": "lu"
+  },
+  {
+    "name": "Reiden",
+    "slug": "reiden",
+    "canton": "lu"
+  },
+  {
+    "name": "Rickenbach (LU)",
+    "slug": "rickenbach-lu",
+    "canton": "lu"
+  },
+  {
+    "name": "Roggliswil",
+    "slug": "roggliswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Romoos",
+    "slug": "romoos",
+    "canton": "lu"
+  },
+  {
+    "name": "Root",
+    "slug": "root",
+    "canton": "lu"
+  },
+  {
+    "name": "Rothenburg",
+    "slug": "rothenburg",
+    "canton": "lu"
+  },
+  {
+    "name": "Ruswil",
+    "slug": "ruswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Römerswil",
+    "slug": "roemerswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Schenkon",
+    "slug": "schenkon",
+    "canton": "lu"
+  },
+  {
+    "name": "Schlierbach",
+    "slug": "schlierbach",
+    "canton": "lu"
+  },
+  {
+    "name": "Schongau",
+    "slug": "schongau",
+    "canton": "lu"
+  },
+  {
+    "name": "Schwarzenberg",
+    "slug": "schwarzenberg",
+    "canton": "lu"
+  },
+  {
+    "name": "Schötz",
+    "slug": "schoetz",
+    "canton": "lu"
+  },
+  {
+    "name": "Schüpfheim",
+    "slug": "schuepfheim",
+    "canton": "lu"
+  },
+  {
+    "name": "Sempach",
+    "slug": "sempach",
+    "canton": "lu"
+  },
+  {
+    "name": "Sursee",
+    "slug": "sursee",
+    "canton": "lu"
+  },
+  {
+    "name": "Triengen",
+    "slug": "triengen",
+    "canton": "lu"
+  },
+  {
+    "name": "Udligenswil",
+    "slug": "udligenswil",
+    "canton": "lu"
+  },
+  {
+    "name": "Ufhusen",
+    "slug": "ufhusen",
+    "canton": "lu"
+  },
+  {
+    "name": "Vitznau",
+    "slug": "vitznau",
+    "canton": "lu"
+  },
+  {
+    "name": "Wauwil",
+    "slug": "wauwil",
+    "canton": "lu"
+  },
+  {
+    "name": "Weggis",
+    "slug": "weggis",
+    "canton": "lu"
+  },
+  {
+    "name": "Werthenstein",
+    "slug": "werthenstein",
+    "canton": "lu"
+  },
+  {
+    "name": "Wikon",
+    "slug": "wikon",
+    "canton": "lu"
+  },
+  {
+    "name": "Willisau",
+    "slug": "willisau",
+    "canton": "lu"
+  },
+  {
+    "name": "Wolhusen",
+    "slug": "wolhusen",
+    "canton": "lu"
+  },
+  {
+    "name": "Zell (LU)",
+    "slug": "zell-lu",
+    "canton": "lu"
+  },
+  {
+    "name": "Boudry",
+    "slug": "boudry",
+    "canton": "ne"
+  },
+  {
+    "name": "Brot-Plamboz",
+    "slug": "brot-plamboz",
+    "canton": "ne"
+  },
+  {
+    "name": "Cornaux",
+    "slug": "cornaux",
+    "canton": "ne"
+  },
+  {
+    "name": "Cortaillod",
+    "slug": "cortaillod",
+    "canton": "ne"
+  },
+  {
+    "name": "Cressier (NE)",
+    "slug": "cressier-ne",
+    "canton": "ne"
+  },
+  {
+    "name": "La Brévine",
+    "slug": "la-brevine",
     "canton": "ne"
   },
   {
@@ -215,13 +5240,5313 @@
     "canton": "ne"
   },
   {
-    "name": "Genève",
-    "slug": "geneve",
-    "canton": "ge"
+    "name": "La Chaux-du-Milieu",
+    "slug": "la-chaux-du-milieu",
+    "canton": "ne"
   },
   {
-    "name": "Delémont",
-    "slug": "delemont",
-    "canton": "ju"
+    "name": "La Côte-aux-Fées",
+    "slug": "la-cote-aux-fees",
+    "canton": "ne"
+  },
+  {
+    "name": "La Grande Béroche",
+    "slug": "la-grande-beroche",
+    "canton": "ne"
+  },
+  {
+    "name": "La Sagne",
+    "slug": "la-sagne",
+    "canton": "ne"
+  },
+  {
+    "name": "Laténa",
+    "slug": "latena",
+    "canton": "ne"
+  },
+  {
+    "name": "Le Cerneux-Péquignot",
+    "slug": "le-cerneux-pequignot",
+    "canton": "ne"
+  },
+  {
+    "name": "Le Landeron",
+    "slug": "le-landeron",
+    "canton": "ne"
+  },
+  {
+    "name": "Le Locle",
+    "slug": "le-locle",
+    "canton": "ne"
+  },
+  {
+    "name": "Les Planchettes",
+    "slug": "les-planchettes",
+    "canton": "ne"
+  },
+  {
+    "name": "Les Ponts-de-Martel",
+    "slug": "les-ponts-de-martel",
+    "canton": "ne"
+  },
+  {
+    "name": "Les Verrières",
+    "slug": "les-verrieres",
+    "canton": "ne"
+  },
+  {
+    "name": "Lignières",
+    "slug": "lignieres",
+    "canton": "ne"
+  },
+  {
+    "name": "Milvignes",
+    "slug": "milvignes",
+    "canton": "ne"
+  },
+  {
+    "name": "Neuchâtel",
+    "slug": "neuchatel",
+    "canton": "ne"
+  },
+  {
+    "name": "Rochefort",
+    "slug": "rochefort",
+    "canton": "ne"
+  },
+  {
+    "name": "Val-de-Ruz",
+    "slug": "val-de-ruz",
+    "canton": "ne"
+  },
+  {
+    "name": "Val-de-Travers",
+    "slug": "val-de-travers",
+    "canton": "ne"
+  },
+  {
+    "name": "Beckenried",
+    "slug": "beckenried",
+    "canton": "nw"
+  },
+  {
+    "name": "Buochs",
+    "slug": "buochs",
+    "canton": "nw"
+  },
+  {
+    "name": "Dallenwil",
+    "slug": "dallenwil",
+    "canton": "nw"
+  },
+  {
+    "name": "Emmetten",
+    "slug": "emmetten",
+    "canton": "nw"
+  },
+  {
+    "name": "Ennetbürgen",
+    "slug": "ennetbuergen",
+    "canton": "nw"
+  },
+  {
+    "name": "Ennetmoos",
+    "slug": "ennetmoos",
+    "canton": "nw"
+  },
+  {
+    "name": "Hergiswil (NW)",
+    "slug": "hergiswil-nw",
+    "canton": "nw"
+  },
+  {
+    "name": "Oberdorf (NW)",
+    "slug": "oberdorf-nw",
+    "canton": "nw"
+  },
+  {
+    "name": "Stans",
+    "slug": "stans",
+    "canton": "nw"
+  },
+  {
+    "name": "Stansstad",
+    "slug": "stansstad",
+    "canton": "nw"
+  },
+  {
+    "name": "Wolfenschiessen",
+    "slug": "wolfenschiessen",
+    "canton": "nw"
+  },
+  {
+    "name": "Alpnach",
+    "slug": "alpnach",
+    "canton": "ow"
+  },
+  {
+    "name": "Engelberg",
+    "slug": "engelberg",
+    "canton": "ow"
+  },
+  {
+    "name": "Giswil",
+    "slug": "giswil",
+    "canton": "ow"
+  },
+  {
+    "name": "Kerns",
+    "slug": "kerns",
+    "canton": "ow"
+  },
+  {
+    "name": "Lungern",
+    "slug": "lungern",
+    "canton": "ow"
+  },
+  {
+    "name": "Sachseln",
+    "slug": "sachseln",
+    "canton": "ow"
+  },
+  {
+    "name": "Sarnen",
+    "slug": "sarnen",
+    "canton": "ow"
+  },
+  {
+    "name": "Altstätten",
+    "slug": "altstaetten",
+    "canton": "sg"
+  },
+  {
+    "name": "Amden",
+    "slug": "amden",
+    "canton": "sg"
+  },
+  {
+    "name": "Andwil (SG)",
+    "slug": "andwil-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Au (SG)",
+    "slug": "au-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Bad Ragaz",
+    "slug": "bad-ragaz",
+    "canton": "sg"
+  },
+  {
+    "name": "Balgach",
+    "slug": "balgach",
+    "canton": "sg"
+  },
+  {
+    "name": "Benken (SG)",
+    "slug": "benken-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Berg (SG)",
+    "slug": "berg-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Berneck",
+    "slug": "berneck",
+    "canton": "sg"
+  },
+  {
+    "name": "Buchs (SG)",
+    "slug": "buchs-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Bütschwil-Ganterschwil",
+    "slug": "buetschwil-ganterschwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Degersheim",
+    "slug": "degersheim",
+    "canton": "sg"
+  },
+  {
+    "name": "Diepoldsau",
+    "slug": "diepoldsau",
+    "canton": "sg"
+  },
+  {
+    "name": "Ebnat-Kappel",
+    "slug": "ebnat-kappel",
+    "canton": "sg"
+  },
+  {
+    "name": "Eggersriet",
+    "slug": "eggersriet",
+    "canton": "sg"
+  },
+  {
+    "name": "Eichberg",
+    "slug": "eichberg",
+    "canton": "sg"
+  },
+  {
+    "name": "Eschenbach (SG)",
+    "slug": "eschenbach-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Flawil",
+    "slug": "flawil",
+    "canton": "sg"
+  },
+  {
+    "name": "Flums",
+    "slug": "flums",
+    "canton": "sg"
+  },
+  {
+    "name": "Gaiserwald",
+    "slug": "gaiserwald",
+    "canton": "sg"
+  },
+  {
+    "name": "Gams",
+    "slug": "gams",
+    "canton": "sg"
+  },
+  {
+    "name": "Goldach",
+    "slug": "goldach",
+    "canton": "sg"
+  },
+  {
+    "name": "Gommiswald",
+    "slug": "gommiswald",
+    "canton": "sg"
+  },
+  {
+    "name": "Gossau (SG)",
+    "slug": "gossau-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Grabs",
+    "slug": "grabs",
+    "canton": "sg"
+  },
+  {
+    "name": "Häggenschwil",
+    "slug": "haeggenschwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Jonschwil",
+    "slug": "jonschwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Kaltbrunn",
+    "slug": "kaltbrunn",
+    "canton": "sg"
+  },
+  {
+    "name": "Kirchberg (SG)",
+    "slug": "kirchberg-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Lichtensteig",
+    "slug": "lichtensteig",
+    "canton": "sg"
+  },
+  {
+    "name": "Lütisburg",
+    "slug": "luetisburg",
+    "canton": "sg"
+  },
+  {
+    "name": "Marbach (SG)",
+    "slug": "marbach-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Mels",
+    "slug": "mels",
+    "canton": "sg"
+  },
+  {
+    "name": "Mosnang",
+    "slug": "mosnang",
+    "canton": "sg"
+  },
+  {
+    "name": "Muolen",
+    "slug": "muolen",
+    "canton": "sg"
+  },
+  {
+    "name": "Mörschwil",
+    "slug": "moerschwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Neckertal",
+    "slug": "neckertal",
+    "canton": "sg"
+  },
+  {
+    "name": "Nesslau",
+    "slug": "nesslau",
+    "canton": "sg"
+  },
+  {
+    "name": "Niederbüren",
+    "slug": "niederbueren",
+    "canton": "sg"
+  },
+  {
+    "name": "Niederhelfenschwil",
+    "slug": "niederhelfenschwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Oberbüren",
+    "slug": "oberbueren",
+    "canton": "sg"
+  },
+  {
+    "name": "Oberriet (SG)",
+    "slug": "oberriet-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Oberuzwil",
+    "slug": "oberuzwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Pfäfers",
+    "slug": "pfaefers",
+    "canton": "sg"
+  },
+  {
+    "name": "Quarten",
+    "slug": "quarten",
+    "canton": "sg"
+  },
+  {
+    "name": "Rapperswil-Jona",
+    "slug": "rapperswil-jona",
+    "canton": "sg"
+  },
+  {
+    "name": "Rebstein",
+    "slug": "rebstein",
+    "canton": "sg"
+  },
+  {
+    "name": "Rheineck",
+    "slug": "rheineck",
+    "canton": "sg"
+  },
+  {
+    "name": "Rorschach",
+    "slug": "rorschach",
+    "canton": "sg"
+  },
+  {
+    "name": "Rorschacherberg",
+    "slug": "rorschacherberg",
+    "canton": "sg"
+  },
+  {
+    "name": "Rüthi (SG)",
+    "slug": "ruethi-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Sargans",
+    "slug": "sargans",
+    "canton": "sg"
+  },
+  {
+    "name": "Schmerikon",
+    "slug": "schmerikon",
+    "canton": "sg"
+  },
+  {
+    "name": "Schänis",
+    "slug": "schaenis",
+    "canton": "sg"
+  },
+  {
+    "name": "Sennwald",
+    "slug": "sennwald",
+    "canton": "sg"
+  },
+  {
+    "name": "Sevelen",
+    "slug": "sevelen",
+    "canton": "sg"
+  },
+  {
+    "name": "St. Gallen",
+    "slug": "st-gallen",
+    "canton": "sg"
+  },
+  {
+    "name": "St. Margrethen",
+    "slug": "st-margrethen",
+    "canton": "sg"
+  },
+  {
+    "name": "Steinach",
+    "slug": "steinach",
+    "canton": "sg"
+  },
+  {
+    "name": "Thal",
+    "slug": "thal",
+    "canton": "sg"
+  },
+  {
+    "name": "Tübach",
+    "slug": "tuebach",
+    "canton": "sg"
+  },
+  {
+    "name": "Untereggen",
+    "slug": "untereggen",
+    "canton": "sg"
+  },
+  {
+    "name": "Uznach",
+    "slug": "uznach",
+    "canton": "sg"
+  },
+  {
+    "name": "Uzwil",
+    "slug": "uzwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Vilters-Wangs",
+    "slug": "vilters-wangs",
+    "canton": "sg"
+  },
+  {
+    "name": "Waldkirch",
+    "slug": "waldkirch",
+    "canton": "sg"
+  },
+  {
+    "name": "Walenstadt",
+    "slug": "walenstadt",
+    "canton": "sg"
+  },
+  {
+    "name": "Wartau",
+    "slug": "wartau",
+    "canton": "sg"
+  },
+  {
+    "name": "Wattwil",
+    "slug": "wattwil",
+    "canton": "sg"
+  },
+  {
+    "name": "Weesen",
+    "slug": "weesen",
+    "canton": "sg"
+  },
+  {
+    "name": "Widnau",
+    "slug": "widnau",
+    "canton": "sg"
+  },
+  {
+    "name": "Wil (SG)",
+    "slug": "wil-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Wildhaus-Alt St. Johann",
+    "slug": "wildhaus-alt-st-johann",
+    "canton": "sg"
+  },
+  {
+    "name": "Wittenbach",
+    "slug": "wittenbach",
+    "canton": "sg"
+  },
+  {
+    "name": "Zuzwil (SG)",
+    "slug": "zuzwil-sg",
+    "canton": "sg"
+  },
+  {
+    "name": "Bargen (SH)",
+    "slug": "bargen-sh",
+    "canton": "sh"
+  },
+  {
+    "name": "Beggingen",
+    "slug": "beggingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Beringen",
+    "slug": "beringen",
+    "canton": "sh"
+  },
+  {
+    "name": "Buch (SH)",
+    "slug": "buch-sh",
+    "canton": "sh"
+  },
+  {
+    "name": "Buchberg",
+    "slug": "buchberg",
+    "canton": "sh"
+  },
+  {
+    "name": "Büttenhardt",
+    "slug": "buettenhardt",
+    "canton": "sh"
+  },
+  {
+    "name": "Dörflingen",
+    "slug": "doerflingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Gächlingen",
+    "slug": "gaechlingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Hallau",
+    "slug": "hallau",
+    "canton": "sh"
+  },
+  {
+    "name": "Hemishofen",
+    "slug": "hemishofen",
+    "canton": "sh"
+  },
+  {
+    "name": "Lohn (SH)",
+    "slug": "lohn-sh",
+    "canton": "sh"
+  },
+  {
+    "name": "Löhningen",
+    "slug": "loehningen",
+    "canton": "sh"
+  },
+  {
+    "name": "Merishausen",
+    "slug": "merishausen",
+    "canton": "sh"
+  },
+  {
+    "name": "Neuhausen am Rheinfall",
+    "slug": "neuhausen-am-rheinfall",
+    "canton": "sh"
+  },
+  {
+    "name": "Neunkirch",
+    "slug": "neunkirch",
+    "canton": "sh"
+  },
+  {
+    "name": "Oberhallau",
+    "slug": "oberhallau",
+    "canton": "sh"
+  },
+  {
+    "name": "Ramsen",
+    "slug": "ramsen",
+    "canton": "sh"
+  },
+  {
+    "name": "Rüdlingen",
+    "slug": "ruedlingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Schaffhausen",
+    "slug": "schaffhausen",
+    "canton": "sh"
+  },
+  {
+    "name": "Schleitheim",
+    "slug": "schleitheim",
+    "canton": "sh"
+  },
+  {
+    "name": "Siblingen",
+    "slug": "siblingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Stein am Rhein",
+    "slug": "stein-am-rhein",
+    "canton": "sh"
+  },
+  {
+    "name": "Stetten (SH)",
+    "slug": "stetten-sh",
+    "canton": "sh"
+  },
+  {
+    "name": "Thayngen",
+    "slug": "thayngen",
+    "canton": "sh"
+  },
+  {
+    "name": "Trasadingen",
+    "slug": "trasadingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Wilchingen",
+    "slug": "wilchingen",
+    "canton": "sh"
+  },
+  {
+    "name": "Aedermannsdorf",
+    "slug": "aedermannsdorf",
+    "canton": "so"
+  },
+  {
+    "name": "Aeschi (SO)",
+    "slug": "aeschi-so",
+    "canton": "so"
+  },
+  {
+    "name": "Balm bei Günsberg",
+    "slug": "balm-bei-guensberg",
+    "canton": "so"
+  },
+  {
+    "name": "Balsthal",
+    "slug": "balsthal",
+    "canton": "so"
+  },
+  {
+    "name": "Beinwil (SO)",
+    "slug": "beinwil-so",
+    "canton": "so"
+  },
+  {
+    "name": "Bellach",
+    "slug": "bellach",
+    "canton": "so"
+  },
+  {
+    "name": "Bettlach",
+    "slug": "bettlach",
+    "canton": "so"
+  },
+  {
+    "name": "Biberist",
+    "slug": "biberist",
+    "canton": "so"
+  },
+  {
+    "name": "Biezwil",
+    "slug": "biezwil",
+    "canton": "so"
+  },
+  {
+    "name": "Bolken",
+    "slug": "bolken",
+    "canton": "so"
+  },
+  {
+    "name": "Boningen",
+    "slug": "boningen",
+    "canton": "so"
+  },
+  {
+    "name": "Breitenbach",
+    "slug": "breitenbach",
+    "canton": "so"
+  },
+  {
+    "name": "Buchegg",
+    "slug": "buchegg",
+    "canton": "so"
+  },
+  {
+    "name": "Bärschwil",
+    "slug": "baerschwil",
+    "canton": "so"
+  },
+  {
+    "name": "Bättwil",
+    "slug": "baettwil",
+    "canton": "so"
+  },
+  {
+    "name": "Büren (SO)",
+    "slug": "bueren-so",
+    "canton": "so"
+  },
+  {
+    "name": "Büsserach",
+    "slug": "buesserach",
+    "canton": "so"
+  },
+  {
+    "name": "Deitingen",
+    "slug": "deitingen",
+    "canton": "so"
+  },
+  {
+    "name": "Derendingen",
+    "slug": "derendingen",
+    "canton": "so"
+  },
+  {
+    "name": "Dornach",
+    "slug": "dornach",
+    "canton": "so"
+  },
+  {
+    "name": "Drei Höfe",
+    "slug": "drei-hoefe",
+    "canton": "so"
+  },
+  {
+    "name": "Dulliken",
+    "slug": "dulliken",
+    "canton": "so"
+  },
+  {
+    "name": "Däniken",
+    "slug": "daeniken",
+    "canton": "so"
+  },
+  {
+    "name": "Egerkingen",
+    "slug": "egerkingen",
+    "canton": "so"
+  },
+  {
+    "name": "Eppenberg-Wöschnau",
+    "slug": "eppenberg-woeschnau",
+    "canton": "so"
+  },
+  {
+    "name": "Erlinsbach (SO)",
+    "slug": "erlinsbach-so",
+    "canton": "so"
+  },
+  {
+    "name": "Erschwil",
+    "slug": "erschwil",
+    "canton": "so"
+  },
+  {
+    "name": "Etziken",
+    "slug": "etziken",
+    "canton": "so"
+  },
+  {
+    "name": "Fehren",
+    "slug": "fehren",
+    "canton": "so"
+  },
+  {
+    "name": "Feldbrunnen-St. Niklaus",
+    "slug": "feldbrunnen-st-niklaus",
+    "canton": "so"
+  },
+  {
+    "name": "Flumenthal",
+    "slug": "flumenthal",
+    "canton": "so"
+  },
+  {
+    "name": "Fulenbach",
+    "slug": "fulenbach",
+    "canton": "so"
+  },
+  {
+    "name": "Gempen",
+    "slug": "gempen",
+    "canton": "so"
+  },
+  {
+    "name": "Gerlafingen",
+    "slug": "gerlafingen",
+    "canton": "so"
+  },
+  {
+    "name": "Grenchen",
+    "slug": "grenchen",
+    "canton": "so"
+  },
+  {
+    "name": "Gretzenbach",
+    "slug": "gretzenbach",
+    "canton": "so"
+  },
+  {
+    "name": "Grindel",
+    "slug": "grindel",
+    "canton": "so"
+  },
+  {
+    "name": "Gunzgen",
+    "slug": "gunzgen",
+    "canton": "so"
+  },
+  {
+    "name": "Günsberg",
+    "slug": "guensberg",
+    "canton": "so"
+  },
+  {
+    "name": "Hauenstein-Ifenthal",
+    "slug": "hauenstein-ifenthal",
+    "canton": "so"
+  },
+  {
+    "name": "Herbetswil",
+    "slug": "herbetswil",
+    "canton": "so"
+  },
+  {
+    "name": "Himmelried",
+    "slug": "himmelried",
+    "canton": "so"
+  },
+  {
+    "name": "Hochwald",
+    "slug": "hochwald",
+    "canton": "so"
+  },
+  {
+    "name": "Hofstetten-Flüh",
+    "slug": "hofstetten-flueh",
+    "canton": "so"
+  },
+  {
+    "name": "Holderbank (SO)",
+    "slug": "holderbank-so",
+    "canton": "so"
+  },
+  {
+    "name": "Horriwil",
+    "slug": "horriwil",
+    "canton": "so"
+  },
+  {
+    "name": "Hubersdorf",
+    "slug": "hubersdorf",
+    "canton": "so"
+  },
+  {
+    "name": "Hägendorf",
+    "slug": "haegendorf",
+    "canton": "so"
+  },
+  {
+    "name": "Härkingen",
+    "slug": "haerkingen",
+    "canton": "so"
+  },
+  {
+    "name": "Hüniken",
+    "slug": "hueniken",
+    "canton": "so"
+  },
+  {
+    "name": "Kammersrohr",
+    "slug": "kammersrohr",
+    "canton": "so"
+  },
+  {
+    "name": "Kappel (SO)",
+    "slug": "kappel-so",
+    "canton": "so"
+  },
+  {
+    "name": "Kestenholz",
+    "slug": "kestenholz",
+    "canton": "so"
+  },
+  {
+    "name": "Kienberg",
+    "slug": "kienberg",
+    "canton": "so"
+  },
+  {
+    "name": "Kleinlützel",
+    "slug": "kleinluetzel",
+    "canton": "so"
+  },
+  {
+    "name": "Kriegstetten",
+    "slug": "kriegstetten",
+    "canton": "so"
+  },
+  {
+    "name": "Langendorf",
+    "slug": "langendorf",
+    "canton": "so"
+  },
+  {
+    "name": "Laupersdorf",
+    "slug": "laupersdorf",
+    "canton": "so"
+  },
+  {
+    "name": "Lohn-Ammannsegg",
+    "slug": "lohn-ammannsegg",
+    "canton": "so"
+  },
+  {
+    "name": "Lommiswil",
+    "slug": "lommiswil",
+    "canton": "so"
+  },
+  {
+    "name": "Lostorf",
+    "slug": "lostorf",
+    "canton": "so"
+  },
+  {
+    "name": "Luterbach",
+    "slug": "luterbach",
+    "canton": "so"
+  },
+  {
+    "name": "Lüsslingen-Nennigkofen",
+    "slug": "luesslingen-nennigkofen",
+    "canton": "so"
+  },
+  {
+    "name": "Lüterkofen-Ichertswil",
+    "slug": "lueterkofen-ichertswil",
+    "canton": "so"
+  },
+  {
+    "name": "Matzendorf",
+    "slug": "matzendorf",
+    "canton": "so"
+  },
+  {
+    "name": "Meltingen",
+    "slug": "meltingen",
+    "canton": "so"
+  },
+  {
+    "name": "Messen",
+    "slug": "messen",
+    "canton": "so"
+  },
+  {
+    "name": "Metzerlen-Mariastein",
+    "slug": "metzerlen-mariastein",
+    "canton": "so"
+  },
+  {
+    "name": "Mümliswil-Ramiswil",
+    "slug": "muemliswil-ramiswil",
+    "canton": "so"
+  },
+  {
+    "name": "Neuendorf",
+    "slug": "neuendorf",
+    "canton": "so"
+  },
+  {
+    "name": "Niederbuchsiten",
+    "slug": "niederbuchsiten",
+    "canton": "so"
+  },
+  {
+    "name": "Niedergösgen",
+    "slug": "niedergoesgen",
+    "canton": "so"
+  },
+  {
+    "name": "Nuglar-St. Pantaleon",
+    "slug": "nuglar-st-pantaleon",
+    "canton": "so"
+  },
+  {
+    "name": "Nunningen",
+    "slug": "nunningen",
+    "canton": "so"
+  },
+  {
+    "name": "Oberbuchsiten",
+    "slug": "oberbuchsiten",
+    "canton": "so"
+  },
+  {
+    "name": "Oberdorf (SO)",
+    "slug": "oberdorf-so",
+    "canton": "so"
+  },
+  {
+    "name": "Obergerlafingen",
+    "slug": "obergerlafingen",
+    "canton": "so"
+  },
+  {
+    "name": "Obergösgen",
+    "slug": "obergoesgen",
+    "canton": "so"
+  },
+  {
+    "name": "Oensingen",
+    "slug": "oensingen",
+    "canton": "so"
+  },
+  {
+    "name": "Olten",
+    "slug": "olten",
+    "canton": "so"
+  },
+  {
+    "name": "Recherswil",
+    "slug": "recherswil",
+    "canton": "so"
+  },
+  {
+    "name": "Rickenbach (SO)",
+    "slug": "rickenbach-so",
+    "canton": "so"
+  },
+  {
+    "name": "Riedholz",
+    "slug": "riedholz",
+    "canton": "so"
+  },
+  {
+    "name": "Rodersdorf",
+    "slug": "rodersdorf",
+    "canton": "so"
+  },
+  {
+    "name": "Rüttenen",
+    "slug": "ruettenen",
+    "canton": "so"
+  },
+  {
+    "name": "Schnottwil",
+    "slug": "schnottwil",
+    "canton": "so"
+  },
+  {
+    "name": "Schönenwerd",
+    "slug": "schoenenwerd",
+    "canton": "so"
+  },
+  {
+    "name": "Seewen",
+    "slug": "seewen",
+    "canton": "so"
+  },
+  {
+    "name": "Selzach",
+    "slug": "selzach",
+    "canton": "so"
+  },
+  {
+    "name": "Solothurn",
+    "slug": "solothurn",
+    "canton": "so"
+  },
+  {
+    "name": "Starrkirch-Wil",
+    "slug": "starrkirch-wil",
+    "canton": "so"
+  },
+  {
+    "name": "Stüsslingen",
+    "slug": "stuesslingen",
+    "canton": "so"
+  },
+  {
+    "name": "Subingen",
+    "slug": "subingen",
+    "canton": "so"
+  },
+  {
+    "name": "Trimbach",
+    "slug": "trimbach",
+    "canton": "so"
+  },
+  {
+    "name": "Unterramsern",
+    "slug": "unterramsern",
+    "canton": "so"
+  },
+  {
+    "name": "Walterswil (SO)",
+    "slug": "walterswil-so",
+    "canton": "so"
+  },
+  {
+    "name": "Wangen bei Olten",
+    "slug": "wangen-bei-olten",
+    "canton": "so"
+  },
+  {
+    "name": "Welschenrohr-Gänsbrunnen",
+    "slug": "welschenrohr-gaensbrunnen",
+    "canton": "so"
+  },
+  {
+    "name": "Winznau",
+    "slug": "winznau",
+    "canton": "so"
+  },
+  {
+    "name": "Wisen (SO)",
+    "slug": "wisen-so",
+    "canton": "so"
+  },
+  {
+    "name": "Witterswil",
+    "slug": "witterswil",
+    "canton": "so"
+  },
+  {
+    "name": "Wolfwil",
+    "slug": "wolfwil",
+    "canton": "so"
+  },
+  {
+    "name": "Zuchwil",
+    "slug": "zuchwil",
+    "canton": "so"
+  },
+  {
+    "name": "Zullwil",
+    "slug": "zullwil",
+    "canton": "so"
+  },
+  {
+    "name": "Alpthal",
+    "slug": "alpthal",
+    "canton": "sz"
+  },
+  {
+    "name": "Altendorf",
+    "slug": "altendorf",
+    "canton": "sz"
+  },
+  {
+    "name": "Arth",
+    "slug": "arth",
+    "canton": "sz"
+  },
+  {
+    "name": "Einsiedeln",
+    "slug": "einsiedeln",
+    "canton": "sz"
+  },
+  {
+    "name": "Feusisberg",
+    "slug": "feusisberg",
+    "canton": "sz"
+  },
+  {
+    "name": "Freienbach",
+    "slug": "freienbach",
+    "canton": "sz"
+  },
+  {
+    "name": "Galgenen",
+    "slug": "galgenen",
+    "canton": "sz"
+  },
+  {
+    "name": "Gersau",
+    "slug": "gersau",
+    "canton": "sz"
+  },
+  {
+    "name": "Illgau",
+    "slug": "illgau",
+    "canton": "sz"
+  },
+  {
+    "name": "Ingenbohl",
+    "slug": "ingenbohl",
+    "canton": "sz"
+  },
+  {
+    "name": "Innerthal",
+    "slug": "innerthal",
+    "canton": "sz"
+  },
+  {
+    "name": "Küssnacht (SZ)",
+    "slug": "kuessnacht-sz",
+    "canton": "sz"
+  },
+  {
+    "name": "Lachen",
+    "slug": "lachen",
+    "canton": "sz"
+  },
+  {
+    "name": "Lauerz",
+    "slug": "lauerz",
+    "canton": "sz"
+  },
+  {
+    "name": "Morschach",
+    "slug": "morschach",
+    "canton": "sz"
+  },
+  {
+    "name": "Muotathal",
+    "slug": "muotathal",
+    "canton": "sz"
+  },
+  {
+    "name": "Oberiberg",
+    "slug": "oberiberg",
+    "canton": "sz"
+  },
+  {
+    "name": "Reichenburg",
+    "slug": "reichenburg",
+    "canton": "sz"
+  },
+  {
+    "name": "Riemenstalden",
+    "slug": "riemenstalden",
+    "canton": "sz"
+  },
+  {
+    "name": "Rothenthurm",
+    "slug": "rothenthurm",
+    "canton": "sz"
+  },
+  {
+    "name": "Sattel",
+    "slug": "sattel",
+    "canton": "sz"
+  },
+  {
+    "name": "Schwyz",
+    "slug": "schwyz",
+    "canton": "sz"
+  },
+  {
+    "name": "Schübelbach",
+    "slug": "schuebelbach",
+    "canton": "sz"
+  },
+  {
+    "name": "Steinen",
+    "slug": "steinen",
+    "canton": "sz"
+  },
+  {
+    "name": "Steinerberg",
+    "slug": "steinerberg",
+    "canton": "sz"
+  },
+  {
+    "name": "Tuggen",
+    "slug": "tuggen",
+    "canton": "sz"
+  },
+  {
+    "name": "Unteriberg",
+    "slug": "unteriberg",
+    "canton": "sz"
+  },
+  {
+    "name": "Vorderthal",
+    "slug": "vorderthal",
+    "canton": "sz"
+  },
+  {
+    "name": "Wangen (SZ)",
+    "slug": "wangen-sz",
+    "canton": "sz"
+  },
+  {
+    "name": "Wollerau",
+    "slug": "wollerau",
+    "canton": "sz"
+  },
+  {
+    "name": "Aadorf",
+    "slug": "aadorf",
+    "canton": "tg"
+  },
+  {
+    "name": "Affeltrangen",
+    "slug": "affeltrangen",
+    "canton": "tg"
+  },
+  {
+    "name": "Altnau",
+    "slug": "altnau",
+    "canton": "tg"
+  },
+  {
+    "name": "Amlikon-Bissegg",
+    "slug": "amlikon-bissegg",
+    "canton": "tg"
+  },
+  {
+    "name": "Amriswil",
+    "slug": "amriswil",
+    "canton": "tg"
+  },
+  {
+    "name": "Arbon",
+    "slug": "arbon",
+    "canton": "tg"
+  },
+  {
+    "name": "Basadingen-Schlattingen",
+    "slug": "basadingen-schlattingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Berg (TG)",
+    "slug": "berg-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Berlingen",
+    "slug": "berlingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Bettwiesen",
+    "slug": "bettwiesen",
+    "canton": "tg"
+  },
+  {
+    "name": "Bichelsee-Balterswil",
+    "slug": "bichelsee-balterswil",
+    "canton": "tg"
+  },
+  {
+    "name": "Birwinken",
+    "slug": "birwinken",
+    "canton": "tg"
+  },
+  {
+    "name": "Bischofszell",
+    "slug": "bischofszell",
+    "canton": "tg"
+  },
+  {
+    "name": "Bottighofen",
+    "slug": "bottighofen",
+    "canton": "tg"
+  },
+  {
+    "name": "Braunau",
+    "slug": "braunau",
+    "canton": "tg"
+  },
+  {
+    "name": "Bussnang",
+    "slug": "bussnang",
+    "canton": "tg"
+  },
+  {
+    "name": "Bürglen (TG)",
+    "slug": "buerglen-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Diessenhofen",
+    "slug": "diessenhofen",
+    "canton": "tg"
+  },
+  {
+    "name": "Dozwil",
+    "slug": "dozwil",
+    "canton": "tg"
+  },
+  {
+    "name": "Egnach",
+    "slug": "egnach",
+    "canton": "tg"
+  },
+  {
+    "name": "Erlen",
+    "slug": "erlen",
+    "canton": "tg"
+  },
+  {
+    "name": "Ermatingen",
+    "slug": "ermatingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Eschenz",
+    "slug": "eschenz",
+    "canton": "tg"
+  },
+  {
+    "name": "Eschlikon",
+    "slug": "eschlikon",
+    "canton": "tg"
+  },
+  {
+    "name": "Felben-Wellhausen",
+    "slug": "felben-wellhausen",
+    "canton": "tg"
+  },
+  {
+    "name": "Fischingen",
+    "slug": "fischingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Frauenfeld",
+    "slug": "frauenfeld",
+    "canton": "tg"
+  },
+  {
+    "name": "Gachnang",
+    "slug": "gachnang",
+    "canton": "tg"
+  },
+  {
+    "name": "Gottlieben",
+    "slug": "gottlieben",
+    "canton": "tg"
+  },
+  {
+    "name": "Güttingen",
+    "slug": "guettingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Hauptwil-Gottshaus",
+    "slug": "hauptwil-gottshaus",
+    "canton": "tg"
+  },
+  {
+    "name": "Hefenhofen",
+    "slug": "hefenhofen",
+    "canton": "tg"
+  },
+  {
+    "name": "Herdern",
+    "slug": "herdern",
+    "canton": "tg"
+  },
+  {
+    "name": "Hohentannen",
+    "slug": "hohentannen",
+    "canton": "tg"
+  },
+  {
+    "name": "Homburg",
+    "slug": "homburg",
+    "canton": "tg"
+  },
+  {
+    "name": "Horn",
+    "slug": "horn",
+    "canton": "tg"
+  },
+  {
+    "name": "Hüttlingen",
+    "slug": "huettlingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Hüttwilen",
+    "slug": "huettwilen",
+    "canton": "tg"
+  },
+  {
+    "name": "Kemmental",
+    "slug": "kemmental",
+    "canton": "tg"
+  },
+  {
+    "name": "Kesswil",
+    "slug": "kesswil",
+    "canton": "tg"
+  },
+  {
+    "name": "Kradolf-Schönenberg",
+    "slug": "kradolf-schoenenberg",
+    "canton": "tg"
+  },
+  {
+    "name": "Kreuzlingen",
+    "slug": "kreuzlingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Langrickenbach",
+    "slug": "langrickenbach",
+    "canton": "tg"
+  },
+  {
+    "name": "Lengwil",
+    "slug": "lengwil",
+    "canton": "tg"
+  },
+  {
+    "name": "Lommis",
+    "slug": "lommis",
+    "canton": "tg"
+  },
+  {
+    "name": "Mammern",
+    "slug": "mammern",
+    "canton": "tg"
+  },
+  {
+    "name": "Matzingen",
+    "slug": "matzingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Märstetten",
+    "slug": "maerstetten",
+    "canton": "tg"
+  },
+  {
+    "name": "Müllheim",
+    "slug": "muellheim",
+    "canton": "tg"
+  },
+  {
+    "name": "Münchwilen (TG)",
+    "slug": "muenchwilen-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Münsterlingen",
+    "slug": "muensterlingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Neunforn",
+    "slug": "neunforn",
+    "canton": "tg"
+  },
+  {
+    "name": "Pfyn",
+    "slug": "pfyn",
+    "canton": "tg"
+  },
+  {
+    "name": "Raperswilen",
+    "slug": "raperswilen",
+    "canton": "tg"
+  },
+  {
+    "name": "Rickenbach (TG)",
+    "slug": "rickenbach-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Roggwil (TG)",
+    "slug": "roggwil-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Romanshorn",
+    "slug": "romanshorn",
+    "canton": "tg"
+  },
+  {
+    "name": "Salenstein",
+    "slug": "salenstein",
+    "canton": "tg"
+  },
+  {
+    "name": "Salmsach",
+    "slug": "salmsach",
+    "canton": "tg"
+  },
+  {
+    "name": "Schlatt (TG)",
+    "slug": "schlatt-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Schönholzerswilen",
+    "slug": "schoenholzerswilen",
+    "canton": "tg"
+  },
+  {
+    "name": "Sirnach",
+    "slug": "sirnach",
+    "canton": "tg"
+  },
+  {
+    "name": "Sommeri",
+    "slug": "sommeri",
+    "canton": "tg"
+  },
+  {
+    "name": "Steckborn",
+    "slug": "steckborn",
+    "canton": "tg"
+  },
+  {
+    "name": "Stettfurt",
+    "slug": "stettfurt",
+    "canton": "tg"
+  },
+  {
+    "name": "Sulgen",
+    "slug": "sulgen",
+    "canton": "tg"
+  },
+  {
+    "name": "Thundorf",
+    "slug": "thundorf",
+    "canton": "tg"
+  },
+  {
+    "name": "Tobel-Tägerschen",
+    "slug": "tobel-taegerschen",
+    "canton": "tg"
+  },
+  {
+    "name": "Tägerwilen",
+    "slug": "taegerwilen",
+    "canton": "tg"
+  },
+  {
+    "name": "Uesslingen-Buch",
+    "slug": "uesslingen-buch",
+    "canton": "tg"
+  },
+  {
+    "name": "Uttwil",
+    "slug": "uttwil",
+    "canton": "tg"
+  },
+  {
+    "name": "Wagenhausen",
+    "slug": "wagenhausen",
+    "canton": "tg"
+  },
+  {
+    "name": "Warth-Weiningen",
+    "slug": "warth-weiningen",
+    "canton": "tg"
+  },
+  {
+    "name": "Weinfelden",
+    "slug": "weinfelden",
+    "canton": "tg"
+  },
+  {
+    "name": "Wigoltingen",
+    "slug": "wigoltingen",
+    "canton": "tg"
+  },
+  {
+    "name": "Wilen (TG)",
+    "slug": "wilen-tg",
+    "canton": "tg"
+  },
+  {
+    "name": "Wuppenau",
+    "slug": "wuppenau",
+    "canton": "tg"
+  },
+  {
+    "name": "Wäldi",
+    "slug": "waeldi",
+    "canton": "tg"
+  },
+  {
+    "name": "Wängi",
+    "slug": "waengi",
+    "canton": "tg"
+  },
+  {
+    "name": "Zihlschlacht-Sitterdorf",
+    "slug": "zihlschlacht-sitterdorf",
+    "canton": "tg"
+  },
+  {
+    "name": "Acquarossa",
+    "slug": "acquarossa",
+    "canton": "ti"
+  },
+  {
+    "name": "Agno",
+    "slug": "agno",
+    "canton": "ti"
+  },
+  {
+    "name": "Airolo",
+    "slug": "airolo",
+    "canton": "ti"
+  },
+  {
+    "name": "Alto Malcantone",
+    "slug": "alto-malcantone",
+    "canton": "ti"
+  },
+  {
+    "name": "Aranno",
+    "slug": "aranno",
+    "canton": "ti"
+  },
+  {
+    "name": "Arbedo-Castione",
+    "slug": "arbedo-castione",
+    "canton": "ti"
+  },
+  {
+    "name": "Arogno",
+    "slug": "arogno",
+    "canton": "ti"
+  },
+  {
+    "name": "Ascona",
+    "slug": "ascona",
+    "canton": "ti"
+  },
+  {
+    "name": "Avegno Gordevio",
+    "slug": "avegno-gordevio",
+    "canton": "ti"
+  },
+  {
+    "name": "Balerna",
+    "slug": "balerna",
+    "canton": "ti"
+  },
+  {
+    "name": "Bedano",
+    "slug": "bedano",
+    "canton": "ti"
+  },
+  {
+    "name": "Bedretto",
+    "slug": "bedretto",
+    "canton": "ti"
+  },
+  {
+    "name": "Bellinzona",
+    "slug": "bellinzona",
+    "canton": "ti"
+  },
+  {
+    "name": "Biasca",
+    "slug": "biasca",
+    "canton": "ti"
+  },
+  {
+    "name": "Bioggio",
+    "slug": "bioggio",
+    "canton": "ti"
+  },
+  {
+    "name": "Bissone",
+    "slug": "bissone",
+    "canton": "ti"
+  },
+  {
+    "name": "Blenio",
+    "slug": "blenio",
+    "canton": "ti"
+  },
+  {
+    "name": "Bosco/Gurin",
+    "slug": "bosco-gurin",
+    "canton": "ti"
+  },
+  {
+    "name": "Breggia",
+    "slug": "breggia",
+    "canton": "ti"
+  },
+  {
+    "name": "Brione sopra Minusio",
+    "slug": "brione-sopra-minusio",
+    "canton": "ti"
+  },
+  {
+    "name": "Brissago",
+    "slug": "brissago",
+    "canton": "ti"
+  },
+  {
+    "name": "Brusino Arsizio",
+    "slug": "brusino-arsizio",
+    "canton": "ti"
+  },
+  {
+    "name": "Cademario",
+    "slug": "cademario",
+    "canton": "ti"
+  },
+  {
+    "name": "Cadempino",
+    "slug": "cadempino",
+    "canton": "ti"
+  },
+  {
+    "name": "Cadenazzo",
+    "slug": "cadenazzo",
+    "canton": "ti"
+  },
+  {
+    "name": "Campo (Vallemaggia)",
+    "slug": "campo-vallemaggia",
+    "canton": "ti"
+  },
+  {
+    "name": "Canobbio",
+    "slug": "canobbio",
+    "canton": "ti"
+  },
+  {
+    "name": "Capriasca",
+    "slug": "capriasca",
+    "canton": "ti"
+  },
+  {
+    "name": "Caslano",
+    "slug": "caslano",
+    "canton": "ti"
+  },
+  {
+    "name": "Castel San Pietro",
+    "slug": "castel-san-pietro",
+    "canton": "ti"
+  },
+  {
+    "name": "Centovalli",
+    "slug": "centovalli",
+    "canton": "ti"
+  },
+  {
+    "name": "Cerentino",
+    "slug": "cerentino",
+    "canton": "ti"
+  },
+  {
+    "name": "Cevio",
+    "slug": "cevio",
+    "canton": "ti"
+  },
+  {
+    "name": "Chiasso",
+    "slug": "chiasso",
+    "canton": "ti"
+  },
+  {
+    "name": "Coldrerio",
+    "slug": "coldrerio",
+    "canton": "ti"
+  },
+  {
+    "name": "Collina d'Oro",
+    "slug": "collina-d-oro",
+    "canton": "ti"
+  },
+  {
+    "name": "Comano",
+    "slug": "comano",
+    "canton": "ti"
+  },
+  {
+    "name": "Cugnasco-Gerra",
+    "slug": "cugnasco-gerra",
+    "canton": "ti"
+  },
+  {
+    "name": "Cureglia",
+    "slug": "cureglia",
+    "canton": "ti"
+  },
+  {
+    "name": "Dalpe",
+    "slug": "dalpe",
+    "canton": "ti"
+  },
+  {
+    "name": "Faido",
+    "slug": "faido",
+    "canton": "ti"
+  },
+  {
+    "name": "Gambarogno",
+    "slug": "gambarogno",
+    "canton": "ti"
+  },
+  {
+    "name": "Giornico",
+    "slug": "giornico",
+    "canton": "ti"
+  },
+  {
+    "name": "Gordola",
+    "slug": "gordola",
+    "canton": "ti"
+  },
+  {
+    "name": "Grancia",
+    "slug": "grancia",
+    "canton": "ti"
+  },
+  {
+    "name": "Gravesano",
+    "slug": "gravesano",
+    "canton": "ti"
+  },
+  {
+    "name": "Isone",
+    "slug": "isone",
+    "canton": "ti"
+  },
+  {
+    "name": "Lamone",
+    "slug": "lamone",
+    "canton": "ti"
+  },
+  {
+    "name": "Lavertezzo",
+    "slug": "lavertezzo",
+    "canton": "ti"
+  },
+  {
+    "name": "Lavizzara",
+    "slug": "lavizzara",
+    "canton": "ti"
+  },
+  {
+    "name": "Lema",
+    "slug": "lema",
+    "canton": "ti"
+  },
+  {
+    "name": "Linescio",
+    "slug": "linescio",
+    "canton": "ti"
+  },
+  {
+    "name": "Locarno",
+    "slug": "locarno",
+    "canton": "ti"
+  },
+  {
+    "name": "Losone",
+    "slug": "losone",
+    "canton": "ti"
+  },
+  {
+    "name": "Lugano",
+    "slug": "lugano",
+    "canton": "ti"
+  },
+  {
+    "name": "Lumino",
+    "slug": "lumino",
+    "canton": "ti"
+  },
+  {
+    "name": "Maggia",
+    "slug": "maggia",
+    "canton": "ti"
+  },
+  {
+    "name": "Magliaso",
+    "slug": "magliaso",
+    "canton": "ti"
+  },
+  {
+    "name": "Manno",
+    "slug": "manno",
+    "canton": "ti"
+  },
+  {
+    "name": "Massagno",
+    "slug": "massagno",
+    "canton": "ti"
+  },
+  {
+    "name": "Melide",
+    "slug": "melide",
+    "canton": "ti"
+  },
+  {
+    "name": "Mendrisio",
+    "slug": "mendrisio",
+    "canton": "ti"
+  },
+  {
+    "name": "Mergoscia",
+    "slug": "mergoscia",
+    "canton": "ti"
+  },
+  {
+    "name": "Mezzovico-Vira",
+    "slug": "mezzovico-vira",
+    "canton": "ti"
+  },
+  {
+    "name": "Minusio",
+    "slug": "minusio",
+    "canton": "ti"
+  },
+  {
+    "name": "Monteceneri",
+    "slug": "monteceneri",
+    "canton": "ti"
+  },
+  {
+    "name": "Morbio Inferiore",
+    "slug": "morbio-inferiore",
+    "canton": "ti"
+  },
+  {
+    "name": "Morcote",
+    "slug": "morcote",
+    "canton": "ti"
+  },
+  {
+    "name": "Muralto",
+    "slug": "muralto",
+    "canton": "ti"
+  },
+  {
+    "name": "Muzzano",
+    "slug": "muzzano",
+    "canton": "ti"
+  },
+  {
+    "name": "Neggio",
+    "slug": "neggio",
+    "canton": "ti"
+  },
+  {
+    "name": "Novazzano",
+    "slug": "novazzano",
+    "canton": "ti"
+  },
+  {
+    "name": "Onsernone",
+    "slug": "onsernone",
+    "canton": "ti"
+  },
+  {
+    "name": "Origlio",
+    "slug": "origlio",
+    "canton": "ti"
+  },
+  {
+    "name": "Orselina",
+    "slug": "orselina",
+    "canton": "ti"
+  },
+  {
+    "name": "Paradiso",
+    "slug": "paradiso",
+    "canton": "ti"
+  },
+  {
+    "name": "Personico",
+    "slug": "personico",
+    "canton": "ti"
+  },
+  {
+    "name": "Pollegio",
+    "slug": "pollegio",
+    "canton": "ti"
+  },
+  {
+    "name": "Ponte Capriasca",
+    "slug": "ponte-capriasca",
+    "canton": "ti"
+  },
+  {
+    "name": "Porza",
+    "slug": "porza",
+    "canton": "ti"
+  },
+  {
+    "name": "Pura",
+    "slug": "pura",
+    "canton": "ti"
+  },
+  {
+    "name": "Quinto",
+    "slug": "quinto",
+    "canton": "ti"
+  },
+  {
+    "name": "Riva San Vitale",
+    "slug": "riva-san-vitale",
+    "canton": "ti"
+  },
+  {
+    "name": "Riviera",
+    "slug": "riviera",
+    "canton": "ti"
+  },
+  {
+    "name": "Ronco sopra Ascona",
+    "slug": "ronco-sopra-ascona",
+    "canton": "ti"
+  },
+  {
+    "name": "Sant'Antonino",
+    "slug": "sant-antonino",
+    "canton": "ti"
+  },
+  {
+    "name": "Savosa",
+    "slug": "savosa",
+    "canton": "ti"
+  },
+  {
+    "name": "Serravalle",
+    "slug": "serravalle",
+    "canton": "ti"
+  },
+  {
+    "name": "Sorengo",
+    "slug": "sorengo",
+    "canton": "ti"
+  },
+  {
+    "name": "Stabio",
+    "slug": "stabio",
+    "canton": "ti"
+  },
+  {
+    "name": "Tenero-Contra",
+    "slug": "tenero-contra",
+    "canton": "ti"
+  },
+  {
+    "name": "Terre di Pedemonte",
+    "slug": "terre-di-pedemonte",
+    "canton": "ti"
+  },
+  {
+    "name": "Torricella-Taverne",
+    "slug": "torricella-taverne",
+    "canton": "ti"
+  },
+  {
+    "name": "Tresa",
+    "slug": "tresa",
+    "canton": "ti"
+  },
+  {
+    "name": "Vacallo",
+    "slug": "vacallo",
+    "canton": "ti"
+  },
+  {
+    "name": "Val Mara",
+    "slug": "val-mara",
+    "canton": "ti"
+  },
+  {
+    "name": "Vernate",
+    "slug": "vernate",
+    "canton": "ti"
+  },
+  {
+    "name": "Verzasca",
+    "slug": "verzasca",
+    "canton": "ti"
+  },
+  {
+    "name": "Vezia",
+    "slug": "vezia",
+    "canton": "ti"
+  },
+  {
+    "name": "Vico Morcote",
+    "slug": "vico-morcote",
+    "canton": "ti"
+  },
+  {
+    "name": "Altdorf (UR)",
+    "slug": "altdorf",
+    "canton": "ur"
+  },
+  {
+    "name": "Andermatt",
+    "slug": "andermatt",
+    "canton": "ur"
+  },
+  {
+    "name": "Attinghausen",
+    "slug": "attinghausen",
+    "canton": "ur"
+  },
+  {
+    "name": "Bürglen (UR)",
+    "slug": "buerglen-ur",
+    "canton": "ur"
+  },
+  {
+    "name": "Erstfeld",
+    "slug": "erstfeld",
+    "canton": "ur"
+  },
+  {
+    "name": "Flüelen",
+    "slug": "flueelen",
+    "canton": "ur"
+  },
+  {
+    "name": "Gurtnellen",
+    "slug": "gurtnellen",
+    "canton": "ur"
+  },
+  {
+    "name": "Göschenen",
+    "slug": "goeschenen",
+    "canton": "ur"
+  },
+  {
+    "name": "Hospental",
+    "slug": "hospental",
+    "canton": "ur"
+  },
+  {
+    "name": "Isenthal",
+    "slug": "isenthal",
+    "canton": "ur"
+  },
+  {
+    "name": "Realp",
+    "slug": "realp",
+    "canton": "ur"
+  },
+  {
+    "name": "Schattdorf",
+    "slug": "schattdorf",
+    "canton": "ur"
+  },
+  {
+    "name": "Seedorf (UR)",
+    "slug": "seedorf-ur",
+    "canton": "ur"
+  },
+  {
+    "name": "Seelisberg",
+    "slug": "seelisberg",
+    "canton": "ur"
+  },
+  {
+    "name": "Silenen",
+    "slug": "silenen",
+    "canton": "ur"
+  },
+  {
+    "name": "Sisikon",
+    "slug": "sisikon",
+    "canton": "ur"
+  },
+  {
+    "name": "Spiringen",
+    "slug": "spiringen",
+    "canton": "ur"
+  },
+  {
+    "name": "Unterschächen",
+    "slug": "unterschaechen",
+    "canton": "ur"
+  },
+  {
+    "name": "Wassen",
+    "slug": "wassen",
+    "canton": "ur"
+  },
+  {
+    "name": "Aclens",
+    "slug": "aclens",
+    "canton": "vd"
+  },
+  {
+    "name": "Agiez",
+    "slug": "agiez",
+    "canton": "vd"
+  },
+  {
+    "name": "Aigle",
+    "slug": "aigle",
+    "canton": "vd"
+  },
+  {
+    "name": "Allaman",
+    "slug": "allaman",
+    "canton": "vd"
+  },
+  {
+    "name": "Arnex-sur-Nyon",
+    "slug": "arnex-sur-nyon",
+    "canton": "vd"
+  },
+  {
+    "name": "Arnex-sur-Orbe",
+    "slug": "arnex-sur-orbe",
+    "canton": "vd"
+  },
+  {
+    "name": "Arzier-Le Muids",
+    "slug": "arzier-le-muids",
+    "canton": "vd"
+  },
+  {
+    "name": "Assens",
+    "slug": "assens",
+    "canton": "vd"
+  },
+  {
+    "name": "Aubonne",
+    "slug": "aubonne",
+    "canton": "vd"
+  },
+  {
+    "name": "Avenches",
+    "slug": "avenches",
+    "canton": "vd"
+  },
+  {
+    "name": "Ballaigues",
+    "slug": "ballaigues",
+    "canton": "vd"
+  },
+  {
+    "name": "Ballens",
+    "slug": "ballens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bassins",
+    "slug": "bassins",
+    "canton": "vd"
+  },
+  {
+    "name": "Baulmes",
+    "slug": "baulmes",
+    "canton": "vd"
+  },
+  {
+    "name": "Bavois",
+    "slug": "bavois",
+    "canton": "vd"
+  },
+  {
+    "name": "Begnins",
+    "slug": "begnins",
+    "canton": "vd"
+  },
+  {
+    "name": "Belmont-sur-Lausanne",
+    "slug": "belmont-sur-lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Belmont-sur-Yverdon",
+    "slug": "belmont-sur-yverdon",
+    "canton": "vd"
+  },
+  {
+    "name": "Bercher",
+    "slug": "bercher",
+    "canton": "vd"
+  },
+  {
+    "name": "Berolle",
+    "slug": "berolle",
+    "canton": "vd"
+  },
+  {
+    "name": "Bettens",
+    "slug": "bettens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bex",
+    "slug": "bex",
+    "canton": "vd"
+  },
+  {
+    "name": "Bioley-Magnoux",
+    "slug": "bioley-magnoux",
+    "canton": "vd"
+  },
+  {
+    "name": "Bière",
+    "slug": "biere",
+    "canton": "vd"
+  },
+  {
+    "name": "Blonay - Saint-Légier",
+    "slug": "blonay-saint-legier",
+    "canton": "vd"
+  },
+  {
+    "name": "Bofflens",
+    "slug": "bofflens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bogis-Bossey",
+    "slug": "bogis-bossey",
+    "canton": "vd"
+  },
+  {
+    "name": "Bonvillars",
+    "slug": "bonvillars",
+    "canton": "vd"
+  },
+  {
+    "name": "Borex",
+    "slug": "borex",
+    "canton": "vd"
+  },
+  {
+    "name": "Bottens",
+    "slug": "bottens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bougy-Villars",
+    "slug": "bougy-villars",
+    "canton": "vd"
+  },
+  {
+    "name": "Boulens",
+    "slug": "boulens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bourg-en-Lavaux",
+    "slug": "bourg-en-lavaux",
+    "canton": "vd"
+  },
+  {
+    "name": "Bournens",
+    "slug": "bournens",
+    "canton": "vd"
+  },
+  {
+    "name": "Boussens",
+    "slug": "boussens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bremblens",
+    "slug": "bremblens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bretigny-sur-Morrens",
+    "slug": "bretigny-sur-morrens",
+    "canton": "vd"
+  },
+  {
+    "name": "Bretonnières",
+    "slug": "bretonnieres",
+    "canton": "vd"
+  },
+  {
+    "name": "Buchillon",
+    "slug": "buchillon",
+    "canton": "vd"
+  },
+  {
+    "name": "Bullet",
+    "slug": "bullet",
+    "canton": "vd"
+  },
+  {
+    "name": "Bursinel",
+    "slug": "bursinel",
+    "canton": "vd"
+  },
+  {
+    "name": "Bursins",
+    "slug": "bursins",
+    "canton": "vd"
+  },
+  {
+    "name": "Burtigny",
+    "slug": "burtigny",
+    "canton": "vd"
+  },
+  {
+    "name": "Bussigny",
+    "slug": "bussigny",
+    "canton": "vd"
+  },
+  {
+    "name": "Bussy-sur-Moudon",
+    "slug": "bussy-sur-moudon",
+    "canton": "vd"
+  },
+  {
+    "name": "Chamblon",
+    "slug": "chamblon",
+    "canton": "vd"
+  },
+  {
+    "name": "Champagne",
+    "slug": "champagne",
+    "canton": "vd"
+  },
+  {
+    "name": "Champtauroz",
+    "slug": "champtauroz",
+    "canton": "vd"
+  },
+  {
+    "name": "Champvent",
+    "slug": "champvent",
+    "canton": "vd"
+  },
+  {
+    "name": "Chardonne",
+    "slug": "chardonne",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-de-Bogis",
+    "slug": "chavannes-de-bogis",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-des-Bois",
+    "slug": "chavannes-des-bois",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-le-Chêne",
+    "slug": "chavannes-le-chene",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-le-Veyron",
+    "slug": "chavannes-le-veyron",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-près-Renens",
+    "slug": "chavannes-pres-renens",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavannes-sur-Moudon",
+    "slug": "chavannes-sur-moudon",
+    "canton": "vd"
+  },
+  {
+    "name": "Chavornay",
+    "slug": "chavornay",
+    "canton": "vd"
+  },
+  {
+    "name": "Cheseaux-Noréaz",
+    "slug": "cheseaux-noreaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Cheseaux-sur-Lausanne",
+    "slug": "cheseaux-sur-lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Chessel",
+    "slug": "chessel",
+    "canton": "vd"
+  },
+  {
+    "name": "Chevilly",
+    "slug": "chevilly",
+    "canton": "vd"
+  },
+  {
+    "name": "Chevroux",
+    "slug": "chevroux",
+    "canton": "vd"
+  },
+  {
+    "name": "Chexbres",
+    "slug": "chexbres",
+    "canton": "vd"
+  },
+  {
+    "name": "Chigny",
+    "slug": "chigny",
+    "canton": "vd"
+  },
+  {
+    "name": "Château-d'Oex",
+    "slug": "chateau-d-oex",
+    "canton": "vd"
+  },
+  {
+    "name": "Chéserex",
+    "slug": "cheserex",
+    "canton": "vd"
+  },
+  {
+    "name": "Chêne-Pâquier",
+    "slug": "chene-paquier",
+    "canton": "vd"
+  },
+  {
+    "name": "Clarmont",
+    "slug": "clarmont",
+    "canton": "vd"
+  },
+  {
+    "name": "Coinsins",
+    "slug": "coinsins",
+    "canton": "vd"
+  },
+  {
+    "name": "Commugny",
+    "slug": "commugny",
+    "canton": "vd"
+  },
+  {
+    "name": "Concise",
+    "slug": "concise",
+    "canton": "vd"
+  },
+  {
+    "name": "Coppet",
+    "slug": "coppet",
+    "canton": "vd"
+  },
+  {
+    "name": "Corbeyrier",
+    "slug": "corbeyrier",
+    "canton": "vd"
+  },
+  {
+    "name": "Corcelles-le-Jorat",
+    "slug": "corcelles-le-jorat",
+    "canton": "vd"
+  },
+  {
+    "name": "Corcelles-près-Concise",
+    "slug": "corcelles-pres-concise",
+    "canton": "vd"
+  },
+  {
+    "name": "Corcelles-près-Payerne",
+    "slug": "corcelles-pres-payerne",
+    "canton": "vd"
+  },
+  {
+    "name": "Corseaux",
+    "slug": "corseaux",
+    "canton": "vd"
+  },
+  {
+    "name": "Corsier-sur-Vevey",
+    "slug": "corsier-sur-vevey",
+    "canton": "vd"
+  },
+  {
+    "name": "Cossonay",
+    "slug": "cossonay",
+    "canton": "vd"
+  },
+  {
+    "name": "Crans (VD)",
+    "slug": "crans-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Crassier",
+    "slug": "crassier",
+    "canton": "vd"
+  },
+  {
+    "name": "Crissier",
+    "slug": "crissier",
+    "canton": "vd"
+  },
+  {
+    "name": "Cronay",
+    "slug": "cronay",
+    "canton": "vd"
+  },
+  {
+    "name": "Croy",
+    "slug": "croy",
+    "canton": "vd"
+  },
+  {
+    "name": "Cuarnens",
+    "slug": "cuarnens",
+    "canton": "vd"
+  },
+  {
+    "name": "Cuarny",
+    "slug": "cuarny",
+    "canton": "vd"
+  },
+  {
+    "name": "Cudrefin",
+    "slug": "cudrefin",
+    "canton": "vd"
+  },
+  {
+    "name": "Cugy (VD)",
+    "slug": "cugy-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Curtilles",
+    "slug": "curtilles",
+    "canton": "vd"
+  },
+  {
+    "name": "Daillens",
+    "slug": "daillens",
+    "canton": "vd"
+  },
+  {
+    "name": "Denens",
+    "slug": "denens",
+    "canton": "vd"
+  },
+  {
+    "name": "Denges",
+    "slug": "denges",
+    "canton": "vd"
+  },
+  {
+    "name": "Dizy",
+    "slug": "dizy",
+    "canton": "vd"
+  },
+  {
+    "name": "Dompierre (VD)",
+    "slug": "dompierre-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Donneloye",
+    "slug": "donneloye",
+    "canton": "vd"
+  },
+  {
+    "name": "Duillier",
+    "slug": "duillier",
+    "canton": "vd"
+  },
+  {
+    "name": "Dully",
+    "slug": "dully",
+    "canton": "vd"
+  },
+  {
+    "name": "Démoret",
+    "slug": "demoret",
+    "canton": "vd"
+  },
+  {
+    "name": "Echallens",
+    "slug": "echallens",
+    "canton": "vd"
+  },
+  {
+    "name": "Echandens",
+    "slug": "echandens",
+    "canton": "vd"
+  },
+  {
+    "name": "Echichens",
+    "slug": "echichens",
+    "canton": "vd"
+  },
+  {
+    "name": "Eclépens",
+    "slug": "eclepens",
+    "canton": "vd"
+  },
+  {
+    "name": "Ecublens (VD)",
+    "slug": "ecublens-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Epalinges",
+    "slug": "epalinges",
+    "canton": "vd"
+  },
+  {
+    "name": "Ependes (VD)",
+    "slug": "ependes-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Essertines-sur-Rolle",
+    "slug": "essertines-sur-rolle",
+    "canton": "vd"
+  },
+  {
+    "name": "Essertines-sur-Yverdon",
+    "slug": "essertines-sur-yverdon",
+    "canton": "vd"
+  },
+  {
+    "name": "Etagnières",
+    "slug": "etagnieres",
+    "canton": "vd"
+  },
+  {
+    "name": "Etoy",
+    "slug": "etoy",
+    "canton": "vd"
+  },
+  {
+    "name": "Eysins",
+    "slug": "eysins",
+    "canton": "vd"
+  },
+  {
+    "name": "Faoug",
+    "slug": "faoug",
+    "canton": "vd"
+  },
+  {
+    "name": "Ferreyres",
+    "slug": "ferreyres",
+    "canton": "vd"
+  },
+  {
+    "name": "Fey",
+    "slug": "fey",
+    "canton": "vd"
+  },
+  {
+    "name": "Fiez",
+    "slug": "fiez",
+    "canton": "vd"
+  },
+  {
+    "name": "Fontaines-sur-Grandson",
+    "slug": "fontaines-sur-grandson",
+    "canton": "vd"
+  },
+  {
+    "name": "Forel (Lavaux)",
+    "slug": "forel-lavaux",
+    "canton": "vd"
+  },
+  {
+    "name": "Founex",
+    "slug": "founex",
+    "canton": "vd"
+  },
+  {
+    "name": "Froideville",
+    "slug": "froideville",
+    "canton": "vd"
+  },
+  {
+    "name": "Féchy",
+    "slug": "fechy",
+    "canton": "vd"
+  },
+  {
+    "name": "Genolier",
+    "slug": "genolier",
+    "canton": "vd"
+  },
+  {
+    "name": "Giez",
+    "slug": "giez",
+    "canton": "vd"
+  },
+  {
+    "name": "Gilly",
+    "slug": "gilly",
+    "canton": "vd"
+  },
+  {
+    "name": "Gimel",
+    "slug": "gimel",
+    "canton": "vd"
+  },
+  {
+    "name": "Gingins",
+    "slug": "gingins",
+    "canton": "vd"
+  },
+  {
+    "name": "Givrins",
+    "slug": "givrins",
+    "canton": "vd"
+  },
+  {
+    "name": "Gland",
+    "slug": "gland",
+    "canton": "vd"
+  },
+  {
+    "name": "Gollion",
+    "slug": "gollion",
+    "canton": "vd"
+  },
+  {
+    "name": "Goumoëns",
+    "slug": "goumoens",
+    "canton": "vd"
+  },
+  {
+    "name": "Grancy",
+    "slug": "grancy",
+    "canton": "vd"
+  },
+  {
+    "name": "Grandcour",
+    "slug": "grandcour",
+    "canton": "vd"
+  },
+  {
+    "name": "Grandevent",
+    "slug": "grandevent",
+    "canton": "vd"
+  },
+  {
+    "name": "Grandson",
+    "slug": "grandson",
+    "canton": "vd"
+  },
+  {
+    "name": "Grens",
+    "slug": "grens",
+    "canton": "vd"
+  },
+  {
+    "name": "Gryon",
+    "slug": "gryon",
+    "canton": "vd"
+  },
+  {
+    "name": "Hautemorges",
+    "slug": "hautemorges",
+    "canton": "vd"
+  },
+  {
+    "name": "Henniez",
+    "slug": "henniez",
+    "canton": "vd"
+  },
+  {
+    "name": "Hermenches",
+    "slug": "hermenches",
+    "canton": "vd"
+  },
+  {
+    "name": "Jongny",
+    "slug": "jongny",
+    "canton": "vd"
+  },
+  {
+    "name": "Jorat-Menthue",
+    "slug": "jorat-menthue",
+    "canton": "vd"
+  },
+  {
+    "name": "Jorat-Mézières",
+    "slug": "jorat-mezieres",
+    "canton": "vd"
+  },
+  {
+    "name": "Jouxtens-Mézery",
+    "slug": "jouxtens-mezery",
+    "canton": "vd"
+  },
+  {
+    "name": "Juriens",
+    "slug": "juriens",
+    "canton": "vd"
+  },
+  {
+    "name": "L'Abbaye",
+    "slug": "l-abbaye",
+    "canton": "vd"
+  },
+  {
+    "name": "L'Abergement",
+    "slug": "l-abergement",
+    "canton": "vd"
+  },
+  {
+    "name": "L'Isle",
+    "slug": "l-isle",
+    "canton": "vd"
+  },
+  {
+    "name": "La Chaux (Cossonay)",
+    "slug": "la-chaux-cossonay",
+    "canton": "vd"
+  },
+  {
+    "name": "La Praz",
+    "slug": "la-praz",
+    "canton": "vd"
+  },
+  {
+    "name": "La Rippe",
+    "slug": "la-rippe",
+    "canton": "vd"
+  },
+  {
+    "name": "La Sarraz",
+    "slug": "la-sarraz",
+    "canton": "vd"
+  },
+  {
+    "name": "La Tour-de-Peilz",
+    "slug": "la-tour-de-peilz",
+    "canton": "vd"
+  },
+  {
+    "name": "Lausanne",
+    "slug": "lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Lavey-Morcles",
+    "slug": "lavey-morcles",
+    "canton": "vd"
+  },
+  {
+    "name": "Lavigny",
+    "slug": "lavigny",
+    "canton": "vd"
+  },
+  {
+    "name": "Le Chenit",
+    "slug": "le-chenit",
+    "canton": "vd"
+  },
+  {
+    "name": "Le Lieu",
+    "slug": "le-lieu",
+    "canton": "vd"
+  },
+  {
+    "name": "Le Mont-sur-Lausanne",
+    "slug": "le-mont-sur-lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Le Vaud",
+    "slug": "le-vaud",
+    "canton": "vd"
+  },
+  {
+    "name": "Les Clées",
+    "slug": "les-clees",
+    "canton": "vd"
+  },
+  {
+    "name": "Leysin",
+    "slug": "leysin",
+    "canton": "vd"
+  },
+  {
+    "name": "Lignerolle",
+    "slug": "lignerolle",
+    "canton": "vd"
+  },
+  {
+    "name": "Lonay",
+    "slug": "lonay",
+    "canton": "vd"
+  },
+  {
+    "name": "Longirod",
+    "slug": "longirod",
+    "canton": "vd"
+  },
+  {
+    "name": "Lovatens",
+    "slug": "lovatens",
+    "canton": "vd"
+  },
+  {
+    "name": "Lucens",
+    "slug": "lucens",
+    "canton": "vd"
+  },
+  {
+    "name": "Luins",
+    "slug": "luins",
+    "canton": "vd"
+  },
+  {
+    "name": "Lully (VD)",
+    "slug": "lully-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Lussery-Villars",
+    "slug": "lussery-villars",
+    "canton": "vd"
+  },
+  {
+    "name": "Lussy-sur-Morges",
+    "slug": "lussy-sur-morges",
+    "canton": "vd"
+  },
+  {
+    "name": "Lutry",
+    "slug": "lutry",
+    "canton": "vd"
+  },
+  {
+    "name": "Maracon",
+    "slug": "maracon",
+    "canton": "vd"
+  },
+  {
+    "name": "Marchissy",
+    "slug": "marchissy",
+    "canton": "vd"
+  },
+  {
+    "name": "Mathod",
+    "slug": "mathod",
+    "canton": "vd"
+  },
+  {
+    "name": "Mauborget",
+    "slug": "mauborget",
+    "canton": "vd"
+  },
+  {
+    "name": "Mauraz",
+    "slug": "mauraz",
+    "canton": "vd"
+  },
+  {
+    "name": "Mex (VD)",
+    "slug": "mex-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Mies",
+    "slug": "mies",
+    "canton": "vd"
+  },
+  {
+    "name": "Missy",
+    "slug": "missy",
+    "canton": "vd"
+  },
+  {
+    "name": "Moiry",
+    "slug": "moiry",
+    "canton": "vd"
+  },
+  {
+    "name": "Mollens (VD)",
+    "slug": "mollens-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Molondin",
+    "slug": "molondin",
+    "canton": "vd"
+  },
+  {
+    "name": "Mont-la-Ville",
+    "slug": "mont-la-ville",
+    "canton": "vd"
+  },
+  {
+    "name": "Mont-sur-Rolle",
+    "slug": "mont-sur-rolle",
+    "canton": "vd"
+  },
+  {
+    "name": "Montagny-près-Yverdon",
+    "slug": "montagny-pres-yverdon",
+    "canton": "vd"
+  },
+  {
+    "name": "Montanaire",
+    "slug": "montanaire",
+    "canton": "vd"
+  },
+  {
+    "name": "Montcherand",
+    "slug": "montcherand",
+    "canton": "vd"
+  },
+  {
+    "name": "Montilliez",
+    "slug": "montilliez",
+    "canton": "vd"
+  },
+  {
+    "name": "Montpreveyres",
+    "slug": "montpreveyres",
+    "canton": "vd"
+  },
+  {
+    "name": "Montreux",
+    "slug": "montreux",
+    "canton": "vd"
+  },
+  {
+    "name": "Montricher",
+    "slug": "montricher",
+    "canton": "vd"
+  },
+  {
+    "name": "Morges",
+    "slug": "morges",
+    "canton": "vd"
+  },
+  {
+    "name": "Morrens (VD)",
+    "slug": "morrens-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Moudon",
+    "slug": "moudon",
+    "canton": "vd"
+  },
+  {
+    "name": "Mutrux",
+    "slug": "mutrux",
+    "canton": "vd"
+  },
+  {
+    "name": "Novalles",
+    "slug": "novalles",
+    "canton": "vd"
+  },
+  {
+    "name": "Noville",
+    "slug": "noville",
+    "canton": "vd"
+  },
+  {
+    "name": "Nyon",
+    "slug": "nyon",
+    "canton": "vd"
+  },
+  {
+    "name": "Ogens",
+    "slug": "ogens",
+    "canton": "vd"
+  },
+  {
+    "name": "Ollon",
+    "slug": "ollon",
+    "canton": "vd"
+  },
+  {
+    "name": "Onnens (VD)",
+    "slug": "onnens-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Oppens",
+    "slug": "oppens",
+    "canton": "vd"
+  },
+  {
+    "name": "Orbe",
+    "slug": "orbe",
+    "canton": "vd"
+  },
+  {
+    "name": "Orges",
+    "slug": "orges",
+    "canton": "vd"
+  },
+  {
+    "name": "Ormont-Dessous",
+    "slug": "ormont-dessous",
+    "canton": "vd"
+  },
+  {
+    "name": "Ormont-Dessus",
+    "slug": "ormont-dessus",
+    "canton": "vd"
+  },
+  {
+    "name": "Orny",
+    "slug": "orny",
+    "canton": "vd"
+  },
+  {
+    "name": "Oron",
+    "slug": "oron",
+    "canton": "vd"
+  },
+  {
+    "name": "Orzens",
+    "slug": "orzens",
+    "canton": "vd"
+  },
+  {
+    "name": "Oulens-sous-Echallens",
+    "slug": "oulens-sous-echallens",
+    "canton": "vd"
+  },
+  {
+    "name": "Pailly",
+    "slug": "pailly",
+    "canton": "vd"
+  },
+  {
+    "name": "Paudex",
+    "slug": "paudex",
+    "canton": "vd"
+  },
+  {
+    "name": "Payerne",
+    "slug": "payerne",
+    "canton": "vd"
+  },
+  {
+    "name": "Penthalaz",
+    "slug": "penthalaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Penthaz",
+    "slug": "penthaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Penthéréaz",
+    "slug": "penthereaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Perroy",
+    "slug": "perroy",
+    "canton": "vd"
+  },
+  {
+    "name": "Poliez-Pittet",
+    "slug": "poliez-pittet",
+    "canton": "vd"
+  },
+  {
+    "name": "Pompaples",
+    "slug": "pompaples",
+    "canton": "vd"
+  },
+  {
+    "name": "Pomy",
+    "slug": "pomy",
+    "canton": "vd"
+  },
+  {
+    "name": "Prangins",
+    "slug": "prangins",
+    "canton": "vd"
+  },
+  {
+    "name": "Premier",
+    "slug": "premier",
+    "canton": "vd"
+  },
+  {
+    "name": "Prilly",
+    "slug": "prilly",
+    "canton": "vd"
+  },
+  {
+    "name": "Provence",
+    "slug": "provence",
+    "canton": "vd"
+  },
+  {
+    "name": "Préverenges",
+    "slug": "preverenges",
+    "canton": "vd"
+  },
+  {
+    "name": "Prévonloup",
+    "slug": "prevonloup",
+    "canton": "vd"
+  },
+  {
+    "name": "Puidoux",
+    "slug": "puidoux",
+    "canton": "vd"
+  },
+  {
+    "name": "Pully",
+    "slug": "pully",
+    "canton": "vd"
+  },
+  {
+    "name": "Rances",
+    "slug": "rances",
+    "canton": "vd"
+  },
+  {
+    "name": "Renens (VD)",
+    "slug": "renens-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Rennaz",
+    "slug": "rennaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Rivaz",
+    "slug": "rivaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Roche (VD)",
+    "slug": "roche-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Rolle",
+    "slug": "rolle",
+    "canton": "vd"
+  },
+  {
+    "name": "Romainmôtier-Envy",
+    "slug": "romainmotier-envy",
+    "canton": "vd"
+  },
+  {
+    "name": "Romanel-sur-Lausanne",
+    "slug": "romanel-sur-lausanne",
+    "canton": "vd"
+  },
+  {
+    "name": "Romanel-sur-Morges",
+    "slug": "romanel-sur-morges",
+    "canton": "vd"
+  },
+  {
+    "name": "Ropraz",
+    "slug": "ropraz",
+    "canton": "vd"
+  },
+  {
+    "name": "Rossenges",
+    "slug": "rossenges",
+    "canton": "vd"
+  },
+  {
+    "name": "Rossinière",
+    "slug": "rossiniere",
+    "canton": "vd"
+  },
+  {
+    "name": "Rougemont",
+    "slug": "rougemont",
+    "canton": "vd"
+  },
+  {
+    "name": "Rovray",
+    "slug": "rovray",
+    "canton": "vd"
+  },
+  {
+    "name": "Rueyres",
+    "slug": "rueyres",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Barthélemy (VD)",
+    "slug": "saint-barthelemy-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Cergue",
+    "slug": "saint-cergue",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-George",
+    "slug": "saint-george",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Livres",
+    "slug": "saint-livres",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Oyens",
+    "slug": "saint-oyens",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Prex",
+    "slug": "saint-prex",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Saphorin (Lavaux)",
+    "slug": "saint-saphorin-lavaux",
+    "canton": "vd"
+  },
+  {
+    "name": "Saint-Sulpice (VD)",
+    "slug": "saint-sulpice-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Sainte-Croix",
+    "slug": "sainte-croix",
+    "canton": "vd"
+  },
+  {
+    "name": "Saubraz",
+    "slug": "saubraz",
+    "canton": "vd"
+  },
+  {
+    "name": "Savigny",
+    "slug": "savigny",
+    "canton": "vd"
+  },
+  {
+    "name": "Senarclens",
+    "slug": "senarclens",
+    "canton": "vd"
+  },
+  {
+    "name": "Sergey",
+    "slug": "sergey",
+    "canton": "vd"
+  },
+  {
+    "name": "Servion",
+    "slug": "servion",
+    "canton": "vd"
+  },
+  {
+    "name": "Signy-Avenex",
+    "slug": "signy-avenex",
+    "canton": "vd"
+  },
+  {
+    "name": "Suchy",
+    "slug": "suchy",
+    "canton": "vd"
+  },
+  {
+    "name": "Sullens",
+    "slug": "sullens",
+    "canton": "vd"
+  },
+  {
+    "name": "Suscévaz",
+    "slug": "suscevaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Syens",
+    "slug": "syens",
+    "canton": "vd"
+  },
+  {
+    "name": "Tannay",
+    "slug": "tannay",
+    "canton": "vd"
+  },
+  {
+    "name": "Tartegnin",
+    "slug": "tartegnin",
+    "canton": "vd"
+  },
+  {
+    "name": "Tolochenaz",
+    "slug": "tolochenaz",
+    "canton": "vd"
+  },
+  {
+    "name": "Trey",
+    "slug": "trey",
+    "canton": "vd"
+  },
+  {
+    "name": "Treycovagnes",
+    "slug": "treycovagnes",
+    "canton": "vd"
+  },
+  {
+    "name": "Treytorrens (Payerne)",
+    "slug": "treytorrens-payerne",
+    "canton": "vd"
+  },
+  {
+    "name": "Trélex",
+    "slug": "trelex",
+    "canton": "vd"
+  },
+  {
+    "name": "Tévenon",
+    "slug": "tevenon",
+    "canton": "vd"
+  },
+  {
+    "name": "Ursins",
+    "slug": "ursins",
+    "canton": "vd"
+  },
+  {
+    "name": "Valbroye",
+    "slug": "valbroye",
+    "canton": "vd"
+  },
+  {
+    "name": "Valeyres-sous-Montagny",
+    "slug": "valeyres-sous-montagny",
+    "canton": "vd"
+  },
+  {
+    "name": "Valeyres-sous-Rances",
+    "slug": "valeyres-sous-rances",
+    "canton": "vd"
+  },
+  {
+    "name": "Valeyres-sous-Ursins",
+    "slug": "valeyres-sous-ursins",
+    "canton": "vd"
+  },
+  {
+    "name": "Vallorbe",
+    "slug": "vallorbe",
+    "canton": "vd"
+  },
+  {
+    "name": "Vaulion",
+    "slug": "vaulion",
+    "canton": "vd"
+  },
+  {
+    "name": "Vaux-sur-Morges",
+    "slug": "vaux-sur-morges",
+    "canton": "vd"
+  },
+  {
+    "name": "Vevey",
+    "slug": "vevey",
+    "canton": "vd"
+  },
+  {
+    "name": "Veytaux",
+    "slug": "veytaux",
+    "canton": "vd"
+  },
+  {
+    "name": "Vich",
+    "slug": "vich",
+    "canton": "vd"
+  },
+  {
+    "name": "Villars-Epeney",
+    "slug": "villars-epeney",
+    "canton": "vd"
+  },
+  {
+    "name": "Villars-le-Comte",
+    "slug": "villars-le-comte",
+    "canton": "vd"
+  },
+  {
+    "name": "Villars-le-Terroir",
+    "slug": "villars-le-terroir",
+    "canton": "vd"
+  },
+  {
+    "name": "Villars-Sainte-Croix",
+    "slug": "villars-sainte-croix",
+    "canton": "vd"
+  },
+  {
+    "name": "Villars-sous-Yens",
+    "slug": "villars-sous-yens",
+    "canton": "vd"
+  },
+  {
+    "name": "Villarzel",
+    "slug": "villarzel",
+    "canton": "vd"
+  },
+  {
+    "name": "Villeneuve (VD)",
+    "slug": "villeneuve-vd",
+    "canton": "vd"
+  },
+  {
+    "name": "Vinzel",
+    "slug": "vinzel",
+    "canton": "vd"
+  },
+  {
+    "name": "Vuarrens",
+    "slug": "vuarrens",
+    "canton": "vd"
+  },
+  {
+    "name": "Vucherens",
+    "slug": "vucherens",
+    "canton": "vd"
+  },
+  {
+    "name": "Vufflens-la-Ville",
+    "slug": "vufflens-la-ville",
+    "canton": "vd"
+  },
+  {
+    "name": "Vufflens-le-Château",
+    "slug": "vufflens-le-chateau",
+    "canton": "vd"
+  },
+  {
+    "name": "Vugelles-La Mothe",
+    "slug": "vugelles-la-mothe",
+    "canton": "vd"
+  },
+  {
+    "name": "Vuiteboeuf",
+    "slug": "vuiteboeuf",
+    "canton": "vd"
+  },
+  {
+    "name": "Vulliens",
+    "slug": "vulliens",
+    "canton": "vd"
+  },
+  {
+    "name": "Vullierens",
+    "slug": "vullierens",
+    "canton": "vd"
+  },
+  {
+    "name": "Vully-les-Lacs",
+    "slug": "vully-les-lacs",
+    "canton": "vd"
+  },
+  {
+    "name": "Yens",
+    "slug": "yens",
+    "canton": "vd"
+  },
+  {
+    "name": "Yverdon-les-Bains",
+    "slug": "yverdon-les-bains",
+    "canton": "vd"
+  },
+  {
+    "name": "Yvonand",
+    "slug": "yvonand",
+    "canton": "vd"
+  },
+  {
+    "name": "Yvorne",
+    "slug": "yvorne",
+    "canton": "vd"
+  },
+  {
+    "name": "Agarn",
+    "slug": "agarn",
+    "canton": "vs"
+  },
+  {
+    "name": "Albinen",
+    "slug": "albinen",
+    "canton": "vs"
+  },
+  {
+    "name": "Anniviers",
+    "slug": "anniviers",
+    "canton": "vs"
+  },
+  {
+    "name": "Arbaz",
+    "slug": "arbaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Ardon",
+    "slug": "ardon",
+    "canton": "vs"
+  },
+  {
+    "name": "Ausserberg",
+    "slug": "ausserberg",
+    "canton": "vs"
+  },
+  {
+    "name": "Ayent",
+    "slug": "ayent",
+    "canton": "vs"
+  },
+  {
+    "name": "Baltschieder",
+    "slug": "baltschieder",
+    "canton": "vs"
+  },
+  {
+    "name": "Bellwald",
+    "slug": "bellwald",
+    "canton": "vs"
+  },
+  {
+    "name": "Bettmeralp",
+    "slug": "bettmeralp",
+    "canton": "vs"
+  },
+  {
+    "name": "Binn",
+    "slug": "binn",
+    "canton": "vs"
+  },
+  {
+    "name": "Bister",
+    "slug": "bister",
+    "canton": "vs"
+  },
+  {
+    "name": "Bitsch",
+    "slug": "bitsch",
+    "canton": "vs"
+  },
+  {
+    "name": "Blatten",
+    "slug": "blatten",
+    "canton": "vs"
+  },
+  {
+    "name": "Bourg-Saint-Pierre",
+    "slug": "bourg-saint-pierre",
+    "canton": "vs"
+  },
+  {
+    "name": "Bovernier",
+    "slug": "bovernier",
+    "canton": "vs"
+  },
+  {
+    "name": "Brig-Glis",
+    "slug": "brig-glis",
+    "canton": "vs"
+  },
+  {
+    "name": "Bürchen",
+    "slug": "buerchen",
+    "canton": "vs"
+  },
+  {
+    "name": "Chalais",
+    "slug": "chalais",
+    "canton": "vs"
+  },
+  {
+    "name": "Chamoson",
+    "slug": "chamoson",
+    "canton": "vs"
+  },
+  {
+    "name": "Champéry",
+    "slug": "champery",
+    "canton": "vs"
+  },
+  {
+    "name": "Chippis",
+    "slug": "chippis",
+    "canton": "vs"
+  },
+  {
+    "name": "Collombey-Muraz",
+    "slug": "collombey-muraz",
+    "canton": "vs"
+  },
+  {
+    "name": "Collonges",
+    "slug": "collonges",
+    "canton": "vs"
+  },
+  {
+    "name": "Conthey",
+    "slug": "conthey",
+    "canton": "vs"
+  },
+  {
+    "name": "Crans-Montana",
+    "slug": "crans-montana",
+    "canton": "vs"
+  },
+  {
+    "name": "Dorénaz",
+    "slug": "dorenaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Eggerberg",
+    "slug": "eggerberg",
+    "canton": "vs"
+  },
+  {
+    "name": "Eischoll",
+    "slug": "eischoll",
+    "canton": "vs"
+  },
+  {
+    "name": "Eisten",
+    "slug": "eisten",
+    "canton": "vs"
+  },
+  {
+    "name": "Embd",
+    "slug": "embd",
+    "canton": "vs"
+  },
+  {
+    "name": "Ergisch",
+    "slug": "ergisch",
+    "canton": "vs"
+  },
+  {
+    "name": "Ernen",
+    "slug": "ernen",
+    "canton": "vs"
+  },
+  {
+    "name": "Evionnaz",
+    "slug": "evionnaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Evolène",
+    "slug": "evolene",
+    "canton": "vs"
+  },
+  {
+    "name": "Ferden",
+    "slug": "ferden",
+    "canton": "vs"
+  },
+  {
+    "name": "Fiesch",
+    "slug": "fiesch",
+    "canton": "vs"
+  },
+  {
+    "name": "Fieschertal",
+    "slug": "fieschertal",
+    "canton": "vs"
+  },
+  {
+    "name": "Finhaut",
+    "slug": "finhaut",
+    "canton": "vs"
+  },
+  {
+    "name": "Fully",
+    "slug": "fully",
+    "canton": "vs"
+  },
+  {
+    "name": "Gampel-Bratsch",
+    "slug": "gampel-bratsch",
+    "canton": "vs"
+  },
+  {
+    "name": "Goms",
+    "slug": "goms",
+    "canton": "vs"
+  },
+  {
+    "name": "Grengiols",
+    "slug": "grengiols",
+    "canton": "vs"
+  },
+  {
+    "name": "Grimisuat",
+    "slug": "grimisuat",
+    "canton": "vs"
+  },
+  {
+    "name": "Grächen",
+    "slug": "graechen",
+    "canton": "vs"
+  },
+  {
+    "name": "Grône",
+    "slug": "grone",
+    "canton": "vs"
+  },
+  {
+    "name": "Guttet-Feschel",
+    "slug": "guttet-feschel",
+    "canton": "vs"
+  },
+  {
+    "name": "Hérémence",
+    "slug": "heremence",
+    "canton": "vs"
+  },
+  {
+    "name": "Icogne",
+    "slug": "icogne",
+    "canton": "vs"
+  },
+  {
+    "name": "Inden",
+    "slug": "inden",
+    "canton": "vs"
+  },
+  {
+    "name": "Isérables",
+    "slug": "iserables",
+    "canton": "vs"
+  },
+  {
+    "name": "Kippel",
+    "slug": "kippel",
+    "canton": "vs"
+  },
+  {
+    "name": "Lalden",
+    "slug": "lalden",
+    "canton": "vs"
+  },
+  {
+    "name": "Lax",
+    "slug": "lax",
+    "canton": "vs"
+  },
+  {
+    "name": "Lens",
+    "slug": "lens",
+    "canton": "vs"
+  },
+  {
+    "name": "Leuk",
+    "slug": "leuk",
+    "canton": "vs"
+  },
+  {
+    "name": "Leukerbad",
+    "slug": "leukerbad",
+    "canton": "vs"
+  },
+  {
+    "name": "Leytron",
+    "slug": "leytron",
+    "canton": "vs"
+  },
+  {
+    "name": "Liddes",
+    "slug": "liddes",
+    "canton": "vs"
+  },
+  {
+    "name": "Martigny",
+    "slug": "martigny",
+    "canton": "vs"
+  },
+  {
+    "name": "Martigny-Combe",
+    "slug": "martigny-combe",
+    "canton": "vs"
+  },
+  {
+    "name": "Massongex",
+    "slug": "massongex",
+    "canton": "vs"
+  },
+  {
+    "name": "Mont-Noble",
+    "slug": "mont-noble",
+    "canton": "vs"
+  },
+  {
+    "name": "Monthey",
+    "slug": "monthey",
+    "canton": "vs"
+  },
+  {
+    "name": "Mörel-Filet",
+    "slug": "moerel-filet",
+    "canton": "vs"
+  },
+  {
+    "name": "Naters",
+    "slug": "naters",
+    "canton": "vs"
+  },
+  {
+    "name": "Nendaz",
+    "slug": "nendaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Niedergesteln",
+    "slug": "niedergesteln",
+    "canton": "vs"
+  },
+  {
+    "name": "Noble-Contrée",
+    "slug": "noble-contree",
+    "canton": "vs"
+  },
+  {
+    "name": "Oberems",
+    "slug": "oberems",
+    "canton": "vs"
+  },
+  {
+    "name": "Obergoms",
+    "slug": "obergoms",
+    "canton": "vs"
+  },
+  {
+    "name": "Orsières",
+    "slug": "orsieres",
+    "canton": "vs"
+  },
+  {
+    "name": "Port-Valais",
+    "slug": "port-valais",
+    "canton": "vs"
+  },
+  {
+    "name": "Randa",
+    "slug": "randa",
+    "canton": "vs"
+  },
+  {
+    "name": "Raron",
+    "slug": "raron",
+    "canton": "vs"
+  },
+  {
+    "name": "Riddes",
+    "slug": "riddes",
+    "canton": "vs"
+  },
+  {
+    "name": "Ried-Brig",
+    "slug": "ried-brig",
+    "canton": "vs"
+  },
+  {
+    "name": "Riederalp",
+    "slug": "riederalp",
+    "canton": "vs"
+  },
+  {
+    "name": "Saas-Almagell",
+    "slug": "saas-almagell",
+    "canton": "vs"
+  },
+  {
+    "name": "Saas-Balen",
+    "slug": "saas-balen",
+    "canton": "vs"
+  },
+  {
+    "name": "Saas-Fee",
+    "slug": "saas-fee",
+    "canton": "vs"
+  },
+  {
+    "name": "Saas-Grund",
+    "slug": "saas-grund",
+    "canton": "vs"
+  },
+  {
+    "name": "Saillon",
+    "slug": "saillon",
+    "canton": "vs"
+  },
+  {
+    "name": "Saint-Gingolph",
+    "slug": "saint-gingolph",
+    "canton": "vs"
+  },
+  {
+    "name": "Saint-Léonard",
+    "slug": "saint-leonard",
+    "canton": "vs"
+  },
+  {
+    "name": "Saint-Martin (VS)",
+    "slug": "saint-martin-vs",
+    "canton": "vs"
+  },
+  {
+    "name": "Saint-Maurice",
+    "slug": "saint-maurice",
+    "canton": "vs"
+  },
+  {
+    "name": "Salgesch",
+    "slug": "salgesch",
+    "canton": "vs"
+  },
+  {
+    "name": "Salvan",
+    "slug": "salvan",
+    "canton": "vs"
+  },
+  {
+    "name": "Savièse",
+    "slug": "saviese",
+    "canton": "vs"
+  },
+  {
+    "name": "Saxon",
+    "slug": "saxon",
+    "canton": "vs"
+  },
+  {
+    "name": "Sembrancher",
+    "slug": "sembrancher",
+    "canton": "vs"
+  },
+  {
+    "name": "Sierre",
+    "slug": "sierre",
+    "canton": "vs"
+  },
+  {
+    "name": "Simplon",
+    "slug": "simplon",
+    "canton": "vs"
+  },
+  {
+    "name": "Sion",
+    "slug": "sion",
+    "canton": "vs"
+  },
+  {
+    "name": "St. Niklaus",
+    "slug": "st-niklaus",
+    "canton": "vs"
+  },
+  {
+    "name": "Stalden (VS)",
+    "slug": "stalden-vs",
+    "canton": "vs"
+  },
+  {
+    "name": "Staldenried",
+    "slug": "staldenried",
+    "canton": "vs"
+  },
+  {
+    "name": "Steg-Hohtenn",
+    "slug": "steg-hohtenn",
+    "canton": "vs"
+  },
+  {
+    "name": "Termen",
+    "slug": "termen",
+    "canton": "vs"
+  },
+  {
+    "name": "Trient",
+    "slug": "trient",
+    "canton": "vs"
+  },
+  {
+    "name": "Troistorrents",
+    "slug": "troistorrents",
+    "canton": "vs"
+  },
+  {
+    "name": "Turtmann-Unterems",
+    "slug": "turtmann-unterems",
+    "canton": "vs"
+  },
+  {
+    "name": "Täsch",
+    "slug": "taesch",
+    "canton": "vs"
+  },
+  {
+    "name": "Törbel",
+    "slug": "toerbel",
+    "canton": "vs"
+  },
+  {
+    "name": "Unterbäch",
+    "slug": "unterbaech",
+    "canton": "vs"
+  },
+  {
+    "name": "Val de Bagnes",
+    "slug": "val-de-bagnes",
+    "canton": "vs"
+  },
+  {
+    "name": "Val-d'Illiez",
+    "slug": "val-d-illiez",
+    "canton": "vs"
+  },
+  {
+    "name": "Varen",
+    "slug": "varen",
+    "canton": "vs"
+  },
+  {
+    "name": "Vernayaz",
+    "slug": "vernayaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Vex",
+    "slug": "vex",
+    "canton": "vs"
+  },
+  {
+    "name": "Veysonnaz",
+    "slug": "veysonnaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Vionnaz",
+    "slug": "vionnaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Visp",
+    "slug": "visp",
+    "canton": "vs"
+  },
+  {
+    "name": "Visperterminen",
+    "slug": "visperterminen",
+    "canton": "vs"
+  },
+  {
+    "name": "Vouvry",
+    "slug": "vouvry",
+    "canton": "vs"
+  },
+  {
+    "name": "Vérossaz",
+    "slug": "verossaz",
+    "canton": "vs"
+  },
+  {
+    "name": "Vétroz",
+    "slug": "vetroz",
+    "canton": "vs"
+  },
+  {
+    "name": "Wiler (Lötschen)",
+    "slug": "wiler-loetschen",
+    "canton": "vs"
+  },
+  {
+    "name": "Zeneggen",
+    "slug": "zeneggen",
+    "canton": "vs"
+  },
+  {
+    "name": "Zermatt",
+    "slug": "zermatt",
+    "canton": "vs"
+  },
+  {
+    "name": "Zwischbergen",
+    "slug": "zwischbergen",
+    "canton": "vs"
+  },
+  {
+    "name": "Baar",
+    "slug": "baar",
+    "canton": "zg"
+  },
+  {
+    "name": "Cham",
+    "slug": "cham",
+    "canton": "zg"
+  },
+  {
+    "name": "Hünenberg",
+    "slug": "huenenberg",
+    "canton": "zg"
+  },
+  {
+    "name": "Menzingen",
+    "slug": "menzingen",
+    "canton": "zg"
+  },
+  {
+    "name": "Neuheim",
+    "slug": "neuheim",
+    "canton": "zg"
+  },
+  {
+    "name": "Oberägeri",
+    "slug": "oberaegeri",
+    "canton": "zg"
+  },
+  {
+    "name": "Risch",
+    "slug": "risch",
+    "canton": "zg"
+  },
+  {
+    "name": "Steinhausen",
+    "slug": "steinhausen",
+    "canton": "zg"
+  },
+  {
+    "name": "Unterägeri",
+    "slug": "unteraegeri",
+    "canton": "zg"
+  },
+  {
+    "name": "Walchwil",
+    "slug": "walchwil",
+    "canton": "zg"
+  },
+  {
+    "name": "Zug",
+    "slug": "zug",
+    "canton": "zg"
+  },
+  {
+    "name": "Adliswil",
+    "slug": "adliswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Aesch (ZH)",
+    "slug": "aesch-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Aeugst am Albis",
+    "slug": "aeugst-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Affoltern am Albis",
+    "slug": "affoltern-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Altikon",
+    "slug": "altikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Andelfingen",
+    "slug": "andelfingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Bachenbülach",
+    "slug": "bachenbuelach",
+    "canton": "zh"
+  },
+  {
+    "name": "Bachs",
+    "slug": "bachs",
+    "canton": "zh"
+  },
+  {
+    "name": "Bassersdorf",
+    "slug": "bassersdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Bauma",
+    "slug": "bauma",
+    "canton": "zh"
+  },
+  {
+    "name": "Benken (ZH)",
+    "slug": "benken-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Berg am Irchel",
+    "slug": "berg-am-irchel",
+    "canton": "zh"
+  },
+  {
+    "name": "Birmensdorf (ZH)",
+    "slug": "birmensdorf-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Bonstetten",
+    "slug": "bonstetten",
+    "canton": "zh"
+  },
+  {
+    "name": "Boppelsen",
+    "slug": "boppelsen",
+    "canton": "zh"
+  },
+  {
+    "name": "Brütten",
+    "slug": "bruetten",
+    "canton": "zh"
+  },
+  {
+    "name": "Bubikon",
+    "slug": "bubikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Buch am Irchel",
+    "slug": "buch-am-irchel",
+    "canton": "zh"
+  },
+  {
+    "name": "Buchs (ZH)",
+    "slug": "buchs-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Bäretswil",
+    "slug": "baeretswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Bülach",
+    "slug": "buelach",
+    "canton": "zh"
+  },
+  {
+    "name": "Dachsen",
+    "slug": "dachsen",
+    "canton": "zh"
+  },
+  {
+    "name": "Dielsdorf",
+    "slug": "dielsdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Dietikon",
+    "slug": "dietikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Dietlikon",
+    "slug": "dietlikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Dinhard",
+    "slug": "dinhard",
+    "canton": "zh"
+  },
+  {
+    "name": "Dorf",
+    "slug": "dorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Dägerlen",
+    "slug": "daegerlen",
+    "canton": "zh"
+  },
+  {
+    "name": "Dällikon",
+    "slug": "daellikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Dänikon",
+    "slug": "daenikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Dättlikon",
+    "slug": "daettlikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Dübendorf",
+    "slug": "duebendorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Dürnten",
+    "slug": "duernten",
+    "canton": "zh"
+  },
+  {
+    "name": "Egg",
+    "slug": "egg",
+    "canton": "zh"
+  },
+  {
+    "name": "Eglisau",
+    "slug": "eglisau",
+    "canton": "zh"
+  },
+  {
+    "name": "Elgg",
+    "slug": "elgg",
+    "canton": "zh"
+  },
+  {
+    "name": "Ellikon an der Thur",
+    "slug": "ellikon-an-der-thur",
+    "canton": "zh"
+  },
+  {
+    "name": "Elsau",
+    "slug": "elsau",
+    "canton": "zh"
+  },
+  {
+    "name": "Embrach",
+    "slug": "embrach",
+    "canton": "zh"
+  },
+  {
+    "name": "Erlenbach (ZH)",
+    "slug": "erlenbach-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Fehraltorf",
+    "slug": "fehraltorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Feuerthalen",
+    "slug": "feuerthalen",
+    "canton": "zh"
+  },
+  {
+    "name": "Fischenthal",
+    "slug": "fischenthal",
+    "canton": "zh"
+  },
+  {
+    "name": "Flaach",
+    "slug": "flaach",
+    "canton": "zh"
+  },
+  {
+    "name": "Flurlingen",
+    "slug": "flurlingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Freienstein-Teufen",
+    "slug": "freienstein-teufen",
+    "canton": "zh"
+  },
+  {
+    "name": "Fällanden",
+    "slug": "faellanden",
+    "canton": "zh"
+  },
+  {
+    "name": "Geroldswil",
+    "slug": "geroldswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Glattfelden",
+    "slug": "glattfelden",
+    "canton": "zh"
+  },
+  {
+    "name": "Gossau (ZH)",
+    "slug": "gossau-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Greifensee",
+    "slug": "greifensee",
+    "canton": "zh"
+  },
+  {
+    "name": "Grüningen",
+    "slug": "grueningen",
+    "canton": "zh"
+  },
+  {
+    "name": "Hagenbuch",
+    "slug": "hagenbuch",
+    "canton": "zh"
+  },
+  {
+    "name": "Hausen am Albis",
+    "slug": "hausen-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Hedingen",
+    "slug": "hedingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Henggart",
+    "slug": "henggart",
+    "canton": "zh"
+  },
+  {
+    "name": "Herrliberg",
+    "slug": "herrliberg",
+    "canton": "zh"
+  },
+  {
+    "name": "Hettlingen",
+    "slug": "hettlingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Hinwil",
+    "slug": "hinwil",
+    "canton": "zh"
+  },
+  {
+    "name": "Hittnau",
+    "slug": "hittnau",
+    "canton": "zh"
+  },
+  {
+    "name": "Hochfelden",
+    "slug": "hochfelden",
+    "canton": "zh"
+  },
+  {
+    "name": "Hombrechtikon",
+    "slug": "hombrechtikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Horgen",
+    "slug": "horgen",
+    "canton": "zh"
+  },
+  {
+    "name": "Höri",
+    "slug": "hoeri",
+    "canton": "zh"
+  },
+  {
+    "name": "Hüntwangen",
+    "slug": "huentwangen",
+    "canton": "zh"
+  },
+  {
+    "name": "Hüttikon",
+    "slug": "huettikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Illnau-Effretikon",
+    "slug": "illnau-effretikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Kappel am Albis",
+    "slug": "kappel-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Kilchberg (ZH)",
+    "slug": "kilchberg-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Kleinandelfingen",
+    "slug": "kleinandelfingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Kloten",
+    "slug": "kloten",
+    "canton": "zh"
+  },
+  {
+    "name": "Knonau",
+    "slug": "knonau",
+    "canton": "zh"
+  },
+  {
+    "name": "Küsnacht (ZH)",
+    "slug": "kuesnacht-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Langnau am Albis",
+    "slug": "langnau-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Laufen-Uhwiesen",
+    "slug": "laufen-uhwiesen",
+    "canton": "zh"
+  },
+  {
+    "name": "Lindau",
+    "slug": "lindau",
+    "canton": "zh"
+  },
+  {
+    "name": "Lufingen",
+    "slug": "lufingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Marthalen",
+    "slug": "marthalen",
+    "canton": "zh"
+  },
+  {
+    "name": "Maschwanden",
+    "slug": "maschwanden",
+    "canton": "zh"
+  },
+  {
+    "name": "Maur",
+    "slug": "maur",
+    "canton": "zh"
+  },
+  {
+    "name": "Meilen",
+    "slug": "meilen",
+    "canton": "zh"
+  },
+  {
+    "name": "Mettmenstetten",
+    "slug": "mettmenstetten",
+    "canton": "zh"
+  },
+  {
+    "name": "Männedorf",
+    "slug": "maennedorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Mönchaltorf",
+    "slug": "moenchaltorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Neerach",
+    "slug": "neerach",
+    "canton": "zh"
+  },
+  {
+    "name": "Neftenbach",
+    "slug": "neftenbach",
+    "canton": "zh"
+  },
+  {
+    "name": "Niederglatt",
+    "slug": "niederglatt",
+    "canton": "zh"
+  },
+  {
+    "name": "Niederhasli",
+    "slug": "niederhasli",
+    "canton": "zh"
+  },
+  {
+    "name": "Niederweningen",
+    "slug": "niederweningen",
+    "canton": "zh"
+  },
+  {
+    "name": "Nürensdorf",
+    "slug": "nuerensdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Oberembrach",
+    "slug": "oberembrach",
+    "canton": "zh"
+  },
+  {
+    "name": "Oberengstringen",
+    "slug": "oberengstringen",
+    "canton": "zh"
+  },
+  {
+    "name": "Oberglatt",
+    "slug": "oberglatt",
+    "canton": "zh"
+  },
+  {
+    "name": "Oberrieden",
+    "slug": "oberrieden",
+    "canton": "zh"
+  },
+  {
+    "name": "Oberweningen",
+    "slug": "oberweningen",
+    "canton": "zh"
+  },
+  {
+    "name": "Obfelden",
+    "slug": "obfelden",
+    "canton": "zh"
+  },
+  {
+    "name": "Oetwil am See",
+    "slug": "oetwil-am-see",
+    "canton": "zh"
+  },
+  {
+    "name": "Oetwil an der Limmat",
+    "slug": "oetwil-an-der-limmat",
+    "canton": "zh"
+  },
+  {
+    "name": "Opfikon",
+    "slug": "opfikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Ossingen",
+    "slug": "ossingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Otelfingen",
+    "slug": "otelfingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Ottenbach",
+    "slug": "ottenbach",
+    "canton": "zh"
+  },
+  {
+    "name": "Pfungen",
+    "slug": "pfungen",
+    "canton": "zh"
+  },
+  {
+    "name": "Pfäffikon",
+    "slug": "pfaeffikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Rafz",
+    "slug": "rafz",
+    "canton": "zh"
+  },
+  {
+    "name": "Regensberg",
+    "slug": "regensberg",
+    "canton": "zh"
+  },
+  {
+    "name": "Regensdorf",
+    "slug": "regensdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Rheinau",
+    "slug": "rheinau",
+    "canton": "zh"
+  },
+  {
+    "name": "Richterswil",
+    "slug": "richterswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Rickenbach (ZH)",
+    "slug": "rickenbach-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Rifferswil",
+    "slug": "rifferswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Rorbas",
+    "slug": "rorbas",
+    "canton": "zh"
+  },
+  {
+    "name": "Russikon",
+    "slug": "russikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Rümlang",
+    "slug": "ruemlang",
+    "canton": "zh"
+  },
+  {
+    "name": "Rüschlikon",
+    "slug": "rueschlikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Rüti (ZH)",
+    "slug": "rueti-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Schlatt (ZH)",
+    "slug": "schlatt-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Schleinikon",
+    "slug": "schleinikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Schlieren",
+    "slug": "schlieren",
+    "canton": "zh"
+  },
+  {
+    "name": "Schwerzenbach",
+    "slug": "schwerzenbach",
+    "canton": "zh"
+  },
+  {
+    "name": "Schöfflisdorf",
+    "slug": "schoefflisdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Seegräben",
+    "slug": "seegraeben",
+    "canton": "zh"
+  },
+  {
+    "name": "Seuzach",
+    "slug": "seuzach",
+    "canton": "zh"
+  },
+  {
+    "name": "Stadel",
+    "slug": "stadel",
+    "canton": "zh"
+  },
+  {
+    "name": "Stallikon",
+    "slug": "stallikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Stammheim",
+    "slug": "stammheim",
+    "canton": "zh"
+  },
+  {
+    "name": "Steinmaur",
+    "slug": "steinmaur",
+    "canton": "zh"
+  },
+  {
+    "name": "Stäfa",
+    "slug": "staefa",
+    "canton": "zh"
+  },
+  {
+    "name": "Thalheim an der Thur",
+    "slug": "thalheim-an-der-thur",
+    "canton": "zh"
+  },
+  {
+    "name": "Thalwil",
+    "slug": "thalwil",
+    "canton": "zh"
+  },
+  {
+    "name": "Truttikon",
+    "slug": "truttikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Trüllikon",
+    "slug": "truellikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Turbenthal",
+    "slug": "turbenthal",
+    "canton": "zh"
+  },
+  {
+    "name": "Uetikon am See",
+    "slug": "uetikon-am-see",
+    "canton": "zh"
+  },
+  {
+    "name": "Uitikon",
+    "slug": "uitikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Unterengstringen",
+    "slug": "unterengstringen",
+    "canton": "zh"
+  },
+  {
+    "name": "Urdorf",
+    "slug": "urdorf",
+    "canton": "zh"
+  },
+  {
+    "name": "Uster",
+    "slug": "uster",
+    "canton": "zh"
+  },
+  {
+    "name": "Volken",
+    "slug": "volken",
+    "canton": "zh"
+  },
+  {
+    "name": "Volketswil",
+    "slug": "volketswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Wald (ZH)",
+    "slug": "wald-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Wallisellen",
+    "slug": "wallisellen",
+    "canton": "zh"
+  },
+  {
+    "name": "Wangen-Brüttisellen",
+    "slug": "wangen-bruettisellen",
+    "canton": "zh"
+  },
+  {
+    "name": "Wasterkingen",
+    "slug": "wasterkingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Weiach",
+    "slug": "weiach",
+    "canton": "zh"
+  },
+  {
+    "name": "Weiningen (ZH)",
+    "slug": "weiningen-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Weisslingen",
+    "slug": "weisslingen",
+    "canton": "zh"
+  },
+  {
+    "name": "Wettswil am Albis",
+    "slug": "wettswil-am-albis",
+    "canton": "zh"
+  },
+  {
+    "name": "Wetzikon (ZH)",
+    "slug": "wetzikon-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Wiesendangen",
+    "slug": "wiesendangen",
+    "canton": "zh"
+  },
+  {
+    "name": "Wil (ZH)",
+    "slug": "wil-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Wila",
+    "slug": "wila",
+    "canton": "zh"
+  },
+  {
+    "name": "Wildberg",
+    "slug": "wildberg",
+    "canton": "zh"
+  },
+  {
+    "name": "Winkel",
+    "slug": "winkel",
+    "canton": "zh"
+  },
+  {
+    "name": "Winterthur",
+    "slug": "winterthur",
+    "canton": "zh"
+  },
+  {
+    "name": "Wädenswil",
+    "slug": "waedenswil",
+    "canton": "zh"
+  },
+  {
+    "name": "Zell (ZH)",
+    "slug": "zell-zh",
+    "canton": "zh"
+  },
+  {
+    "name": "Zollikon",
+    "slug": "zollikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Zumikon",
+    "slug": "zumikon",
+    "canton": "zh"
+  },
+  {
+    "name": "Zürich",
+    "slug": "zuerich",
+    "canton": "zh"
   }
 ]

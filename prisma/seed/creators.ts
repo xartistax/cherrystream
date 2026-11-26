@@ -10,6 +10,7 @@ export type CreatorSeed = {
   cantonSlug: string;
   cityName: string;
   categorySlugs: string[];
+  serviceSlugs: string[];
   verified: boolean;
   phoneNumber: string;
   phoneEnabled: boolean;
@@ -19,6 +20,10 @@ export type CreatorSeed = {
   instagram: string | null;
   instagramEnabled: boolean;
 };
+
+const escortServices = ["escort", "girlfriend-sex", "zungenkuessen", "franzoesisch-mit", "sex-nur-mit-kondom", "reizwaesche", "striptease-lapdance"];
+const massageServices = ["erotische-massage", "body-to-body", "tantra-massage", "klassische-massage", "nuru-massage"];
+const bdsmServices = ["bondage", "leder-latex-pvc", "rollenspiele", "kliniksex", "fussfetisch", "facesitting", "strapon"];
 
 /** Demo profiles for local testing. Fictional people; used by `pnpm seed:demo` only. */
 export const demoCreators: CreatorSeed[] = [
@@ -41,7 +46,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "zh",
     cityName: "Zürich",
-    categorySlugs: ["lifestyle", "beauty"],
+    categorySlugs: ["escort"],
+    serviceSlugs: escortServices,
     verified: true,
     phoneNumber: "+41 79 000 10 01",
     phoneEnabled: true,
@@ -64,7 +70,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "zh",
     cityName: "Winterthur",
-    categorySlugs: ["fashion", "lifestyle"],
+    categorySlugs: ["escort"],
+    serviceSlugs: [...escortServices, "69-stellung"],
     verified: true,
     phoneNumber: "+41 79 000 10 02",
     phoneEnabled: true,
@@ -91,7 +98,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "be",
     cityName: "Bern",
-    categorySlugs: ["beauty", "lifestyle"],
+    categorySlugs: ["massagen"],
+    serviceSlugs: massageServices,
     verified: false,
     phoneNumber: "+41 79 000 10 03",
     phoneEnabled: true,
@@ -114,7 +122,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "bs",
     cityName: "Basel",
-    categorySlugs: ["fashion", "beauty"],
+    categorySlugs: ["escort"],
+    serviceSlugs: escortServices,
     verified: true,
     phoneNumber: "+41 79 000 10 04",
     phoneEnabled: false,
@@ -136,7 +145,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "lu",
     cityName: "Luzern",
-    categorySlugs: ["beauty", "fitness"],
+    categorySlugs: ["massagen"],
+    serviceSlugs: [...massageServices, "thai-massage"],
     verified: false,
     phoneNumber: "+41 79 000 10 05",
     phoneEnabled: true,
@@ -159,7 +169,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "ge",
     cityName: "Genève",
-    categorySlugs: ["lifestyle", "travel"],
+    categorySlugs: ["escort"],
+    serviceSlugs: [...escortServices, "outdoor-sex"],
     verified: true,
     phoneNumber: "+41 79 000 10 06",
     phoneEnabled: true,
@@ -181,7 +192,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "ag",
     cityName: "Aarau",
-    categorySlugs: ["lifestyle"],
+    categorySlugs: ["escort"],
+    serviceSlugs: escortServices.slice(0, 5),
     verified: false,
     phoneNumber: "+41 79 000 10 07",
     phoneEnabled: false,
@@ -209,7 +221,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "sg",
     cityName: "St. Gallen",
-    categorySlugs: ["beauty"],
+    categorySlugs: ["massagen", "escort"],
+    serviceSlugs: [...massageServices.slice(0, 3), "escort", "girlfriend-sex"],
     verified: false,
     phoneNumber: "+41 79 000 10 08",
     phoneEnabled: true,
@@ -232,7 +245,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "vd",
     cityName: "Lausanne",
-    categorySlugs: ["fashion", "travel", "lifestyle"],
+    categorySlugs: ["escort"],
+    serviceSlugs: [...escortServices, "deep-throat"],
     verified: true,
     phoneNumber: "+41 79 000 10 09",
     phoneEnabled: true,
@@ -254,7 +268,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "tg",
     cityName: "Frauenfeld",
-    categorySlugs: ["lifestyle", "beauty"],
+    categorySlugs: ["escort"],
+    serviceSlugs: escortServices.slice(0, 4),
     verified: false,
     phoneNumber: "+41 79 000 10 10",
     phoneEnabled: false,
@@ -276,7 +291,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "so",
     cityName: "Solothurn",
-    categorySlugs: ["beauty", "fitness"],
+    categorySlugs: ["massagen"],
+    serviceSlugs: massageServices,
     verified: false,
     phoneNumber: "+41 79 000 10 11",
     phoneEnabled: true,
@@ -298,7 +314,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "ne",
     cityName: "Neuchâtel",
-    categorySlugs: ["fashion", "beauty"],
+    categorySlugs: ["domina-bdsm"],
+    serviceSlugs: bdsmServices,
     verified: true,
     phoneNumber: "+41 79 000 10 12",
     phoneEnabled: true,
@@ -320,7 +337,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "zg",
     cityName: "Zug",
-    categorySlugs: ["lifestyle"],
+    categorySlugs: ["milf", "escort"],
+    serviceSlugs: escortServices,
     verified: false,
     phoneNumber: "+41 79 000 10 13",
     phoneEnabled: false,
@@ -347,7 +365,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "fr",
     cityName: "Fribourg",
-    categorySlugs: ["beauty"],
+    categorySlugs: ["massagen"],
+    serviceSlugs: [...massageServices, "anal-prostata-massage"],
     verified: false,
     phoneNumber: "+41 79 000 10 14",
     phoneEnabled: true,
@@ -370,7 +389,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "ti",
     cityName: "Lugano",
-    categorySlugs: ["travel", "lifestyle"],
+    categorySlugs: ["escort"],
+    serviceSlugs: escortServices.slice(1),
     verified: true,
     phoneNumber: "+41 79 000 10 15",
     phoneEnabled: true,
@@ -392,7 +412,8 @@ export const demoCreators: CreatorSeed[] = [
     gender: "WOMAN",
     cantonSlug: "vd",
     cityName: "Lausanne",
-    categorySlugs: ["fashion", "lifestyle"],
+    categorySlugs: ["escort", "domina-bdsm"],
+    serviceSlugs: [...escortServices.slice(0, 4), "rollenspiele", "leder-latex-pvc"],
     verified: false,
     phoneNumber: "+41 79 000 10 16",
     phoneEnabled: false,

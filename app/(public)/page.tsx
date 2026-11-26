@@ -209,7 +209,7 @@ export default async function PublicHomePage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 sm:text-xl">
-              Finde Profile nach Kategorie, Kanton und Stadt – mit Fotos, Videos und exklusiven Inhalten.
+              Finde Profile nach Rubrik, Kanton und Stadt – mit Fotos, Videos und exklusiven Inhalten.
             </p>
 
             <div className="flex flex-col gap-3 mt-10 sm:flex-row">
@@ -334,7 +334,7 @@ export default async function PublicHomePage() {
           <div>
             <p className="text-3xl font-black text-white">{categories.length}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">beliebte Kategorien</p>
+            <p className="mt-1 text-sm text-zinc-500">beliebte Rubriken</p>
           </div>
 
           <div>
@@ -350,16 +350,16 @@ export default async function PublicHomePage() {
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <Badge variant="outline" className="border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300">
-                Kategorien
+                Rubriken
               </Badge>
 
               <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Interessen entdecken</h2>
 
-              <p className="mt-3 max-w-xl text-zinc-500">Durchsuche Profile nach Kategorien und Schwerpunkten.</p>
+              <p className="mt-3 max-w-xl text-zinc-500">Durchsuche Profile nach Rubriken und Schwerpunkten.</p>
             </div>
 
             <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
-              Alle Kategorien
+              Alle Rubriken
               <ArrowRight className="size-4" />
             </Link>
           </div>

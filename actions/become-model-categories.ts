@@ -8,7 +8,7 @@ import { prisma } from "@/lib/prisma";
 import type { ActionState } from "@/types/action-state";
 
 const schema = z.object({
-  categoryIds: z.array(z.string()).min(1, "Wähle mindestens eine Kategorie.").max(5, "Du kannst maximal 5 Kategorien auswählen."),
+  categoryIds: z.array(z.string()).min(1, "Wähle mindestens eine Rubrik.").max(5, "Du kannst maximal 5 Rubriken auswählen."),
 });
 
 export async function saveModelCategoriesAction(_: ActionState, formData: FormData): Promise<ActionState> {
@@ -30,7 +30,7 @@ export async function saveModelCategoriesAction(_: ActionState, formData: FormDa
   if (!parsed.success) {
     return {
       success: false,
-      message: "Bitte wähle mindestens eine Kategorie.",
+      message: "Bitte wähle mindestens eine Rubrik.",
       errors: parsed.error.flatten().fieldErrors,
     };
   }
@@ -47,7 +47,7 @@ export async function saveModelCategoriesAction(_: ActionState, formData: FormDa
   if (validCount !== parsed.data.categoryIds.length) {
     return {
       success: false,
-      message: "Ungültige Kategorie.",
+      message: "Ungültige Rubrik.",
     };
   }
 

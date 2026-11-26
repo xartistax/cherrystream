@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { applyDueAutoBumps } from "@/lib/boosts/apply-auto-bumps";
 import { creatorCardSelect, toCreatorCards } from "@/lib/creators/creator-cards";
+import { getActiveServices, groupServices } from "@/lib/services/services";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { Prisma } from "@/generated/prisma/client";
@@ -16,6 +17,7 @@ import { LocationFilter } from "@/components/profile/location-filter";
 type CreatorsPageProps = {
   searchParams: Promise<{
     category?: string;
+    service?: string;
     canton?: string;
     city?: string;
     media?: string;
@@ -49,6 +51,7 @@ function parsePage(value: string | undefined): number {
 function createCreatorsUrl(
   current: {
     category?: string;
+    service?: string;
     canton?: string;
     city?: string;
     media?: string;
@@ -83,6 +86,8 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
   const categorySlug = params.category?.trim().toLowerCase() || undefined;
 
+  const serviceSlug = params.service?.trim().toLowerCase() || undefined;
+
   const cantonSlug = params.canton?.trim().toLowerCase() || undefined;
 
   const citySlug = cantonSlug ? params.city?.trim().toLowerCase() || undefined : undefined;
@@ -97,6 +102,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
   const currentFilters = {
     category: categorySlug,
+    service: serviceSlug,
     canton: cantonSlug,
     city: citySlug,
     media: mediaType,
@@ -118,6 +124,19 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
                 some: {
                   category: {
                     slug: categorySlug,
+                    isActive: true,
+                  },
+                },
+              },
+            }
+          : {}),
+
+        ...(serviceSlug
+          ? {
+              services: {
+                some: {
+                  service: {
+                    slug: serviceSlug,
                     isActive: true,
                   },
                 },
@@ -228,7 +247,9 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
   await applyDueAutoBumps();
 
-  const [categories, cantons, cities, totalCount, creators] = await Promise.all([
+  const [services, categories, cantons, cities, totalCount, creators] = await Promise.all([
+    getActiveServices(),
+
     prisma.category.findMany({
       where: {
         isActive: true,
@@ -272,7 +293,18 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       ],
     }),
 
+    // Only places with at least one profile; the full list of all municipalities would be too long here.
     prisma.city.findMany({
+      where: {
+        OR: [
+          {
+            profiles: {
+              some: {},
+            },
+          },
+          ...(citySlug && cantonSlug ? [{ slug: citySlug, canton: { slug: cantonSlug } }] : []),
+        ],
+      },
       select: {
         name: true,
         slug: true,
@@ -367,7 +399,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             </Badge>
 
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
-              {categories.length} Kategorien
+              {categories.length} Rubriken
             </Badge>
 
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
@@ -378,7 +410,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       </section>
 
       <section className="mt-10 rounded-3xl border border-white/10 bg-zinc-900/50 p-4 sm:p-6">
-        <form className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_180px_180px_180px_180px_auto]">
+        <form className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_repeat(5,minmax(0,150px))_auto]">
           {categorySlug ? <input type="hidden" name="category" value={categorySlug} /> : null}
 
           <div className="relative">
@@ -407,6 +439,25 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             initialCantonSlug={cantonSlug}
             initialCitySlug={citySlug}
           />
+
+          <select
+            name="service"
+            defaultValue={serviceSlug ?? ""}
+            aria-label="Angebot"
+            className="h-11 rounded-md border border-white/10 bg-zinc-950 px-3 text-sm text-zinc-300 outline-none focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
+          >
+            <option value="">Alle Angebote</option>
+
+            {groupServices(services).map((group) => (
+              <optgroup key={group.group} label={group.label}>
+                {group.services.map((service) => (
+                  <option key={service.slug} value={service.slug}>
+                    {service.name}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
 
           <select
             name="media"
@@ -446,7 +497,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
                 : "border-white/10 bg-white/[0.03] text-zinc-400 hover:bg-white/[0.07] hover:text-white",
             )}
           >
-            Alle Kategorien
+            Alle Rubriken
           </Link>
 
           {categories.map((category) => {

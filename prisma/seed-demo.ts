@@ -63,7 +63,8 @@ const testAccounts: AccountSeed[] = [
       gender: "WOMAN",
       cantonSlug: "zh",
       cityName: "Zürich",
-      categorySlugs: ["lifestyle"],
+      categorySlugs: ["escort"],
+      serviceSlugs: ["escort", "girlfriend-sex", "zungenkuessen", "franzoesisch-mit", "sex-nur-mit-kondom"],
       verified: true,
       phoneNumber: "+41 79 000 20 01",
       phoneEnabled: true,
@@ -86,7 +87,8 @@ const testAccounts: AccountSeed[] = [
       gender: "WOMAN",
       cantonSlug: "be",
       cityName: "Bern",
-      categorySlugs: ["fashion"],
+      categorySlugs: ["massagen"],
+      serviceSlugs: ["erotische-massage", "tantra-massage", "body-to-body"],
       verified: false,
       phoneNumber: "+41 79 000 20 02",
       phoneEnabled: false,
@@ -115,8 +117,12 @@ function normalize(value: string): string {
     .toLowerCase();
 }
 
+function isProductionRun(): boolean {
+  return process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+}
+
 async function confirmTarget(): Promise<void> {
-  const isProduction = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+  const isProduction = isProductionRun();
 
   // Production only on purpose (e.g. a demo for partners) and never with the default password from this file,
   // because the demo accounts include an admin.
@@ -169,6 +175,7 @@ async function upsertAccount(account: AccountSeed, passwordHash: string, locatio
   }
 
   const categoryIds = profile ? profile.categorySlugs.map((slug) => locations.categoryIds.get(slug)).filter((id): id is string => Boolean(id)) : [];
+  const serviceIds = profile ? profile.serviceSlugs.map((slug) => locations.serviceIds.get(slug)).filter((id): id is string => Boolean(id)) : [];
 
   const profileData = profile
     ? {
@@ -254,13 +261,29 @@ async function upsertAccount(account: AccountSeed, passwordHash: string, locatio
         skipDuplicates: true,
       });
     }
+
+    await prisma.profileService.deleteMany({
+      where: {
+        profileId: user.profile.id,
+      },
+    });
+
+    if (serviceIds.length > 0) {
+      await prisma.profileService.createMany({
+        data: serviceIds.map((serviceId) => ({
+          profileId: user.profile!.id,
+          serviceId,
+        })),
+        skipDuplicates: true,
+      });
+    }
   }
 
   return user.id;
 }
 
 async function loadLocations() {
-  const [cities, categories] = await Promise.all([
+  const [cities, categories, services] = await Promise.all([
     prisma.city.findMany({
       select: {
         id: true,
@@ -282,15 +305,25 @@ async function loadLocations() {
         slug: true,
       },
     }),
+    prisma.service.findMany({
+      where: {
+        isActive: true,
+      },
+      select: {
+        id: true,
+        slug: true,
+      },
+    }),
   ]);
 
-  if (cities.length === 0 || categories.length === 0) {
+  if (cities.length === 0 || categories.length === 0 || services.length === 0) {
     throw new Error("Stammdaten fehlen. Bitte zuerst `pnpm seed` ausführen.");
   }
 
   return {
     cities: cities.map((city) => ({ ...city, cantonSlug: city.canton.slug })),
     categoryIds: new Map(categories.map((category) => [category.slug, category.id])),
+    serviceIds: new Map(services.map((service) => [service.slug, service.id])),
   };
 }
 
@@ -583,7 +616,13 @@ async function main(): Promise<void> {
   console.log("Admin-Testdaten …");
 
   try {
-    console.log(`  ✓ Verifizierung von @pending_demo: ${await seedPendingVerification(userIds.get("pending_demo")!)}`);
+    // The private verification store of production only accepts Vercel OIDC from production deployments,
+    // which a local run does not have; documents stored elsewhere could not be shown in the admin area.
+    if (isProductionRun()) {
+      console.log("  – Verifizierung übersprungen (Production): eine echte Verifizierung lässt sich im Ablauf testen");
+    } else {
+      console.log(`  ✓ Verifizierung von @pending_demo: ${await seedPendingVerification(userIds.get("pending_demo")!)}`);
+    }
   } catch (error) {
     console.warn(`  ⚠ Verifizierung übersprungen (privater Blob-Store?): ${error instanceof Error ? error.message : error}`);
   }

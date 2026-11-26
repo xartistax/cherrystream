@@ -8,7 +8,7 @@ const discoverLinks = [
     href: "/explore",
   },
   {
-    label: "Kategorien",
+    label: "Rubriken",
     href: "/explore",
   },
   {

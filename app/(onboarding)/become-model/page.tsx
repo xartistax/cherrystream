@@ -41,7 +41,7 @@ export default async function BecomeModelPage() {
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               <Search className="size-5 text-rose-400" />
               <p className="mt-3 font-semibold">Gefunden werden</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Sichtbar nach Kanton, Stadt und Kategorie.</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Sichtbar nach Kanton, Stadt und Rubrik.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
