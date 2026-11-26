@@ -23,7 +23,7 @@ export function LegalPage({ title, updatedAt, children }: LegalPageProps) {
 
       <p className="mt-2 text-sm text-zinc-500">Stand: {updatedAt}</p>
 
-      <div className="mt-10 space-y-8 text-[15px] leading-7 text-zinc-300 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_li]:ml-5 [&_li]:list-disc [&_mark]:rounded [&_mark]:bg-amber-500/20 [&_mark]:px-1 [&_mark]:text-amber-200 [&_ul]:space-y-1">
+      <div className="mt-10 space-y-8 text-[15px] leading-7 text-zinc-300 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_a]:text-rose-400 [&_a]:underline-offset-4 [&_a:hover]:underline [&_li]:ml-5 [&_li]:list-disc [&_mark]:rounded [&_mark]:bg-amber-500/20 [&_mark]:px-1 [&_mark]:text-amber-200 [&_ul]:space-y-1">
         {children}
       </div>
     </article>

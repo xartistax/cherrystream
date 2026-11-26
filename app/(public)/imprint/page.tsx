@@ -28,7 +28,7 @@ export default function ImprintPage() {
       <section>
         <h2>Kontakt</h2>
         <p>
-          E-Mail: <Placeholder>kontakt@cherrystream.ch</Placeholder>
+          E-Mail: <a href="mailto:kontakt@cherrystream.ch">kontakt@cherrystream.ch</a>
         </p>
       </section>
 
@@ -55,7 +55,7 @@ export default function ImprintPage() {
         <h2>Meldungen zu Inhalten</h2>
         <p>
           Rechtswidrige Inhalte oder Profile können direkt über die Funktion «Melden» auf jedem Profil oder per E-Mail an{" "}
-          <Placeholder>meldung@cherrystream.ch</Placeholder> gemeldet werden. Wir prüfen Meldungen umgehend.
+          <a href="mailto:meldungen@cherrystream.ch">meldungen@cherrystream.ch</a> gemeldet werden. Wir prüfen Meldungen umgehend.
         </p>
       </section>
 
