@@ -50,7 +50,7 @@ export function Topbar({ user }: TopbarProps) {
           )}
         >
           <Search className="size-4" />
-          Profile suchen
+          Ladies suchen
         </Link>
 
         {/* Models spend credits on boosts; members only need credits once premium purchases are enabled. */}

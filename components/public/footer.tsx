@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/logo";
 
 const discoverLinks = [
   {
-    label: "Profile entdecken",
+    label: "Ladies entdecken",
     href: "/explore",
   },
   {
@@ -12,14 +12,14 @@ const discoverLinks = [
     href: "/explore",
   },
   {
-    label: "Beliebte Profile",
+    label: "Beliebte Ladies",
     href: "/explore?sort=trending",
   },
 ] as const;
 
 const platformLinks = [
   {
-    label: "Profil erstellen",
+    label: "Inserat schalten",
     href: "/register",
   },
   {
@@ -27,7 +27,7 @@ const platformLinks = [
     href: "/login",
   },
   {
-    label: "Dashboard",
+    label: "Mein Bereich",
     href: "/dashboard",
   },
 ] as const;
@@ -55,7 +55,7 @@ export function PublicFooter() {
           <Logo />
 
           <p className="mt-5 text-sm leading-7 text-zinc-500">
-            Entdecke verifizierte Profile aus der Schweiz, merke dir deine Favoriten und nimm direkt Kontakt auf.
+            Verifizierte Escort- und Erotik-Inserate aus der ganzen Schweiz. Du nimmst direkt Kontakt auf, CherryStream vermittelt nicht.
           </p>
         </div>
 

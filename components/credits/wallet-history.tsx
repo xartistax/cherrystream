@@ -52,7 +52,7 @@ function getTransactionMeta(type: WalletTransactionType) {
     case "BOOST_PURCHASE":
       return {
         icon: Sparkles,
-        title: "Boost gekauft",
+        title: "Sichtbarkeit gebucht",
       };
 
     case "STARTER_CREDIT":

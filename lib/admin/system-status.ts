@@ -365,7 +365,7 @@ async function checkTelegram(): Promise<CheckResult> {
 
   return {
     status: "ok",
-    detail: `Bot schreibt in „${body.result?.title ?? chatId}“`,
+    detail: `Bot schreibt in «${body.result?.title ?? chatId}»`,
   };
 }
 

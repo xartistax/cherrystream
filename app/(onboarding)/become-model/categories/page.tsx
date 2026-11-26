@@ -98,10 +98,10 @@ export default async function BecomeModelCategoriesPage() {
             <Tags className="size-5" />
           </div>
 
-          <CardTitle className="mt-3">Was möchtest du veröffentlichen?</CardTitle>
+          <CardTitle className="mt-3">Was bietest du an?</CardTitle>
 
           <CardDescription className="leading-6 text-zinc-500">
-            Wähle bis zu fünf Rubriken, die am besten zu deinem Profil und deinen Inhalten passen.
+            Wähle bis zu fünf Rubriken, in denen dein Inserat erscheinen soll.
           </CardDescription>
         </CardHeader>
 

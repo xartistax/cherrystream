@@ -76,7 +76,7 @@ export function MediaLightbox({ media, initialIndex, onClose, onReport }: MediaL
         variant="ghost"
         size="icon"
         onClick={onClose}
-        aria-label="Lightbox schließen"
+        aria-label="Ansicht schliessen"
         className="absolute right-4 top-4 z-20 size-11 rounded-full bg-black/50 text-white hover:bg-white/10"
       >
         <X className="size-5" />
@@ -100,7 +100,7 @@ export function MediaLightbox({ media, initialIndex, onClose, onReport }: MediaL
             variant="ghost"
             size="icon"
             onClick={showPrevious}
-            aria-label="Vorheriges Medium"
+            aria-label="Vorheriges Foto oder Video"
             className="absolute left-3 top-1/2 z-20 size-12 -translate-y-1/2 rounded-full bg-black/55 text-white hover:bg-white/10 sm:left-6"
           >
             <ChevronLeft className="size-6" />
@@ -111,7 +111,7 @@ export function MediaLightbox({ media, initialIndex, onClose, onReport }: MediaL
             variant="ghost"
             size="icon"
             onClick={showNext}
-            aria-label="Nächstes Medium"
+            aria-label="Nächstes Foto oder Video"
             className="absolute right-3 top-1/2 z-20 size-12 -translate-y-1/2 rounded-full bg-black/55 text-white hover:bg-white/10 sm:right-6"
           >
             <ChevronRight className="size-6" />

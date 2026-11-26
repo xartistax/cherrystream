@@ -68,7 +68,7 @@ export async function adjustCreditsAction(_previousState: AdjustCreditsState, fo
   if (!user || user.role !== "MODEL") {
     return {
       success: false,
-      message: "Credits gibt es nur für Models.",
+      message: "Credits gibt es nur für Konten mit Inserat.",
     };
   }
 

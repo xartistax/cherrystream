@@ -54,7 +54,7 @@ export default function ImprintPage() {
       <section>
         <h2>Meldungen zu Inhalten</h2>
         <p>
-          Rechtswidrige Inhalte oder Profile können direkt über die Funktion «Melden» auf jedem Profil oder per E-Mail an{" "}
+          Rechtswidrige Inhalte oder Inserate können direkt über die Funktion «Melden» auf jedem Inserat oder per E-Mail an{" "}
           <a href="mailto:meldungen@cherrystream.ch">meldungen@cherrystream.ch</a> gemeldet werden. Wir prüfen Meldungen umgehend.
         </p>
       </section>

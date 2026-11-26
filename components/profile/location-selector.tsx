@@ -57,7 +57,7 @@ export function LocationSelector({ cantons, cities, initialCantonId, initialCity
           <h2 className="text-lg font-bold text-white">Standort</h2>
         </div>
 
-        <p className="mt-1 text-sm text-zinc-500">Dein Standort wird für die Suche und regionale Filter verwendet.</p>
+        <p className="mt-1 text-sm text-zinc-500">Hier finden dich Kunden in der Suche nach Ort und Kanton.</p>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">

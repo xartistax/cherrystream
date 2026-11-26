@@ -10,7 +10,7 @@ import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Model-Profil einrichten",
+  title: "Inserat einrichten",
 };
 
 export default async function BecomeModelProfilePage() {
@@ -62,8 +62,8 @@ export default async function BecomeModelProfilePage() {
         </Link>
 
         <div>
-          <p className="text-sm font-medium text-rose-400">Schritt 1 von 2</p>
-          <h1 className="text-2xl font-black tracking-tight text-white">Dein Model-Profil</h1>
+          <p className="text-sm font-medium text-rose-400">Schritt 1 von 3</p>
+          <h1 className="text-2xl font-black tracking-tight text-white">Dein Inserat</h1>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default async function BecomeModelProfilePage() {
 
           <CardTitle className="mt-3">Stell dich kurz vor</CardTitle>
 
-          <CardDescription className="leading-6 text-zinc-500">Diese Angaben erscheinen auf deinem öffentlichen Profil.</CardDescription>
+          <CardDescription className="leading-6 text-zinc-500">Diese Angaben sehen Besucher auf deinem Inserat.</CardDescription>
         </CardHeader>
 
         <CardContent className="p-6">

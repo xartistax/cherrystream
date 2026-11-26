@@ -22,14 +22,14 @@ function getMessage(stats: ProfileStats): string {
   }
 
   if (stats.todayViews > 0) {
-    return `${formatNumber(stats.todayViews)} ${stats.todayViews === 1 ? "Person hat" : "Personen haben"} heute dein Profil besucht.`;
+    return `${formatNumber(stats.todayViews)} ${stats.todayViews === 1 ? "Person hat" : "Personen haben"} heute dein Inserat angesehen.`;
   }
 
   if (stats.posts === 0) {
-    return "Lade deine ersten Bilder hoch. Das erste Bild wird automatisch dein Profilbild.";
+    return "Lade deine ersten Fotos hoch. Das erste wird automatisch dein Profilbild.";
   }
 
-  return "Heute ist es noch ruhig. Neue Bilder halten dein Profil aktuell und sichtbar.";
+  return "Heute ist es noch ruhig. Neue Fotos oder ein Hochschieben bringen dein Inserat nach vorne.";
 }
 
 export function DashboardWelcome({ displayName, username, stats }: DashboardWelcomeProps) {

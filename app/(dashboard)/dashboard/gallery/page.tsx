@@ -10,7 +10,7 @@ import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Galerie",
+  title: "Fotos & Videos",
 };
 
 export default async function GalleryPage() {
@@ -36,17 +36,17 @@ export default async function GalleryPage() {
     <div className="space-y-8">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Galerie</h1>
+          <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Fotos & Videos</h1>
 
           <p className="mt-2 text-sm text-zinc-500">
-            {photoCount} {photoCount === 1 ? "Bild" : "Bilder"} · {videoCount} {videoCount === 1 ? "Video" : "Videos"}. Das markierte Bild ist dein Profilbild.
+            {photoCount} {photoCount === 1 ? "Foto" : "Fotos"} · {videoCount} {videoCount === 1 ? "Video" : "Videos"}. Das markierte Foto ist dein Profilbild.
           </p>
         </div>
 
         {isPublished ? (
           <Link href={`/profile/${user.username}`} className={cn(buttonVariants({ variant: "outline" }), "border-white/10 bg-white/5 text-white hover:bg-white/10")}>
             <ExternalLink className="size-4" />
-            Öffentliches Profil ansehen
+            Inserat ansehen
           </Link>
         ) : null}
       </header>
@@ -59,7 +59,7 @@ export default async function GalleryPage() {
           className="flex items-start gap-3 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100 transition hover:bg-amber-500/15"
         >
           <ShieldCheck className="mt-0.5 size-5 shrink-0 text-amber-300" />
-          Sobald dein Profil freigegeben ist, kannst du hier Bilder und Videos hochladen.
+          Sobald dein Inserat freigegeben ist, kannst du hier Fotos und Videos hochladen.
         </Link>
       )}
 

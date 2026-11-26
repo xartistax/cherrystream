@@ -20,7 +20,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
       success: false,
       following: false,
       followerCount: 0,
-      message: "Bitte melde dich an, um Profile zu merken.",
+      message: "Bitte melde dich an, um Ladies zu merken.",
     };
   }
 
@@ -31,7 +31,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
       success: false,
       following: false,
       followerCount: 0,
-      message: "Das Profil wurde nicht gefunden.",
+      message: "Das Inserat wurde nicht gefunden.",
     };
   }
 
@@ -57,7 +57,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
         success: false,
         following: false,
         followerCount: 0,
-        message: "Das Profil wurde nicht gefunden.",
+        message: "Das Inserat wurde nicht gefunden.",
       };
     }
 
@@ -72,7 +72,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
         success: false,
         following: false,
         followerCount,
-        message: "Du kannst dein eigenes Profil nicht merken.",
+        message: "Du kannst dein eigenes Inserat nicht merken.",
       };
     }
 

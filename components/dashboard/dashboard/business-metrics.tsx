@@ -56,21 +56,21 @@ export function BusinessMetrics({ stats }: BusinessMetricsProps) {
       <div>
         <h2 className="text-lg font-bold text-white">Deine Entwicklung</h2>
 
-        <p className="mt-1 text-sm text-zinc-500">Wie oft du gefunden und kontaktiert wirst. Nur für dich sichtbar.</p>
+        <p className="mt-1 text-sm text-zinc-500">Wie oft Kunden dich finden und anschreiben. Nur für dich sichtbar.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           label="In Favoriten"
           value={formatNumber(stats.followers)}
-          description={`${formatNumber(stats.posts)} Bilder & Videos in deiner Galerie`}
+          description={`${formatNumber(stats.posts)} Fotos & Videos in deiner Galerie`}
           icon={Heart}
           iconClassName="text-violet-400"
           featured
         />
 
         <MetricCard
-          label="Profilaufrufe"
+          label="Aufrufe"
           value={formatNumber(stats.todayViews)}
           description={`${formatNumber(stats.weekViews)} diese Woche`}
           icon={Eye}
@@ -87,7 +87,7 @@ export function BusinessMetrics({ stats }: BusinessMetricsProps) {
         />
 
         <MetricCard
-          label="Kontakt-Conversion"
+          label="Kontaktquote"
           value={formatPercentage(stats.todayConversionRate)}
           description={`${formatPercentage(stats.weekConversionRate)} diese Woche`}
           icon={Percent}
@@ -102,7 +102,7 @@ export function BusinessMetrics({ stats }: BusinessMetricsProps) {
 
         <CardContent className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs text-zinc-500">Profilaufrufe gesamt</p>
+            <p className="text-xs text-zinc-500">Aufrufe gesamt</p>
 
             <p className="mt-2 text-2xl font-black">{formatNumber(stats.totalViews)}</p>
           </div>
@@ -114,7 +114,7 @@ export function BusinessMetrics({ stats }: BusinessMetricsProps) {
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs text-zinc-500">Kontakt-Conversion gesamt</p>
+            <p className="text-xs text-zinc-500">Kontaktquote gesamt</p>
 
             <p className="mt-2 text-2xl font-black">{formatPercentage(stats.totalConversionRate)}</p>
           </div>

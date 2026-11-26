@@ -49,7 +49,7 @@ export function ModelProfileForm({ defaultDisplayName, defaultBio }: ModelProfil
         {state.errors?.displayName?.[0] ? (
           <p className="text-sm text-red-400">{state.errors.displayName[0]}</p>
         ) : (
-          <p className="text-sm text-zinc-500">Dieser Name wird auf deinem öffentlichen Profil angezeigt.</p>
+          <p className="text-sm text-zinc-500">Unter diesem Namen erscheinst du auf deinem Inserat. Ein Künstlername ist ideal.</p>
         )}
       </div>
 
@@ -61,7 +61,7 @@ export function ModelProfileForm({ defaultDisplayName, defaultBio }: ModelProfil
         {state.errors?.bio?.[0] ? (
           <p className="text-sm text-red-400">{state.errors.bio[0]}</p>
         ) : (
-          <p className="text-sm text-zinc-500">Du kannst deine Beschreibung später jederzeit bearbeiten.</p>
+          <p className="text-sm text-zinc-500">Erzähl kurz, wer du bist und was Kunden erwartet. Du kannst den Text später jederzeit ändern.</p>
         )}
       </div>
 

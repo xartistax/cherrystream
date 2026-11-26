@@ -59,9 +59,9 @@ export default async function DashboardPage() {
         <div>
           <p className="text-sm font-medium text-rose-400">Hallo, {displayName}</p>
 
-          <h1 className="mt-1 text-3xl font-black tracking-tight text-white sm:text-4xl">Dashboard</h1>
+          <h1 className="mt-1 text-3xl font-black tracking-tight text-white sm:text-4xl">Übersicht</h1>
 
-          <p className="mt-2 text-sm text-zinc-500">Deine Reichweite, deine Kontakte und deine Galerie.</p>
+          <p className="mt-2 text-sm text-zinc-500">Dein Inserat auf einen Blick: Aufrufe, Kontakte, Fotos und Videos.</p>
         </div>
 
         {isPublished ? (
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
             )}
           >
             <ExternalLink className="size-4" />
-            Öffentliches Profil ansehen
+            Inserat ansehen
           </Link>
         ) : null}
       </header>
@@ -88,10 +88,10 @@ export default async function DashboardPage() {
           <ShieldCheck className="mt-0.5 size-5 shrink-0 text-amber-300" />
 
           <div className="flex-1">
-            <p className="font-semibold text-amber-100">Dein Profil ist noch nicht öffentlich</p>
+            <p className="font-semibold text-amber-100">Dein Inserat ist noch nicht online</p>
 
             <p className="mt-1 text-sm leading-6 text-amber-100/70">
-              Wir prüfen jedes Profil vor der Veröffentlichung. Hier reichst du deine Verifizierung ein und siehst den aktuellen Stand.
+              Wir prüfen jedes Inserat, bevor es online geht. Hier reichst du deine Verifizierung ein und siehst den aktuellen Stand.
             </p>
           </div>
 
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
             <div>
               <h2 className="text-xl font-bold text-white">Galerie</h2>
 
-              <p className="mt-1 text-sm text-zinc-500">Deine zuletzt hochgeladenen Bilder und Videos.</p>
+              <p className="mt-1 text-sm text-zinc-500">Deine zuletzt hochgeladenen Fotos und Videos.</p>
             </div>
 
             <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ export default async function DashboardPage() {
               {isPublished ? (
                 <Link href="/dashboard/gallery" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
                   <Upload className="size-4" />
-                  Bilder & Videos hochladen
+                  Fotos & Videos hochladen
                 </Link>
               ) : null}
             </div>
@@ -169,9 +169,9 @@ export default async function DashboardPage() {
 
           <Card className="border-white/10 bg-zinc-900/60 text-white">
             <CardHeader>
-              <CardTitle className="text-base">Dein Profil</CardTitle>
+              <CardTitle className="text-base">Dein Inserat</CardTitle>
 
-              <CardDescription className="text-zinc-500">So wirst du öffentlich angezeigt. Das Profilbild wählst du in der Galerie.</CardDescription>
+              <CardDescription className="text-zinc-500">So sehen Besucher dein Inserat. Das Profilbild wählst du in der Galerie.</CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">

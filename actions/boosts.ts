@@ -56,7 +56,7 @@ export async function purchaseBoostAction(optionId: string, requestId: string): 
   if (!user?.profile?.isPublic) {
     return {
       success: false,
-      message: "Boosts wirken nur auf öffentliche Profile. Schalte dein Profil in den Einstellungen sichtbar.",
+      message: "Hochschieben und Hervorheben wirken nur, wenn dein Inserat online ist. Stell es in den Einstellungen online.",
     };
   }
 

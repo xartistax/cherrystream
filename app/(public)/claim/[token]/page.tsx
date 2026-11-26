@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 // The token is part of the URL: keep it out of search engines and out of Referer headers to linked sites.
 export const metadata: Metadata = {
-  title: "Dein vorbereitetes Profil",
+  title: "Dein vorbereitetes Inserat",
   robots: {
     index: false,
     follow: false,
@@ -84,11 +84,11 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
       <div className="text-center">
         <p className="text-sm font-medium text-rose-400">Einladung</p>
 
-        <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Wir haben dir ein Profil vorbereitet</h1>
+        <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Wir haben dir ein Inserat vorbereitet</h1>
 
         <p className="mx-auto mt-4 max-w-lg leading-7 text-zinc-400">
-          Das Profil ist <strong className="text-white">nicht öffentlich</strong>. Es wird erst sichtbar, wenn du es übernimmst und dein Alter
-          verifizierst. Du kannst es auch mit einem Klick löschen lassen.
+          Das Inserat ist <strong className="text-white">nicht öffentlich</strong>. Es geht erst online, wenn du es übernimmst und dein Alter
+          verifizierst. Kostenlos, ohne Provision, und du kannst es auch mit einem Klick löschen lassen.
         </p>
       </div>
 
@@ -157,7 +157,7 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
 
       <Card className="border-white/10 bg-zinc-900/70 text-white">
         <CardContent className="space-y-4 p-6">
-          <h2 className="font-semibold">Profil übernehmen</h2>
+          <h2 className="font-semibold">Inserat übernehmen</h2>
 
           {!viewer ? (
             <div className="grid gap-3 sm:grid-cols-2">
@@ -173,7 +173,7 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
             <ClaimForm token={token} />
           ) : (
             <p className="text-sm leading-6 text-zinc-400">
-              Dein Konto hat bereits ein Model-Profil. Melde dich ab und mit einem anderen Konto an, oder lehne die Einladung unten ab.
+              Dein Konto hat bereits ein Inserat. Melde dich ab und mit einem anderen Konto an, oder lehne die Einladung unten ab.
             </p>
           )}
         </CardContent>
@@ -188,7 +188,7 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
         </button>
 
         <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-zinc-600">
-          Das vorbereitete Profil wird sofort gelöscht und du wirst nicht erneut eingeladen.
+          Das vorbereitete Inserat wird sofort gelöscht, und wir laden dich nicht erneut ein.
         </p>
       </form>
     </div>

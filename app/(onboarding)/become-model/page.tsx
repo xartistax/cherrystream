@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { auth } from "@/lib/auth";
 
 export const metadata = {
-  title: "Model werden",
+  title: "Inserat schalten",
 };
 
 export default async function BecomeModelPage() {
@@ -29,10 +29,10 @@ export default async function BecomeModelPage() {
             <Sparkles className="size-7" />
           </div>
 
-          <CardTitle className="mt-4 text-3xl font-black tracking-tight">Werde Model auf CherryStream</CardTitle>
+          <CardTitle className="mt-4 text-3xl font-black tracking-tight">Inseriere als Escort auf CherryStream</CardTitle>
 
           <CardDescription className="max-w-lg text-base leading-7 text-zinc-400">
-            Werde von neuen Kunden in deiner Region gefunden und erhalte Anfragen direkt über deine bevorzugten Kontaktkanäle.
+            Neue Kunden in deiner Region finden dich und melden sich direkt bei dir. Ohne Vermittler, ohne Provision, und du bestimmst, wer dich wie erreicht.
           </CardDescription>
         </CardHeader>
 
@@ -41,19 +41,19 @@ export default async function BecomeModelPage() {
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               <Search className="size-5 text-rose-400" />
               <p className="mt-3 font-semibold">Gefunden werden</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Sichtbar nach Kanton, Stadt und Rubrik.</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Sichtbar nach Ort, Kanton, Rubrik und Angebot.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               <MessageCircle className="size-5 text-emerald-400" />
-              <p className="mt-3 font-semibold">Direkte Anfragen</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Kontakt per WhatsApp, Telefon oder Telegram.</p>
+              <p className="mt-3 font-semibold">Direkter Kontakt</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Per Telefon, WhatsApp, Telegram oder Signal, wie du willst.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               <BarChart3 className="size-5 text-sky-400" />
-              <p className="mt-3 font-semibold">Dashboard</p>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">Behalte Inhalte und Statistiken im Blick.</p>
+              <p className="mt-3 font-semibold">Volle Kontrolle</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">Fotos, Angebote und Aufrufe im Blick, Inserat jederzeit pausieren.</p>
             </div>
           </div>
 
@@ -62,7 +62,7 @@ export default async function BecomeModelPage() {
             <ArrowRight className="size-4" />
           </Button>
 
-          <p className="text-center text-xs leading-5 text-zinc-600">Dein Konto wird erst nach Abschluss des Onboardings in ein Model-Konto umgewandelt.</p>
+          <p className="text-center text-xs leading-5 text-zinc-600">Dein Inserat geht erst online, wenn du alle Schritte abgeschlossen hast und wir dein Alter geprüft haben.</p>
         </CardContent>
       </Card>
     </div>

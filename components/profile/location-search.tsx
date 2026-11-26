@@ -176,7 +176,7 @@ export function LocationSearch({ cantons, cities, initialCantonSlug = "", initia
           role="listbox"
           className="absolute z-20 mt-1 max-h-72 w-full min-w-64 overflow-y-auto rounded-md border border-white/10 bg-zinc-950 py-1 shadow-xl shadow-black/40"
         >
-          {visible.length === 0 ? <li className="px-3 py-2 text-sm text-zinc-500">Kein Ort mit Profilen gefunden</li> : null}
+          {visible.length === 0 ? <li className="px-3 py-2 text-sm text-zinc-500">Kein Ort mit Inseraten gefunden</li> : null}
 
           {visible.map((option, index) => (
             <li

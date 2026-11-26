@@ -21,7 +21,7 @@ export function GalleryGrid({ displayName, media, onSelect, authenticated, login
   if (media.length === 0) {
     return (
       <div className="flex min-h-64 items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/2 px-6 text-center">
-        <p className="text-sm text-zinc-500">Keine Inhalte in dieser Kategorie.</p>
+        <p className="text-sm text-zinc-500">Keine Fotos oder Videos in dieser Auswahl.</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export function GalleryGrid({ displayName, media, onSelect, authenticated, login
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/10 opacity-70 transition group-hover:opacity-100" />
 
             {!isLocked ? (
-              <button type="button" onClick={() => onSelect(index)} aria-label={`Inhalt von ${displayName} öffnen`} className="absolute inset-0 z-10" />
+              <button type="button" onClick={() => onSelect(index)} aria-label={`Foto oder Video von ${displayName} öffnen`} className="absolute inset-0 z-10" />
             ) : null}
 
             {item.type === "VIDEO" && !isLocked ? (

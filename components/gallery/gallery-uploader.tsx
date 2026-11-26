@@ -123,9 +123,9 @@ export function GalleryUploader({ userId }: { userId: string }) {
       >
         <ImagePlus className="size-7 text-zinc-400" />
 
-        <p className="font-medium text-white">Bilder & Videos auswählen</p>
+        <p className="font-medium text-white">Fotos & Videos auswählen</p>
 
-        <p className="text-xs text-zinc-500">Oder hierher ziehen. Bis zu {MAX_POST_FILES} Dateien pro Upload, Bilder bis 10 MB, Videos bis 250 MB.</p>
+        <p className="text-xs text-zinc-500">Oder hierher ziehen. Bis zu {MAX_POST_FILES} Dateien pro Upload, Fotos bis 10 MB, Videos bis 250 MB.</p>
       </div>
 
       <MediaPreview files={files} disabled={isBusy} onRemove={removeFile} />

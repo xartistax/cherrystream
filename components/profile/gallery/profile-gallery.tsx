@@ -75,9 +75,9 @@ export function ProfileGallery({ displayName, username, media, authenticated, lo
             <Images className="size-6" />
           </div>
 
-          <h2 className="mt-5 text-xl font-bold text-white">Noch keine Inhalte</h2>
+          <h2 className="mt-5 text-xl font-bold text-white">Noch keine Fotos oder Videos</h2>
 
-          <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald {displayName} Fotos oder Videos veröffentlicht, erscheinen sie hier.</p>
+          <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald {displayName} Fotos oder Videos hochlädt, erscheinen sie hier.</p>
         </div>
       </section>
     );

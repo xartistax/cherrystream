@@ -77,7 +77,7 @@ export async function PublicNavbar() {
                   "bg-rose-600 text-white shadow-lg shadow-rose-600/20 hover:bg-rose-500",
                 )}
               >
-                Kostenlos starten
+                Kostenlos registrieren
               </Link>
             </div>
           )}

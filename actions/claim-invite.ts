@@ -24,7 +24,7 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
   if (!session?.user?.id) {
     return {
       success: false,
-      message: "Bitte melde dich an, um das Profil zu übernehmen.",
+      message: "Bitte melde dich an, um das Inserat zu übernehmen.",
     };
   }
 
@@ -40,7 +40,7 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
   if (formData.get("consent") !== "on") {
     return {
       success: false,
-      message: "Bitte bestätige, dass du das Profil übernehmen möchtest.",
+      message: "Bitte bestätige, dass du das Inserat übernehmen möchtest.",
     };
   }
 
@@ -78,7 +78,7 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
   if (user.role !== "USER" || user.modelStatus !== "NONE") {
     return {
       success: false,
-      message: "Dein Konto hat bereits ein Model-Profil. Melde dich mit einem anderen Konto an oder lehne die Einladung ab.",
+      message: "Dein Konto hat bereits ein Inserat. Melde dich mit einem anderen Konto an oder lehne die Einladung ab.",
     };
   }
 
@@ -197,7 +197,7 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
 
     return {
       success: false,
-      message: "Das Profil konnte nicht übernommen werden.",
+      message: "Das Inserat konnte nicht übernommen werden.",
     };
   }
 

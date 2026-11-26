@@ -172,7 +172,7 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
           <div>
             <h2 className="text-lg font-bold text-white">Persönliche Angaben</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">Diese Informationen werden auf deinem öffentlichen Profil angezeigt.</p>
+            <p className="mt-1 text-sm text-zinc-500">Diese Angaben sehen Besucher auf deinem Inserat.</p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -243,10 +243,10 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
 
             <div className="space-y-3">
               <div>
-                <Label>Profilbeschreibung</Label>
+                <Label>Beschreibung</Label>
 
                 <p className="mt-1 text-sm leading-6 text-zinc-500">
-                  Stelle dich ausführlich vor und beschreibe dein Angebot, deine Wünsche und wichtige Hinweise für Besucher.
+                  Stell dich vor: wer du bist, wo du empfängst, was Kunden erwartet und was du nicht machst.
                 </p>
               </div>
 
@@ -263,7 +263,7 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
           <div>
             <h2 className="text-lg font-bold text-white">Rubriken</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">Rubriken werden prominent auf deinem Profil angezeigt und für die Suche verwendet.</p>
+            <p className="mt-1 text-sm text-zinc-500">In diesen Rubriken erscheint dein Inserat, sie stehen gut sichtbar oben auf deinem Profil.</p>
           </div>
 
           <CategorySelector categories={categories} initialCategoryIds={user.categoryIds} />
@@ -277,7 +277,7 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
           <div>
             <h2 className="text-lg font-bold text-white">Angebote</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">Was du anbietest. Besucher können auf „Entdecken“ danach filtern, dein Profil zeigt die Auswahl an.</p>
+            <p className="mt-1 text-sm text-zinc-500">Was du anbietest. Besucher können in der Suche danach filtern, dein Inserat zeigt die Auswahl an.</p>
           </div>
 
           <ServiceSelector groups={serviceGroups} initialServiceIds={user.serviceIds} />
@@ -332,7 +332,7 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
           <div>
             <h2 className="text-lg font-bold text-white">Sichtbarkeit</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">Lege fest, ob dein Profil öffentlich gefunden werden darf.</p>
+            <p className="mt-1 text-sm text-zinc-500">Lege fest, ob dein Inserat online ist.</p>
           </div>
 
           <label
@@ -345,11 +345,11 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
               <div className="flex items-center gap-2">
                 <UserRound className="size-4 text-rose-400" />
 
-                <span className="font-medium text-white">Öffentliches Profil</span>
+                <span className="font-medium text-white">Inserat online</span>
               </div>
 
               <p className="mt-1 text-sm leading-6 text-zinc-500">
-                Dein Profil erscheint auf der Startseite, in der Profilsuche und kann ohne Anmeldung angesehen werden.
+                Dein Inserat erscheint auf der Startseite und in der Suche und ist ohne Anmeldung sichtbar. Ausschalten, um es zu pausieren.
               </p>
             </div>
           </label>

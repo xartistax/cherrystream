@@ -79,7 +79,7 @@ function createContactTarget(input: {
 
       const url = new URL(`https://wa.me/${number}`);
 
-      url.searchParams.set("text", `Hallo ${displayName}, ich habe dein Profil auf CherryStream gesehen.`);
+      url.searchParams.set("text", `Hallo ${displayName}, ich habe dein Inserat auf CherryStream gesehen.`);
 
       return url.toString();
     }

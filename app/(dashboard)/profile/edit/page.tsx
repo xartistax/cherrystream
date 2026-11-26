@@ -12,7 +12,7 @@ import { getActiveServices, groupServices } from "@/lib/services/services";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Profil bearbeiten",
+  title: "Inserat bearbeiten",
 };
 
 export default async function EditProfilePage() {
@@ -153,7 +153,7 @@ export default async function EditProfilePage() {
         <div className="flex items-start gap-4">
           <Link
             href="/dashboard"
-            aria-label="Zurück zum Studio"
+            aria-label="Zurück zur Übersicht"
             className={cn(
               buttonVariants({
                 variant: "outline",
@@ -167,7 +167,7 @@ export default async function EditProfilePage() {
 
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-black tracking-tight text-white sm:text-3xl">Profil bearbeiten</h1>
+              <h1 className="text-2xl font-black tracking-tight text-white sm:text-3xl">Inserat bearbeiten</h1>
 
               {user.profile?.verified ? (
                 <Badge className="gap-1 border border-sky-500/20 bg-sky-500/10 text-sky-300 hover:bg-sky-500/10">
@@ -177,7 +177,7 @@ export default async function EditProfilePage() {
               ) : null}
             </div>
 
-            <p className="mt-1 text-sm leading-6 text-zinc-500">Verwalte deine öffentlichen Angaben, deinen Standort und deine Kontaktmöglichkeiten.</p>
+            <p className="mt-1 text-sm leading-6 text-zinc-500">Text, Ort, Rubriken, Angebote und Kontaktwege: Was hier steht, sehen Besucher in deinem Inserat.</p>
           </div>
         </div>
 
@@ -191,7 +191,7 @@ export default async function EditProfilePage() {
           )}
         >
           <UserRound className="size-4" />
-          Öffentliches Profil
+          Inserat ansehen
         </Link>
       </header>
 

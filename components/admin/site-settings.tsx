@@ -26,7 +26,7 @@ export function SiteSettings({ comingSoon, previewUrl }: SiteSettingsProps) {
           <p className="font-medium text-white">Coming-Soon-Modus</p>
 
           <p className="mt-0.5 text-sm leading-6 text-zinc-500">
-            Besucher ohne Konto sehen nur „Bald verfügbar“. Weiterhin erreichbar: Anmelden, Einladungslinks samt Registrierung, Impressum,
+            Besucher ohne Konto sehen nur «Bald verfügbar». Weiterhin erreichbar: Anmelden, Einladungslinks samt Registrierung, Impressum,
             Datenschutz und alle mit dem Vorschau-Link. Wirkt innerhalb von 15 Sekunden.
           </p>
         </div>

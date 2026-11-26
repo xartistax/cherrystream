@@ -19,7 +19,7 @@ export function getInviteMessage(displayName: string, link: string): string {
   return [
     `Hallo ${displayName}`,
     "",
-    "wir haben dir auf CherryStream kostenlos ein Profil vorbereitet. Es ist nicht öffentlich und wird erst sichtbar, wenn du es übernimmst und dich verifizierst.",
+    "wir haben dir auf CherryStream kostenlos ein Inserat vorbereitet. Es ist nicht öffentlich und wird erst sichtbar, wenn du es übernimmst und dich verifizierst.",
     "",
     `Hier kannst du es ansehen, übernehmen oder mit einem Klick löschen lassen: ${link}`,
   ].join("\n");

@@ -28,7 +28,7 @@ export function UploadProgress({ progress }: UploadProgressProps) {
       </div>
 
       <div className="flex items-center justify-between text-xs text-zinc-500">
-        <span>{normalizedProgress < 100 ? "Medien werden hochgeladen" : "Upload abgeschlossen"}</span>
+        <span>{normalizedProgress < 100 ? "Fotos und Videos werden hochgeladen" : "Upload abgeschlossen"}</span>
 
         <span>{normalizedProgress} %</span>
       </div>

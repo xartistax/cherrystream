@@ -34,8 +34,8 @@ type MediaFilter = "IMAGE" | "VIDEO";
 const PAGE_SIZE = 24;
 
 export const metadata = {
-  title: "Profile entdecken",
-  description: "Verifizierte Profile nach Ort, Kanton, Rubrik und Angebot durchsuchen.",
+  title: "Escorts und Ladies in der Schweiz",
+  description: "Verifizierte Escort- und Erotik-Inserate nach Ort, Kanton, Rubrik und Angebot durchsuchen. Direkter Kontakt, ohne Vermittler.",
 };
 
 function parsePage(value: string | undefined): number {
@@ -394,14 +394,14 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="space-y-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Entdecken</h1>
+            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Ladies entdecken</h1>
 
-            <p className="mt-2 text-sm text-zinc-400 sm:text-base">Finde Profile nach Interessen, Ort oder Medien.</p>
+            <p className="mt-2 text-sm text-zinc-400 sm:text-base">Suche nach Ort, Rubrik und Angebot und nimm direkt Kontakt auf.</p>
           </div>
 
           <div className="flex flex-wrap gap-2 text-sm">
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
-              {totalCount} Profile
+              {totalCount} {totalCount === 1 ? "Inserat" : "Inserate"}
             </Badge>
 
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
@@ -425,7 +425,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             <Input
               name="search"
               defaultValue={search}
-              placeholder="Name, Benutzername oder Stadt ..."
+              placeholder="Name oder Ort …"
               className="h-11 border-white/10 bg-white/[0.04] pl-11 text-white"
             />
           </div>
@@ -581,9 +581,9 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="mt-10">
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-white">{activeCategory ? activeCategory.name : "Profile"}</h2>
+            <h2 className="text-xl font-bold text-white">{activeCategory ? activeCategory.name : "Alle Ladies"}</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">{totalCount} Ergebnisse</p>
+            <p className="mt-1 text-sm text-zinc-500">{totalCount} {totalCount === 1 ? "Inserat" : "Inserate"}</p>
           </div>
 
           <p className="text-sm text-zinc-500">

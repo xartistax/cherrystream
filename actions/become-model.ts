@@ -44,9 +44,9 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
     if (error instanceof Error && error.message === "PROFILE_DESCRIPTION_TOO_LONG") {
       return {
         success: false,
-        message: "Bitte überprüfe deine Profilbeschreibung.",
+        message: "Bitte überprüfe den Text deines Inserats.",
         errors: {
-          bio: [`Die Profilbeschreibung darf maximal ${PROFILE_DESCRIPTION_MAX_LENGTH.toLocaleString("de-CH")} Zeichen enthalten.`],
+          bio: [`Der Text deines Inserats darf maximal ${PROFILE_DESCRIPTION_MAX_LENGTH.toLocaleString("de-CH")} Zeichen enthalten.`],
         },
       };
     }
@@ -55,7 +55,7 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
 
     return {
       success: false,
-      message: "Die Profilbeschreibung konnte nicht verarbeitet werden.",
+      message: "Der Text deines Inserats konnte nicht verarbeitet werden.",
     };
   }
 
@@ -85,7 +85,7 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
 
     return {
       success: false,
-      message: "Dein Profil konnte nicht gespeichert werden.",
+      message: "Dein Inserat konnte nicht gespeichert werden.",
     };
   }
 

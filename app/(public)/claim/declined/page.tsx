@@ -20,7 +20,7 @@ export default function InviteDeclinedPage() {
 
       <h1 className="mt-6 text-2xl font-bold">Deine Daten wurden gelöscht</h1>
 
-      <p className="mt-3 leading-7 text-zinc-400">Das vorbereitete Profil existiert nicht mehr, und wir werden dich nicht erneut einladen.</p>
+      <p className="mt-3 leading-7 text-zinc-400">Das vorbereitete Inserat ist gelöscht, und wir laden dich nicht erneut ein.</p>
 
       <Link href="/" className={cn(buttonVariants({ variant: "outline" }), "mt-8 border-white/10 bg-white/5")}>
         Zur Startseite

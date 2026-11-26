@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { completeModelOnboardingAction } from "@/actions/complete-model-onboarding";
 
 export const metadata = {
-  title: "Model-Onboarding abschließen",
+  title: "Inserat abschliessen",
 };
 
 export default async function BecomeModelFinishPage() {
@@ -96,7 +96,7 @@ export default async function BecomeModelFinishPage() {
         </Link>
 
         <div>
-          <p className="text-sm font-medium text-rose-400">Onboarding abschließen</p>
+          <p className="text-sm font-medium text-rose-400">Letzter Schritt</p>
 
           <h1 className="text-2xl font-black tracking-tight text-white">Du bist bereit</h1>
         </div>
@@ -108,10 +108,10 @@ export default async function BecomeModelFinishPage() {
             <Rocket className="size-7" />
           </div>
 
-          <CardTitle className="mt-4 text-3xl font-black tracking-tight">Dein Model-Profil ist vorbereitet</CardTitle>
+          <CardTitle className="mt-4 text-3xl font-black tracking-tight">Dein Inserat ist vorbereitet</CardTitle>
 
           <CardDescription className="max-w-lg text-base leading-7 text-zinc-400">
-            Überprüfe deine Angaben. Im nächsten Schritt verifizierst du dein Alter, danach geben wir dein Profil frei.
+            Prüfe deine Angaben. Danach verifizierst du dein Alter mit einem Ausweis, und wir schalten dein Inserat frei. Der Ausweis dient nur der Prüfung und wird danach gelöscht.
           </CardDescription>
         </CardHeader>
 
@@ -124,7 +124,7 @@ export default async function BecomeModelFinishPage() {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-white">Profil</p>
+                  <p className="font-semibold text-white">Inserat</p>
 
                   <CheckCircle2 className="size-5 text-emerald-400" />
                 </div>
@@ -183,7 +183,7 @@ export default async function BecomeModelFinishPage() {
             </button>
           </form>
 
-          <p className="text-center text-xs leading-5 text-zinc-600">Du kannst alle Angaben später jederzeit in deinen Profileinstellungen bearbeiten.</p>
+          <p className="text-center text-xs leading-5 text-zinc-600">Du kannst alle Angaben später jederzeit unter «Inserat bearbeiten» ändern.</p>
         </CardContent>
       </Card>
     </div>

@@ -26,7 +26,7 @@ export function DeleteAccountForm() {
             <h2 className="font-semibold text-white">Konto dauerhaft deaktivieren</h2>
 
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-              Dein Konto wird deaktiviert, aus der öffentlichen Plattform entfernt und du wirst sofort abgemeldet.
+              Dein Konto wird deaktiviert, ein Inserat sofort entfernt und du wirst abgemeldet.
             </p>
           </div>
         </div>

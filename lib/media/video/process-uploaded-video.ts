@@ -46,7 +46,7 @@ async function downloadVideo(source: UploadedMediaInput): Promise<Buffer> {
   }
 
   if (buffer.byteLength > MAX_VIDEO_SIZE) {
-    throw new Error("Das Video überschreitet die erlaubte Dateigröße.");
+    throw new Error("Das Video überschreitet die erlaubte Dateigrösse.");
   }
 
   return buffer;

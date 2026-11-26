@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 
   if (!profile) {
-    return { title: "Profil nicht gefunden" };
+    return { title: "Inserat nicht gefunden" };
   }
 
   const name = profile.displayName || username;
@@ -343,7 +343,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           {user.profile.coverUrl ? (
             <Image
               src={user.profile.coverUrl}
-              alt={`Cover von ${displayName}`}
+              alt={`Titelbild von ${displayName}`}
               fill
               priority
               sizes="(max-width: 1280px) 100vw, 1280px"
@@ -367,7 +367,11 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 <div className="flex items-center gap-2">
                   <h1 className="truncate text-3xl font-black tracking-tight text-white sm:text-4xl">{displayName}</h1>
 
-                  {user.profile.verified ? <BadgeCheck className="size-6 shrink-0 text-sky-400" /> : null}
+                  {user.profile.verified ? (
+                    <span title="Verifiziert: Alter und Identität geprüft, Fotos echt">
+                      <BadgeCheck aria-label="Verifiziert" className="size-6 shrink-0 text-sky-400" />
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-400">
@@ -422,7 +426,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             {isOwnProfile ? (
               <Link href="/profile/edit" className={cn(buttonVariants(), "bg-rose-600 text-white hover:bg-rose-500")}>
-                Profil bearbeiten
+                Inserat bearbeiten
               </Link>
             ) : null}
 
@@ -446,7 +450,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
             ) : null}
           </div>
 
-          {!isOwnProfile ? <ReportButton username={user.username} label="Profil melden" className="mt-5" /> : null}
+          {!isOwnProfile ? <ReportButton username={user.username} label="Inserat melden" className="mt-5" /> : null}
 
           {!isOwnProfile && user.profile.contactNote ? (
             <div className="mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">

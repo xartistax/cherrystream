@@ -200,16 +200,16 @@ export default async function PublicHomePage() {
           <div className="max-w-3xl">
             <Badge variant="outline" className="gap-2 border-rose-500/25 bg-rose-500/10 px-3 py-1.5 text-rose-300">
               <Sparkles className="size-3.5" />
-              Neu auf CherryStream
+              Escort- und Erotik-Inserate in der Schweiz
             </Badge>
 
             <h1 className="mt-6 text-balance text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-              Entdecke Profile, die{" "}
-              <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">dich begeistern.</span>
+              Verifizierte Ladies{" "}
+              <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">in der ganzen Schweiz.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 sm:text-xl">
-              Finde Profile nach Rubrik, Kanton und Stadt – mit Fotos, Videos und exklusiven Inhalten.
+              Finde Escorts nach Ort, Rubrik und Angebot und schreib ihnen direkt. Diskret, ohne Vermittler.
             </p>
 
             <div className="flex flex-col gap-3 mt-10 sm:flex-row">
@@ -222,7 +222,7 @@ export default async function PublicHomePage() {
                   "h-12 rounded-2xl bg-rose-600 px-7 text-base font-semibold text-white shadow-lg shadow-rose-600/20 hover:bg-rose-500",
                 )}
               >
-                Profile entdecken
+                Ladies entdecken
                 <ArrowRight className="size-5" />
               </Link>
 
@@ -237,24 +237,24 @@ export default async function PublicHomePage() {
                 )}
               >
                 <Sparkles className="size-5 text-rose-400" />
-                Profil veröffentlichen
+                Inserat schalten
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-zinc-500">
               <span className="inline-flex items-center gap-2">
                 <ShieldCheck className="size-4 text-emerald-400" />
-                Ausschließlich 18+
+                Nur ab 18
               </span>
 
               <span className="inline-flex items-center gap-2">
                 <UsersRound className="size-4 text-rose-400" />
-                Öffentliche Profile
+                Verifizierte Profile
               </span>
 
               <span className="inline-flex items-center gap-2">
                 <Camera className="size-4 text-violet-400" />
-                Fotos und Videos
+                Direkter Kontakt
               </span>
             </div>
           </div>
@@ -328,19 +328,19 @@ export default async function PublicHomePage() {
           <div>
             <p className="text-3xl font-black text-white">{creatorCount}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">öffentliche Profile</p>
+            <p className="mt-1 text-sm text-zinc-500">verifizierte Ladies</p>
           </div>
 
           <div>
             <p className="text-3xl font-black text-white">{categories.length}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">beliebte Rubriken</p>
+            <p className="mt-1 text-sm text-zinc-500">Rubriken</p>
           </div>
 
           <div>
             <p className="text-3xl font-black text-white">18+</p>
 
-            <p className="mt-1 text-sm text-zinc-500">ausschließlich für Erwachsene</p>
+            <p className="mt-1 text-sm text-zinc-500">ausschliesslich für Erwachsene</p>
           </div>
         </div>
       </section>
@@ -353,9 +353,9 @@ export default async function PublicHomePage() {
                 Rubriken
               </Badge>
 
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Interessen entdecken</h2>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Rubrik suchen</h2>
 
-              <p className="mt-3 max-w-xl text-zinc-500">Durchsuche Profile nach Rubriken und Schwerpunkten.</p>
+              <p className="mt-3 max-w-xl text-zinc-500">Escort, Massagen, Domina und mehr: Wähle, worauf du Lust hast.</p>
             </div>
 
             <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
@@ -388,13 +388,13 @@ export default async function PublicHomePage() {
               Gerade aktiv
             </Badge>
 
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Profile</h2>
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Ladies</h2>
 
-            <p className="mt-3 max-w-xl text-zinc-500">Die Profile, die gerade aktiv sind, zuerst.</p>
+            <p className="mt-3 max-w-xl text-zinc-500">Wer zuletzt hochgeschoben oder neu dabei ist, steht zuoberst.</p>
           </div>
 
           <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
-            Alle Profile ansehen
+            Alle Ladies ansehen
             <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -485,12 +485,12 @@ export default async function PublicHomePage() {
               <UsersRound className="size-6" />
             </div>
 
-            <h3 className="mt-5 text-lg font-semibold text-white">Noch keine öffentlichen Profile</h3>
+            <h3 className="mt-5 text-lg font-semibold text-white">Noch keine Inserate online</h3>
 
-            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald neue Profile veröffentlicht werden, erscheinen sie automatisch hier.</p>
+            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald die ersten Ladies freigeschaltet sind, erscheinen sie hier.</p>
 
             <Link href="/register" className={cn(buttonVariants(), "mt-6 bg-rose-600 text-white hover:bg-rose-500")}>
-              Erstes Profil erstellen
+              Erstes Inserat schalten
             </Link>
           </div>
         )}
@@ -505,9 +505,9 @@ export default async function PublicHomePage() {
               <Cherry className="size-6" />
             </div>
 
-            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Zeig, was dich besonders macht.</h2>
+            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Du bist Escort? Inseriere bei uns.</h2>
 
-            <p className="mt-4 text-base leading-7 text-zinc-400">Erstelle dein Profil, veröffentliche deine Inhalte und werde auf CherryStream entdeckt.</p>
+            <p className="mt-4 text-base leading-7 text-zinc-400">Dein Inserat, deine Regeln: Kontaktwege, Fotos und Angebote bestimmst du selbst. Kunden melden sich direkt bei dir, ohne Vermittler und ohne Provision.</p>
 
             <Link
               href="/register"
@@ -518,7 +518,7 @@ export default async function PublicHomePage() {
                 "mt-8 h-12 bg-white px-7 text-zinc-950 hover:bg-zinc-200",
               )}
             >
-              Eigenes Profil veröffentlichen
+              Inserat schalten
               <ArrowRight className="size-4" />
             </Link>
           </div>
