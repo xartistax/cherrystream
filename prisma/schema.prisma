@@ -205,6 +205,7 @@ model User {
   reportsFiled          Report[]            @relation("ReportFiler")
   reportsResolved       Report[]            @relation("ReportResolver")
   boosts                Boost[]
+  creditOrders          CreditOrder[]
 
   @@index([createdAt])
   @@index([status])
@@ -684,8 +685,9 @@ model WalletTransaction {
   wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
 
   boost         Boost?
-  buyerUnlock   PostUnlock? @relation("PostUnlockBuyerTransaction")
-  creatorUnlock PostUnlock? @relation("PostUnlockCreatorTransaction")
+  creditOrder   CreditOrder?
+  buyerUnlock   PostUnlock?  @relation("PostUnlockBuyerTransaction")
+  creatorUnlock PostUnlock?  @relation("PostUnlockCreatorTransaction")
 
   @@index([walletId, createdAt])
   @@index([type, createdAt])
@@ -770,4 +772,48 @@ model AdminAlertSetting {
   enabled     Boolean         @default(true)
   updatedById String?
   updatedAt   DateTime        @updatedAt
+}
+
+/// TEST is the built-in simulated checkout, available only while PAYMENTS_MODE=test.
+enum PaymentProvider {
+  TEST
+}
+
+enum PaymentMode {
+  TEST
+  LIVE
+}
+
+enum CreditOrderStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+  EXPIRED
+}
+
+/// A model buying a credit package. The credits are booked once, when the provider confirms the payment.
+model CreditOrder {
+  id          String            @id @default(cuid())
+  userId      String
+  packageId   String
+  credits     Int
+  priceRappen Int
+  provider    PaymentProvider
+  /// Whether the order was placed in test or live mode; test orders never count as revenue.
+  mode        PaymentMode
+  status      CreditOrderStatus @default(PENDING)
+
+  providerReference String?
+  transactionId     String?   @unique
+  paidAt            DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transaction WalletTransaction? @relation(fields: [transactionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
 }

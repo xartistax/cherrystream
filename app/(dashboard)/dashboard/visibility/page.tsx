@@ -1,12 +1,14 @@
-import { Clock, Coins, ListOrdered, Repeat, ShieldCheck, Sparkles } from "lucide-react";
+import { CircleCheck, CircleX, Clock, Coins, ListOrdered, Repeat, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { BoostButton } from "@/components/boosts/boost-button";
+import { CreditPackageShop } from "@/components/boosts/credit-package-shop";
 import { WalletHistory } from "@/components/credits/wallet-history";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { requireCreatorPage } from "@/lib/access";
 import { getBoostStatus } from "@/lib/boosts/get-boost-status";
-import { ECONOMY, type BoostOption } from "@/lib/economy";
+import { calculateCreditPackageTotal, ECONOMY, type BoostOption } from "@/lib/economy";
+import { getPaymentMode, isCreditPurchaseEnabled } from "@/lib/payments/config";
 import { prisma } from "@/lib/prisma";
 
 export const metadata = {
@@ -45,12 +47,20 @@ const boostGroups: Array<{ type: BoostOption["type"]; title: string; description
   },
 ];
 
-export default async function VisibilityPage() {
+type VisibilityPageProps = {
+  searchParams: Promise<{
+    order?: string;
+  }>;
+};
+
+export default async function VisibilityPage({ searchParams }: VisibilityPageProps) {
   const { userId, modelStatus } = await requireCreatorPage();
 
   const isPublished = modelStatus === "ACTIVE";
+  const { order: orderId } = await searchParams;
+  const purchaseEnabled = isCreditPurchaseEnabled();
 
-  const [status, transactions] = await Promise.all([
+  const [status, transactions, returnedOrder] = await Promise.all([
     getBoostStatus(userId),
     prisma.walletTransaction.findMany({
       where: {
@@ -72,6 +82,19 @@ export default async function VisibilityPage() {
         createdAt: true,
       },
     }),
+    // The order the model just came back from the checkout with.
+    orderId
+      ? prisma.creditOrder.findFirst({
+          where: {
+            id: orderId,
+            userId,
+          },
+          select: {
+            status: true,
+            credits: true,
+          },
+        })
+      : null,
   ]);
 
   const autoBumpHours = status.autoBumpIntervalMinutes ? status.autoBumpIntervalMinutes / 60 : null;
@@ -98,6 +121,8 @@ export default async function VisibilityPage() {
           oben oder hebst es hervor.
         </p>
       </header>
+
+      {returnedOrder ? <OrderNotice status={returnedOrder.status} credits={returnedOrder.credits} /> : null}
 
       {!isPublished ? (
         <Link
@@ -177,11 +202,33 @@ export default async function VisibilityPage() {
         </section>
       ))}
 
-      <section className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-        <Clock className="mt-0.5 size-5 shrink-0 text-zinc-500" />
+      {purchaseEnabled && isPublished ? (
+        <section id="credits-kaufen" className="space-y-4">
+          <div>
+            <h2 className="text-xl font-bold text-white">Credits kaufen</h2>
 
-        <p className="text-sm leading-6 text-zinc-400">Credits kannst du bald direkt hier kaufen.</p>
-      </section>
+            <p className="mt-1 max-w-2xl text-sm text-zinc-500">Grössere Pakete enthalten Bonus-Credits. Credits verfallen nicht.</p>
+          </div>
+
+          <CreditPackageShop
+            testMode={getPaymentMode() === "TEST"}
+            packages={ECONOMY.creditPackages.map((creditPackage) => ({
+              id: creditPackage.id,
+              credits: calculateCreditPackageTotal(creditPackage.paidCredits, creditPackage.bonusCredits),
+              bonusCredits: creditPackage.bonusCredits,
+              priceRappen: creditPackage.priceRappen,
+            }))}
+          />
+        </section>
+      ) : (
+        <section className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <Clock className="mt-0.5 size-5 shrink-0 text-zinc-500" />
+
+          <p className="text-sm leading-6 text-zinc-400">
+            {isPublished ? "Credits kannst du bald direkt hier kaufen." : "Credits kannst du nach der Freischaltung kaufen."}
+          </p>
+        </section>
+      )}
 
       <WalletHistory transactions={transactions} />
     </div>
@@ -211,5 +258,37 @@ function StatusCard({ icon: Icon, title, value, detail }: StatusCardProps) {
         {detail ? <p className="mt-1 text-xs text-zinc-500">{detail}</p> : null}
       </CardContent>
     </Card>
+  );
+}
+
+type OrderNoticeProps = {
+  status: "PENDING" | "PAID" | "FAILED" | "CANCELLED" | "EXPIRED";
+  credits: number;
+};
+
+function OrderNotice({ status, credits }: OrderNoticeProps) {
+  if (status === "PAID") {
+    return (
+      <div role="status" className="flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-100">
+        <CircleCheck className="size-5 shrink-0 text-emerald-300" />
+        Zahlung erfolgreich: {credits.toLocaleString("de-CH")} Credits wurden deinem Guthaben gutgeschrieben.
+      </div>
+    );
+  }
+
+  if (status === "PENDING") {
+    return (
+      <div role="status" className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-zinc-300">
+        <Clock className="size-5 shrink-0 text-zinc-400" />
+        Deine Zahlung wird noch bestätigt. Die Credits erscheinen, sobald der Zahlungsanbieter sie freigibt.
+      </div>
+    );
+  }
+
+  return (
+    <div role="status" className="flex items-center gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100">
+      <CircleX className="size-5 shrink-0 text-rose-300" />
+      {status === "CANCELLED" ? "Kauf abgebrochen. Es wurde nichts belastet." : "Die Zahlung ist nicht durchgegangen. Es wurden keine Credits gebucht."}
+    </div>
   );
 }

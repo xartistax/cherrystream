@@ -24,16 +24,22 @@ export default function PrivacyPage() {
         <h2>2. Welche Daten wir bearbeiten</h2>
         <ul>
           <li>Kontodaten: E-Mail-Adresse, Benutzername, Passwort (nur verschlüsselt gespeichert), Geburtsdatum.</li>
-          <li>Profildaten von Models: Name, Beschreibung, Ort, Kategorien, Fotos, Videos und freiwillig angegebene Kontaktkanäle.</li>
+          <li>Profildaten von Models: Name, Beschreibung, Ort, Rubriken, Angebote, Fotos, Videos und freiwillig angegebene Kontaktkanäle.</li>
           <li>
             Verifizierung von Models: Foto eines Ausweises und ein Selfie. Diese Daten werden ausschliesslich zur Alters- und Identitätsprüfung verwendet,
             in einem nicht öffentlichen Speicher abgelegt und nach der Prüfung gelöscht. Wir bewahren nur auf, dass und wann eine Prüfung stattgefunden hat.
           </li>
           <li>Nutzungsdaten: Profilaufrufe und Klicks auf Kontaktkanäle, nur in anonymisierter Form (gehashte Kennungen).</li>
+          <li>Favoriten: Profile, die du dir merkst. Diese Liste siehst nur du, Models sehen nur eine Gesamtzahl ohne Namen.</li>
+          <li>
+            Credits und Käufe von Models: gekaufte Pakete, Betrag, Zeitpunkt, Status und die Referenz des Zahlungsanbieters sowie gebuchte Boosts.
+            Kreditkarten- oder Kontodaten erhalten wir nicht, sie liegen nur beim Zahlungsanbieter.
+          </li>
+          <li>Schutz vor Missbrauch: gehashte IP-Adressen für Begrenzungen bei Anmeldung und Formularen, nach spätestens 24 Stunden gelöscht.</li>
           <li>Meldungen: Inhalt der Meldung und eine gehashte Kennung der meldenden Person zum Schutz vor Missbrauch.</li>
         </ul>
         <p>
-          Hinweis: Angaben auf Profilen von Models können Rückschlüsse auf das Sexualleben zulassen und gelten als besonders schützenswerte
+          Hinweis: Angaben auf Profilen von Models, insbesondere Rubriken und Angebote, können Rückschlüsse auf das Sexualleben zulassen und gelten als besonders schützenswerte
           Personendaten. Wir bearbeiten sie nur mit der Einwilligung der betroffenen Person. <Placeholder>juristisch prüfen</Placeholder>
         </p>
       </section>
@@ -55,6 +61,8 @@ export default function PrivacyPage() {
           <li>Alters- und Identitätsprüfung von Models</li>
           <li>Sicherheit, Missbrauchsbekämpfung und Bearbeitung von Meldungen</li>
           <li>Statistiken für Models über Aufrufe und Kontaktanfragen</li>
+          <li>Abwicklung von Credit-Käufen und Boosts</li>
+          <li>Interne Benachrichtigung der Administratoren über neue Verifizierungen, Meldungen und Registrierungen</li>
         </ul>
       </section>
 
@@ -62,10 +70,16 @@ export default function PrivacyPage() {
         <h2>5. Auftragsbearbeiter und Bekanntgabe ins Ausland</h2>
         <p>Wir setzen folgende Dienstleister ein. Die Daten können dabei auch in der EU oder den USA bearbeitet werden:</p>
         <ul>
-          <li>Vercel Inc. (Hosting, Speicherung von Medien), USA</li>
-          <li>Neon Inc. (Datenbank), <Placeholder>Region der Datenbank, z. B. EU (Frankfurt)</Placeholder></li>
+          <li>Vercel Inc., USA: Hosting der Website; Fotos, Videos und Ausweisdokumente werden in Rechenzentren in Frankfurt (EU) gespeichert</li>
+          <li>Neon Inc., USA: Datenbank, Rechenzentrum in Frankfurt (EU)</li>
+          <li>Resend Inc., USA: Versand von E-Mails (Bestätigung der E-Mail-Adresse, Passwort zurücksetzen, Hinweise zur Verifizierung)</li>
+          <li>Functional Software Inc. (Sentry), USA: Fehlerberichte zur Stabilität der Website, Datenspeicherung in der EU; ohne Benutzerdaten, Cookies und Formularinhalte</li>
           <li>
-            <Placeholder>weitere Dienstleister, z. B. E-Mail-Versand oder Zahlungsanbieter</Placeholder>
+            Telegram: interne Benachrichtigungen an die Administratoren. Übermittelt werden nur die Art des Ereignisses und der Benutzername, keine
+            Ausweise, E-Mail-Adressen oder Meldetexte
+          </li>
+          <li>
+            Zahlungsanbieter für den Kauf von Credits: <Placeholder>Anbieter nennen, sobald unter Vertrag (z. B. SegPay, Paysafecard, TWINT)</Placeholder>
           </li>
         </ul>
         <p>
@@ -78,6 +92,10 @@ export default function PrivacyPage() {
         <ul>
           <li>Ausweis und Selfie: bis zum Abschluss der Prüfung, danach gelöscht</li>
           <li>Nicht übernommene Einladungen: höchstens 30 Tage</li>
+          <li>Gehashte IP-Adressen zum Schutz vor Missbrauch: höchstens 24 Stunden</li>
+          <li>
+            Käufe von Credits: 10 Jahre, soweit sie als Geschäftsbelege aufbewahrt werden müssen <Placeholder>Frist juristisch bestätigen</Placeholder>
+          </li>
           <li>Kontodaten: bis zur Löschung des Kontos <Placeholder>Fristen nach Kontolöschung festlegen</Placeholder></li>
         </ul>
       </section>

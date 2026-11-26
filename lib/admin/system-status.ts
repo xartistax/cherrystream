@@ -11,6 +11,7 @@ import { Prisma } from "@/generated/prisma/client";
 import { paymentsEnabled } from "@/lib/features";
 import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import { prisma } from "@/lib/prisma";
+import { getAvailableProviders, getPaymentMode, paymentProviderLabels } from "@/lib/payments/config";
 import { urgentReportReasons } from "@/lib/reports/reasons";
 import { getStripe } from "@/lib/stripe";
 import { getVerificationBlobAuth, verificationBlobOptions } from "@/lib/verification/storage";
@@ -369,6 +370,34 @@ async function checkTelegram(): Promise<CheckResult> {
   };
 }
 
+async function checkCreditPurchases(): Promise<CheckResult> {
+  const mode = getPaymentMode();
+
+  if (!mode) {
+    return {
+      status: "disabled",
+      detail: "Kauf von Credits ausgeblendet (PAYMENTS_MODE nicht gesetzt)",
+    };
+  }
+
+  const providers = getAvailableProviders(mode);
+
+  if (providers.length === 0) {
+    return {
+      status: "error",
+      detail: `PAYMENTS_MODE=${mode.toLowerCase()}, aber kein Zahlungsanbieter für diesen Modus angeschlossen`,
+    };
+  }
+
+  return {
+    status: mode === "TEST" ? "warn" : "ok",
+    detail:
+      mode === "TEST"
+        ? `Testmodus: ${providers.map((provider) => paymentProviderLabels[provider]).join(", ")}, keine echten Zahlungen`
+        : `Live: ${providers.map((provider) => paymentProviderLabels[provider]).join(", ")}`,
+  };
+}
+
 async function checkFfmpeg(): Promise<CheckResult> {
   const { ffmpegPath, ffprobePath } = await getFfmpegBinaries();
   const [ffmpegVersion, ffprobeVersion] = await Promise.all([readBinaryVersion(ffmpegPath), readBinaryVersion(ffprobePath)]);
@@ -682,7 +711,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram, ffmpeg, sharpCheck, creditPurchases, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -694,6 +723,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("telegram", "Admin-Benachrichtigungen (Telegram)", checkTelegram),
       runCheck("ffmpeg", "FFmpeg / FFprobe", checkFfmpeg),
       runCheck("sharp", "Bildverarbeitung (sharp)", checkSharp),
+      runCheck("credit-purchases", "Kauf von Credits", checkCreditPurchases),
       runCheck("stripe-api", "Stripe API", checkStripeApi),
       runCheck("stripe-webhook", "Stripe Webhook", checkStripeWebhook),
       runCheck("verifications", "Offene Verifizierungen", checkPendingVerifications),
@@ -715,7 +745,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
     },
     {
       title: "Zahlungen",
-      checks: [stripeApi, stripeWebhook],
+      checks: [creditPurchases, stripeApi, stripeWebhook],
     },
     {
       title: "Betrieb",
