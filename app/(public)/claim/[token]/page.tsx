@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
-import { AtSign, Globe2, Link2Off, MapPin, MessageCircle, Phone, Send, Trash2 } from "lucide-react";
+import { AtSign, Globe2, Link2Off, MapPin, MessageCircle, MessageSquareLock, Phone, Send, Trash2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -9,6 +9,7 @@ import { ClaimForm } from "@/components/invites/claim-form";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
+import { inviteBioToHtml } from "@/lib/invites/draft";
 import { getOpenInvite } from "@/lib/invites/get-open-invite";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
@@ -54,21 +55,26 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
   const session = await auth();
   const callbackUrl = encodeURIComponent(`/claim/${token}`);
 
-  const [canton, city, categories, viewer] = await Promise.all([
+  const [canton, city, categories, services, viewer] = await Promise.all([
     invite.cantonId ? prisma.canton.findUnique({ where: { id: invite.cantonId }, select: { name: true } }) : null,
     invite.cityId ? prisma.city.findUnique({ where: { id: invite.cityId }, select: { name: true } }) : null,
     invite.categoryIds.length > 0
       ? prisma.category.findMany({ where: { id: { in: invite.categoryIds } }, select: { id: true, name: true }, orderBy: { sortOrder: "asc" } })
+      : [],
+    invite.serviceIds.length > 0
+      ? prisma.service.findMany({ where: { id: { in: invite.serviceIds }, isActive: true }, select: { id: true, name: true }, orderBy: { sortOrder: "asc" } })
       : [],
     session?.user?.id ? prisma.user.findUnique({ where: { id: session.user.id }, select: { role: true, modelStatus: true } }) : null,
   ]);
 
   const canClaim = viewer?.role === "USER" && viewer.modelStatus === "NONE";
   const location = [city?.name, canton?.name].filter(Boolean).join(", ");
+  const bioHtml = inviteBioToHtml(invite.bio);
 
   const contacts = [
     invite.phoneNumber ? { icon: invite.whatsappEnabled ? MessageCircle : Phone, label: `${invite.whatsappEnabled ? "WhatsApp" : "Telefon"}: ${invite.phoneNumber}` } : null,
     invite.telegramUsername ? { icon: Send, label: `Telegram: @${invite.telegramUsername}` } : null,
+    invite.signalNumber ? { icon: MessageSquareLock, label: `Signal: ${invite.signalNumber}` } : null,
     invite.instagram ? { icon: AtSign, label: `Instagram: @${invite.instagram}` } : null,
     invite.website ? { icon: Globe2, label: invite.website } : null,
   ].filter((contact) => contact !== null);
@@ -109,7 +115,26 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
             </div>
           ) : null}
 
-          {invite.bio ? <p className="text-sm leading-7 whitespace-pre-line text-zinc-300">{invite.bio}</p> : null}
+          {services.length > 0 ? (
+            <div>
+              <p className="mb-2 text-xs font-medium tracking-wide text-zinc-500 uppercase">Angebote</p>
+
+              <div className="flex flex-wrap gap-2">
+                {services.map((service) => (
+                  <span key={service.id} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+                    {service.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {bioHtml ? (
+            <div
+              className="text-sm leading-7 text-zinc-300 [&_h2]:mt-4 [&_h2]:text-base [&_h2]:font-bold [&_h2]:text-white [&_h3]:mt-3 [&_h3]:font-semibold [&_h3]:text-white [&_li::marker]:text-rose-400 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5"
+              dangerouslySetInnerHTML={{ __html: bioHtml }}
+            />
+          ) : null}
 
           {contacts.length > 0 ? (
             <ul className="space-y-2 text-sm text-zinc-400">
@@ -121,6 +146,8 @@ export default async function ClaimPage({ params }: ClaimPageProps) {
               ))}
             </ul>
           ) : null}
+
+          {invite.contactNote ? <p className="text-sm text-zinc-400">{invite.contactNote}</p> : null}
 
           <p className="text-xs text-zinc-600">
             Fotos lädst du nach der Übernahme selbst hoch. Gültig bis {format(invite.expiresAt, "d. MMMM yyyy", { locale: de })}.

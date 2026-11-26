@@ -36,59 +36,82 @@ export function buildCreatedInvite(inviteId: string, displayName: string, phoneN
   };
 }
 
+/** A number may not be invited again after a decline, twice at once, or when it already belongs to a profile. */
+async function checkPhoneNumber(phoneNumber: string, excludeInviteId?: string): Promise<string | null> {
+  const [declined, openInvite, existingProfile] = await Promise.all([
+    prisma.declinedContact.findUnique({
+      where: {
+        contactHash: hashContact(phoneNumber),
+      },
+      select: {
+        contactHash: true,
+      },
+    }),
+    prisma.modelInvite.findFirst({
+      where: {
+        phoneNumber,
+        status: "OPEN",
+        expiresAt: {
+          gt: new Date(),
+        },
+        ...(excludeInviteId ? { id: { not: excludeInviteId } } : {}),
+      },
+      select: {
+        id: true,
+      },
+    }),
+    prisma.profile.findFirst({
+      where: {
+        phoneNumber,
+      },
+      select: {
+        id: true,
+      },
+    }),
+  ]);
+
+  if (declined) {
+    return "Diese Person hat eine Einladung abgelehnt und darf nicht erneut eingeladen werden.";
+  }
+
+  if (openInvite) {
+    return "Für diese Telefonnummer gibt es bereits eine offene Einladung.";
+  }
+
+  if (existingProfile) {
+    return "Diese Telefonnummer gehört bereits zu einem Profil auf CherryStream.";
+  }
+
+  return null;
+}
+
+function draftData(draft: InviteDraft, location: ResolvedLocation) {
+  return {
+    displayName: draft.displayName,
+    bio: draft.bio,
+    phoneNumber: draft.phoneNumber,
+    whatsappEnabled: draft.whatsappEnabled,
+    telegramUsername: draft.telegramUsername,
+    signalNumber: draft.signalNumber,
+    instagram: draft.instagram,
+    website: draft.website,
+    contactNote: draft.contactNote,
+    sourceNote: draft.sourceNote,
+    cantonId: location.cantonId,
+    cityId: location.cityId,
+    categoryIds: location.categoryIds,
+    serviceIds: location.serviceIds,
+  };
+}
+
 export async function createInvite(draft: InviteDraft, location: ResolvedLocation, actorId: string): Promise<CreateInviteResult> {
-  if (draft.phoneNumber) {
-    const [declined, openInvite, existingProfile] = await Promise.all([
-      prisma.declinedContact.findUnique({
-        where: {
-          contactHash: hashContact(draft.phoneNumber),
-        },
-        select: {
-          contactHash: true,
-        },
-      }),
-      prisma.modelInvite.findFirst({
-        where: {
-          phoneNumber: draft.phoneNumber,
-          status: "OPEN",
-          expiresAt: {
-            gt: new Date(),
-          },
-        },
-        select: {
-          id: true,
-        },
-      }),
-      prisma.profile.findFirst({
-        where: {
-          phoneNumber: draft.phoneNumber,
-        },
-        select: {
-          id: true,
-        },
-      }),
-    ]);
+  const phoneProblem = draft.phoneNumber ? await checkPhoneNumber(draft.phoneNumber) : null;
 
-    if (declined) {
-      return {
-        success: false,
-        message: "Diese Person hat eine Einladung abgelehnt und darf nicht erneut eingeladen werden.",
-      };
-    }
-
-    if (openInvite) {
-      return {
-        success: false,
-        message: "Für diese Telefonnummer gibt es bereits eine offene Einladung.",
-      };
-    }
-
-    if (existingProfile) {
-      return {
-        success: false,
-        message: "Diese Telefonnummer gehört bereits zu einem Profil auf CherryStream.",
-      };
-    }
+  if (phoneProblem) {
+    return {
+      success: false,
+      message: phoneProblem,
+    };
   }
 
   const { token, tokenHash } = createInviteToken();
@@ -98,17 +121,7 @@ export async function createInvite(draft: InviteDraft, location: ResolvedLocatio
       data: {
         tokenHash,
         expiresAt: getInviteExpiry(),
-        displayName: draft.displayName,
-        bio: draft.bio,
-        phoneNumber: draft.phoneNumber,
-        whatsappEnabled: draft.whatsappEnabled,
-        telegramUsername: draft.telegramUsername,
-        instagram: draft.instagram,
-        website: draft.website,
-        sourceNote: draft.sourceNote,
-        cantonId: location.cantonId,
-        cityId: location.cityId,
-        categoryIds: location.categoryIds,
+        ...draftData(draft, location),
         createdById: actorId,
       },
       select: {
@@ -133,4 +146,49 @@ export async function createInvite(draft: InviteDraft, location: ResolvedLocatio
     success: true,
     invite: buildCreatedInvite(invite.id, draft.displayName, draft.phoneNumber, token),
   };
+}
+
+export type UpdateInviteResult = { success: true } | { success: false; message: string };
+
+/** Changes the draft of an open invite; the link stays the same. */
+export async function updateInvite(inviteId: string, draft: InviteDraft, location: ResolvedLocation, actorId: string): Promise<UpdateInviteResult> {
+  const phoneProblem = draft.phoneNumber ? await checkPhoneNumber(draft.phoneNumber, inviteId) : null;
+
+  if (phoneProblem) {
+    return {
+      success: false,
+      message: phoneProblem,
+    };
+  }
+
+  return prisma.$transaction(async (transaction) => {
+    const updated = await transaction.modelInvite.updateMany({
+      where: {
+        id: inviteId,
+        status: "OPEN",
+      },
+      data: draftData(draft, location),
+    });
+
+    if (updated.count === 0) {
+      return {
+        success: false as const,
+        message: "Diese Einladung ist nicht mehr offen und kann nicht bearbeitet werden.",
+      };
+    }
+
+    await logAdminAction(transaction, {
+      actorId,
+      action: "INVITE_UPDATED",
+      targetType: "ModelInvite",
+      targetId: inviteId,
+      metadata: {
+        displayName: draft.displayName,
+      },
+    });
+
+    return {
+      success: true as const,
+    };
+  });
 }

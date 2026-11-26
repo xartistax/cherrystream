@@ -1,19 +1,23 @@
 import { format, formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
 
 import { revokeInviteAction } from "@/actions/admin/invites";
-import { CreateInviteForm, ImportInvitesForm, RenewInviteButton } from "@/components/admin/invite-forms";
-import { Button } from "@/components/ui/button";
+import { InviteForm, RenewInviteButton } from "@/components/admin/invite-forms";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { INVITE_VALIDITY_DAYS } from "@/lib/invites/token";
 import { prisma } from "@/lib/prisma";
+import { getActiveServices, groupServices } from "@/lib/services/services";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminInvitesPage() {
   const now = new Date();
 
-  const [openInvites, claimedInvites, cantons, cities, categories] = await Promise.all([
+  const [openInvites, claimedInvites, cantons, cities, categories, services] = await Promise.all([
     prisma.modelInvite.findMany({
       where: {
         status: "OPEN",
@@ -27,6 +31,10 @@ export default async function AdminInvitesPage() {
         displayName: true,
         phoneNumber: true,
         sourceNote: true,
+        categoryIds: true,
+        serviceIds: true,
+        cantonId: true,
+        cityId: true,
         expiresAt: true,
         createdAt: true,
         createdBy: {
@@ -69,7 +77,12 @@ export default async function AdminInvitesPage() {
       orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
       select: { id: true, name: true, slug: true },
     }),
+    getActiveServices(),
   ]);
+
+  const cantonNames = new Map(cantons.map((canton) => [canton.id, canton.name]));
+  const cityNames = new Map(cities.map((city) => [city.id, city.name]));
+  const categoryNames = new Map(categories.map((category) => [category.id, category.name]));
 
   return (
     <div className="space-y-8">
@@ -78,21 +91,12 @@ export default async function AdminInvitesPage() {
         löschen lassen. Links sind {INVITE_VALIDITY_DAYS} Tage gültig, danach löscht der tägliche Cleanup die Daten.
       </p>
 
-      <div className="grid gap-6 xl:grid-cols-2">
-        <Card className="border-white/10 bg-zinc-900/70 text-white">
-          <CardContent className="space-y-4 p-6">
-            <h2 className="text-lg font-bold">Neue Einladung</h2>
-            <CreateInviteForm cantons={cantons} cities={cities} categories={categories} />
-          </CardContent>
-        </Card>
-
-        <Card className="border-white/10 bg-zinc-900/70 text-white">
-          <CardContent className="space-y-4 p-6">
-            <h2 className="text-lg font-bold">Import</h2>
-            <ImportInvitesForm />
-          </CardContent>
-        </Card>
-      </div>
+      <Card className="max-w-3xl border-white/10 bg-zinc-900/70 text-white">
+        <CardContent className="space-y-4 p-6">
+          <h2 className="text-lg font-bold">Neue Einladung</h2>
+          <InviteForm cantons={cantons} cities={cities} categories={categories} serviceGroups={groupServices(services)} />
+        </CardContent>
+      </Card>
 
       <section className="space-y-4">
         <h2 className="text-lg font-bold text-white">Offen ({openInvites.length})</h2>
@@ -117,10 +121,31 @@ export default async function AdminInvitesPage() {
                       </span>
                     </p>
 
+                    <p className="mt-0.5 text-sm text-zinc-500">
+                      {[invite.cityId ? cityNames.get(invite.cityId) : null, invite.cantonId ? cantonNames.get(invite.cantonId) : null]
+                        .filter(Boolean)
+                        .join(", ") || "kein Ort"}
+                      {" · "}
+                      {invite.categoryIds
+                        .map((id) => categoryNames.get(id))
+                        .filter(Boolean)
+                        .join(", ") || "keine Rubrik"}
+                      {" · "}
+                      {invite.serviceIds.length} Angebote
+                    </p>
+
                     {invite.sourceNote ? <p className="mt-0.5 text-xs text-zinc-600">{invite.sourceNote}</p> : null}
                   </div>
 
                   <div className="flex shrink-0 items-start gap-2">
+                    <Link
+                      href={`/admin/invites/${invite.id}`}
+                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "border-white/10 bg-white/5 text-white")}
+                    >
+                      <Pencil className="size-3.5" />
+                      Bearbeiten
+                    </Link>
+
                     <RenewInviteButton inviteId={invite.id} />
 
                     <form action={revokeInviteAction}>

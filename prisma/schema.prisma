@@ -99,6 +99,7 @@ enum AdminAction {
   POST_RESTORED
   INVITE_CREATED
   INVITE_RENEWED
+  INVITE_UPDATED
   INVITE_REVOKED
   IMPERSONATION_STARTED
   IMPERSONATION_STOPPED
@@ -591,15 +592,19 @@ model ModelInvite {
   expiresAt DateTime
 
   displayName      String
+  /// Sanitized HTML like Profile.bio (older drafts may still hold plain text, see lib/invites/draft.ts).
   bio              String?
   cantonId         String?
   cityId           String?
   categoryIds      String[]
+  serviceIds       String[] @default([])
   phoneNumber      String?
   whatsappEnabled  Boolean  @default(false)
   telegramUsername String?
+  signalNumber     String?
   instagram        String?
   website          String?
+  contactNote      String?
 
   /// Internal note for admins, e.g. where the contact came from. Never shown to the model.
   sourceNote String?

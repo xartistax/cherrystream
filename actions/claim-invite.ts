@@ -5,12 +5,11 @@ import { redirect } from "next/navigation";
 
 import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth } from "@/lib/auth";
-import { plainTextToParagraphs } from "@/lib/invites/draft";
+import { inviteBioToHtml } from "@/lib/invites/draft";
 import { getOpenInvite } from "@/lib/invites/get-open-invite";
 import { hashContact } from "@/lib/invites/token";
 import { prisma } from "@/lib/prisma";
 import { consumeRateLimit, formatRetryAfter, getRequestIpHash } from "@/lib/rate-limit";
-import { sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
 
 export type ClaimInviteState = {
   success: boolean;
@@ -83,7 +82,13 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
     };
   }
 
-  const bio = invite.bio ? sanitizeProfileDescription(plainTextToParagraphs(invite.bio)).html : null;
+  const bio = inviteBioToHtml(invite.bio);
+
+  // Only ids that still exist: a category or service may have been removed since the invite was prepared.
+  const [categories, services] = await Promise.all([
+    prisma.category.findMany({ where: { id: { in: invite.categoryIds }, isActive: true }, select: { id: true } }),
+    prisma.service.findMany({ where: { id: { in: invite.serviceIds }, isActive: true }, select: { id: true } }),
+  ]);
 
   const contactData = {
     cantonId: invite.cantonId,
@@ -92,6 +97,9 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
     whatsappEnabled: invite.whatsappEnabled,
     telegramUsername: invite.telegramUsername,
     telegramEnabled: Boolean(invite.telegramUsername),
+    signalNumber: invite.signalNumber,
+    signalEnabled: Boolean(invite.signalNumber),
+    contactNote: invite.contactNote,
     instagram: invite.instagram,
     instagramEnabled: Boolean(invite.instagram),
     website: invite.website,
@@ -141,11 +149,27 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
         },
       });
 
-      if (invite.categoryIds.length > 0) {
+      if (categories.length > 0) {
         await transaction.profileCategory.createMany({
-          data: invite.categoryIds.map((categoryId) => ({
+          data: categories.map((category) => ({
             profileId: profile.id,
-            categoryId,
+            categoryId: category.id,
+          })),
+          skipDuplicates: true,
+        });
+      }
+
+      await transaction.profileService.deleteMany({
+        where: {
+          profileId: profile.id,
+        },
+      });
+
+      if (services.length > 0) {
+        await transaction.profileService.createMany({
+          data: services.map((service) => ({
+            profileId: profile.id,
+            serviceId: service.id,
           })),
           skipDuplicates: true,
         });
