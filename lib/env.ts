@@ -9,8 +9,6 @@ const envSchema = z.object({
   NEXT_PUBLIC_APP_URL: z.url().optional(),
   NEXT_PUBLIC_PAYMENTS_ENABLED: z.enum(["true", "false"]).optional(),
 
-  STRIPE_SECRET_KEY: z.string().min(1).optional(),
-  STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
 
   CRON_SECRET: z.string().min(16).optional(),
 
@@ -37,8 +35,6 @@ const parsedEnv = envSchema.safeParse({
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || undefined,
   NEXT_PUBLIC_PAYMENTS_ENABLED: process.env.NEXT_PUBLIC_PAYMENTS_ENABLED || undefined,
 
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || undefined,
-  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET || undefined,
 
   CRON_SECRET: process.env.CRON_SECRET || undefined,
 

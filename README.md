@@ -30,8 +30,7 @@ pnpm dev
 | `BLOB_READ_WRITE_TOKEN` | ja | Vercel Blob |
 | `VERIFICATION_BLOB_READ_WRITE_TOKEN` | empfohlen | Privater Blob-Store für Ausweisdokumente (Fallback: `BLOB_READ_WRITE_TOKEN`) |
 | `NEXT_PUBLIC_APP_URL` | nein | Öffentliche URL der App |
-| `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` aktiviert Credits, Premium und Stripe (Standard: aus) |
-| `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | nein | Zahlungen (in v0.0.1 deaktiviert) |
+| `NEXT_PUBLIC_PAYMENTS_ENABLED` | nein | `true` blendet Premium-Inhalte und Credits für Mitglieder ein (Standard: aus) |
 | `RESEND_API_KEY`, `EMAIL_FROM` | in Production | E-Mail-Versand über Resend. Lokal ohne Key: Mails erscheinen in der Server-Konsole |
 | `EMAIL_DEV_REDIRECT` | nein | Nur lokal: leitet alle Mails an eine Adresse um (z. B. im Resend-Testmodus) |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | empfohlen | Error-Tracking. `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` nur für Source Maps im Build |

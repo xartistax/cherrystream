@@ -13,7 +13,6 @@ import { getFfmpegBinaries } from "@/lib/media/video/ffmpeg";
 import { prisma } from "@/lib/prisma";
 import { getAvailableProviders, getPaymentMode, paymentProviderLabels } from "@/lib/payments/config";
 import { urgentReportReasons } from "@/lib/reports/reasons";
-import { getStripe } from "@/lib/stripe";
 import { getVerificationBlobAuth, verificationBlobOptions } from "@/lib/verification/storage";
 import packageJson from "@/package.json";
 
@@ -240,7 +239,7 @@ async function checkEnvironment(): Promise<CheckResult> {
   if (!process.env.NEXT_PUBLIC_APP_URL) {
     return {
       status: "warn",
-      detail: "NEXT_PUBLIC_APP_URL fehlt (wird für Links und Stripe benötigt)",
+      detail: "NEXT_PUBLIC_APP_URL fehlt (wird für Links in E-Mails und Telegram benötigt)",
     };
   }
 
@@ -423,82 +422,6 @@ async function checkSharp(): Promise<CheckResult> {
   return {
     status: "ok",
     detail: `sharp ${sharp.versions.sharp}, libvips ${sharp.versions.vips}`,
-  };
-}
-
-async function checkStripeApi(): Promise<CheckResult> {
-  if (!paymentsEnabled) {
-    return {
-      status: "disabled",
-      detail: "Zahlungen sind deaktiviert (NEXT_PUBLIC_PAYMENTS_ENABLED)",
-    };
-  }
-
-  const balance = await getStripe().balance.retrieve();
-
-  return {
-    status: balance.livemode ? "ok" : "warn",
-    detail: balance.livemode ? "API erreichbar (Live-Modus)" : "API erreichbar, aber im Testmodus",
-  };
-}
-
-async function checkStripeWebhook(): Promise<CheckResult> {
-  if (!paymentsEnabled) {
-    return {
-      status: "disabled",
-      detail: "Zahlungen sind deaktiviert",
-    };
-  }
-
-  if (!process.env.STRIPE_WEBHOOK_SECRET) {
-    return {
-      status: "error",
-      detail: "STRIPE_WEBHOOK_SECRET fehlt, Zahlungen würden nicht gutgeschrieben",
-    };
-  }
-
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
-
-  if (!appUrl) {
-    return {
-      status: "warn",
-      detail: "NEXT_PUBLIC_APP_URL fehlt, Webhook-URL kann nicht geprüft werden",
-    };
-  }
-
-  const expectedUrl = new URL("/api/stripe/webhook", appUrl).toString();
-  const endpoints = await getStripe().webhookEndpoints.list({
-    limit: 100,
-  });
-
-  const endpoint = endpoints.data.find((candidate) => candidate.url === expectedUrl);
-
-  if (!endpoint) {
-    return {
-      status: "error",
-      detail: `Kein Webhook bei Stripe für ${expectedUrl} registriert`,
-    };
-  }
-
-  if (endpoint.status !== "enabled") {
-    return {
-      status: "error",
-      detail: `Webhook ist bei Stripe deaktiviert (${endpoint.status})`,
-    };
-  }
-
-  const handlesCheckout = endpoint.enabled_events.includes("*") || endpoint.enabled_events.includes("checkout.session.completed");
-
-  if (!handlesCheckout) {
-    return {
-      status: "error",
-      detail: "Webhook empfängt checkout.session.completed nicht",
-    };
-  }
-
-  return {
-    status: "ok",
-    detail: "Webhook registriert und aktiv",
   };
 }
 
@@ -711,7 +634,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram, ffmpeg, sharpCheck, creditPurchases, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram, ffmpeg, sharpCheck, creditPurchases, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -724,8 +647,6 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("ffmpeg", "FFmpeg / FFprobe", checkFfmpeg),
       runCheck("sharp", "Bildverarbeitung (sharp)", checkSharp),
       runCheck("credit-purchases", "Kauf von Credits", checkCreditPurchases),
-      runCheck("stripe-api", "Stripe API", checkStripeApi),
-      runCheck("stripe-webhook", "Stripe Webhook", checkStripeWebhook),
       runCheck("verifications", "Offene Verifizierungen", checkPendingVerifications),
       runCheck("reports", "Offene Meldungen", checkOpenReports),
       runCheck("documents", "Löschung Ausweisdokumente", checkUnpurgedDocuments),
@@ -745,7 +666,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
     },
     {
       title: "Zahlungen",
-      checks: [creditPurchases, stripeApi, stripeWebhook],
+      checks: [creditPurchases],
     },
     {
       title: "Betrieb",

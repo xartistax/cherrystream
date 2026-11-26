@@ -44,7 +44,6 @@ const checks: Check[] = [
   { name: "Admin geschützt", path: "/admin", expect: redirectsToLogin },
   { name: "Admin-Bilder geschützt", path: "/api/admin/verifications/test/selfie", expect: expectStatus(404) },
   { name: "Cron ohne Secret abgewiesen", path: "/api/cron/cleanup", expect: expectStatus(401) },
-  { name: "Stripe-Route (Zahlungen aus: 404)", path: "/api/stripe/checkout-status", expect: expectStatus(404, 401) },
   {
     name: "Sicherheits-Header",
     path: "/terms",
