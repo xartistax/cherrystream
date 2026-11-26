@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <h2>1. Verantwortliche Stelle</h2>
         <p>
           Verantwortlich für die Bearbeitung von Personendaten nach dem Schweizer Datenschutzgesetz (DSG) ist <Placeholder>Firmenname, Adresse</Placeholder>.
-          Kontakt für Datenschutzanliegen: <Placeholder>datenschutz@cherrystream.ch</Placeholder>.
+          Kontakt für Datenschutzanliegen: <a href="mailto:datenschutz@cherrystream.ch">datenschutz@cherrystream.ch</a>.
         </p>
       </section>
 
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
         <h2>8. Deine Rechte</h2>
         <p>
           Du kannst Auskunft über deine Daten verlangen, ihre Berichtigung oder Löschung fordern und eine erteilte Einwilligung widerrufen. Dein Konto
-          kannst du in den Einstellungen selbst löschen. Anfragen an <Placeholder>datenschutz@cherrystream.ch</Placeholder>. Du kannst dich zudem beim
+          kannst du in den Einstellungen selbst löschen. Anfragen an <a href="mailto:datenschutz@cherrystream.ch">datenschutz@cherrystream.ch</a>. Du kannst dich zudem beim
           Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) beschweren.
         </p>
       </section>
