@@ -86,7 +86,7 @@ export function CreateInviteForm({ cantons, cities, categories }: CreateInviteFo
       <LocationSelector cantons={cantons} cities={cities} initialCantonId={null} initialCityId={null} />
 
       <div className="space-y-2">
-        <Label>Kategorien</Label>
+        <Label>Rubriken</Label>
         <CategorySelector categories={categories} initialCategoryIds={[]} />
       </div>
 
@@ -131,7 +131,7 @@ const IMPORT_EXAMPLE = `[
     "whatsapp": true,
     "canton": "zh",
     "city": "zuerich",
-    "categories": ["lifestyle"],
+    "categories": ["escort"],
     "bio": "Kurze Beschreibung",
     "source": "Scraper Lauf 1"
   }
@@ -146,7 +146,7 @@ export function ImportInvitesForm() {
         <Label htmlFor="json">JSON aus dem Scraper (max. 200 Einträge)</Label>
         <Textarea id="json" name="json" required placeholder={IMPORT_EXAMPLE} className={`min-h-56 font-mono text-xs ${inputClassName}`} />
         <p className="text-xs text-zinc-500">
-          Kanton als Kürzel (z. B. zh), Stadt und Kategorien als Slugs (z. B. zuerich, lifestyle). Unbekannte Slugs werden ignoriert. Abgelehnte Kontakte und bestehende Profile werden übersprungen.
+          Kanton als Kürzel (z. B. zh), Stadt und Rubriken als Slugs (z. B. zuerich, escort). Unbekannte Slugs werden ignoriert. Abgelehnte Kontakte und bestehende Profile werden übersprungen.
         </p>
       </div>
 

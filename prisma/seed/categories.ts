@@ -16,17 +16,13 @@ const prisma = new PrismaClient({
   }),
 });
 
+// Rubriken as on xDate (docs: chosen subset for a directory of verified models).
 export const categories = [
-  { name: "Lifestyle", slug: "lifestyle", sortOrder: 10 },
-  { name: "Fashion", slug: "fashion", sortOrder: 20 },
-  { name: "Fitness", slug: "fitness", sortOrder: 30 },
-  { name: "Beauty", slug: "beauty", sortOrder: 40 },
-  { name: "Cosplay", slug: "cosplay", sortOrder: 50 },
-  { name: "Gaming", slug: "gaming", sortOrder: 60 },
-  { name: "Travel", slug: "travel", sortOrder: 70 },
-  { name: "Music", slug: "music", sortOrder: 80 },
-  { name: "Art", slug: "art", sortOrder: 90 },
-  { name: "Alternative", slug: "alternative", sortOrder: 100 },
+  { name: "Escort Service", slug: "escort", sortOrder: 10 },
+  { name: "Massagen", slug: "massagen", sortOrder: 20 },
+  { name: "Domina / BDSM Sex", slug: "domina-bdsm", sortOrder: 30 },
+  { name: "Transsexuelle / Transen", slug: "trans", sortOrder: 40 },
+  { name: "MILF & reife Frauen", slug: "milf", sortOrder: 50 },
 ] as const;
 
 async function main() {

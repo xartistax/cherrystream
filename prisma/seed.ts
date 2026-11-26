@@ -5,6 +5,7 @@ import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "../generated/prisma/client";
 import { cantons } from "./seed/cantons";
 import { categories } from "./seed/categories";
+import { services } from "./seed/services";
 import { swissCities } from "./seed/cities";
 
 const connectionString = process.env.DATABASE_URL;
@@ -29,6 +30,23 @@ async function seedCategories(): Promise<void> {
       update: {
         name: category.name,
         sortOrder: category.sortOrder,
+        isActive: true,
+      },
+    });
+  }
+}
+
+async function seedServices(): Promise<void> {
+  for (const service of services) {
+    await prisma.service.upsert({
+      where: {
+        slug: service.slug,
+      },
+      create: service,
+      update: {
+        name: service.name,
+        group: service.group,
+        sortOrder: service.sortOrder,
         isActive: true,
       },
     });
@@ -92,6 +110,8 @@ async function main(): Promise<void> {
   console.log("Seeding started.");
 
   await seedCategories();
+
+  await seedServices();
 
   const cantonIds = await seedCantons();
 

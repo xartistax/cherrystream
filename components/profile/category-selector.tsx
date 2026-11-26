@@ -41,9 +41,9 @@ export function CategorySelector({ categories, initialCategoryIds, maxSelections
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="font-medium text-white">Kategorien</p>
+          <p className="font-medium text-white">Rubriken</p>
 
-          <p className="mt-1 text-sm text-zinc-500">Wähle bis zu {maxSelections} passende Kategorien.</p>
+          <p className="mt-1 text-sm text-zinc-500">Wähle bis zu {maxSelections} passende Rubriken.</p>
         </div>
 
         <span className="text-sm text-zinc-500">

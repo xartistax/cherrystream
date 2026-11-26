@@ -79,7 +79,9 @@ const profileSchema = z
 
     isPublic: z.boolean(),
 
-    categoryIds: z.array(z.string().min(1)).max(5, "Du kannst maximal 5 Kategorien auswählen."),
+    categoryIds: z.array(z.string().min(1)).max(5, "Du kannst maximal 5 Rubriken auswählen."),
+
+    serviceIds: z.array(z.string().min(1)).max(100),
 
     cantonId: optionalId,
     cityId: optionalId,
@@ -221,6 +223,10 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     new Set(formData.getAll("categoryIds").filter((value): value is string => typeof value === "string" && value.trim().length > 0)),
   );
 
+  const serviceIds = Array.from(
+    new Set(formData.getAll("serviceIds").filter((value): value is string => typeof value === "string" && value.trim().length > 0)),
+  );
+
   const parsedData = profileSchema.safeParse({
     displayName: formData.get("displayName"),
     bio: formData.get("bio"),
@@ -230,6 +236,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     isPublic: formData.get("isPublic") === "on",
 
     categoryIds,
+    serviceIds,
     cantonId: formData.get("cantonId"),
     cityId: formData.get("cityId"),
 
@@ -294,6 +301,7 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     gender,
     isPublic,
     categoryIds: selectedCategoryIds,
+    serviceIds: selectedServiceIds,
     cantonId,
     cityId,
 
@@ -337,11 +345,20 @@ export async function updateProfileAction(_previousState: ActionState, formData:
       };
     }
 
-    const [validCategoryCount, canton, city] = await Promise.all([
+    const [validCategoryCount, validServiceCount, canton, city] = await Promise.all([
       prisma.category.count({
         where: {
           id: {
             in: selectedCategoryIds,
+          },
+          isActive: true,
+        },
+      }),
+
+      prisma.service.count({
+        where: {
+          id: {
+            in: selectedServiceIds,
           },
           isActive: true,
         },
@@ -374,9 +391,19 @@ export async function updateProfileAction(_previousState: ActionState, formData:
     if (validCategoryCount !== selectedCategoryIds.length) {
       return {
         success: false,
-        message: "Bitte überprüfe deine Kategorien.",
+        message: "Bitte überprüfe deine Rubriken.",
         errors: {
-          categoryIds: ["Mindestens eine Kategorie ist ungültig."],
+          categoryIds: ["Mindestens eine Rubrik ist ungültig."],
+        },
+      };
+    }
+
+    if (validServiceCount !== selectedServiceIds.length) {
+      return {
+        success: false,
+        message: "Bitte überprüfe deine Angebote.",
+        errors: {
+          serviceIds: ["Mindestens ein Angebot ist ungültig."],
         },
       };
     }
@@ -464,6 +491,16 @@ export async function updateProfileAction(_previousState: ActionState, formData:
                   },
                 })),
               },
+
+              services: {
+                create: selectedServiceIds.map((serviceId) => ({
+                  service: {
+                    connect: {
+                      id: serviceId,
+                    },
+                  },
+                })),
+              },
             },
 
             update: {
@@ -475,6 +512,17 @@ export async function updateProfileAction(_previousState: ActionState, formData:
                   category: {
                     connect: {
                       id: categoryId,
+                    },
+                  },
+                })),
+              },
+
+              services: {
+                deleteMany: {},
+                create: selectedServiceIds.map((serviceId) => ({
+                  service: {
+                    connect: {
+                      id: serviceId,
                     },
                   },
                 })),

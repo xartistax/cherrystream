@@ -10,7 +10,7 @@ import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Kategorien auswählen",
+  title: "Rubriken auswählen",
 };
 
 export default async function BecomeModelCategoriesPage() {
@@ -88,7 +88,7 @@ export default async function BecomeModelCategoriesPage() {
         <div>
           <p className="text-sm font-medium text-rose-400">Schritt 3 von 3</p>
 
-          <h1 className="text-2xl font-black tracking-tight text-white">Deine Kategorien</h1>
+          <h1 className="text-2xl font-black tracking-tight text-white">Deine Rubriken</h1>
         </div>
       </header>
 
@@ -101,7 +101,7 @@ export default async function BecomeModelCategoriesPage() {
           <CardTitle className="mt-3">Was möchtest du veröffentlichen?</CardTitle>
 
           <CardDescription className="leading-6 text-zinc-500">
-            Wähle bis zu fünf Kategorien, die am besten zu deinem Profil und deinen Inhalten passen.
+            Wähle bis zu fünf Rubriken, die am besten zu deinem Profil und deinen Inhalten passen.
           </CardDescription>
         </CardHeader>
 

@@ -15,6 +15,8 @@ import { auth } from "@/lib/auth";
 import { trackProfileView } from "@/lib/analytics/track-profile-view";
 import { ContactCard } from "@/components/profile/contact-card";
 import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
+import { ProfileServices } from "@/components/profile/profile-services";
+import { groupServices } from "@/lib/services/services";
 import { ProfileDescription } from "@/components/profile/profile-description";
 import { BadgeCheck, CalendarDays, Camera, MapPin, Video } from "lucide-react";
 
@@ -96,6 +98,28 @@ export default async function PublicProfilePage({ params }: PageProps) {
                 select: {
                   name: true,
                   slug: true,
+                },
+              },
+            },
+          },
+
+          services: {
+            where: {
+              service: {
+                isActive: true,
+              },
+            },
+            orderBy: {
+              service: {
+                sortOrder: "asc",
+              },
+            },
+            select: {
+              service: {
+                select: {
+                  name: true,
+                  slug: true,
+                  group: true,
                 },
               },
             },
@@ -387,6 +411,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
       <div id="profile-header-end" aria-hidden="true" className="h-px" />
 
       {user.profile.bio ? <ProfileDescription html={user.profile.bio} displayName={displayName} /> : null}
+
+      {user.profile.services.length > 0 ? <ProfileServices groups={groupServices(user.profile.services.map(({ service }) => service))} /> : null}
 
       <ProfileGallery
         displayName={displayName}

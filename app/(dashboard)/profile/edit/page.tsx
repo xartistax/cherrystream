@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { requireCreatorPage } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
+import { getActiveServices, groupServices } from "@/lib/services/services";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
@@ -17,7 +18,7 @@ export const metadata = {
 export default async function EditProfilePage() {
   const { userId } = await requireCreatorPage();
 
-  const [user, categories, cantonOptions, cityOptions] = await Promise.all([
+  const [user, services, categories, cantonOptions, cityOptions] = await Promise.all([
     prisma.user.findUnique({
       where: {
         id: userId,
@@ -69,10 +70,18 @@ export default async function EditProfilePage() {
                 categoryId: true,
               },
             },
+
+            services: {
+              select: {
+                serviceId: true,
+              },
+            },
           },
         },
       },
     }),
+
+    getActiveServices(),
 
     prisma.category.findMany({
       where: {
@@ -216,6 +225,7 @@ export default async function EditProfilePage() {
               coverUrl: user.profile?.coverUrl ?? null,
 
               categoryIds: user.profile?.categories.map((item) => item.categoryId) ?? [],
+              serviceIds: user.profile?.services.map((item) => item.serviceId) ?? [],
 
               cantonId: user.profile?.cantonId ?? null,
               cityId: user.profile?.cityId ?? null,
@@ -244,6 +254,7 @@ export default async function EditProfilePage() {
               contactNote: user.profile?.contactNote ?? "",
             }}
             categories={categories}
+            serviceGroups={groupServices(services)}
             cantonOptions={cantonOptions}
             cityOptions={cityOptions}
           />

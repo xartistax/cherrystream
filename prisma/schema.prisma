@@ -265,6 +265,7 @@ model Profile {
 
   user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   categories     ProfileCategory[]
+  services       ProfileService[]
   contactMethods ContactMethod[]
 
   @@index([cantonId])
@@ -719,4 +720,38 @@ model Boost {
 
   @@index([userId, createdAt])
   @@index([type, endsAt])
+}
+
+enum ServiceGroup {
+  GENERAL
+  BDSM
+  MASSAGE
+}
+
+/// "Angebote" a model offers (second level next to the categories), e.g. "Girlfriend Sex" or "Tantra Massage".
+model Service {
+  id        String       @id @default(cuid())
+  name      String
+  slug      String       @unique
+  group     ServiceGroup @default(GENERAL)
+  sortOrder Int          @default(0)
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  profiles ProfileService[]
+
+  @@index([isActive, group, sortOrder])
+}
+
+model ProfileService {
+  profileId String
+  serviceId String
+  createdAt DateTime @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, serviceId])
+  @@index([serviceId, profileId])
 }

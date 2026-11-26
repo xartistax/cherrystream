@@ -15,6 +15,7 @@ import type { ActionState } from "@/types/action-state";
 import { updateProfileAction } from "@/actions/update-profile";
 import { CoverUpload } from "./cover-upload";
 import { CategorySelector } from "./category-selector";
+import { ServiceSelector } from "./service-selector";
 import { LocationSelector } from "./location-selector";
 import { ContactSettings } from "./contact-settings";
 import { ProfileDescriptionEditor } from "../editor/rich-text-editor";
@@ -51,6 +52,7 @@ type ProfileFormProps = {
     coverUrl: string | null;
 
     categoryIds: string[];
+    serviceIds: string[];
 
     cantonId: string | null;
     cityId: string | null;
@@ -85,6 +87,15 @@ type ProfileFormProps = {
     slug: string;
   }>;
 
+  serviceGroups: Array<{
+    group: string;
+    label: string;
+    services: Array<{
+      id: string;
+      name: string;
+    }>;
+  }>;
+
   cantonOptions: CantonOption[];
   cityOptions: CityOption[];
 };
@@ -113,7 +124,7 @@ function SaveButton() {
   );
 }
 
-export function ProfileForm({ user, categories, cantonOptions, cityOptions }: ProfileFormProps) {
+export function ProfileForm({ user, categories, serviceGroups, cantonOptions, cityOptions }: ProfileFormProps) {
   const [state, formAction] = useActionState(updateProfileAction, initialState);
 
   return (
@@ -250,14 +261,28 @@ export function ProfileForm({ user, categories, cantonOptions, cityOptions }: Pr
 
         <section className="space-y-5">
           <div>
-            <h2 className="text-lg font-bold text-white">Profil-Kategorien</h2>
+            <h2 className="text-lg font-bold text-white">Rubriken</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">Kategorien werden prominent auf deinem Profil angezeigt und für die Creator-Suche verwendet.</p>
+            <p className="mt-1 text-sm text-zinc-500">Rubriken werden prominent auf deinem Profil angezeigt und für die Suche verwendet.</p>
           </div>
 
           <CategorySelector categories={categories} initialCategoryIds={user.categoryIds} />
 
           <FieldError errors={state.errors?.categoryIds} />
+        </section>
+
+        <div className="h-px bg-white/10" />
+
+        <section className="space-y-5">
+          <div>
+            <h2 className="text-lg font-bold text-white">Angebote</h2>
+
+            <p className="mt-1 text-sm text-zinc-500">Was du anbietest. Besucher können auf „Entdecken“ danach filtern, dein Profil zeigt die Auswahl an.</p>
+          </div>
+
+          <ServiceSelector groups={serviceGroups} initialServiceIds={user.serviceIds} />
+
+          <FieldError errors={state.errors?.serviceIds} />
         </section>
 
         <div className="h-px bg-white/10" />
