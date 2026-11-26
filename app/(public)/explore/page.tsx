@@ -12,7 +12,7 @@ import { getActiveServices, groupServices } from "@/lib/services/services";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { Prisma } from "@/generated/prisma/client";
-import { LocationFilter } from "@/components/profile/location-filter";
+import { LocationSearch } from "@/components/profile/location-search";
 
 type CreatorsPageProps = {
   searchParams: Promise<{
@@ -108,6 +108,16 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
     media: mediaType,
     search,
     sort: sort === "trending" ? sort : undefined,
+  };
+
+  // Counts in the location filter only include profiles a visitor can actually find.
+  const listedProfileWhere: Prisma.ProfileWhereInput = {
+    isPublic: true,
+    user: {
+      status: "ACTIVE",
+      role: "MODEL",
+      modelStatus: "ACTIVE",
+    },
   };
 
   const creatorWhere: Prisma.UserWhereInput = {
@@ -279,27 +289,21 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
         slug: true,
         _count: {
           select: {
-            profiles: true,
+            profiles: {
+              where: listedProfileWhere,
+            },
           },
         },
       },
-      orderBy: [
-        {
-          sortOrder: "asc",
-        },
-        {
-          name: "asc",
-        },
-      ],
     }),
 
-    // Only places with at least one profile; the full list of all municipalities would be too long here.
+    // Only places with at least one listed profile; the full list of all municipalities would be too long here.
     prisma.city.findMany({
       where: {
         OR: [
           {
             profiles: {
-              some: {},
+              some: listedProfileWhere,
             },
           },
           ...(citySlug && cantonSlug ? [{ slug: citySlug, canton: { slug: cantonSlug } }] : []),
@@ -315,7 +319,9 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
         },
         _count: {
           select: {
-            profiles: true,
+            profiles: {
+              where: listedProfileWhere,
+            },
           },
         },
       },
@@ -410,7 +416,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       </section>
 
       <section className="mt-10 rounded-3xl border border-white/10 bg-zinc-900/50 p-4 sm:p-6">
-        <form className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_repeat(5,minmax(0,150px))_auto]">
+        <form className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,240px)_repeat(3,minmax(0,160px))_auto]">
           {categorySlug ? <input type="hidden" name="category" value={categorySlug} /> : null}
 
           <div className="relative">
@@ -424,18 +430,22 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             />
           </div>
 
-          <LocationFilter
-            cantons={cantons.map((canton) => ({
-              name: canton.name,
-              slug: canton.slug,
-              count: canton._count.profiles,
-            }))}
-            cities={cities.map((city) => ({
-              name: city.name,
-              slug: city.slug,
-              cantonSlug: city.canton.slug,
-              count: city._count.profiles,
-            }))}
+          <LocationSearch
+            cantons={cantons
+              .filter((canton) => canton._count.profiles > 0 || canton.slug === cantonSlug)
+              .map((canton) => ({
+                name: canton.name,
+                slug: canton.slug,
+                count: canton._count.profiles,
+              }))}
+            cities={cities
+              .filter((city) => city._count.profiles > 0 || (city.slug === citySlug && city.canton.slug === cantonSlug))
+              .map((city) => ({
+                name: city.name,
+                slug: city.slug,
+                cantonSlug: city.canton.slug,
+                count: city._count.profiles,
+              }))}
             initialCantonSlug={cantonSlug}
             initialCitySlug={citySlug}
           />
@@ -549,7 +559,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
             {activeCity ? (
               <Badge variant="outline" className="border-violet-500/20 bg-violet-500/10 text-violet-300">
-                Stadt: {activeCity.name}
+                Ort: {activeCity.name}
               </Badge>
             ) : null}
 
