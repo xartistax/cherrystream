@@ -1,6 +1,6 @@
 # Credits & Boosts
 
-Stand: 25.11.2026 · Status: Phasen 1–3 umgesetzt, Kauf (Phase 4) wartet auf den Zahlungsanbieter
+Stand: 25.11.2026 · Status: Phasen 1–4 umgesetzt; im Kauf fehlt nur der echte Zahlungsanbieter (Testmodus läuft)
 
 Models kaufen Credits und setzen sie ein, um ihr Profil in der Liste nach oben zu schieben und optisch hervorzuheben, ähnlich wie bei xDate. Mitglieder zahlen nichts, Sichtbarkeit wird nur von Models gekauft.
 
@@ -64,8 +64,11 @@ Nur Zahlungswege mit sofortiger Bestätigung und Webhook. Kandidaten und Verglei
 Der Testmodus gilt für die ganze Plattform und wird über eine Umgebungsvariable geschaltet:
 
 - `PAYMENTS_MODE=test` nutzt bei allen Anbietern die Sandbox-Zugangsdaten, `live` die echten. Ohne Wert sind Käufe ausgeblendet.
+- Solange kein Anbieter angeschlossen ist, gibt es im Testmodus die eingebaute **Testkasse** (`/dashboard/checkout/test/…`): Sie simuliert Zahlung erfolgreich, abgelehnt oder abgebrochen und bucht genau wie ein echter Webhook über `completeCreditOrder` (`lib/payments/orders.ts`).
+- Einen echten Anbieter anschliessen: in `PaymentProvider` (Schema) und `getAvailableProviders` ergänzen, `getCheckoutUrl` auf dessen Kasse zeigen lassen und im Webhook `completeCreditOrder(orderId, providerReference)` aufrufen. Die Buchung ist idempotent.
+- Offene Bestellungen laufen nach 24 Stunden ab (täglicher Cleanup). Admin-Übersicht: Admin → Bestellungen.
 - Im Testmodus zeigt die Kaufseite ein deutliches Banner „Testmodus: keine echten Zahlungen“.
-- Jede Bestellung speichert, in welchem Modus sie entstanden ist. Test-Credits sind als solche markiert, zählen nicht in Umsatz-Kennzahlen und lassen sich im Admin-Bereich gesammelt zurücksetzen.
+- Jede Bestellung speichert, in welchem Modus sie entstanden ist. Test-Credits sind im Verlauf als „Testzahlung“ markiert und zählen nicht zum Umsatz. Zurücksetzen von Test-Guthaben geht vorerst über die Admin-Buchung (Credits abziehen).
 - Die Statusseite im Admin-Bereich zeigt den aktiven Modus und prüft, ob die Zugangsdaten zum Modus passen.
 
 ## Datenmodell

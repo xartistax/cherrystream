@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   MailPlus,
   MessageCircle,
+  Receipt,
   Rocket,
   Settings,
   UserRound,
@@ -106,6 +107,11 @@ export const adminNavigationItems: NavigationItem[] = [
     label: "Uploads",
     href: "/admin/posts",
     icon: Images,
+  },
+  {
+    label: "Bestellungen",
+    href: "/admin/orders",
+    icon: Receipt,
   },
   {
     label: "Protokoll",

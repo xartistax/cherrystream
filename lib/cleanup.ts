@@ -5,6 +5,7 @@ import { purgeVerificationDocuments } from "@/lib/verification/purge-documents";
 
 export type CleanupResult = {
   expiredInvitesDeleted: number;
+  creditOrdersExpired: number;
   rateLimitsDeleted: number;
   verificationDocumentsPurged: boolean;
 };
@@ -17,6 +18,19 @@ export async function runCleanup(): Promise<CleanupResult> {
       expiresAt: {
         lt: new Date(),
       },
+    },
+  });
+
+  // A checkout that was never finished within a day will not be confirmed anymore.
+  const staleOrders = await prisma.creditOrder.updateMany({
+    where: {
+      status: "PENDING",
+      createdAt: {
+        lt: new Date(Date.now() - 24 * 60 * 60 * 1000),
+      },
+    },
+    data: {
+      status: "EXPIRED",
     },
   });
 
@@ -54,6 +68,7 @@ export async function runCleanup(): Promise<CleanupResult> {
 
   return {
     expiredInvitesDeleted: expiredInvites.count,
+    creditOrdersExpired: staleOrders.count,
     rateLimitsDeleted: rateLimits.count,
     verificationDocumentsPurged,
   };

@@ -43,6 +43,7 @@ export default function TermsPage() {
           <li>Veröffentlicht werden dürfen nur eigene Inhalte, an denen du alle Rechte hast.</li>
           <li>Alle gezeigten Personen müssen volljährig sein und der Veröffentlichung zugestimmt haben. Das muss auf Anfrage nachgewiesen werden können.</li>
           <li>Die Angebote müssen dem geltenden Recht entsprechen, insbesondere den kantonalen Vorschriften zur Sexarbeit.</li>
+          <li>Rubriken, Angebote, Ort und Fotos müssen der Wahrheit entsprechen. Irreführende Angaben können zur Sperrung führen.</li>
           <li>
             <Placeholder>weitere Pflichten, z. B. Bewilligungen, Steuern, Werbebeschränkungen</Placeholder>
           </li>
@@ -69,10 +70,31 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>7. Kostenpflichtige Leistungen</h2>
-        <p>
-          <Placeholder>Bedingungen für Credits, Premium-Inhalte und Auszahlungen ergänzen, sobald Zahlungen aktiviert werden</Placeholder>
-        </p>
+        <h2>7. Credits und Boosts für Models</h2>
+        <ul>
+          <li>
+            Models können Credits in Paketen kaufen. Es gelten die Preise in CHF, die vor dem Kauf angezeigt werden{" "}
+            <Placeholder>inkl. oder exkl. MWST angeben</Placeholder>. Die Credits werden gutgeschrieben, sobald der Zahlungsanbieter die Zahlung bestätigt.
+          </li>
+          <li>
+            Mit Credits lassen sich Boosts buchen: Hochschieben (das Profil steht danach zuoberst in der Standardliste), Auto-Hochschieben (in festen
+            Abständen) und Hervorhebung (Rahmen und Badge auf der Profilkarte). Laufzeit und Preis stehen vor der Buchung fest.
+          </li>
+          <li>
+            Ein Boost verbessert die Sichtbarkeit, garantiert aber weder eine bestimmte Position noch eine Anzahl Aufrufe oder Kontakte. Andere Models
+            können ebenfalls hochschieben. Zwischen zwei manuellen Bumps liegen mindestens 30 Minuten.
+          </li>
+          <li>Credits verfallen nicht. Sie haben keinen Barwert, werden nicht ausbezahlt und sind nicht übertragbar.</li>
+          <li>
+            Gekaufte Credits und gebuchte Boosts werden nicht zurückerstattet, ausser bei einem technischen Fehler oder wo das Gesetz es verlangt. Wird
+            ein Profil wegen eines Verstosses gesperrt, laufen gebuchte Boosts ohne Wirkung ab. <Placeholder>Regelung juristisch prüfen</Placeholder>
+          </li>
+          <li>Eingeladene Models können ein Startguthaben erhalten. Es ist ein freiwilliges Angebot ohne Barwert.</li>
+          <li>
+            Solange ein Testmodus angezeigt wird, finden keine echten Zahlungen statt. Im Testmodus gekaufte Credits können jederzeit zurückgesetzt
+            werden.
+          </li>
+        </ul>
       </section>
 
       <section>
