@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { getAdminAccess } from "@/lib/access";
 import { logAdminAction } from "@/lib/admin/audit";
-import { buildCreatedInvite, createInvite, type CreatedInvite } from "@/lib/invites/create-invite";
+import { buildCreatedInvite, createInvite, type CreatedInvite, updateInvite } from "@/lib/invites/create-invite";
 import { inviteDraftSchema, resolveInviteLocation } from "@/lib/invites/draft";
 import { createInviteToken, getInviteExpiry } from "@/lib/invites/token";
 import { prisma } from "@/lib/prisma";
@@ -14,19 +14,50 @@ export type InviteActionState = {
   success: boolean;
   message?: string;
   invites?: CreatedInvite[];
-  failures?: Array<{
-    row: number;
-    displayName: string;
-    message: string;
-  }>;
 };
-
-const MAX_IMPORT_ROWS = 200;
 
 function getText(formData: FormData, key: string): string | undefined {
   const value = formData.get(key);
 
   return typeof value === "string" ? value : undefined;
+}
+
+function getList(formData: FormData, key: string): string[] {
+  return formData.getAll(key).filter((value): value is string => typeof value === "string" && value.length > 0);
+}
+
+/** The create and the edit form share the same fields. */
+async function parseInviteForm(formData: FormData) {
+  const parsed = inviteDraftSchema.safeParse({
+    displayName: getText(formData, "displayName"),
+    bio: getText(formData, "bio"),
+    phoneNumber: getText(formData, "phoneNumber"),
+    whatsappEnabled: formData.get("whatsappEnabled") === "on",
+    signalNumber: getText(formData, "signalNumber"),
+    contactNote: getText(formData, "contactNote"),
+    telegramUsername: getText(formData, "telegramUsername"),
+    instagram: getText(formData, "instagram"),
+    website: getText(formData, "website"),
+    sourceNote: getText(formData, "sourceNote"),
+  });
+
+  if (!parsed.success) {
+    return {
+      error: parsed.error.issues[0]?.message ?? "Ungültige Eingabe.",
+    } as const;
+  }
+
+  const location = await resolveInviteLocation({
+    cantonId: getText(formData, "cantonId") || null,
+    cityId: getText(formData, "cityId") || null,
+    categoryIds: getList(formData, "categoryIds"),
+    serviceIds: getList(formData, "serviceIds"),
+  });
+
+  return {
+    draft: parsed.data,
+    location,
+  } as const;
 }
 
 export async function createInviteAction(_previousState: InviteActionState, formData: FormData): Promise<InviteActionState> {
@@ -39,31 +70,16 @@ export async function createInviteAction(_previousState: InviteActionState, form
     };
   }
 
-  const parsed = inviteDraftSchema.safeParse({
-    displayName: getText(formData, "displayName"),
-    bio: getText(formData, "bio"),
-    phoneNumber: getText(formData, "phoneNumber"),
-    whatsappEnabled: formData.get("whatsappEnabled") === "on",
-    telegramUsername: getText(formData, "telegramUsername"),
-    instagram: getText(formData, "instagram"),
-    website: getText(formData, "website"),
-    sourceNote: getText(formData, "sourceNote"),
-  });
+  const form = await parseInviteForm(formData);
 
-  if (!parsed.success) {
+  if ("error" in form) {
     return {
       success: false,
-      message: parsed.error.issues[0]?.message ?? "Ungültige Eingabe.",
+      message: form.error,
     };
   }
 
-  const location = await resolveInviteLocation({
-    cantonId: getText(formData, "cantonId") || null,
-    cityId: getText(formData, "cityId") || null,
-    categoryIds: formData.getAll("categoryIds").filter((value): value is string => typeof value === "string"),
-  });
-
-  const result = await createInvite(parsed.data, location, access.userId);
+  const result = await createInvite(form.draft, form.location, access.userId);
 
   if (!result.success) {
     return {
@@ -80,22 +96,7 @@ export async function createInviteAction(_previousState: InviteActionState, form
   };
 }
 
-/** Format produced by the external scraper. Slugs are resolved against the database. */
-const importRowSchema = z.object({
-  displayName: z.string(),
-  bio: z.string().optional(),
-  phone: z.string().optional(),
-  whatsapp: z.boolean().optional(),
-  telegram: z.string().optional(),
-  instagram: z.string().optional(),
-  website: z.string().optional(),
-  canton: z.string().optional(),
-  city: z.string().optional(),
-  categories: z.array(z.string()).optional(),
-  source: z.string().optional(),
-});
-
-export async function importInvitesAction(_previousState: InviteActionState, formData: FormData): Promise<InviteActionState> {
+export async function updateInviteAction(_previousState: InviteActionState, formData: FormData): Promise<InviteActionState> {
   const access = await getAdminAccess();
 
   if (!access.allowed) {
@@ -105,79 +106,31 @@ export async function importInvitesAction(_previousState: InviteActionState, for
     };
   }
 
-  let rows: unknown;
+  const inviteId = z.string().min(1).safeParse(formData.get("inviteId"));
+  const form = await parseInviteForm(formData);
 
-  try {
-    rows = JSON.parse(getText(formData, "json") ?? "");
-  } catch {
+  if (!inviteId.success || "error" in form) {
     return {
       success: false,
-      message: "Das ist kein gültiges JSON.",
+      message: "error" in form ? form.error : "Die Einladung wurde nicht gefunden.",
     };
   }
 
-  const parsedRows = z.array(importRowSchema).max(MAX_IMPORT_ROWS, `Maximal ${MAX_IMPORT_ROWS} Einträge pro Import.`).safeParse(rows);
+  const result = await updateInvite(inviteId.data, form.draft, form.location, access.userId);
 
-  if (!parsedRows.success) {
-    const issue = parsedRows.error.issues[0];
-
+  if (!result.success) {
     return {
       success: false,
-      message: issue ? `${issue.path.length > 0 ? `Eintrag ${issue.path.join(".")}: ` : ""}${issue.message}` : "Ungültiges Format.",
+      message: result.message,
     };
-  }
-
-  const invites: CreatedInvite[] = [];
-  const failures: NonNullable<InviteActionState["failures"]> = [];
-
-  // Sequential on purpose: duplicate checks must see invites created by earlier rows of the same import.
-  for (const [index, row] of parsedRows.data.entries()) {
-    const draft = inviteDraftSchema.safeParse({
-      displayName: row.displayName,
-      bio: row.bio,
-      phoneNumber: row.phone,
-      whatsappEnabled: row.whatsapp ?? Boolean(row.phone),
-      telegramUsername: row.telegram,
-      instagram: row.instagram,
-      website: row.website,
-      sourceNote: row.source,
-    });
-
-    if (!draft.success) {
-      failures.push({
-        row: index + 1,
-        displayName: row.displayName,
-        message: draft.error.issues[0]?.message ?? "Ungültiger Eintrag.",
-      });
-      continue;
-    }
-
-    const location = await resolveInviteLocation({
-      cantonSlug: row.canton,
-      citySlug: row.city,
-      categorySlugs: row.categories,
-    });
-
-    const result = await createInvite(draft.data, location, access.userId);
-
-    if (result.success) {
-      invites.push(result.invite);
-    } else {
-      failures.push({
-        row: index + 1,
-        displayName: row.displayName,
-        message: result.message,
-      });
-    }
   }
 
   revalidatePath("/admin/invites");
+  revalidatePath(`/admin/invites/${inviteId.data}`);
 
   return {
-    success: invites.length > 0,
-    message: `${invites.length} Einladung(en) erstellt, ${failures.length} übersprungen.`,
-    invites,
-    failures,
+    success: true,
+    message: "Änderungen gespeichert. Der Link bleibt gleich.",
   };
 }
 

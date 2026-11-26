@@ -4,15 +4,16 @@ import { LoaderCircle, RefreshCw } from "lucide-react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { createInviteAction, importInvitesAction, type InviteActionState, renewInviteLinkAction } from "@/actions/admin/invites";
+import { createInviteAction, type InviteActionState, renewInviteLinkAction, updateInviteAction } from "@/actions/admin/invites";
 import { InviteLinks } from "@/components/admin/invite-links";
+import { ProfileDescriptionEditor } from "@/components/editor/rich-text-editor";
 import { CategorySelector } from "@/components/profile/category-selector";
 import { LocationSelector } from "@/components/profile/location-selector";
+import { ServiceSelector } from "@/components/profile/service-selector";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 
 const initialState: InviteActionState = {
   success: false,
@@ -40,119 +41,128 @@ function ResultMessage({ state }: { state: InviteActionState }) {
         </Alert>
       ) : null}
 
-      {state.failures && state.failures.length > 0 ? (
-        <ul className="space-y-1 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 text-sm text-amber-100/80">
-          {state.failures.map((failure) => (
-            <li key={failure.row}>
-              Eintrag {failure.row} ({failure.displayName || "ohne Name"}): {failure.message}
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
       {state.invites ? <InviteLinks invites={state.invites} /> : null}
     </>
   );
 }
 
-type CreateInviteFormProps = {
+type InviteFormProps = {
   cantons: Array<{ id: string; name: string; slug: string }>;
   cities: Array<{ id: string; name: string; slug: string; cantonId: string }>;
   categories: Array<{ id: string; name: string; slug: string }>;
+  serviceGroups: Array<{ group: string; label: string; services: Array<{ id: string; name: string }> }>;
+  /** Existing open invite to edit; without it the form creates a new invite. */
+  invite?: {
+    id: string;
+    displayName: string;
+    bio: string;
+    phoneNumber: string;
+    whatsappEnabled: boolean;
+    signalNumber: string;
+    telegramUsername: string;
+    instagram: string;
+    website: string;
+    contactNote: string;
+    sourceNote: string;
+    cantonId: string | null;
+    cityId: string | null;
+    categoryIds: string[];
+    serviceIds: string[];
+  };
 };
 
-export function CreateInviteForm({ cantons, cities, categories }: CreateInviteFormProps) {
-  const [state, formAction] = useActionState(createInviteAction, initialState);
+export function InviteForm({ cantons, cities, categories, serviceGroups, invite }: InviteFormProps) {
+  const [state, formAction] = useActionState(invite ? updateInviteAction : createInviteAction, initialState);
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} className="space-y-6">
+      {invite ? <input type="hidden" name="inviteId" value={invite.id} /> : null}
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="displayName">Name *</Label>
-          <Input id="displayName" name="displayName" required minLength={2} maxLength={60} className={inputClassName} />
+          <Input id="displayName" name="displayName" required minLength={2} maxLength={60} defaultValue={invite?.displayName} className={inputClassName} />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="phoneNumber">Telefon</Label>
-          <Input id="phoneNumber" name="phoneNumber" placeholder="079 123 45 67" className={inputClassName} />
+          <Input id="phoneNumber" name="phoneNumber" placeholder="079 123 45 67" defaultValue={invite?.phoneNumber} className={inputClassName} />
 
           <label className="flex items-center gap-2 text-xs text-zinc-400">
-            <input type="checkbox" name="whatsappEnabled" defaultChecked className="size-3.5 accent-emerald-500" />
+            <input type="checkbox" name="whatsappEnabled" defaultChecked={invite?.whatsappEnabled ?? true} className="size-3.5 accent-emerald-500" />
             Nummer ist auf WhatsApp erreichbar
           </label>
         </div>
       </div>
 
-      <LocationSelector cantons={cantons} cities={cities} initialCantonId={null} initialCityId={null} />
+      <LocationSelector cantons={cantons} cities={cities} initialCantonId={invite?.cantonId ?? null} initialCityId={invite?.cityId ?? null} />
 
-      <div className="space-y-2">
-        <Label>Rubriken</Label>
-        <CategorySelector categories={categories} initialCategoryIds={[]} />
+      <CategorySelector categories={categories} initialCategoryIds={invite?.categoryIds ?? []} />
+
+      <div className="space-y-3">
+        <div>
+          <p className="font-medium text-white">Angebote</p>
+
+          <p className="mt-1 text-sm text-zinc-500">Das Model kann die Auswahl nach der Übernahme jederzeit ändern.</p>
+        </div>
+
+        <ServiceSelector groups={serviceGroups} initialServiceIds={invite?.serviceIds ?? []} />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="bio">Beschreibung</Label>
-        <Textarea id="bio" name="bio" maxLength={2000} className={`min-h-24 ${inputClassName}`} />
+        <Label>Beschreibung</Label>
+        <ProfileDescriptionEditor initialValue={invite?.bio ?? ""} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="telegramUsername">Telegram</Label>
-          <Input id="telegramUsername" name="telegramUsername" placeholder="@name" className={inputClassName} />
+          <Input id="telegramUsername" name="telegramUsername" placeholder="@name" defaultValue={invite?.telegramUsername} className={inputClassName} />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="signalNumber">Signal</Label>
+          <Input id="signalNumber" name="signalNumber" placeholder="079 123 45 67" defaultValue={invite?.signalNumber} className={inputClassName} />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="instagram">Instagram</Label>
-          <Input id="instagram" name="instagram" placeholder="@name" className={inputClassName} />
+          <Input id="instagram" name="instagram" placeholder="@name" defaultValue={invite?.instagram} className={inputClassName} />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="website">Website</Label>
-          <Input id="website" name="website" type="url" placeholder="https://" className={inputClassName} />
+          <Input id="website" name="website" type="url" placeholder="https://" defaultValue={invite?.website} className={inputClassName} />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="sourceNote">Interne Notiz (sieht das Model nicht)</Label>
-        <Input id="sourceNote" name="sourceNote" maxLength={300} placeholder="z. B. Quelle des Kontakts" className={inputClassName} />
+        <Label htmlFor="contactNote">Hinweis zum Kontakt (öffentlich nach der Übernahme)</Label>
+        <Input
+          id="contactNote"
+          name="contactNote"
+          maxLength={300}
+          placeholder="z. B. Nur WhatsApp, keine Anrufe"
+          defaultValue={invite?.contactNote}
+          className={inputClassName}
+        />
       </div>
 
-      <ResultMessage state={state} />
-
-      <SubmitButton pendingText="Wird erstellt ...">Einladung erstellen</SubmitButton>
-    </form>
-  );
-}
-
-const IMPORT_EXAMPLE = `[
-  {
-    "displayName": "Mia",
-    "phone": "079 123 45 67",
-    "whatsapp": true,
-    "canton": "zh",
-    "city": "zuerich",
-    "categories": ["escort"],
-    "bio": "Kurze Beschreibung",
-    "source": "Scraper Lauf 1"
-  }
-]`;
-
-export function ImportInvitesForm() {
-  const [state, formAction] = useActionState(importInvitesAction, initialState);
-
-  return (
-    <form action={formAction} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="json">JSON aus dem Scraper (max. 200 Einträge)</Label>
-        <Textarea id="json" name="json" required placeholder={IMPORT_EXAMPLE} className={`min-h-56 font-mono text-xs ${inputClassName}`} />
-        <p className="text-xs text-zinc-500">
-          Kanton als Kürzel (z. B. zh), Stadt und Rubriken als Slugs (z. B. zuerich, escort). Unbekannte Slugs werden ignoriert. Abgelehnte Kontakte und bestehende Profile werden übersprungen.
-        </p>
+        <Label htmlFor="sourceNote">Interne Notiz (sieht das Model nicht)</Label>
+        <Input
+          id="sourceNote"
+          name="sourceNote"
+          maxLength={300}
+          placeholder="z. B. Quelle des Kontakts"
+          defaultValue={invite?.sourceNote}
+          className={inputClassName}
+        />
       </div>
 
       <ResultMessage state={state} />
 
-      <SubmitButton pendingText="Wird importiert ...">Importieren</SubmitButton>
+      <SubmitButton pendingText={invite ? "Wird gespeichert ..." : "Wird erstellt ..."}>{invite ? "Änderungen speichern" : "Einladung erstellen"}</SubmitButton>
     </form>
   );
 }

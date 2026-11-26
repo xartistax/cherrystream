@@ -15,6 +15,7 @@ const actionLabels: Record<AdminAction, string> = {
   POST_RESTORED: "Upload eingeblendet",
   INVITE_CREATED: "Einladung erstellt",
   INVITE_RENEWED: "Einladungslink erneuert",
+  INVITE_UPDATED: "Einladung bearbeitet",
   INVITE_REVOKED: "Einladung widerrufen",
   IMPERSONATION_STARTED: "Als Model angesehen (Start)",
   IMPERSONATION_STOPPED: "Model-Ansicht beendet",
