@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth, signOut } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { purgeVerificationDocuments } from "@/lib/verification/purge-documents";
@@ -52,6 +53,9 @@ export async function deleteAccount(_: DeleteAccountState, formData: FormData): 
     },
     select: {
       passwordHash: true,
+      username: true,
+      role: true,
+      modelStatus: true,
     },
   });
 
@@ -105,6 +109,13 @@ export async function deleteAccount(_: DeleteAccountState, formData: FormData): 
       },
     }),
   ]);
+
+  if (user.role === "MODEL") {
+    notifyAdmins("ACCOUNT_DELETED", {
+      lines: [`@${user.username}`, user.modelStatus === "ACTIVE" ? "war freigeschaltet und öffentlich" : "war noch nicht freigeschaltet"],
+      path: `/admin/users?q=${encodeURIComponent(user.username)}`,
+    });
+  }
 
   revalidatePath("/");
 

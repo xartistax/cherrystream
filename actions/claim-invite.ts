@@ -245,6 +245,11 @@ export async function declineInviteAction(formData: FormData): Promise<void> {
       });
     });
 
+    notifyAdmins("INVITE_DECLINED", {
+      lines: [invite.displayName],
+      path: "/admin/invites",
+    });
+
     revalidatePath("/admin/invites");
   }
 

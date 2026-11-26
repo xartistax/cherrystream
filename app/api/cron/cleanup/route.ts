@@ -1,6 +1,7 @@
 import { timingSafeEqual } from "node:crypto";
 
-import { runCleanup } from "@/lib/cleanup";
+import { runDailyAlerts } from "@/lib/admin-alerts/daily";
+import { runCleanup, type CleanupResult } from "@/lib/cleanup";
 
 export const dynamic = "force-dynamic";
 
@@ -18,17 +19,33 @@ function isAuthorized(request: Request): boolean {
   return expected.length === received.length && timingSafeEqual(expected, received);
 }
 
-/** Called daily by Vercel Cron (vercel.json), which sends "Authorization: Bearer <CRON_SECRET>". */
+/**
+ * Called daily by Vercel Cron (vercel.json), which sends "Authorization: Bearer <CRON_SECRET>".
+ * Cleans up first, then sends the daily Telegram messages (problems, waiting verifications, summary).
+ */
 export async function GET(request: Request) {
   if (!isAuthorized(request)) {
     return new Response(null, { status: 401 });
   }
 
-  const result = await runCleanup();
+  let result: CleanupResult | null = null;
+  let cleanupError: unknown = null;
 
-  console.info("Cleanup finished", result);
+  try {
+    result = await runCleanup();
+    console.info("Cleanup finished", result);
+  } catch (error) {
+    cleanupError = error;
+    console.error("Cleanup failed:", error);
+  }
 
-  return Response.json(result, {
-    status: result.verificationDocumentsPurged ? 200 : 500,
+  try {
+    await runDailyAlerts(result, cleanupError);
+  } catch (error) {
+    console.error("Daily alerts failed:", error);
+  }
+
+  return Response.json(result ?? { error: "Cleanup failed" }, {
+    status: result?.verificationDocumentsPurged ? 200 : 500,
   });
 }
