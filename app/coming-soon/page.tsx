@@ -28,7 +28,7 @@ export default function ComingSoonPage() {
         <h1 className="mt-10 text-4xl font-black tracking-tight sm:text-5xl">Bald verfügbar</h1>
 
         <p className="mt-4 max-w-md leading-7 text-zinc-400">
-          Das Verzeichnis für verifizierte Models in der Schweiz. Wir bereiten den Start vor, schau bald wieder vorbei.
+          Verifizierte Escort- und Erotik-Inserate aus der ganzen Schweiz. Wir bereiten den Start vor, schau bald wieder vorbei.
         </p>
 
         <Link href="/login" className="mt-10 text-sm font-medium text-rose-400 transition hover:text-rose-300">

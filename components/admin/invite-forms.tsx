@@ -14,6 +14,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { type Gender, genderOptions } from "@/lib/profile/gender";
 
 const initialState: InviteActionState = {
   success: false,
@@ -55,6 +56,7 @@ type InviteFormProps = {
   invite?: {
     id: string;
     displayName: string;
+    gender: Gender | null;
     bio: string;
     phoneNumber: string;
     whatsappEnabled: boolean;
@@ -93,6 +95,22 @@ export function InviteForm({ cantons, cities, categories, serviceGroups, invite 
             Nummer ist auf WhatsApp erreichbar
           </label>
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="gender">Geschlecht</Label>
+        <select
+          id="gender"
+          name="gender"
+          defaultValue={invite?.gender ?? "WOMAN"}
+          className="flex h-9 w-full rounded-md border border-white/10 bg-zinc-950 px-3 text-sm text-white outline-none sm:max-w-xs"
+        >
+          {genderOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <LocationSelector cantons={cantons} cities={cities} initialCantonId={invite?.cantonId ?? null} initialCityId={invite?.cityId ?? null} />

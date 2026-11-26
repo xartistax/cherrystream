@@ -68,7 +68,7 @@ export async function storeVerificationImage(userId: string, kind: VerificationI
   }
 
   if (file.size === 0 || file.size > MAX_VERIFICATION_IMAGE_SIZE) {
-    throw new VerificationImageError("Das Bild ist leer oder zu groß.");
+    throw new VerificationImageError("Das Bild ist leer oder zu gross.");
   }
 
   const input = Buffer.from(await file.arrayBuffer());

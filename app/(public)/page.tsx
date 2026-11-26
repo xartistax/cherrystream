@@ -1,4 +1,5 @@
 import { ArrowRight, Camera, Cherry, Flame, MapPin, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,8 +9,26 @@ import { applyDueAutoBumps } from "@/lib/boosts/apply-auto-bumps";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/auth";
+import { genderFilters } from "@/lib/profile/gender";
+import type { Prisma } from "@/generated/prisma/client";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "CherryStream – Sex- und Erotik-Inserate in der Schweiz",
+  },
+};
+
+// Only profiles a visitor can open; used for all counts on this page.
+const listedProfileWhere: Prisma.ProfileWhereInput = {
+  isPublic: true,
+  user: {
+    status: "ACTIVE",
+    role: "MODEL",
+    modelStatus: "ACTIVE",
+  },
+};
 
 /** Profiles younger than this get a "Neu" badge. */
 const NEW_PROFILE_DAYS = 14;
@@ -134,15 +153,8 @@ async function getHomeData() {
       take: 12,
     }),
 
-    prisma.user.count({
-      where: {
-        status: "ACTIVE",
-        profile: {
-          is: {
-            isPublic: true,
-          },
-        },
-      },
+    prisma.profile.count({
+      where: listedProfileWhere,
     }),
 
     prisma.category.findMany({
@@ -150,9 +162,7 @@ async function getHomeData() {
         isActive: true,
         profiles: {
           some: {
-            profile: {
-              isPublic: true,
-            },
+            profile: listedProfileWhere,
           },
         },
       },
@@ -177,11 +187,42 @@ async function getHomeData() {
       ],
       take: 8,
     }),
+
+    prisma.profile.groupBy({
+      by: ["gender"],
+      where: listedProfileWhere,
+      _count: true,
+    }),
+
+    prisma.canton.findMany({
+      where: {
+        profiles: {
+          some: listedProfileWhere,
+        },
+      },
+      select: {
+        name: true,
+        slug: true,
+        _count: {
+          select: {
+            profiles: {
+              where: listedProfileWhere,
+            },
+          },
+        },
+      },
+      orderBy: {
+        sortOrder: "asc",
+      },
+    }),
   ]);
 }
 
 export default async function PublicHomePage() {
-  const [creators, creatorCount, categories] = await getHomeData();
+  const [creators, creatorCount, categories, genderCounts, cantons] = await getHomeData();
+  const genderTiles = genderFilters
+    .map((filter) => ({ ...filter, count: genderCounts.find((row) => row.gender === filter.value)?._count ?? 0 }))
+    .filter((tile) => tile.count > 0);
   const session = await auth();
   const profileCtaHref = session?.user ? (session.user.role === "USER" ? "/become-model" : "/dashboard") : "/register";
   const now = new Date();
@@ -200,16 +241,16 @@ export default async function PublicHomePage() {
           <div className="max-w-3xl">
             <Badge variant="outline" className="gap-2 border-rose-500/25 bg-rose-500/10 px-3 py-1.5 text-rose-300">
               <Sparkles className="size-3.5" />
-              Neu auf CherryStream
+              Verifiziert, diskret, direkt
             </Badge>
 
             <h1 className="mt-6 text-balance text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-              Entdecke Profile, die{" "}
-              <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">dich begeistern.</span>
+              Sex- und Erotik-Inserate{" "}
+              <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">in der ganzen Schweiz.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 sm:text-xl">
-              Finde Profile nach Rubrik, Kanton und Stadt – mit Fotos, Videos und exklusiven Inhalten.
+              Verifizierte Escorts, Sexkontakte und erotische Massagen nach Ort, Rubrik und Angebot. Du schreibst direkt, ohne Vermittler.
             </p>
 
             <div className="flex flex-col gap-3 mt-10 sm:flex-row">
@@ -222,7 +263,7 @@ export default async function PublicHomePage() {
                   "h-12 rounded-2xl bg-rose-600 px-7 text-base font-semibold text-white shadow-lg shadow-rose-600/20 hover:bg-rose-500",
                 )}
               >
-                Profile entdecken
+                Inserate entdecken
                 <ArrowRight className="size-5" />
               </Link>
 
@@ -237,24 +278,24 @@ export default async function PublicHomePage() {
                 )}
               >
                 <Sparkles className="size-5 text-rose-400" />
-                Profil veröffentlichen
+                Inserat schalten
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-zinc-500">
               <span className="inline-flex items-center gap-2">
                 <ShieldCheck className="size-4 text-emerald-400" />
-                Ausschließlich 18+
+                Nur ab 18
               </span>
 
               <span className="inline-flex items-center gap-2">
                 <UsersRound className="size-4 text-rose-400" />
-                Öffentliche Profile
+                Verifizierte Profile
               </span>
 
               <span className="inline-flex items-center gap-2">
                 <Camera className="size-4 text-violet-400" />
-                Fotos und Videos
+                Direkter Kontakt
               </span>
             </div>
           </div>
@@ -328,22 +369,45 @@ export default async function PublicHomePage() {
           <div>
             <p className="text-3xl font-black text-white">{creatorCount}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">öffentliche Profile</p>
+            <p className="mt-1 text-sm text-zinc-500">{creatorCount === 1 ? "Inserat online" : "Inserate online"}</p>
           </div>
 
           <div>
             <p className="text-3xl font-black text-white">{categories.length}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">beliebte Rubriken</p>
+            <p className="mt-1 text-sm text-zinc-500">Rubriken</p>
           </div>
 
           <div>
             <p className="text-3xl font-black text-white">18+</p>
 
-            <p className="mt-1 text-sm text-zinc-500">ausschließlich für Erwachsene</p>
+            <p className="mt-1 text-sm text-zinc-500">ausschliesslich für Erwachsene</p>
           </div>
         </div>
       </section>
+
+      {/* A single group (e.g. only women so far) would look empty; /explore always shows the full filter. */}
+      {genderTiles.length > 1 ? (
+        <section className="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8 lg:pt-20">
+          <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Wen suchst du?</h2>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {genderTiles.map((tile) => (
+              <Link
+                key={tile.slug}
+                href={`/explore?gender=${tile.slug}`}
+                className="group rounded-2xl border border-white/10 bg-zinc-900/60 px-5 py-5 transition hover:-translate-y-0.5 hover:border-rose-500/30 hover:bg-rose-500/5"
+              >
+                <span className="block text-lg font-bold text-white transition group-hover:text-rose-300">{tile.label}</span>
+
+                <span className="mt-1 block text-sm text-zinc-500">
+                  {tile.count} {tile.count === 1 ? "Inserat" : "Inserate"}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {categories.length > 0 ? (
         <section className="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8 lg:pt-20">
@@ -353,9 +417,9 @@ export default async function PublicHomePage() {
                 Rubriken
               </Badge>
 
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Interessen entdecken</h2>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Nach Rubrik suchen</h2>
 
-              <p className="mt-3 max-w-xl text-zinc-500">Durchsuche Profile nach Rubriken und Schwerpunkten.</p>
+              <p className="mt-3 max-w-xl text-zinc-500">Escort, Massagen, Domina und mehr: Wähle, worauf du Lust hast.</p>
             </div>
 
             <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
@@ -388,13 +452,13 @@ export default async function PublicHomePage() {
               Gerade aktiv
             </Badge>
 
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Profile</h2>
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Inserate</h2>
 
-            <p className="mt-3 max-w-xl text-zinc-500">Die Profile, die gerade aktiv sind, zuerst.</p>
+            <p className="mt-3 max-w-xl text-zinc-500">Wer zuletzt hochgeschoben oder neu dabei ist, steht zuoberst.</p>
           </div>
 
           <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
-            Alle Profile ansehen
+            Alle Inserate ansehen
             <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -485,16 +549,38 @@ export default async function PublicHomePage() {
               <UsersRound className="size-6" />
             </div>
 
-            <h3 className="mt-5 text-lg font-semibold text-white">Noch keine öffentlichen Profile</h3>
+            <h3 className="mt-5 text-lg font-semibold text-white">Noch keine Inserate online</h3>
 
-            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald neue Profile veröffentlicht werden, erscheinen sie automatisch hier.</p>
+            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald die ersten Inserate freigeschaltet sind, erscheinen sie hier.</p>
 
             <Link href="/register" className={cn(buttonVariants(), "mt-6 bg-rose-600 text-white hover:bg-rose-500")}>
-              Erstes Profil erstellen
+              Erstes Inserat schalten
             </Link>
           </div>
         )}
       </section>
+
+      {cantons.length > 0 ? (
+        <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+          <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Sexkontakte in deiner Nähe</h2>
+
+          <p className="mt-3 max-w-xl text-zinc-500">Escorts und Erotik-Inserate nach Kanton.</p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {cantons.map((canton) => (
+              <Link
+                key={canton.slug}
+                href={`/explore?canton=${canton.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-300 transition hover:border-rose-500/30 hover:text-white"
+              >
+                <MapPin className="size-3.5 text-rose-400" />
+                {canton.name}
+                <span className="text-xs text-zinc-600">{canton._count.profiles}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-rose-500/20 bg-gradient-to-br from-rose-600/20 via-zinc-900 to-fuchsia-600/10 px-6 py-14 text-center shadow-2xl shadow-rose-950/20 sm:px-10 lg:py-20">
@@ -505,9 +591,9 @@ export default async function PublicHomePage() {
               <Cherry className="size-6" />
             </div>
 
-            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Zeig, was dich besonders macht.</h2>
+            <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl">Du bist Escort? Inseriere bei uns.</h2>
 
-            <p className="mt-4 text-base leading-7 text-zinc-400">Erstelle dein Profil, veröffentliche deine Inhalte und werde auf CherryStream entdeckt.</p>
+            <p className="mt-4 text-base leading-7 text-zinc-400">Dein Inserat, deine Regeln: Kontaktwege, Fotos und Angebote bestimmst du selbst. Kunden melden sich direkt bei dir, ohne Vermittler und ohne Provision.</p>
 
             <Link
               href="/register"
@@ -518,11 +604,25 @@ export default async function PublicHomePage() {
                 "mt-8 h-12 bg-white px-7 text-zinc-950 hover:bg-zinc-200",
               )}
             >
-              Eigenes Profil veröffentlichen
+              Inserat schalten
               <ArrowRight className="size-4" />
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-4 pb-20 text-sm leading-7 text-zinc-500 sm:px-6 lg:pb-28">
+        <h2 className="text-lg font-bold text-zinc-300">Sex- und Erotik-Inserate in der Schweiz</h2>
+
+        <p className="mt-3">
+          Auf CherryStream findest du Escorts, Sexkontakte, erotische Massagen, Dominas und Trans-Inserate aus allen Kantonen, von Zürich und Basel bis
+          Genf und Lugano. Jedes Inserat wird vor der Freischaltung geprüft: Alter und Identität sind verifiziert, die Fotos echt.
+        </p>
+
+        <p className="mt-3">
+          Du nimmst direkt Kontakt auf, per Telefon, WhatsApp, Telegram oder Signal. CherryStream vermittelt nicht, nimmt keine Buchungen entgegen und
+          verdient nichts an euren Treffen. Alle Inserate sind ausschliesslich für Erwachsene ab 18 Jahren.
+        </p>
       </section>
     </>
   );

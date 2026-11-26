@@ -8,12 +8,14 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { type Gender, genderOptions } from "@/lib/profile/gender";
 import type { ActionState } from "@/types/action-state";
 import { ProfileDescriptionEditor } from "../editor/rich-text-editor";
 
 type ModelProfileFormProps = {
   defaultDisplayName: string;
   defaultBio: string;
+  defaultGender: Gender | null;
 };
 
 const initialState: ActionState = {
@@ -21,7 +23,7 @@ const initialState: ActionState = {
   message: "",
 };
 
-export function ModelProfileForm({ defaultDisplayName, defaultBio }: ModelProfileFormProps) {
+export function ModelProfileForm({ defaultDisplayName, defaultBio, defaultGender }: ModelProfileFormProps) {
   const [state, formAction, pending] = useActionState(saveModelProfileAction, initialState);
 
   return (
@@ -49,7 +51,35 @@ export function ModelProfileForm({ defaultDisplayName, defaultBio }: ModelProfil
         {state.errors?.displayName?.[0] ? (
           <p className="text-sm text-red-400">{state.errors.displayName[0]}</p>
         ) : (
-          <p className="text-sm text-zinc-500">Dieser Name wird auf deinem öffentlichen Profil angezeigt.</p>
+          <p className="text-sm text-zinc-500">Unter diesem Namen erscheinst du auf deinem Inserat. Ein Künstlername ist ideal.</p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="gender">Du inserierst als</Label>
+
+        <select
+          id="gender"
+          name="gender"
+          defaultValue={defaultGender ?? ""}
+          required
+          className="flex h-9 w-full rounded-md border border-white/10 bg-black/20 px-3 text-sm text-white outline-none"
+        >
+          <option value="" disabled className="bg-zinc-900">
+            Bitte wählen
+          </option>
+
+          {genderOptions.map((option) => (
+            <option key={option.value} value={option.value} className="bg-zinc-900">
+              {option.label}
+            </option>
+          ))}
+        </select>
+
+        {state.errors?.gender?.[0] ? (
+          <p className="text-sm text-red-400">{state.errors.gender[0]}</p>
+        ) : (
+          <p className="text-sm text-zinc-500">Besucher filtern auf «Entdecken» nach Frauen, Männern, Trans und Paaren.</p>
         )}
       </div>
 
@@ -61,7 +91,7 @@ export function ModelProfileForm({ defaultDisplayName, defaultBio }: ModelProfil
         {state.errors?.bio?.[0] ? (
           <p className="text-sm text-red-400">{state.errors.bio[0]}</p>
         ) : (
-          <p className="text-sm text-zinc-500">Du kannst deine Beschreibung später jederzeit bearbeiten.</p>
+          <p className="text-sm text-zinc-500">Erzähl kurz, wer du bist und was Kunden erwartet. Du kannst den Text später jederzeit ändern.</p>
         )}
       </div>
 

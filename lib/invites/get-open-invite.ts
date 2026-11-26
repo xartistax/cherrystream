@@ -20,6 +20,7 @@ export async function getOpenInvite(token: string) {
     select: {
       id: true,
       displayName: true,
+      gender: true,
       bio: true,
       cantonId: true,
       cityId: true,

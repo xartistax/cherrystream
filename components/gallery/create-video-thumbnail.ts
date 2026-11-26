@@ -74,7 +74,7 @@ export async function createVideoThumbnail(file: File): Promise<string> {
     const sourceHeight = video.videoHeight;
 
     if (!sourceWidth || !sourceHeight) {
-      throw new Error("Die Videogröße konnte nicht ermittelt werden.");
+      throw new Error("Die Videogrösse konnte nicht ermittelt werden.");
     }
 
     const scale = Math.min(1, THUMBNAIL_WIDTH / sourceWidth);

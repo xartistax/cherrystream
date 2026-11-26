@@ -58,7 +58,7 @@ export function ProfileDescriptionEditor({ initialValue, error }: ProfileDescrip
         limit: MAX_CHARACTERS,
       }),
       Placeholder.configure({
-        placeholder: "Erzähle etwas über dich, deine Inhalte und was Besucher erwarten können …",
+        placeholder: "Erzähl etwas über dich: wer du bist, was dich ausmacht und was deine Gäste erwarten dürfen …",
       }),
       Link.configure({
         openOnClick: false,

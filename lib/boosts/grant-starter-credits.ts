@@ -28,7 +28,7 @@ export async function grantStarterCreditsInTx(tx: Prisma.TransactionClient, user
     balanceType: WalletBalanceType.USER_CREDITS,
     amount: ECONOMY.starterCredits,
     idempotencyKey: `starter-credit:${userId}`,
-    description: "Willkommensguthaben für eingeladene Models",
+    description: "Willkommensguthaben für dein Inserat",
     referenceId: invite.id,
   });
 

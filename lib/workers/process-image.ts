@@ -53,7 +53,7 @@ async function createVariant(source: Buffer, variant: ImageVariantName): Promise
     });
 
   if (!info.width || !info.height) {
-    throw new Error(`Bildgröße für Variante "${variant}" konnte nicht ermittelt werden.`);
+    throw new Error(`Bildgrösse für Variante "${variant}" konnte nicht ermittelt werden.`);
   }
 
   return {

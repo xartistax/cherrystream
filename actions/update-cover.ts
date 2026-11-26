@@ -43,7 +43,7 @@ async function downloadImage(url: string): Promise<Buffer> {
   }
 
   if (buffer.byteLength > MAX_IMAGE_SIZE) {
-    throw new Error("Das Cover überschreitet die erlaubte Größe.");
+    throw new Error("Das Titelbild ist zu gross.");
   }
 
   return buffer;

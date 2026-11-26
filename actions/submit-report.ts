@@ -62,7 +62,7 @@ export async function submitReportAction(input: unknown): Promise<SubmitReportRe
   if (!reportedUser) {
     return {
       success: false,
-      message: "Das Profil wurde nicht gefunden.",
+      message: "Das Inserat wurde nicht gefunden.",
     };
   }
 

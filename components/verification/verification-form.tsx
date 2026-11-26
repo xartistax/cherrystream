@@ -189,7 +189,7 @@ export function VerificationForm({ challengeCode }: VerificationFormProps) {
 
         <span>
           Ich bin mindestens 18 Jahre alt und willige ein, dass CherryStream meine Dokumente zur Alters- und Identitätsprüfung verwendet. Die Fotos
-          werden nach der Prüfung gelöscht.
+          werden nach der Prüfung gelöscht und nie veröffentlicht.
         </span>
       </label>
 

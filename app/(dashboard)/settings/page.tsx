@@ -21,7 +21,7 @@ const settings = [
   },
   {
     title: "Datenschutz",
-    description: "Steuere die Sichtbarkeit deines öffentlichen Profils.",
+    description: "Inserat online stellen oder pausieren.",
     href: "/settings/privacy",
     icon: LockKeyhole,
     available: true,

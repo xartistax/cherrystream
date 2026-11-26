@@ -77,7 +77,9 @@ export function verifyEmailEmail(verifyUrl: string): Template {
     subject: "Bitte bestätige deine E-Mail-Adresse",
     ...render({
       heading: "Willkommen bei CherryStream",
-      paragraphs: ["Bitte bestätige deine E-Mail-Adresse, damit wir dich bei wichtigen Ereignissen erreichen können. Der Link ist 24 Stunden gültig."],
+      paragraphs: [
+        "Schön, dass du da bist. Bitte bestätige deine E-Mail-Adresse, damit wir dich erreichen können, etwa wenn dein Inserat freigeschaltet wird. Der Link ist 24 Stunden gültig.",
+      ],
       action: {
         label: "E-Mail bestätigen",
         url: verifyUrl,
@@ -89,18 +91,18 @@ export function verifyEmailEmail(verifyUrl: string): Template {
 
 export function verificationApprovedEmail(displayName: string, profileUrl: string): Template {
   return {
-    subject: "Dein Profil ist freigegeben",
+    subject: "Dein Inserat ist online",
     ...render({
-      heading: `Willkommen, ${displayName}!`,
+      heading: `Willkommen, ${displayName}`,
       paragraphs: [
-        "Deine Verifizierung wurde geprüft und dein Profil ist jetzt öffentlich sichtbar. Deine Ausweisfotos haben wir gelöscht.",
-        "Lade Fotos hoch und vervollständige deine Kontaktangaben, damit du gefunden wirst.",
+        "Wir haben deine Verifizierung geprüft: Dein Inserat ist jetzt online und trägt das Abzeichen «Verifiziert». Deine Ausweisfotos haben wir gelöscht.",
+        "Lade aussagekräftige Fotos hoch und prüfe deine Kontaktwege. Besucher melden sich direkt bei dir, ohne Vermittler.",
       ],
       action: {
-        label: "Zum Dashboard",
+        label: "Zu deinem Inserat",
         url: getAppUrl("/dashboard"),
       },
-      footnote: `Dein öffentliches Profil: ${profileUrl}`,
+      footnote: `So sehen Besucher dein Inserat: ${profileUrl}`,
     }),
   };
 }
@@ -111,9 +113,9 @@ export function verificationRejectedEmail(displayName: string, reason: string): 
     ...render({
       heading: `Hallo ${displayName}`,
       paragraphs: [
-        "Wir konnten deine Verifizierung leider noch nicht freigeben. Begründung:",
+        "Wir konnten deine Verifizierung leider noch nicht freigeben, dein Inserat ist deshalb noch nicht online. Begründung:",
         reason,
-        "Du kannst neue Fotos einreichen. Du bekommst dafür einen neuen Code. Deine bisherigen Fotos haben wir gelöscht.",
+        "Reich einfach neue Fotos ein, du bekommst dafür einen neuen Code. Deine bisherigen Fotos haben wir gelöscht.",
       ],
       action: {
         label: "Erneut einreichen",
@@ -143,7 +145,7 @@ export function adminUrgentReportEmail(reasonLabel: string, username: string): T
     subject: `Dringende Meldung: ${reasonLabel} (@${username})`,
     ...render({
       heading: "Dringende Meldung eingegangen",
-      paragraphs: [`Grund: ${reasonLabel}`, `Gemeldetes Profil: @${username}`, "Bitte so schnell wie möglich prüfen."],
+      paragraphs: [`Grund: ${reasonLabel}`, `Gemeldetes Inserat: @${username}`, "Bitte so schnell wie möglich prüfen."],
       action: {
         label: "Zu den Meldungen",
         url: getAppUrl("/admin/reports"),

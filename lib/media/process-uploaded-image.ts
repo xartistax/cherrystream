@@ -40,7 +40,7 @@ async function downloadSourceImage(source: UploadedMediaInput): Promise<Buffer> 
   }
 
   if (buffer.byteLength > MAX_IMAGE_SIZE) {
-    throw new Error("Das Bild überschreitet die erlaubte Dateigröße.");
+    throw new Error("Das Bild überschreitet die erlaubte Dateigrösse.");
   }
 
   return buffer;

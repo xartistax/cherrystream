@@ -137,7 +137,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
         </div>
 
         <p className="mt-1 text-sm leading-6 text-zinc-500">
-          Entscheide selbst, wie Besucher dich kontaktieren dürfen. Es werden nur aktivierte Kontaktmöglichkeiten öffentlich angezeigt.
+          Du entscheidest, wie Kunden dich erreichen. Auf deinem Inserat erscheinen nur die Kontaktwege, die du einschaltest.
         </p>
       </div>
 
@@ -164,7 +164,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
               id="phoneEnabled"
               name="phoneEnabled"
               label="Telefonanrufe"
-              description="Besucher dürfen dich direkt anrufen."
+              description="Kunden dürfen dich direkt anrufen."
               checked={phoneEnabled}
               onCheckedChange={(checked) => {
                 updateChannel("PHONE", checked, setPhoneEnabled);
@@ -175,7 +175,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
               id="whatsappEnabled"
               name="whatsappEnabled"
               label="WhatsApp"
-              description="Besucher dürfen dich über WhatsApp kontaktieren."
+              description="Kunden dürfen dir über WhatsApp schreiben."
               checked={whatsappEnabled}
               onCheckedChange={(checked) => {
                 updateChannel("WHATSAPP", checked, setWhatsappEnabled);
@@ -354,7 +354,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
               id="emailEnabled"
               name="emailEnabled"
               label="E-Mail anzeigen"
-              description="Besucher dürfen dir eine E-Mail schreiben."
+              description="Kunden dürfen dir eine E-Mail schreiben."
               checked={emailEnabled}
               onCheckedChange={(checked) => {
                 updateChannel("EMAIL", checked, setEmailEnabled);
@@ -371,7 +371,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
           <div>
             <Label>⭐ Primäre Kontaktmöglichkeit</Label>
 
-            <p className="mt-1 text-sm text-zinc-500">Diese Kontaktmöglichkeit wird auf deinem öffentlichen Profil hervorgehoben.</p>
+            <p className="mt-1 text-sm text-zinc-500">Dieser Kontaktweg wird auf deinem Inserat hervorgehoben.</p>
           </div>
 
           {enabledChannels.length === 0 ? (
@@ -422,7 +422,7 @@ export function ContactSettings({ initialValues, errors }: ContactSettingsProps)
                   <div>
                     <p className="font-medium text-white">{channel.label}</p>
 
-                    <p className="mt-1 text-sm text-zinc-500">Diese Kontaktmöglichkeit wird Besuchern zuerst empfohlen.</p>
+                    <p className="mt-1 text-sm text-zinc-500">Diesen Kontaktweg empfehlen wir Kunden zuerst.</p>
                   </div>
                 </label>
               ))}

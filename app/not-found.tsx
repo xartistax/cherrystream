@@ -111,7 +111,7 @@ export default async function NotFound() {
           <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-6xl">Diese Seite ist verschwunden.</h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg">
-            Der Link ist nicht mehr aktuell oder die Seite wurde verschoben. Auf CherryStream gibt es trotzdem genug zu entdecken.
+            Der Link ist nicht mehr aktuell, oder das Inserat ist offline. Hier findest du andere Inserate.
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -139,7 +139,7 @@ export default async function NotFound() {
               )}
             >
               <Compass className="size-4" />
-              Creator entdecken
+              Inserate entdecken
             </Link>
 
             <Link
@@ -153,7 +153,7 @@ export default async function NotFound() {
               )}
             >
               <Shuffle className="size-4" />
-              Zufälliges Profil
+              Zufälliges Inserat
             </Link>
 
             <BackButton />
@@ -170,11 +170,11 @@ export default async function NotFound() {
                   <span className="text-sm font-semibold">Gerade beliebt</span>
                 </div>
 
-                <h2 className="mt-2 text-2xl font-black sm:text-3xl">Vielleicht suchst du eines dieser Profile</h2>
+                <h2 className="mt-2 text-2xl font-black sm:text-3xl">Vielleicht gefällt dir eines dieser Inserate</h2>
               </div>
 
               <Link href="/explore" className="text-sm font-medium text-rose-400 transition hover:text-rose-300">
-                Alle Creator ansehen
+                Alle Inserate ansehen
               </Link>
             </div>
 

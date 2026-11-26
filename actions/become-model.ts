@@ -6,11 +6,13 @@ import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { PROFILE_DESCRIPTION_MAX_LENGTH, sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
 import { prisma } from "@/lib/prisma";
+import { genderValues } from "@/lib/profile/gender";
 import type { ActionState } from "@/types/action-state";
 
 const modelProfileSchema = z.object({
   displayName: z.string().trim().min(2, "Der Anzeigename muss mindestens 2 Zeichen haben.").max(50, "Der Anzeigename darf maximal 50 Zeichen haben."),
   bio: z.string(),
+  gender: z.enum(genderValues, "Bitte wähle aus, als wer du inserierst."),
 });
 
 export async function saveModelProfileAction(_previousState: ActionState, formData: FormData): Promise<ActionState> {
@@ -26,6 +28,7 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
   const parsedData = modelProfileSchema.safeParse({
     displayName: formData.get("displayName"),
     bio: formData.get("bio"),
+    gender: formData.get("gender"),
   });
 
   if (!parsedData.success) {
@@ -44,9 +47,9 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
     if (error instanceof Error && error.message === "PROFILE_DESCRIPTION_TOO_LONG") {
       return {
         success: false,
-        message: "Bitte überprüfe deine Profilbeschreibung.",
+        message: "Bitte überprüfe den Text deines Inserats.",
         errors: {
-          bio: [`Die Profilbeschreibung darf maximal ${PROFILE_DESCRIPTION_MAX_LENGTH.toLocaleString("de-CH")} Zeichen enthalten.`],
+          bio: [`Der Text deines Inserats darf maximal ${PROFILE_DESCRIPTION_MAX_LENGTH.toLocaleString("de-CH")} Zeichen enthalten.`],
         },
       };
     }
@@ -55,7 +58,7 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
 
     return {
       success: false,
-      message: "Die Profilbeschreibung konnte nicht verarbeitet werden.",
+      message: "Der Text deines Inserats konnte nicht verarbeitet werden.",
     };
   }
 
@@ -71,10 +74,12 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
             create: {
               displayName: parsedData.data.displayName,
               bio: sanitizedBio,
+              gender: parsedData.data.gender,
             },
             update: {
               displayName: parsedData.data.displayName,
               bio: sanitizedBio,
+              gender: parsedData.data.gender,
             },
           },
         },
@@ -85,7 +90,7 @@ export async function saveModelProfileAction(_previousState: ActionState, formDa
 
     return {
       success: false,
-      message: "Dein Profil konnte nicht gespeichert werden.",
+      message: "Dein Inserat konnte nicht gespeichert werden.",
     };
   }
 

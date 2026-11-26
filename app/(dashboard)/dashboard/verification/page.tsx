@@ -38,7 +38,7 @@ export default async function VerificationPage() {
         <h1 className="text-3xl font-bold text-white">Verifizierung</h1>
 
         <p className="mt-2 text-zinc-400">
-          Damit nur volljährige, echte Personen auf CherryStream sichtbar sind, prüfen wir jedes Profil, bevor es veröffentlicht wird.
+          Damit auf CherryStream nur volljährige, echte Personen inserieren, prüfen wir jedes Inserat, bevor es online geht. Dein Ausweis dient nur dieser Prüfung und wird danach gelöscht.
         </p>
       </div>
 
@@ -49,9 +49,9 @@ export default async function VerificationPage() {
               <BadgeCheck className="mt-0.5 size-6 shrink-0 text-sky-400" />
 
               <div>
-                <p className="font-semibold">Dein Profil ist verifiziert</p>
+                <p className="font-semibold">Du bist verifiziert</p>
 
-                <p className="mt-1 text-sm leading-6 text-zinc-400">Dein Profil ist öffentlich sichtbar und du kannst Inhalte veröffentlichen.</p>
+                <p className="mt-1 text-sm leading-6 text-zinc-400">Dein Inserat ist online und trägt das Badge «Verifiziert». Fotos und Videos kannst du jederzeit ergänzen.</p>
               </div>
             </div>
           ) : null}
@@ -64,12 +64,12 @@ export default async function VerificationPage() {
                 <p className="font-semibold">Deine Dokumente werden geprüft</p>
 
                 <p className="mt-1 text-sm leading-6 text-zinc-400">
-                  Eingereicht am {format(overview.submittedAt, "d. MMMM yyyy, HH:mm", { locale: de })} Uhr. Sobald dein Profil freigegeben ist, wird es
-                  öffentlich sichtbar. In der Zwischenzeit kannst du dein Profil bereits vervollständigen.
+                  Eingereicht am {format(overview.submittedAt, "d. MMMM yyyy, HH:mm", { locale: de })} Uhr. Sobald wir dich freigeben, geht dein Inserat
+                  online. In der Zwischenzeit kannst du es bereits vervollständigen.
                 </p>
 
                 <Link href="/profile/edit" className={cn(buttonVariants({ variant: "outline" }), "mt-4 border-white/10 bg-white/5")}>
-                  Profil bearbeiten
+                  Inserat bearbeiten
                 </Link>
               </div>
             </div>

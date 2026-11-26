@@ -26,7 +26,7 @@ export const adminAlertEvents: Record<AdminAlertEvent, { label: string; descript
   },
   INVITE_DECLINED: {
     label: "Einladung abgelehnt",
-    description: "Ein eingeladenes Model hat „Nicht interessiert, Daten löschen“ gewählt.",
+    description: "Ein eingeladenes Model hat «Nicht interessiert, Daten löschen» gewählt.",
   },
   ACCOUNT_DELETED: {
     label: "Model-Konto gelöscht",

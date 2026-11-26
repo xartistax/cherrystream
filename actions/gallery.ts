@@ -125,7 +125,7 @@ export async function setProfileImageAction(mediaId: string): Promise<GalleryAct
   if (!media) {
     return {
       success: false,
-      message: "Nur eigene, sichtbare Bilder können Profilbild sein.",
+      message: "Nur eigene, sichtbare Fotos können Profilbild sein.",
     };
   }
 

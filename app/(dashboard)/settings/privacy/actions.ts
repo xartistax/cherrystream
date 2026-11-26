@@ -13,7 +13,7 @@ export async function updateProfileVisibility(formData: FormData) {
   }
 
   if (session.user.role !== "MODEL") {
-    throw new Error("Kein öffentliches Profil vorhanden.");
+    throw new Error("Du hast noch kein Inserat.");
   }
 
   const isPublic = formData.get("visibility") === "public";

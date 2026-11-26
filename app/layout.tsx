@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const description = "Verifizierte Escort- und Erotik-Profile aus der ganzen Schweiz. Diskret, echt, aktuell.";
+const description = "Sex- und Erotik-Inserate in der Schweiz: verifizierte Escorts, Sexkontakte und erotische Massagen. Diskret, direkt, ohne Vermittler.";
 
 // Link previews show the same brand image everywhere (app/opengraph-image.png), never a profile photo.
 export const metadata: Metadata = {

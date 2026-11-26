@@ -93,7 +93,7 @@ export function BoostButton({ option, balance, blockedReason, note, label, class
                   const result = await purchaseBoostAction(option.id, requestId);
 
                   if (!result.success) {
-                    setError(result.message ?? "Der Boost konnte nicht gebucht werden.");
+                    setError(result.message ?? "Die Buchung hat nicht geklappt. Bitte versuch es nochmals.");
                   }
 
                   setRequestId(null);

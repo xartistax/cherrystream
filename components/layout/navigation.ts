@@ -43,19 +43,19 @@ export function getDashboardButton(role: UserRole) {
 
   if (!isCreatorRole(role)) {
     return {
-      label: "Mitglied werden",
+      label: "Inserat schalten",
       href: "/become-model",
     };
   }
 
   return {
-    label: "Dashboard",
+    label: "Mein Bereich",
     href: "/dashboard",
   };
 }
 
 const becomeModelItem: NavigationItem = {
-  label: "Mitglied werden",
+  label: "Inserat schalten",
   href: "/become-model",
   icon: CircleUserRound,
 };
@@ -157,12 +157,12 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
 
   return [
     {
-      label: "Dashboard",
+      label: "Übersicht",
       href: "/dashboard",
       icon: LayoutDashboard,
     },
     {
-      label: "Galerie",
+      label: "Fotos & Videos",
       href: "/dashboard/gallery",
       icon: Images,
     },
@@ -172,7 +172,7 @@ export function getNavigationItems(role: UserRole, isBecomeModelFlow = false): N
       icon: Rocket,
     },
     {
-      label: "Profil",
+      label: "Mein Inserat",
       href: "/profile/edit",
       icon: UserRound,
     },

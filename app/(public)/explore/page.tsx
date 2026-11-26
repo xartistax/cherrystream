@@ -13,9 +13,11 @@ import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { Prisma } from "@/generated/prisma/client";
 import { LocationSearch } from "@/components/profile/location-search";
+import { genderFilters } from "@/lib/profile/gender";
 
 type CreatorsPageProps = {
   searchParams: Promise<{
+    gender?: string;
     category?: string;
     service?: string;
     canton?: string;
@@ -34,8 +36,8 @@ type MediaFilter = "IMAGE" | "VIDEO";
 const PAGE_SIZE = 24;
 
 export const metadata = {
-  title: "Profile entdecken",
-  description: "Verifizierte Profile nach Ort, Kanton, Rubrik und Angebot durchsuchen.",
+  title: "Sex- und Erotik-Inserate in der Schweiz",
+  description: "Verifizierte Escorts, Sexkontakte und erotische Massagen nach Ort, Kanton, Rubrik und Angebot. Direkter Kontakt, ohne Vermittler.",
 };
 
 function parsePage(value: string | undefined): number {
@@ -50,6 +52,7 @@ function parsePage(value: string | undefined): number {
 
 function createCreatorsUrl(
   current: {
+    gender?: string;
     category?: string;
     service?: string;
     canton?: string;
@@ -84,6 +87,8 @@ function createCreatorsUrl(
 export default async function CreatorsPage({ searchParams }: CreatorsPageProps) {
   const params = await searchParams;
 
+  const genderFilter = genderFilters.find((filter) => filter.slug === params.gender?.trim().toLowerCase());
+
   const categorySlug = params.category?.trim().toLowerCase() || undefined;
 
   const serviceSlug = params.service?.trim().toLowerCase() || undefined;
@@ -101,6 +106,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
   const page = parsePage(params.page);
 
   const currentFilters = {
+    gender: genderFilter?.slug,
     category: categorySlug,
     service: serviceSlug,
     canton: cantonSlug,
@@ -127,6 +133,8 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
     profile: {
       is: {
         isPublic: true,
+
+        ...(genderFilter ? { gender: genderFilter.value } : {}),
 
         ...(categorySlug
           ? {
@@ -257,7 +265,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
   await applyDueAutoBumps();
 
-  const [services, categories, cantons, cities, totalCount, creators] = await Promise.all([
+  const [services, categories, cantons, cities, totalCount, creators, genderCounts] = await Promise.all([
     getActiveServices(),
 
     prisma.category.findMany({
@@ -378,6 +386,12 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       skip: (page - 1) * PAGE_SIZE,
       take: PAGE_SIZE,
     }),
+
+    prisma.profile.groupBy({
+      by: ["gender"],
+      where: listedProfileWhere,
+      _count: true,
+    }),
   ]);
 
   const normalizedCreators: CreatorCardData[] = await toCreatorCards(creators);
@@ -394,14 +408,14 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="space-y-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Entdecken</h1>
+            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Sex- und Erotik-Inserate</h1>
 
-            <p className="mt-2 text-sm text-zinc-400 sm:text-base">Finde Profile nach Interessen, Ort oder Medien.</p>
+            <p className="mt-2 text-sm text-zinc-400 sm:text-base">Escorts, Sexkontakte und erotische Massagen nach Ort, Rubrik und Angebot. Du nimmst direkt Kontakt auf.</p>
           </div>
 
           <div className="flex flex-wrap gap-2 text-sm">
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
-              {totalCount} Profile
+              {totalCount} {totalCount === 1 ? "Inserat" : "Inserate"}
             </Badge>
 
             <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
@@ -417,6 +431,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
 
       <section className="mt-10 rounded-3xl border border-white/10 bg-zinc-900/50 p-4 sm:p-6">
         <form className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,240px)_repeat(3,minmax(0,160px))_auto]">
+          {genderFilter ? <input type="hidden" name="gender" value={genderFilter.slug} /> : null}
           {categorySlug ? <input type="hidden" name="category" value={categorySlug} /> : null}
 
           <div className="relative">
@@ -425,7 +440,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
             <Input
               name="search"
               defaultValue={search}
-              placeholder="Name, Benutzername oder Stadt ..."
+              placeholder="Name oder Ort …"
               className="h-11 border-white/10 bg-white/[0.04] pl-11 text-white"
             />
           </div>
@@ -494,7 +509,39 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
           </Button>
         </form>
 
-        <nav className="mt-5 flex flex-wrap gap-2">
+        <nav aria-label="Wen suchst du?" className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm text-zinc-500">Wen suchst du?</span>
+
+          {[{ slug: null, label: "Alle" }, ...genderFilters].map((filter) => {
+            const active = (genderFilter?.slug ?? null) === filter.slug;
+            const count =
+              "value" in filter
+                ? (genderCounts.find((row) => row.gender === filter.value)?._count ?? 0)
+                : genderCounts.reduce((sum, row) => sum + row._count, 0);
+
+            return (
+              <Link
+                key={filter.label}
+                href={createCreatorsUrl(currentFilters, {
+                  gender: filter.slug,
+                  page: null,
+                })}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-sm font-medium transition",
+                  active
+                    ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
+                    : "border-white/10 bg-white/[0.03] text-zinc-400 hover:bg-white/[0.07] hover:text-white",
+                )}
+              >
+                {filter.label}
+
+                <span className="ml-2 text-xs opacity-50">{count}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <nav aria-label="Rubriken" className="mt-3 flex flex-wrap gap-2">
           <Link
             href={createCreatorsUrl(currentFilters, {
               category: null,
@@ -535,13 +582,19 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
           })}
         </nav>
 
-        {search || categorySlug || cantonSlug || citySlug || mediaType ? (
+        {search || genderFilter || categorySlug || cantonSlug || citySlug || mediaType ? (
           <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-white/10 pt-5">
             <span className="text-xs text-zinc-500">Aktive Filter:</span>
 
             {search ? (
               <Badge variant="outline" className="border-white/10 bg-white/5 text-zinc-300">
                 Suche: {search}
+              </Badge>
+            ) : null}
+
+            {genderFilter ? (
+              <Badge variant="outline" className="border-rose-500/20 bg-rose-500/10 text-rose-300">
+                {genderFilter.label}
               </Badge>
             ) : null}
 
@@ -581,9 +634,9 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="mt-10">
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-white">{activeCategory ? activeCategory.name : "Profile"}</h2>
+            <h2 className="text-xl font-bold text-white">{[genderFilter?.label, activeCategory?.name].filter(Boolean).join(" · ") || "Alle Inserate"}</h2>
 
-            <p className="mt-1 text-sm text-zinc-500">{totalCount} Ergebnisse</p>
+            <p className="mt-1 text-sm text-zinc-500">{totalCount} {totalCount === 1 ? "Inserat" : "Inserate"}</p>
           </div>
 
           <p className="text-sm text-zinc-500">

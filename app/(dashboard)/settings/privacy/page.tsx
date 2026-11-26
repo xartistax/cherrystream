@@ -48,7 +48,7 @@ export default async function PrivacySettingsPage() {
 
         <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Datenschutz</h1>
 
-        <p className="mt-2 text-sm text-zinc-400 sm:text-base">Steuere, ob dein Profil öffentlich sichtbar ist.</p>
+        <p className="mt-2 text-sm text-zinc-400 sm:text-base">Bestimme, ob dein Inserat online ist. Pausieren kannst du jederzeit, ohne etwas zu verlieren.</p>
       </div>
 
       {!hasPublicProfile || !profile ? (
@@ -59,10 +59,10 @@ export default async function PrivacySettingsPage() {
             </div>
 
             <div>
-              <h2 className="font-semibold text-white">Kein öffentliches Profil</h2>
+              <h2 className="font-semibold text-white">Noch kein Inserat</h2>
 
               <p className="mt-1 text-sm leading-relaxed text-zinc-500">
-                Sobald du dein Profil veröffentlicht hast, kannst du hier seine Sichtbarkeit verwalten.
+                Sobald dein Inserat online ist, kannst du es hier pausieren und wieder einschalten.
               </p>
 
               <Link
@@ -74,7 +74,7 @@ export default async function PrivacySettingsPage() {
                   "mt-4 bg-rose-600 text-white hover:bg-rose-500",
                 )}
               >
-                Profil veröffentlichen
+                Inserat schalten
               </Link>
             </div>
           </CardContent>
@@ -88,9 +88,9 @@ export default async function PrivacySettingsPage() {
               </div>
 
               <div>
-                <CardTitle className="text-lg text-white">Profilsichtbarkeit</CardTitle>
+                <CardTitle className="text-lg text-white">Sichtbarkeit deines Inserats</CardTitle>
 
-                <CardDescription className="mt-1 text-zinc-500">Diese Einstellung beeinflusst dein Profil und die Entdecken-Seite.</CardDescription>
+                <CardDescription className="mt-1 text-zinc-500">Gilt für dein Inserat, die Startseite und «Entdecken».</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -116,8 +116,8 @@ export default async function PrivacySettingsPage() {
                 </span>
 
                 <span className="min-w-0 flex-1">
-                  <span className="block font-medium text-white">Öffentlich</span>
-                  <span className="mt-1 block text-sm text-zinc-500">Dein Profil kann auf CherryStream gefunden und besucht werden.</span>
+                  <span className="block font-medium text-white">Online</span>
+                  <span className="mt-1 block text-sm text-zinc-500">Besucher finden dein Inserat auf CherryStream und können dich kontaktieren.</span>
                 </span>
 
                 {profile.isPublic && <span className="text-xs font-medium text-rose-400">Aktiv</span>}
@@ -144,8 +144,8 @@ export default async function PrivacySettingsPage() {
                 </span>
 
                 <span className="min-w-0 flex-1">
-                  <span className="block font-medium text-white">Privat</span>
-                  <span className="mt-1 block text-sm text-zinc-500">Dein Profil wird nicht mehr öffentlich angezeigt.</span>
+                  <span className="block font-medium text-white">Pausiert</span>
+                  <span className="mt-1 block text-sm text-zinc-500">Dein Inserat ist ausgeblendet. Fotos, Angaben und Guthaben bleiben erhalten.</span>
                 </span>
 
                 {!profile.isPublic && <span className="text-xs font-medium text-rose-400">Aktiv</span>}

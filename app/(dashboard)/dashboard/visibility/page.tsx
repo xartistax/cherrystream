@@ -33,17 +33,17 @@ const boostGroups: Array<{ type: BoostOption["type"]; title: string; description
   {
     type: "BUMP",
     title: "Hochschieben",
-    description: `Dein Profil steht sofort zuoberst und rutscht nach unten, wenn andere nachziehen. Höchstens alle ${ECONOMY.bumpCooldownMinutes} Minuten.`,
+    description: `Dein Inserat steht sofort zuoberst und rutscht nach unten, wenn andere nachziehen. Höchstens alle ${ECONOMY.bumpCooldownMinutes} Minuten.`,
   },
   {
     type: "AUTO_BUMP",
     title: "Auto-Hochschieben",
-    description: "Wir schieben dein Profil in festen Abständen automatisch hoch. Günstiger als einzeln, und du musst nicht online sein.",
+    description: "Wir schieben dein Inserat in festen Abständen automatisch hoch. Günstiger als einzeln, und du musst nicht online sein.",
   },
   {
     type: "HIGHLIGHT",
-    title: "Hervorhebung",
-    description: "Deine Karte bekommt einen farbigen Rahmen und das Badge „Top“. Die Position in der Liste ändert sich dadurch nicht.",
+    title: "Hervorheben",
+    description: "Deine Karte bekommt einen farbigen Rahmen und das Badge «Top». Die Position in der Liste ändert sich dadurch nicht.",
   },
 ];
 
@@ -117,7 +117,7 @@ export default async function VisibilityPage({ searchParams }: VisibilityPagePro
         <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Sichtbarkeit</h1>
 
         <p className="mt-2 max-w-2xl text-sm text-zinc-500">
-          Die Liste auf „Entdecken“ und der Startseite zeigt zuerst die Profile, die zuletzt hochgeschoben wurden. Mit Credits schiebst du dein Profil nach
+          Auf «Entdecken» und der Startseite stehen die Inserate zuerst, die zuletzt hochgeschoben wurden. Mit Credits schiebst du dein Inserat nach
           oben oder hebst es hervor.
         </p>
       </header>
@@ -132,9 +132,9 @@ export default async function VisibilityPage({ searchParams }: VisibilityPagePro
           <ShieldCheck className="mt-0.5 size-5 shrink-0 text-amber-300" />
 
           <div>
-            <p className="font-semibold text-amber-100">Boosts gibt es nach der Freischaltung</p>
+            <p className="font-semibold text-amber-100">Hochschieben und Hervorheben gibt es nach der Freischaltung</p>
 
-            <p className="mt-1 text-sm leading-6 text-amber-100/70">Sobald dein Profil verifiziert und öffentlich ist, steht es automatisch einmal ganz oben.</p>
+            <p className="mt-1 text-sm leading-6 text-amber-100/70">Sobald dein Inserat verifiziert und online ist, steht es automatisch einmal ganz oben.</p>
           </div>
         </Link>
       ) : null}

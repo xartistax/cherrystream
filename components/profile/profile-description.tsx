@@ -17,7 +17,7 @@ export function ProfileDescription({ html, displayName }: ProfileDescriptionProp
           <div>
             <h2 className="font-bold text-white">Über {displayName}</h2>
 
-            <p className="mt-0.5 text-xs text-zinc-500">Persönliche Vorstellung und wichtige Informationen</p>
+            <p className="mt-0.5 text-xs text-zinc-500">Vorstellung, Treffpunkt und was du wissen solltest</p>
           </div>
         </div>
       </div>

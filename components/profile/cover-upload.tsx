@@ -23,7 +23,7 @@ function validateImage(file: File): string | null {
   }
 
   if (file.size > MAX_IMAGE_SIZE) {
-    return "Das Cover darf maximal 10 MB groß sein.";
+    return "Das Titelbild darf maximal 10 MB gross sein.";
   }
 
   return null;
@@ -78,7 +78,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
         });
 
         if (!result.success || !result.coverUrl) {
-          setError(result.message ?? "Das Cover konnte nicht gespeichert werden.");
+          setError(result.message ?? "Das Titelbild konnte nicht gespeichert werden.");
           return;
         }
 
@@ -86,7 +86,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
         setPreviewUrl(null);
       } catch (uploadError) {
         console.error("Cover upload failed:", uploadError);
-        setError("Der Cover-Upload ist fehlgeschlagen.");
+        setError("Das Titelbild konnte nicht hochgeladen werden.");
       } finally {
         URL.revokeObjectURL(localPreviewUrl);
       }
@@ -100,7 +100,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
       const result = await removeCoverAction();
 
       if (!result.success) {
-        setError(result.message ?? "Das Cover konnte nicht entfernt werden.");
+        setError(result.message ?? "Das Titelbild konnte nicht entfernt werden.");
         return;
       }
 
@@ -119,7 +119,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
         {visibleCover ? (
           <Image
             src={visibleCover}
-            alt="Profil-Cover"
+            alt="Titelbild"
             fill
             unoptimized={Boolean(previewUrl)}
             sizes="(max-width: 1024px) 100vw, 1024px"
@@ -138,7 +138,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
           <div className="absolute inset-0 flex items-center justify-center bg-black/55">
             <div className="flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm text-white backdrop-blur">
               <LoaderCircle className="size-4 animate-spin" />
-              Cover wird verarbeitet
+              Titelbild wird verarbeitet
             </div>
           </div>
         ) : null}
@@ -154,7 +154,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
             className="bg-black/65 text-white backdrop-blur hover:bg-black/80"
           >
             <ImagePlus className="size-4" />
-            {coverUrl ? "Cover ändern" : "Cover hochladen"}
+            {coverUrl ? "Titelbild ändern" : "Titelbild hochladen"}
           </Button>
 
           {coverUrl ? (
@@ -164,7 +164,7 @@ export function CoverUpload({ user }: CoverUploadProps) {
               variant="destructive"
               disabled={isPending}
               onClick={handleRemove}
-              aria-label="Cover entfernen"
+              aria-label="Titelbild entfernen"
               className="size-9 bg-rose-600/85 backdrop-blur hover:bg-rose-600"
             >
               <Trash2 className="size-4" />

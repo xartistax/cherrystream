@@ -61,8 +61,8 @@ export function AgeGate() {
           </h2>
 
           <p className="mt-3 text-sm leading-6 text-zinc-400">
-            CherryStream enthält Inhalte für Erwachsene. Bitte bestätige, dass du mindestens 18 Jahre alt bist und mit dem Anzeigen solcher Inhalte
-            einverstanden bist.
+            CherryStream zeigt Erotik- und Escort-Inserate mit freizügigen Fotos. Bestätige, dass du mindestens 18 Jahre alt bist und solche
+            Inhalte sehen möchtest.
           </p>
 
           <div className="mt-8 grid gap-3">

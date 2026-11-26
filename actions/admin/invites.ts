@@ -9,6 +9,7 @@ import { buildCreatedInvite, createInvite, type CreatedInvite, updateInvite } fr
 import { inviteDraftSchema, resolveInviteLocation } from "@/lib/invites/draft";
 import { createInviteToken, getInviteExpiry } from "@/lib/invites/token";
 import { prisma } from "@/lib/prisma";
+import { parseGender } from "@/lib/profile/gender";
 
 export type InviteActionState = {
   success: boolean;
@@ -30,6 +31,7 @@ function getList(formData: FormData, key: string): string[] {
 async function parseInviteForm(formData: FormData) {
   const parsed = inviteDraftSchema.safeParse({
     displayName: getText(formData, "displayName"),
+    gender: parseGender(getText(formData, "gender")),
     bio: getText(formData, "bio"),
     phoneNumber: getText(formData, "phoneNumber"),
     whatsappEnabled: formData.get("whatsappEnabled") === "on",

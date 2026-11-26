@@ -108,10 +108,10 @@ export default async function BecomeModelLocationPage() {
             <MapPin className="size-5" />
           </div>
 
-          <CardTitle className="mt-3">Wo bist du aktiv?</CardTitle>
+          <CardTitle className="mt-3">Wo empfängst du oder bist du unterwegs?</CardTitle>
 
           <CardDescription className="leading-6 text-zinc-500">
-            Wähle deinen Kanton und deine Stadt. Diese Angaben helfen Nutzern dabei, dein Profil zu entdecken.
+            Wähle Kanton und Ort. So finden dich Kunden in deiner Region.
           </CardDescription>
         </CardHeader>
 

@@ -72,7 +72,7 @@ function ItemMenu({ item, username, onDelete, onError }: { item: GalleryItem; us
 
         <DropdownMenuItem render={<Link href={`/profile/${username}`} target="_blank" />} className="cursor-pointer focus:bg-white/5 focus:text-white">
           <ExternalLink className="size-4" />
-          Im Profil ansehen
+          Im Inserat ansehen
         </DropdownMenuItem>
 
         <DropdownMenuSeparator className="bg-white/10" />
@@ -97,9 +97,9 @@ export function GalleryManager({ items, username }: GalleryManagerProps) {
       <div className="flex min-h-56 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-zinc-900/40 px-6 text-center">
         <Images className="size-8 text-zinc-600" />
 
-        <p className="mt-4 font-semibold text-white">Noch keine Bilder oder Videos</p>
+        <p className="mt-4 font-semibold text-white">Noch keine Fotos oder Videos</p>
 
-        <p className="mt-1 max-w-sm text-sm leading-6 text-zinc-500">Dein erstes hochgeladenes Bild wird automatisch dein Profilbild. Du kannst es jederzeit ändern.</p>
+        <p className="mt-1 max-w-sm text-sm leading-6 text-zinc-500">Dein erstes hochgeladenes Foto wird automatisch dein Profilbild. Du kannst es jederzeit ändern.</p>
       </div>
     );
   }
@@ -184,11 +184,11 @@ export function GalleryManager({ items, username }: GalleryManagerProps) {
       >
         <DialogContent className="border-white/10 bg-zinc-950 text-white sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{deleteTarget?.type === "VIDEO" ? "Video löschen?" : "Bild löschen?"}</DialogTitle>
+            <DialogTitle>{deleteTarget?.type === "VIDEO" ? "Video löschen?" : "Foto löschen?"}</DialogTitle>
 
             <DialogDescription className="text-zinc-500">
               Die Datei wird dauerhaft entfernt.
-              {deleteTarget?.isProfileImage ? " Sie ist dein Profilbild, danach wird automatisch dein ältestes Bild verwendet." : ""}
+              {deleteTarget?.isProfileImage ? " Sie ist dein Profilbild, danach wird automatisch dein ältestes Foto verwendet." : ""}
             </DialogDescription>
           </DialogHeader>
 

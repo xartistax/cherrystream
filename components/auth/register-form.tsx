@@ -36,7 +36,7 @@ export function RegisterForm({ callbackUrl }: RegisterFormProps) {
 
         <h1 className="text-2xl font-bold text-white">Konto erstellen</h1>
 
-        <p className="text-sm leading-6 text-zinc-400">Registriere dich kostenlos, entdecke Profile und merke dir deine Favoriten.</p>
+        <p className="text-sm leading-6 text-zinc-400">Kostenlos und diskret: Merke dir Inserate, die dir gefallen. Du bist Escort? Mit dem Konto schaltest du danach dein Inserat.</p>
       </div>
       {state.message ? (
         <Alert variant="destructive">
@@ -48,7 +48,7 @@ export function RegisterForm({ callbackUrl }: RegisterFormProps) {
         <div className="space-y-2">
           <Label htmlFor="displayName">Anzeigename</Label>
 
-          <Input id="displayName" name="displayName" autoComplete="name" placeholder="Dein Name" maxLength={50} required />
+          <Input id="displayName" name="displayName" autoComplete="name" placeholder="Name oder Spitzname" maxLength={50} required />
 
           <FieldError errors={state.errors?.displayName} />
         </div>

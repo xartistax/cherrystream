@@ -69,6 +69,7 @@ export default async function EditInvitePage({ params }: EditInvitePageProps) {
             invite={{
               id: invite.id,
               displayName: invite.displayName,
+              gender: invite.gender,
               // Older drafts stored plain text; the editor expects HTML.
               bio: inviteBioToHtml(invite.bio) ?? "",
               phoneNumber: invite.phoneNumber ?? "",

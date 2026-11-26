@@ -61,7 +61,7 @@ export default async function CreditsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-white">
               <Coins className="size-5 text-rose-400" />
-              User Credits
+              Guthaben
             </CardTitle>
           </CardHeader>
 

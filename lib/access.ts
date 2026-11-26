@@ -27,8 +27,8 @@ export type CreatorAccess =
 
 const denialMessages: Record<CreatorAccessDenial, string> = {
   UNAUTHENTICATED: "Du bist nicht angemeldet.",
-  NOT_CREATOR: "Diese Funktion ist nur für Models verfügbar.",
-  NOT_ACTIVE: "Dein Model-Profil ist noch nicht freigeschaltet.",
+  NOT_CREATOR: "Diese Funktion gibt es nur mit einem Inserat.",
+  NOT_ACTIVE: "Dein Inserat ist noch nicht freigeschaltet.",
   ADMIN: "Admins haben kein Model-Profil. Nutze \"Als Model ansehen\" im Admin-Bereich.",
 };
 
