@@ -20,7 +20,7 @@ export async function toggleFollowAction(username: string): Promise<ToggleFollow
       success: false,
       following: false,
       followerCount: 0,
-      message: "Bitte melde dich an, um Ladies zu merken.",
+      message: "Bitte melde dich an, um Frauen zu merken.",
     };
   }
 

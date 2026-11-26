@@ -34,7 +34,7 @@ type MediaFilter = "IMAGE" | "VIDEO";
 const PAGE_SIZE = 24;
 
 export const metadata = {
-  title: "Escorts und Ladies in der Schweiz",
+  title: "Escorts und Erotik-Inserate in der Schweiz",
   description: "Verifizierte Escort- und Erotik-Inserate nach Ort, Kanton, Rubrik und Angebot durchsuchen. Direkter Kontakt, ohne Vermittler.",
 };
 
@@ -394,7 +394,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="space-y-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Ladies entdecken</h1>
+            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Frauen entdecken</h1>
 
             <p className="mt-2 text-sm text-zinc-400 sm:text-base">Suche nach Ort, Rubrik und Angebot und nimm direkt Kontakt auf.</p>
           </div>
@@ -581,7 +581,7 @@ export default async function CreatorsPage({ searchParams }: CreatorsPageProps) 
       <section className="mt-10">
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-white">{activeCategory ? activeCategory.name : "Alle Ladies"}</h2>
+            <h2 className="text-xl font-bold text-white">{activeCategory ? activeCategory.name : "Alle Frauen"}</h2>
 
             <p className="mt-1 text-sm text-zinc-500">{totalCount} {totalCount === 1 ? "Inserat" : "Inserate"}</p>
           </div>

@@ -24,15 +24,15 @@ export default function PrivacyPage() {
         <h2>2. Welche Daten wir bearbeiten</h2>
         <ul>
           <li>Kontodaten: E-Mail-Adresse, Benutzername, Passwort (nur verschlüsselt gespeichert), Geburtsdatum.</li>
-          <li>Inseratsdaten von Inserentinnen: Name, Beschreibung, Ort, Rubriken, Angebote, Fotos, Videos und freiwillig angegebene Kontaktkanäle.</li>
+          <li>Inseratsdaten von Inserierenden: Name, Beschreibung, Ort, Rubriken, Angebote, Fotos, Videos und freiwillig angegebene Kontaktkanäle.</li>
           <li>
-            Verifizierung von Inserentinnen: Foto eines Ausweises und ein Selfie. Diese Daten werden ausschliesslich zur Alters- und Identitätsprüfung verwendet,
+            Verifizierung von Inserierenden: Foto eines Ausweises und ein Selfie. Diese Daten werden ausschliesslich zur Alters- und Identitätsprüfung verwendet,
             in einem nicht öffentlichen Speicher abgelegt und nach der Prüfung gelöscht. Wir bewahren nur auf, dass und wann eine Prüfung stattgefunden hat.
           </li>
           <li>Nutzungsdaten: Profilaufrufe und Klicks auf Kontaktkanäle, nur in anonymisierter Form (gehashte Kennungen).</li>
-          <li>Favoriten: Profile, die du dir merkst. Diese Liste siehst nur du, Inserentinnen sehen nur eine Gesamtzahl ohne Namen.</li>
+          <li>Favoriten: Profile, die du dir merkst. Diese Liste siehst nur du, Inserierende sehen nur eine Gesamtzahl ohne Namen.</li>
           <li>
-            Credits und Käufe von Inserentinnen: gekaufte Pakete, Betrag, Zeitpunkt, Status und die Referenz des Zahlungsanbieters sowie gebuchte Boosts.
+            Credits und Käufe von Inserierenden: gekaufte Pakete, Betrag, Zeitpunkt, Status und die Referenz des Zahlungsanbieters sowie gebuchte Boosts.
             Kreditkarten- oder Kontodaten erhalten wir nicht, sie liegen nur beim Zahlungsanbieter.
           </li>
           <li>Schutz vor Missbrauch: gehashte IP-Adressen für Begrenzungen bei Anmeldung und Formularen, nach spätestens 24 Stunden gelöscht.</li>
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
       <section>
         <h2>3. Vorbereitete Profile (Einladungen)</h2>
         <p>
-          Wir können für Inserentinnen auf Grundlage öffentlich verfügbarer Angaben ein nicht öffentliches Profil vorbereiten und sie dazu einladen. Ein solches
+          Wir können für Inserierende auf Grundlage öffentlich verfügbarer Angaben ein nicht öffentliches Profil vorbereiten und sie dazu einladen. Ein solches
           Profil wird nie veröffentlicht, solange die Person es nicht selbst übernimmt und sich verifiziert. Über den Einladungslink kann sie es jederzeit
           sofort löschen lassen. Nicht übernommene Profile werden nach 30 Tagen automatisch gelöscht. Nach einer Ablehnung speichern wir nur einen
           verschlüsselten Hash der Telefonnummer, damit keine erneute Einladung erfolgt. <Placeholder>Rechtsgrundlage und Datenquellen juristisch prüfen</Placeholder>
@@ -58,9 +58,9 @@ export default function PrivacyPage() {
         <h2>4. Zwecke</h2>
         <ul>
           <li>Betrieb des Inserate-Verzeichnisses und Darstellung von Inseraten</li>
-          <li>Alters- und Identitätsprüfung von Inserentinnen</li>
+          <li>Alters- und Identitätsprüfung von Inserierenden</li>
           <li>Sicherheit, Missbrauchsbekämpfung und Bearbeitung von Meldungen</li>
-          <li>Statistiken für Inserentinnen über Aufrufe und Kontaktanfragen</li>
+          <li>Statistiken für Inserierende über Aufrufe und Kontaktanfragen</li>
           <li>Abwicklung von Credit-Käufen und Boosts</li>
           <li>Interne Benachrichtigung der Administratoren über neue Verifizierungen, Meldungen und Registrierungen</li>
         </ul>

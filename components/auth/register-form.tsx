@@ -36,7 +36,7 @@ export function RegisterForm({ callbackUrl }: RegisterFormProps) {
 
         <h1 className="text-2xl font-bold text-white">Konto erstellen</h1>
 
-        <p className="text-sm leading-6 text-zinc-400">Kostenlos und diskret: Merke dir deine Lieblings-Ladies. Du bist Escort? Mit dem Konto schaltest du danach dein Inserat.</p>
+        <p className="text-sm leading-6 text-zinc-400">Kostenlos und diskret: Merke dir Frauen, die dir gefallen. Du bist Escort? Mit dem Konto schaltest du danach dein Inserat.</p>
       </div>
       {state.message ? (
         <Alert variant="destructive">

@@ -204,7 +204,7 @@ export default async function PublicHomePage() {
             </Badge>
 
             <h1 className="mt-6 text-balance text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-              Verifizierte Ladies{" "}
+              Verifizierte Frauen{" "}
               <span className="bg-gradient-to-r from-rose-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">in der ganzen Schweiz.</span>
             </h1>
 
@@ -222,7 +222,7 @@ export default async function PublicHomePage() {
                   "h-12 rounded-2xl bg-rose-600 px-7 text-base font-semibold text-white shadow-lg shadow-rose-600/20 hover:bg-rose-500",
                 )}
               >
-                Ladies entdecken
+                Frauen entdecken
                 <ArrowRight className="size-5" />
               </Link>
 
@@ -328,7 +328,7 @@ export default async function PublicHomePage() {
           <div>
             <p className="text-3xl font-black text-white">{creatorCount}</p>
 
-            <p className="mt-1 text-sm text-zinc-500">verifizierte Ladies</p>
+            <p className="mt-1 text-sm text-zinc-500">verifizierte Frauen</p>
           </div>
 
           <div>
@@ -388,13 +388,13 @@ export default async function PublicHomePage() {
               Gerade aktiv
             </Badge>
 
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Ladies</h2>
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">Aktuelle Frauen</h2>
 
             <p className="mt-3 max-w-xl text-zinc-500">Wer zuletzt hochgeschoben oder neu dabei ist, steht zuoberst.</p>
           </div>
 
           <Link href="/explore" className="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 transition hover:text-rose-300">
-            Alle Ladies ansehen
+            Alle Frauen ansehen
             <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -487,7 +487,7 @@ export default async function PublicHomePage() {
 
             <h3 className="mt-5 text-lg font-semibold text-white">Noch keine Inserate online</h3>
 
-            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald die ersten Ladies freigeschaltet sind, erscheinen sie hier.</p>
+            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">Sobald die ersten Frauen freigeschaltet sind, erscheinen sie hier.</p>
 
             <Link href="/register" className={cn(buttonVariants(), "mt-6 bg-rose-600 text-white hover:bg-rose-500")}>
               Erstes Inserat schalten

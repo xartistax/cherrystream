@@ -38,7 +38,7 @@ export default async function VerificationPage() {
         <h1 className="text-3xl font-bold text-white">Verifizierung</h1>
 
         <p className="mt-2 text-zinc-400">
-          Damit auf CherryStream nur volljährige, echte Ladies inserieren, prüfen wir jedes Inserat, bevor es online geht. Dein Ausweis dient nur dieser Prüfung und wird danach gelöscht.
+          Damit auf CherryStream nur volljährige, echte Personen inserieren, prüfen wir jedes Inserat, bevor es online geht. Dein Ausweis dient nur dieser Prüfung und wird danach gelöscht.
         </p>
       </div>
 
