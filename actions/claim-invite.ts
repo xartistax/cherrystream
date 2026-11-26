@@ -91,6 +91,7 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
   ]);
 
   const contactData = {
+    ...(invite.gender ? { gender: invite.gender } : {}),
     cantonId: invite.cantonId,
     cityId: invite.cityId,
     phoneNumber: invite.phoneNumber,

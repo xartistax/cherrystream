@@ -19,8 +19,8 @@ import { ServiceSelector } from "./service-selector";
 import { LocationSelector } from "./location-selector";
 import { ContactSettings } from "./contact-settings";
 import { ProfileDescriptionEditor } from "../editor/rich-text-editor";
+import { type Gender, genderOptions } from "@/lib/profile/gender";
 
-type Gender = "WOMAN" | "MAN" | "NON_BINARY" | "OTHER";
 
 type CantonOption = {
   id: string;
@@ -213,21 +213,11 @@ export function ProfileForm({ user, categories, serviceGroups, cantonOptions, ci
                   Keine Angabe
                 </option>
 
-                <option value="WOMAN" className="bg-zinc-900">
-                  Frau
-                </option>
-
-                <option value="MAN" className="bg-zinc-900">
-                  Mann
-                </option>
-
-                <option value="NON_BINARY" className="bg-zinc-900">
-                  Nicht-binär
-                </option>
-
-                <option value="OTHER" className="bg-zinc-900">
-                  Andere
-                </option>
+                {genderOptions.map((option) => (
+                  <option key={option.value} value={option.value} className="bg-zinc-900">
+                    {option.label}
+                  </option>
+                ))}
               </select>
 
               <FieldError errors={state.errors?.gender} />

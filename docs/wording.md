@@ -4,7 +4,7 @@ Leitfaden für alle sichtbaren Texte: Website, Model-Bereich, E-Mails, Telegram,
 
 ## Was CherryStream ist
 
-Ein Verzeichnis für Erotik- und Escort-Inserate in der Schweiz. Besucher finden verifizierte Frauen nach Ort, Rubrik und Angebot und nehmen **direkt** Kontakt auf (Telefon, WhatsApp, Telegram, Signal). CherryStream vermittelt nicht, nimmt keine Buchungen entgegen und verdient nichts an Treffen; Einnahmen kommen nur aus den Credits der Inserierenden.
+Ein Verzeichnis für Erotik- und Escort-Inserate in der Schweiz. Besucher finden verifizierte Inserate (Frauen, Männer, Trans, Paare) nach Ort, Rubrik und Angebot und nehmen **direkt** Kontakt auf (Telefon, WhatsApp, Telegram, Signal). CherryStream vermittelt nicht, nimmt keine Buchungen entgegen und verdient nichts an Treffen; Einnahmen kommen nur aus den Credits der Inserierenden.
 
 Kein Creator- oder Content-Portal: keine Fans, Abos, Streams oder „exklusiven Inhalte“ (Premium-Inhalte sind ausgeschaltet und werden nicht beworben).
 
@@ -12,7 +12,7 @@ Kein Creator- oder Content-Portal: keine Fans, Abos, Streams oder „exklusiven 
 
 | Statt | Verwenden |
 | --- | --- |
-| Creator, Model (öffentlich), Profil-Anbieterin | **Frauen** in Überschriften und Werbung (nicht „Ladies“), **Escort** sachlich (z. B. „Escorts in Zürich“), **Inserierende** (geschlechtsneutral) in Rechtstexten |
+| Creator, Model (öffentlich), Ladies, Frauen | **Inserate** in Überschriften und Listen (geschlechtsneutral, es inserieren auch Männer und Paare), **Escorts** sachlich, **Inserierende** in Rechtstexten. «Frauen / Männer / Trans / Paare» nur im Filter «Wen suchst du?» |
 | Profil veröffentlichen, Model werden | **Inserat schalten**, „Jetzt inserieren“ |
 | Profil (öffentliche Seite) | **Profil** oder **Inserat**; im Model-Bereich „dein Inserat“ |
 | Inhalte, Posts, Content | **Fotos und Videos**, Galerie |
@@ -26,7 +26,7 @@ Im Admin-Bereich und in Telegram darf „Model“ als interner Begriff bleiben, 
 ## Ton
 
 - **Du**, überall (Besucher und Inserierende). Kein „Sie“.
-- Diskret, erwachsen, direkt. Sinnlich ist erlaubt, vulgär nicht: keine Sex-Begriffe in Überschriften, keine Preise oder Praktiken in Werbetexten.
+- Explizit, aber nicht vulgär: «Sex», «Sexkontakte», «Erotik», «Escort» sind auch in Überschriften und Meta-Texten erwünscht (Suchmaschinen). Keine derben Ausdrücke («geil», «versaut», «ficken») und keine Praktiken in Werbetexten; die stehen nur in den Angeboten.
 - Kurze Sätze, aktive Verben. Kein Marketing-Englisch („Discover“, „Content“, „Creator“), keine Ausrufezeichen-Ketten.
 - Kernbotschaften, wo passend: **verifiziert und echt**, **diskret**, **direkter Kontakt ohne Vermittler**, **ganze Schweiz**, **aktuell** (Hochgeschoben zuerst).
 - Für Inserierende: Sicherheit und Kontrolle betonen (Ausweis nur zur Prüfung, wird gelöscht; Kontaktwege selbst wählen; Profil jederzeit pausieren oder löschen).
@@ -40,6 +40,6 @@ Im Admin-Bereich und in Telegram darf „Model“ als interner Begriff bleiben, 
 
 ## Beispiele
 
-- Startseite: «Verifizierte Frauen in der ganzen Schweiz» · «Finde Escorts nach Ort, Rubrik und Angebot und schreib ihnen direkt.»
+- Startseite: «Sex- und Erotik-Inserate in der ganzen Schweiz» · «Verifizierte Escorts, Sexkontakte und erotische Massagen nach Ort, Rubrik und Angebot.»
 - Aufruf für Inserierende: «Inserat schalten» · «Dein Inserat, deine Regeln: Kontaktwege, Fotos und Angebote bestimmst du selbst.»
-- Leerer Zustand: «In diesem Ort sind gerade keine Frauen online. Versuch es mit dem ganzen Kanton.»
+- Leerer Zustand: «In diesem Ort sind gerade keine Inserate online. Versuch es mit dem ganzen Kanton.»

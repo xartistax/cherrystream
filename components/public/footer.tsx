@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/logo";
 
 const discoverLinks = [
   {
-    label: "Frauen entdecken",
+    label: "Inserate entdecken",
     href: "/explore",
   },
   {
@@ -12,7 +12,7 @@ const discoverLinks = [
     href: "/explore",
   },
   {
-    label: "Beliebte Frauen",
+    label: "Beliebte Inserate",
     href: "/explore?sort=trending",
   },
 ] as const;

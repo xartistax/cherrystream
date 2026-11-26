@@ -35,6 +35,7 @@ export default async function BecomeModelProfilePage() {
         select: {
           displayName: true,
           bio: true,
+          gender: true,
         },
       },
     },
@@ -79,7 +80,7 @@ export default async function BecomeModelProfilePage() {
         </CardHeader>
 
         <CardContent className="p-6">
-          <ModelProfileForm defaultDisplayName={user.profile?.displayName ?? user.name ?? user.username} defaultBio={user.profile?.bio ?? ""} />
+          <ModelProfileForm defaultDisplayName={user.profile?.displayName ?? user.name ?? user.username} defaultBio={user.profile?.bio ?? ""} defaultGender={user.profile?.gender ?? null} />
         </CardContent>
       </Card>
     </div>

@@ -117,7 +117,7 @@ export default async function VisibilityPage({ searchParams }: VisibilityPagePro
         <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Sichtbarkeit</h1>
 
         <p className="mt-2 max-w-2xl text-sm text-zinc-500">
-          Auf «Entdecken» und der Startseite stehen die Frauen zuerst, die zuletzt hochgeschoben wurden. Mit Credits schiebst du dein Inserat nach
+          Auf «Entdecken» und der Startseite stehen die Inserate zuerst, die zuletzt hochgeschoben wurden. Mit Credits schiebst du dein Inserat nach
           oben oder hebst es hervor.
         </p>
       </header>

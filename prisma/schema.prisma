@@ -53,6 +53,8 @@ enum UserStatus {
 enum Gender {
   WOMAN
   MAN
+  TRANS
+  COUPLE
   NON_BINARY
   OTHER
 }
@@ -599,6 +601,7 @@ model ModelInvite {
   cityId           String?
   categoryIds      String[]
   serviceIds       String[] @default([])
+  gender           Gender?
   phoneNumber      String?
   whatsappEnabled  Boolean  @default(false)
   telegramUsername String?

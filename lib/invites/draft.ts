@@ -3,6 +3,7 @@ import "server-only";
 import { z } from "zod";
 
 import { normalizePhoneNumber } from "@/lib/invites/token";
+import { genderValues } from "@/lib/profile/gender";
 import { prisma } from "@/lib/prisma";
 import { PROFILE_DESCRIPTION_MAX_LENGTH, sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
 
@@ -18,6 +19,7 @@ const optionalText = (max: number) =>
 export const inviteDraftSchema = z
   .object({
     displayName: z.string().trim().min(2, "Der Name muss mindestens 2 Zeichen haben.").max(60),
+    gender: z.enum(genderValues).nullable(),
     // HTML from the editor; sanitized below.
     bio: optionalText(50_000),
     phoneNumber: optionalText(30),

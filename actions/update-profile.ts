@@ -6,6 +6,7 @@ import { getCreatorAccess } from "@/lib/access";
 import { prisma } from "@/lib/prisma";
 import type { ActionState } from "@/types/action-state";
 import { PROFILE_DESCRIPTION_MAX_LENGTH, sanitizeProfileDescription } from "@/lib/sanitize-profile-description";
+import { genderValues } from "@/lib/profile/gender";
 const contactChannels = ["PHONE", "WHATSAPP", "TELEGRAM", "SIGNAL", "WEBSITE", "INSTAGRAM", "EMAIL"] as const;
 
 type ContactChannel = (typeof contactChannels)[number];
@@ -75,7 +76,7 @@ const profileSchema = z
       .trim()
       .refine((value) => !value || !Number.isNaN(Date.parse(value)), "Bitte gib ein gültiges Geburtsdatum ein."),
 
-    gender: z.enum(["WOMAN", "MAN", "NON_BINARY", "OTHER"]).nullable(),
+    gender: z.enum(genderValues).nullable(),
 
     isPublic: z.boolean(),
 

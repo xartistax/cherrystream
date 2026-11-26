@@ -50,7 +50,7 @@ export default async function FavoritesPage() {
       <header>
         <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Meine Favoriten</h1>
 
-        <p className="mt-2 text-sm text-zinc-500">Frauen, die du dir gemerkt hast. Nur du siehst diese Liste.</p>
+        <p className="mt-2 text-sm text-zinc-500">Inserate, die du dir gemerkt hast. Nur du siehst diese Liste.</p>
       </header>
 
       {cards.length === 0 ? (
@@ -62,7 +62,7 @@ export default async function FavoritesPage() {
           <p className="mt-1 max-w-sm text-sm leading-6 text-zinc-500">Tippe in einem Inserat auf «Merken», um es hier wiederzufinden.</p>
 
           <Link href="/explore" className={cn(buttonVariants(), "mt-6 bg-rose-600 text-white hover:bg-rose-500")}>
-            Frauen entdecken
+            Inserate entdecken
           </Link>
         </div>
       ) : (

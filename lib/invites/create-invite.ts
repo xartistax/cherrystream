@@ -88,6 +88,7 @@ async function checkPhoneNumber(phoneNumber: string, excludeInviteId?: string): 
 function draftData(draft: InviteDraft, location: ResolvedLocation) {
   return {
     displayName: draft.displayName,
+    gender: draft.gender,
     bio: draft.bio,
     phoneNumber: draft.phoneNumber,
     whatsappEnabled: draft.whatsappEnabled,
