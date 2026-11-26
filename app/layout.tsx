@@ -15,12 +15,27 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const description = "Verifizierte Escort- und Erotik-Profile aus der ganzen Schweiz. Diskret, echt, aktuell.";
+
+// Link previews show the same brand image everywhere (app/opengraph-image.png), never a profile photo.
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   title: {
     default: "CherryStream",
     template: "%s | CherryStream",
   },
-  description: "Connect, share and meet on CherryStream.",
+  description,
+  applicationName: "CherryStream",
+  openGraph: {
+    type: "website",
+    siteName: "CherryStream",
+    locale: "de_CH",
+    title: "CherryStream",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

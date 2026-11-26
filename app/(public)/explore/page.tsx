@@ -34,8 +34,8 @@ type MediaFilter = "IMAGE" | "VIDEO";
 const PAGE_SIZE = 24;
 
 export const metadata = {
-  title: "Creator entdecken",
-  description: "Entdecke öffentliche Creator-Profile auf CherryStream.",
+  title: "Profile entdecken",
+  description: "Verifizierte Profile nach Ort, Kanton, Rubrik und Angebot durchsuchen.",
 };
 
 function parsePage(value: string | undefined): number {
