@@ -1,28 +1,16 @@
 import { Coins, CreditCard } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 
-import { CreditPackages } from "@/components/credits/credit-packages";
-import { CheckoutSuccess } from "@/components/credits/checkout-success";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
-import { ECONOMY } from "@/lib/economy";
 import { paymentsEnabled } from "@/lib/features";
 import { prisma } from "@/lib/prisma";
 import { WalletHistory } from "@/components/credits/wallet-history";
 
-type CreditsPageProps = {
-  searchParams: Promise<{
-    checkout?: string;
-    session_id?: string;
-  }>;
-};
-
-export default async function CreditsPage({ searchParams }: CreditsPageProps) {
+export default async function CreditsPage() {
   if (!paymentsEnabled) {
     notFound();
   }
-
-  const { checkout, session_id: sessionId } = await searchParams;
 
   const session = await auth();
 
@@ -68,8 +56,6 @@ export default async function CreditsPage({ searchParams }: CreditsPageProps) {
         <p className="mt-2 text-zinc-400">Verwalte dein Guthaben und kaufe neue Credits.</p>
       </div>
 
-      {checkout === "success" && sessionId ? <CheckoutSuccess sessionId={sessionId} /> : null}
-
       <div className="grid gap-4 md:grid-cols-3">
         <Card className="border-white/10 bg-white/[0.03]">
           <CardHeader>
@@ -98,7 +84,7 @@ export default async function CreditsPage({ searchParams }: CreditsPageProps) {
         </Card>
       </div>
 
-      <CreditPackages packages={ECONOMY.creditPackages} />
+      <p className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm text-zinc-400">Credits kannst du bald direkt hier kaufen.</p>
 
       <WalletHistory transactions={transactions} />
     </div>
