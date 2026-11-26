@@ -16,6 +16,7 @@ import { trackProfileView } from "@/lib/analytics/track-profile-view";
 import { ContactCard } from "@/components/profile/contact-card";
 import { StickyProfileHeader } from "@/components/profile/sticky-profile-header";
 import { ProfileServices } from "@/components/profile/profile-services";
+import { BackButton } from "@/components/public/back-button";
 import { groupServices } from "@/lib/services/services";
 import { ProfileDescription } from "@/components/profile/profile-description";
 import { BadgeCheck, CalendarDays, Camera, MapPin, Video } from "lucide-react";
@@ -289,6 +290,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
           preferredContact: user.profile.preferredContact,
         }}
       />
+
+      <BackButton fallbackHref="/explore" className="-ml-3 mb-3" />
 
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/80 shadow-2xl shadow-black/20">
         <div className="relative h-56 overflow-hidden bg-linear-to-br from-rose-600 via-pink-600 to-fuchsia-700 sm:h-72">
