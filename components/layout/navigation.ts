@@ -9,6 +9,7 @@ import {
   Images,
   LayoutDashboard,
   MailPlus,
+  MessageCircle,
   Rocket,
   Settings,
   UserRound,
@@ -110,6 +111,11 @@ export const adminNavigationItems: NavigationItem[] = [
     label: "Protokoll",
     href: "/admin/audit",
     icon: History,
+  },
+  {
+    label: "Telegram",
+    href: "/admin/notifications",
+    icon: MessageCircle,
   },
 ];
 

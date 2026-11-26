@@ -20,6 +20,8 @@ const envSchema = z.object({
 
   SENTRY_DSN: z.url().optional(),
   NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
+  TELEGRAM_BOT_TOKEN: z.string().min(1).optional(),
+  TELEGRAM_CHAT_ID: z.string().min(1).optional(),
 
   FFMPEG_PATH: z.string().min(1).optional(),
   FFPROBE_PATH: z.string().min(1).optional(),
@@ -45,6 +47,8 @@ const parsedEnv = envSchema.safeParse({
 
   SENTRY_DSN: process.env.SENTRY_DSN || undefined,
   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN || undefined,
+  TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || undefined,
+  TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID || undefined,
 
   FFMPEG_PATH: process.env.FFMPEG_PATH || undefined,
   FFPROBE_PATH: process.env.FFPROBE_PATH || undefined,

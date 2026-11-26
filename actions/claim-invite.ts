@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth } from "@/lib/auth";
 import { plainTextToParagraphs } from "@/lib/invites/draft";
 import { getOpenInvite } from "@/lib/invites/get-open-invite";
@@ -175,6 +176,11 @@ export async function claimInviteAction(_previousState: ClaimInviteState, formDa
       message: "Das Profil konnte nicht übernommen werden.",
     };
   }
+
+  notifyAdmins("INVITE_CLAIMED", {
+    lines: [`@${user.username}`],
+    path: "/admin/invites",
+  });
 
   revalidatePath("/admin/invites");
   revalidatePath("/dashboard");

@@ -29,6 +29,7 @@ Anleitung für das erste Production-Deployment von v0.0.1 auf Vercel.
 | `CRON_SECRET` | `openssl rand -hex 32` |
 | `NEXT_PUBLIC_PAYMENTS_ENABLED` | `false` |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | optional, gleicher DSN |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | optional, Admin-Benachrichtigungen, siehe [telegram.md](telegram.md) |
 | `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` | optional, nur für Source Maps |
 
 **Nicht** in Production setzen: `EMAIL_DEV_REDIRECT`, `SEED_PASSWORD`, `FFMPEG_PATH`, `FFPROBE_PATH`.

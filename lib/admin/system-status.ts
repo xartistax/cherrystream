@@ -339,6 +339,36 @@ async function checkErrorTracking(): Promise<CheckResult> {
   };
 }
 
+async function checkTelegram(): Promise<CheckResult> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    return {
+      status: "disabled",
+      detail: "Nicht verbunden (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID), Anleitung in docs/telegram.md",
+    };
+  }
+
+  // getChat proves both: the token is valid and the bot is a member of the admin group.
+  const response = await fetch(`https://api.telegram.org/bot${token}/getChat?chat_id=${encodeURIComponent(chatId)}`, {
+    cache: "no-store",
+  });
+  const body = (await response.json().catch(() => null)) as { ok?: boolean; description?: string; result?: { title?: string } } | null;
+
+  if (!body?.ok) {
+    return {
+      status: "error",
+      detail: `Telegram meldet: ${body?.description ?? `HTTP ${response.status}`}`,
+    };
+  }
+
+  return {
+    status: "ok",
+    detail: `Bot schreibt in „${body.result?.title ?? chatId}“`,
+  };
+}
+
 async function checkFfmpeg(): Promise<CheckResult> {
   const { ffmpegPath, ffprobePath } = await getFfmpegBinaries();
   const [ffmpegVersion, ffprobeVersion] = await Promise.all([readBinaryVersion(ffmpegPath), readBinaryVersion(ffprobePath)]);
@@ -652,7 +682,7 @@ async function checkActivity(): Promise<CheckResult> {
 }
 
 export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
-  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
+  const [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram, ffmpeg, sharpCheck, stripeApi, stripeWebhook, verifications, reports, documents, cleanup, media, activity] =
     await Promise.all([
       runCheck("database", "Datenbank", checkDatabase),
       runCheck("schema", "Datenbankschema", checkSchema),
@@ -661,6 +691,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
       runCheck("environment", "Umgebungsvariablen", checkEnvironment),
       runCheck("email", "E-Mail-Versand (Resend)", checkEmail),
       runCheck("error-tracking", "Error-Tracking (Sentry)", checkErrorTracking),
+      runCheck("telegram", "Admin-Benachrichtigungen (Telegram)", checkTelegram),
       runCheck("ffmpeg", "FFmpeg / FFprobe", checkFfmpeg),
       runCheck("sharp", "Bildverarbeitung (sharp)", checkSharp),
       runCheck("stripe-api", "Stripe API", checkStripeApi),
@@ -676,7 +707,7 @@ export async function getSystemStatus(): Promise<SystemCheckGroup[]> {
   return [
     {
       title: "Infrastruktur",
-      checks: [database, schema, publicBlob, privateBlob, environment, email, errorTracking],
+      checks: [database, schema, publicBlob, privateBlob, environment, email, errorTracking, telegram],
     },
     {
       title: "Medienverarbeitung",

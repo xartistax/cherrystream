@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { auth } from "@/lib/auth";
 import { getAdminEmails, sendEmail } from "@/lib/email/send";
 import { adminUrgentReportEmail } from "@/lib/email/templates";
@@ -98,6 +99,11 @@ export async function submitReportAction(input: unknown): Promise<SubmitReportRe
   });
 
   const reportReason = reason as (typeof reportReasons)[number]["value"];
+
+  notifyAdmins("REPORT_CREATED", {
+    lines: [`${urgentReportReasons.includes(reportReason) ? "Dringend: " : ""}${reportReasonLabels[reportReason]}`, `Profil: @${username}`],
+    path: "/admin/reports",
+  });
 
   if (urgentReportReasons.includes(reportReason)) {
     const adminEmails = await getAdminEmails();

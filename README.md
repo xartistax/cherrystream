@@ -36,6 +36,7 @@ pnpm dev
 | `EMAIL_DEV_REDIRECT` | nein | Nur lokal: leitet alle Mails an eine Adresse um (z. B. im Resend-Testmodus) |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | empfohlen | Error-Tracking. `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` nur für Source Maps im Build |
 | `CRON_SECRET` | in Production | Schützt den täglichen Cleanup-Job (`openssl rand -hex 32`) |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | optional | Admin-Benachrichtigungen in eine Telegram-Gruppe (docs/telegram.md) |
 | `FFMPEG_PATH`, `FFPROBE_PATH` | nein | Eigene FFmpeg-Binaries |
 
 Die Pflichtvariablen werden beim Serverstart in `lib/env.ts` geprüft.
