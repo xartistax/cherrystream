@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
@@ -27,11 +28,55 @@ type PageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { username } = await params;
 
+  const profile = await prisma.profile.findFirst({
+    where: {
+      isPublic: true,
+      user: { username, status: "ACTIVE", role: "MODEL", modelStatus: "ACTIVE" },
+    },
+    select: {
+      displayName: true,
+      city: { select: { name: true } },
+      canton: { select: { name: true } },
+      categories: {
+        orderBy: { category: { sortOrder: "asc" } },
+        take: 2,
+        select: { category: { select: { name: true } } },
+      },
+    },
+  });
+
+  if (!profile) {
+    return { title: "Profil nicht gefunden" };
+  }
+
+  const name = profile.displayName || username;
+  const place = [profile.city?.name, profile.canton?.name].filter(Boolean).join(", ");
+  const title = place ? `${name} in ${place}` : name;
+  const rubrics = profile.categories.map(({ category }) => category.name).join(", ");
+  const summary = [rubrics, place ? `in ${place}` : null].filter(Boolean).join(" ");
+  const description = summary ? `${summary}. Verifiziertes Profil auf CherryStream.` : "Verifiziertes Profil auf CherryStream.";
+
+  // Only text: the preview image stays the brand image, no photos in chat previews.
   return {
-    title: `${username} • CherryStream`,
+    title,
+    description,
+    openGraph: {
+      type: "profile",
+      siteName: "CherryStream",
+      locale: "de_CH",
+      title: `${title} | CherryStream`,
+      description,
+      url: `/profile/${username}`,
+      // A page-level openGraph replaces the inherited one, including app/opengraph-image.png.
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "CherryStream" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/opengraph-image.png"],
+    },
   };
 }
 

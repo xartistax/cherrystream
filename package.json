@@ -12,6 +12,7 @@
     "seed:demo": "tsx --conditions=react-server prisma/seed-demo.ts",
     "make-admin": "tsx scripts/make-admin.ts",
     "smoke": "tsx scripts/smoke.ts",
+    "generate-brand-assets": "tsx scripts/generate-brand-assets.tsx",
     "sync-profile-images": "tsx --conditions=react-server scripts/sync-profile-images.ts"
   },
   "dependencies": {
