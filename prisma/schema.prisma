@@ -107,6 +107,7 @@ enum AdminAction {
   REPORT_DISMISSED
   CREDITS_ADJUSTED
   ALERT_SETTING_CHANGED
+  SITE_SETTING_CHANGED
 }
 
 enum ReportReason {
@@ -828,4 +829,12 @@ model CreditOrder {
 
   @@index([userId, createdAt])
   @@index([status, createdAt])
+}
+
+/// Site-wide switches admins change at runtime, e.g. the coming-soon mode (see lib/site-settings.ts).
+model SiteSetting {
+  key         String   @id
+  value       Json
+  updatedById String?
+  updatedAt   DateTime @updatedAt
 }

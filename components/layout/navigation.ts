@@ -4,6 +4,7 @@ import {
   CircleUserRound,
   CreditCard,
   Flag,
+  Globe,
   Heart,
   History,
   Images,
@@ -122,6 +123,11 @@ export const adminNavigationItems: NavigationItem[] = [
     label: "Telegram",
     href: "/admin/notifications",
     icon: MessageCircle,
+  },
+  {
+    label: "Website",
+    href: "/admin/site",
+    icon: Globe,
   },
 ];
 
