@@ -1,6 +1,7 @@
 import "server-only";
 
 import { WalletBalanceType, WalletTransactionType, type CreditOrderStatus, type PaymentProvider } from "@/generated/prisma/client";
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { calculateCreditPackageTotal, getCreditPackage } from "@/lib/economy";
 import { getAvailableProviders, getPaymentMode } from "@/lib/payments/config";
 import { prisma } from "@/lib/prisma";
@@ -42,6 +43,41 @@ export async function createCreditOrder(userId: string, packageId: string, provi
  * order-based idempotency key make a repeated confirmation a no-op.
  */
 export async function completeCreditOrder(orderId: string, providerReference: string): Promise<"paid" | "already-paid" | "not-pending"> {
+  try {
+    const result = await bookCreditOrder(orderId, providerReference);
+
+    if (result.outcome === "paid" && result.order.mode === "LIVE") {
+      notifyAdmins("ORDER_PAID", {
+        lines: [`@${result.order.username}: ${result.order.credits.toLocaleString("de-CH")} Credits, CHF ${(result.order.priceRappen / 100).toFixed(2)}`],
+        path: "/admin/orders",
+      });
+    }
+
+    return result.outcome;
+  } catch (error) {
+    // A paid order that cannot be booked means money without credits: the admins must look at it.
+    if (getPaymentMode() === "LIVE") {
+      notifyAdmins("PAYMENT_PROBLEM", {
+        lines: [`Bestellung ${orderId} konnte nicht verbucht werden`, error instanceof Error ? error.message : "Unbekannter Fehler"],
+        path: "/admin/orders",
+      });
+    }
+
+    throw error;
+  }
+}
+
+type BookedOrder = {
+  username: string;
+  credits: number;
+  priceRappen: number;
+  mode: "TEST" | "LIVE";
+};
+
+async function bookCreditOrder(
+  orderId: string,
+  providerReference: string,
+): Promise<{ outcome: "paid"; order: BookedOrder } | { outcome: "already-paid" | "not-pending" }> {
   return prisma.$transaction(async (tx) => {
     const order = await tx.creditOrder.findUnique({
       where: {
@@ -52,17 +88,23 @@ export async function completeCreditOrder(orderId: string, providerReference: st
         userId: true,
         credits: true,
         packageId: true,
+        priceRappen: true,
         mode: true,
         status: true,
+        user: {
+          select: {
+            username: true,
+          },
+        },
       },
     });
 
     if (!order) {
-      return "not-pending";
+      return { outcome: "not-pending" as const };
     }
 
     if (order.status === "PAID") {
-      return "already-paid";
+      return { outcome: "already-paid" as const };
     }
 
     const updated = await tx.creditOrder.updateMany({
@@ -78,7 +120,7 @@ export async function completeCreditOrder(orderId: string, providerReference: st
     });
 
     if (updated.count === 0) {
-      return "not-pending";
+      return { outcome: "not-pending" as const };
     }
 
     const transaction = await createWalletTransactionInTx(tx, {
@@ -104,7 +146,15 @@ export async function completeCreditOrder(orderId: string, providerReference: st
       },
     });
 
-    return "paid";
+    return {
+      outcome: "paid" as const,
+      order: {
+        username: order.user.username,
+        credits: order.credits,
+        priceRappen: order.priceRappen,
+        mode: order.mode,
+      },
+    };
   });
 }
 

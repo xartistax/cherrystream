@@ -769,6 +769,13 @@ enum AdminAlertEvent {
   REPORT_CREATED
   INVITE_CLAIMED
   MODEL_REGISTERED
+  INVITE_DECLINED
+  ACCOUNT_DELETED
+  ORDER_PAID
+  PAYMENT_PROBLEM
+  SYSTEM_PROBLEM
+  VERIFICATION_OVERDUE
+  DAILY_SUMMARY
 }
 
 /// Admins switch each Telegram alert on or off; a missing row means on.

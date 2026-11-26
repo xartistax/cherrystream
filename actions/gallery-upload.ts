@@ -6,6 +6,7 @@ import { del } from "@vercel/blob";
 
 import type { GalleryActionResult } from "@/actions/gallery";
 import { getCreatorAccess } from "@/lib/access";
+import { notifyAdmins } from "@/lib/admin-alerts/alerts";
 import { getBlobToken } from "@/lib/blob";
 import { paymentsEnabled } from "@/lib/features";
 import { syncProfileImage } from "@/lib/gallery/profile-image";
@@ -86,6 +87,14 @@ export async function uploadGalleryAction(input: GalleryUploadInput): Promise<Ga
     };
   } catch (error) {
     console.error("Gallery upload failed:", error);
+
+    const uploader = await prisma.user.findUnique({ where: { id: userId }, select: { username: true } }).catch(() => null);
+
+    notifyAdmins("SYSTEM_PROBLEM", {
+      title: "Upload fehlgeschlagen",
+      lines: [`@${uploader?.username ?? "unbekannt"}`, error instanceof Error ? error.message : "Unbekannter Fehler"],
+      path: "/admin/posts",
+    });
 
     return {
       success: false,
